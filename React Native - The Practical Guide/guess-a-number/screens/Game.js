@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react"
-import { View, Text, StyleSheet, Button, Alert } from "react-native"
+import { View, Text, StyleSheet, Alert } from "react-native"
+import { Ionicons } from "@expo/vector-icons"
 import Card from "../components/Card"
+import MainButton from "../components/MainButton"
 import defaultStyles from "../constants/default-styles"
 
 export default function GameScreen({ userChoice, onGameOver }) {
@@ -37,11 +39,12 @@ export default function GameScreen({ userChoice, onGameOver }) {
       <Text style={defaultStyles.BOLD_TEXT}>PC's guess</Text>
       <Text style={defaultStyles.NORMAL_TEXT}>{curGuess}</Text>
       <Card style={styles.buttonsContainer}>
-        <Button title="lower" onPress={handleNextGuess.bind(this, "lower")} />
-        <Button
-          title="greater"
-          onPress={handleNextGuess.bind(this, "greater")}
-        />
+        <MainButton onPress={handleNextGuess.bind(this, "lower")}>
+          <Ionicons name="md-remove" size={24} color="white" />
+        </MainButton>
+        <MainButton onPress={handleNextGuess.bind(this, "greater")}>
+          <Ionicons name="md-add" size={24} color="white" />
+        </MainButton>
       </Card>
     </View>
   )
@@ -53,8 +56,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     marginTop: 20,
-    width: 300,
-    maxWidth: "80%"
+    width: 400,
+    maxWidth: "90%"
   }
 })
 
@@ -63,6 +66,5 @@ function rng(min, max, exclude) {
   max = Math.floor(max) // exclude 100
   const rndNum = Math.floor(Math.random() * (max - min)) + min
 
-  if (rndNum === exclude) return rng(min, max, exclude)
-  else return rndNum
+  return rndNum === exclude ? rng(min, max, exclude) : rndNum
 }
