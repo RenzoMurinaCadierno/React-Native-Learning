@@ -1,18 +1,19 @@
 import React, { useState, useRef, useEffect } from "react"
-import { View, Text, StyleSheet, Alert } from "react-native"
+import { View, Text, StyleSheet, Alert, ScrollView } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import Card from "../components/Card"
 import MainButton from "../components/MainButton"
+import NormalText from "../components/NormalText"
 import defaultStyles from "../constants/default-styles"
 
 export default function GameScreen({ userChoice, onGameOver }) {
   const [curGuess, setCurGuess] = useState(rng(1, 100, userChoice))
-  const [guesses, setGuesses] = useState(0)
+  const [guesses, setGuesses] = useState([curGuess])
   const curLow = useRef(1)
   const curHi = useRef(100)
 
   useEffect(() => {
-    if (curGuess === userChoice) onGameOver(guesses)
+    if (curGuess === userChoice) onGameOver(guesses.length)
   }, [curGuess, userChoice, onGameOver])
 
   const handleNextGuess = (direction) => {
@@ -26,13 +27,20 @@ export default function GameScreen({ userChoice, onGameOver }) {
     }
 
     if (direction === "lower") curHi.current = curGuess
-    else curLow.current = curGuess
+    else curLow.current = curGuess + 1 // as not to repeat keys
 
     const newGuess = rng(curLow.current, curHi.current, curGuess)
 
     setCurGuess(newGuess)
-    setGuesses((prevGuesses) => prevGuesses + 1)
+    setGuesses((prevGuesses) => [newGuess, ...prevGuesses])
   }
+
+  const renderListItem = (value, index) => (
+    <View key={value} style={styles.listItem}>
+      <NormalText>#{guesses.length - index}</NormalText>
+      <NormalText>{value}</NormalText>
+    </View>
+  )
 
   return (
     <View style={styles.container}>
@@ -46,6 +54,11 @@ export default function GameScreen({ userChoice, onGameOver }) {
           <Ionicons name="md-add" size={24} color="white" />
         </MainButton>
       </Card>
+      <View style={styles.listContainer}>
+        <ScrollView contentContainerStyle={styles.list}>
+          {guesses.map(renderListItem)}
+        </ScrollView>
+      </View>
     </View>
   )
 }
@@ -58,6 +71,25 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 400,
     maxWidth: "90%"
+  },
+  listContainer: {
+    width: "80%",
+    flex: 1 // stretch to the whole available space
+  },
+  list: {
+    flexGrow: 1, // keeps styles of ScrollView. Exceeds boundaries. Shows first and last item no problems!
+    alignItems: "center",
+    justifyContent: "flex-end"
+  },
+  listItem: {
+    borderColor: "#ccc",
+    borderWidth: 1,
+    padding: 15,
+    marginVertical: 10,
+    backgroundColor: "white",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: "60%"
   }
 })
 
