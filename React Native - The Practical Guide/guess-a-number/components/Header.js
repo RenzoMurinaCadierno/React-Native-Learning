@@ -1,6 +1,7 @@
 import React from "react"
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, Platform } from "react-native"
 import BoldText from "./BoldText"
+import colors from "../constants/colors"
 
 export default function Header(props) {
   return (
@@ -15,9 +16,16 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 90,
     paddingTop: 36,
-    backgroundColor: "#f7287b",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    ...Platform.select({
+      ios: {
+        backgroundColor: "white",
+        borderBottomColor: "gray",
+        borderBottomWidth: 1
+      },
+      android: { backgroundColor: colors.SECONDARY }
+    })
   },
-  title: { color: "black" }
+  title: { color: Platform.OS === "ios" ? colors.PRIMARY : "white" }
 })
