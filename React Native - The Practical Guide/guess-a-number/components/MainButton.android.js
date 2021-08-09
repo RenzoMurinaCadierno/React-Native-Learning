@@ -15,12 +15,9 @@ export default function MainButton({
   styles = {},
   ...rest
 }) {
-  let ButtonComponent = TouchableOpacity
-
   // 'ripple' effect was introduced in android v.21
-  if (Platform.Version >= 21) {
-    ButtonComponent = TouchableNativeFeedback
-  }
+  const ButtonComponent =
+    Platform.Version >= 21 ? TouchableNativeFeedback : TouchableOpacity
 
   return (
     <View style={[_styles.container, styles.container]}>

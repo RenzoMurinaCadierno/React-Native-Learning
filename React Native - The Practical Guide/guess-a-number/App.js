@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { ActivityIndicator, StyleSheet, View } from "react-native"
+import { ActivityIndicator, SafeAreaView, StyleSheet } from "react-native"
 import * as Font from "expo-font"
 
 import Header from "./components/Header"
@@ -22,9 +22,9 @@ export default function App() {
 
   if (!isLoaded) {
     return (
-      <View style={{ ...styles.container, ...styles.loadingContainer }}>
+      <SafeAreaView style={[styles.container, styles.loadingContainer]}>
         <ActivityIndicator size="large" color={colors.SECONDARY} />
-      </View>
+      </SafeAreaView>
     )
   }
 
@@ -48,10 +48,10 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header title="Guess a #" />
       {content}
-    </View>
+    </SafeAreaView>
   )
 }
 
