@@ -1,20 +1,21 @@
 import React from "react"
-import { View, Text, StyleSheet, Button } from "react-native"
+import { FlatList } from "react-native"
+import { CATEGORIES } from "../data/dummy"
+import CategoryGridItem from "../components/CategoryGridItem"
 
 export default function Categories(props) {
-  return (
-    <View style={_styles.container}>
-      <Text>Categories</Text>
-      <Button
-        title="Go to meals"
-        onPress={() =>
-          props.navigation.navigate({ routeName: "CategoryMeals" })
-        }
-      />
-    </View>
+  const renderItem = (data) => (
+    <CategoryGridItem
+      title={data.item.title}
+      color={data.item.color}
+      onPress={() =>
+        props.navigation.navigate({
+          routeName: "CategoryMeals",
+          params: { categoryId: data.item.id }
+        })
+      }
+    />
   )
-}
 
-const _styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" }
-})
+  return <FlatList data={CATEGORIES} renderItem={renderItem} numColumns={2} />
+}
