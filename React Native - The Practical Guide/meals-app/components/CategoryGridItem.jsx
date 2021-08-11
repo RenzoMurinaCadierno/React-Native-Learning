@@ -31,7 +31,14 @@ const _styles = StyleSheet.create({
     margin: 15,
     height: 150,
     borderRadius: 10,
-    overflow: "hidden" // for ripple effect's overflowing issue
+    // for ripple effect's overflowing issue, use 'hidden'. For iOS, 'visible',
+    // since 'hidden' crops the shadow
+    overflow:
+      Platform.OS === "android" && Platform.Version >= 21
+        ? "hidden"
+        : "visible",
+    // for android as not to conflict with overflow: "hidden"
+    elevation: 5
   },
   view: {
     flex: 1,
@@ -42,9 +49,7 @@ const _styles = StyleSheet.create({
     shadowColor: "black",
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 10,
-    // for android
-    elevation: 3
+    shadowRadius: 10
   },
   title: {
     fontFamily: "open-sans-bold",
