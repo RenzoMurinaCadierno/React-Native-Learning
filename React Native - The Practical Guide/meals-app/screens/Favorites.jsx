@@ -1,15 +1,13 @@
 import React from "react"
 import { HeaderButtons, Item } from "react-navigation-header-buttons"
+import { useSelector } from "react-redux"
 import CustomHeaderButton from "../components/HeaderButton"
 import MealList from "../components/MealList"
-import { MEALS } from "../data/dummy"
 
 export default function Favorites(props) {
-  const dummyFavMeals = MEALS.filter(
-    (meal) => meal.id === "m1" || meal.id === "m2"
-  )
+  const favoriteMeals = useSelector((state) => state.meals.favoriteMeals)
 
-  return <MealList data={dummyFavMeals} navigation={props.navigation} />
+  return <MealList data={favoriteMeals} navigation={props.navigation} />
 }
 
 Favorites.navigationOptions = ({ navigation }) => ({

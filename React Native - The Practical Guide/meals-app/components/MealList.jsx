@@ -13,7 +13,7 @@ export default function MealList({ data, navigation }) {
       onPress={() =>
         navigation.navigate({
           routeName: "MealDetails",
-          params: { mealId: data.item.id }
+          params: { mealId: data.item.id, mealTitle: data.item.title }
         })
       }
     />

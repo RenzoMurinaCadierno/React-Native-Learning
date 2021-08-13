@@ -1,13 +1,18 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { ScrollView, View, Text, StyleSheet, Image } from "react-native"
 import { HeaderButtons, Item } from "react-navigation-header-buttons"
+import { useSelector } from "react-redux"
 import DefaultText from "../components/DefaultText"
 import CustomHeaderButton from "../components/HeaderButton"
-import { MEALS } from "../data/dummy"
 
 export default function MealDetails(props) {
+  const meals = useSelector((state) => state.meals.meals)
   const mealId = props.navigation.getParam("mealId")
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId)
+  const selectedMeal = meals.find((meal) => meal.id === mealId)
+
+  useEffect(() => {
+    props.navigation.setParams({ mealTitle: selectedMeal.title })
+  }, [selectedMeal])
 
   return (
     <ScrollView>
@@ -24,11 +29,10 @@ export default function MealDetails(props) {
 }
 
 MealDetails.navigationOptions = ({ navigation }) => {
-  const mealId = navigation.getParam("mealId")
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId)
+  const mealTitle = navigation.getParam("mealTitle")
 
   return {
-    headerTitle: selectedMeal.title,
+    headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         {/* you can have multiple '*Item*' inside '*HeaderButton*' */}

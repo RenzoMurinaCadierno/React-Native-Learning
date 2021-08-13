@@ -23,7 +23,7 @@ export default function Categories(props) {
 }
 
 Categories.navigationOptions = ({ navigation }) => ({
-  headerLeft: (
+  headerLeft: () => (
     <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
       <Item
         title="menu"
