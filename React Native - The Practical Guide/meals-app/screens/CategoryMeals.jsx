@@ -1,5 +1,7 @@
 import React from "react"
+import { View, StyleSheet } from "react-native"
 import { useSelector } from "react-redux"
+import DefaultText from "../components/DefaultText"
 import MealList from "../components/MealList"
 import { CATEGORIES } from "../data/dummy"
 
@@ -12,7 +14,13 @@ export default function CategoryMeals(props) {
     (meal) => meal.categoryIds.indexOf(categoryId) !== -1
   )
 
-  return <MealList data={displayedMeals} navigation={props.navigation} />
+  return !displayedMeals.length ? (
+    <View style={_styles.container}>
+      <DefaultText>Nothing to show. Checked filters?</DefaultText>
+    </View>
+  ) : (
+    <MealList data={displayedMeals} navigation={props.navigation} />
+  )
 }
 
 CategoryMeals.navigationOptions = ({ navigation }) => {
@@ -22,3 +30,7 @@ CategoryMeals.navigationOptions = ({ navigation }) => {
 
   return { headerTitle: selectedCategory.title }
 }
+
+const _styles = StyleSheet.create({
+  container: { flex: 1, alignItems: "center", justifyContent: "center" }
+})
