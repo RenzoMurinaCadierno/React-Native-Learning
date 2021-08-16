@@ -45,5 +45,14 @@ ProductsOverview.navigationOptions = ({ navigation }) => ({
         onPress={() => navigation.navigate("Cart")}
       />
     </HeaderButtons>
+  ),
+  headerLeft: () => (
+    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+      <Item
+        title="menu"
+        iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
+        onPress={navigation.toggleDrawer}
+      />
+    </HeaderButtons>
   )
 })

@@ -12,13 +12,15 @@ export default function CartItem({ quantity, title, amount, onDelete }) {
       </View>
       <View style={_styles.itemData}>
         <Text style={_styles.mainText}>${amount.toFixed(2)}</Text>
-        <TouchableComponent onPress={onDelete} style={_styles.deleteButton}>
-          <Ionicons
-            name={Platform.OS === "android" ? "md-trash" : "ios-trash"}
-            size={23}
-            color="red"
-          />
-        </TouchableComponent>
+        {onDelete && (
+          <TouchableComponent onPress={onDelete} style={_styles.deleteButton}>
+            <Ionicons
+              name={Platform.OS === "android" ? "md-trash" : "ios-trash"}
+              size={23}
+              color="red"
+            />
+          </TouchableComponent>
+        )}
       </View>
     </View>
   )

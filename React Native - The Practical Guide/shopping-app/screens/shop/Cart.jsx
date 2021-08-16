@@ -3,10 +3,11 @@ import { View, Text, FlatList, Button, StyleSheet } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import CartItem from "../../components/shop/CartItem"
 import * as cartActions from "../../store/actions/cart"
+import * as orderActions from "../../store/actions/orders"
 import * as sharedStyles from "../../constants/styles"
 import colors from "../../constants/colors"
 
-export default function CartScreen(props) {
+export default function Cart(props) {
   const total = useSelector((state) => state.cart.total)
   const dispatch = useDispatch()
 
@@ -37,7 +38,7 @@ export default function CartScreen(props) {
           color={colors.SECONDARY}
           title="Order"
           disabled={items.length === 0}
-          onPress={null}
+          onPress={() => dispatch(orderActions.addOrder(items, total))}
         />
       </View>
       <FlatList
@@ -54,6 +55,10 @@ export default function CartScreen(props) {
       />
     </View>
   )
+}
+
+Cart.navigationOptions = {
+  headerTitle: "You cart"
 }
 
 const _styles = StyleSheet.create({
