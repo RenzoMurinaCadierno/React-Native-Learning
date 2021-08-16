@@ -1,22 +1,10 @@
 import React from "react"
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Button,
-  TouchableOpacity,
-  TouchableNativeFeedback,
-  Platform
-} from "react-native"
+import { View, Text, Image, StyleSheet, Button } from "react-native"
+import TouchableComponent from "../../UI/TouchableComponent"
 import colors from "../../constants/colors"
+import * as sharedStyles from "../../constants/styles"
 
 export default function ProductItem(props) {
-  const TouchableComponent =
-    Platform.OS === "android" && Platform.Version >= 21
-      ? TouchableNativeFeedback
-      : TouchableOpacity
-
   return (
     <View style={_styles.container}>
       {/* cannot have Touchable as single view child */}
@@ -55,13 +43,7 @@ const _styles = StyleSheet.create({
   container: {
     height: 300,
     margin: 20,
-    borderRadius: 10,
-    backgroundColor: "white",
-    elevation: 5, // android
-    shadowColor: "black", // iOS
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8
+    ...sharedStyles.CARD_SHADOW
   },
   touchableContainer: {
     overflow: "hidden",
