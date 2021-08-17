@@ -7,6 +7,8 @@ import { Ionicons } from "@expo/vector-icons"
 import ProductsOverviewScreen from "../screens/shop/ProductsOverview"
 import ProductDetailsScreen from "../screens/shop/ProductDetails"
 import OrdersScreen from "../screens/shop/Orders"
+import UserProductsScreen from "../screens/user/UserProducts"
+import EditProductScreen from "../screens/user/EditProduct"
 import CartScreen from "../screens/shop/Cart"
 import colors from "../constants/colors"
 
@@ -52,10 +54,22 @@ const OrdersNavigator = createStackNavigator(
   }
 )
 
+const AdminNavigator = createStackNavigator(
+  {
+    UserProducts: UserProductsScreen,
+    EditProduct: EditProductScreen
+  },
+  {
+    navigationOptions: createSharedNavOptions("create"),
+    defaultNavigationOptions: sharedDefaultNavOptions
+  }
+)
+
 const ShopNavigator = createDrawerNavigator(
   {
     Products: ProductsNavigator,
-    Orders: OrdersNavigator
+    Orders: OrdersNavigator,
+    Admin: AdminNavigator
   },
   {
     contentOptions: { activeTintColor: colors.PRIMARY },

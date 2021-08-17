@@ -1,16 +1,23 @@
 import React from "react"
-import { FlatList, Platform } from "react-native"
+import { FlatList, Button } from "react-native"
 import { useSelector, useDispatch } from "react-redux"
-import { HeaderButtons, Item } from "react-navigation-header-buttons"
 import ProductItem from "../../components/shop/ProductItem"
-import CustomHeaderButton from "../../UI/CustomHeaderButton"
+import CustomHeaderButtons from "../../UI/CustomHeaderButtons"
 import * as cartActions from "../../store/actions/cart"
+import colors from "../../constants/colors"
 
 export default function ProductsOverview(props) {
   const availableProducts = useSelector(
     (state) => state.products.availableProducts
   )
   const dispatch = useDispatch()
+
+  const handleSelectItem = (id, title) => {
+    props.navigation.navigate("ProductDetails", {
+      productId: id,
+      productTitle: title
+    })
+  }
 
   return (
     <FlatList
@@ -21,14 +28,19 @@ export default function ProductsOverview(props) {
           image={item.imageUrl}
           title={item.title}
           price={item.price}
-          onViewDetails={() =>
-            props.navigation.navigate("ProductDetails", {
-              productId: item.id,
-              productTitle: item.title
-            })
-          }
-          onAddToCart={() => dispatch(cartActions.addToCart(item))}
-        />
+          onSelect={() => handleSelectItem(item.id, item.title)}
+        >
+          <Button
+            color={colors.PRIMARY}
+            title="View details"
+            onPress={() => handleSelectItem(item.id, item.title)}
+          />
+          <Button
+            color={colors.PRIMARY}
+            title="To cart"
+            onPress={() => dispatch(cartActions.addToCart(item))}
+          />
+        </ProductItem>
       )}
     />
   )
@@ -38,21 +50,17 @@ ProductsOverview.navigationOptions = ({ navigation }) => ({
   headerTitle: "All products",
   headerRight: () => (
     // need `npm i --save @react-navigation/native`!
-    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-      <Item
-        title="cart"
-        iconName={Platform.OS === "android" ? "md-cart" : "ios-cart"}
-        onPress={() => navigation.navigate("Cart")}
-      />
-    </HeaderButtons>
+    <CustomHeaderButtons
+      title="Cart"
+      iconName="cart"
+      onPress={() => navigation.navigate("Cart")}
+    />
   ),
   headerLeft: () => (
-    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-      <Item
-        title="menu"
-        iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
-        onPress={navigation.toggleDrawer}
-      />
-    </HeaderButtons>
+    <CustomHeaderButtons
+      title="Menu"
+      iconName="menu"
+      onPress={navigation.toggleDrawer}
+    />
   )
 })

@@ -1,9 +1,8 @@
 import React from "react"
-import { FlatList, Platform, Text } from "react-native"
-import { HeaderButtons, Item } from "react-navigation-header-buttons"
+import { FlatList } from "react-native"
 import { useSelector } from "react-redux"
 import OrderItem from "../../components/shop/OrderItem"
-import CustomHeaderButton from "../../UI/CustomHeaderButton"
+import CustomHeaderButtons from "../../UI/CustomHeaderButtons"
 
 export default function Orders(props) {
   const itemsInCart = useSelector((state) => state.orders.items)
@@ -25,12 +24,10 @@ export default function Orders(props) {
 Orders.navigationOptions = ({ navigation }) => ({
   headerTitle: "You orders",
   headerLeft: () => (
-    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-      <Item
-        title="menu"
-        iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
-        onPress={navigation.toggleDrawer}
-      />
-    </HeaderButtons>
+    <CustomHeaderButtons
+      title="Menu"
+      iconName="menu"
+      onPress={navigation.toggleDrawer}
+    />
   )
 })

@@ -1,7 +1,6 @@
 import React from "react"
-import { View, Text, Image, StyleSheet, Button } from "react-native"
+import { View, Text, Image, StyleSheet } from "react-native"
 import TouchableComponent from "../../UI/TouchableComponent"
-import colors from "../../constants/colors"
 import * as sharedStyles from "../../constants/styles"
 
 export default function ProductItem(props) {
@@ -10,7 +9,7 @@ export default function ProductItem(props) {
       {/* cannot have Touchable as single view child */}
       <View style={_styles.touchableContainer}>
         {/* `useForeground` enables ripple effect over all elements */}
-        <TouchableComponent onPress={props.onViewDetails} useForeground>
+        <TouchableComponent onPress={props.onSelect} useForeground>
           {/* cannot have multiple elements as Touchable children */}
           <View>
             <View style={_styles.imageContainer}>
@@ -20,18 +19,7 @@ export default function ProductItem(props) {
               <Text style={_styles.title}>{props.title}</Text>
               <Text style={_styles.price}>${props.price.toFixed(2)}</Text>
             </View>
-            <View style={_styles.buttonsContainer}>
-              <Button
-                color={colors.PRIMARY}
-                title="View details"
-                onPress={props.onViewDetails}
-              />
-              <Button
-                color={colors.PRIMARY}
-                title="To cart"
-                onPress={props.onAddToCart}
-              />
-            </View>
+            <View style={_styles.buttonsContainer}>{props.children}</View>
           </View>
         </TouchableComponent>
       </View>
@@ -57,14 +45,14 @@ const _styles = StyleSheet.create({
     overflow: "hidden"
   },
   image: { width: "100%", height: "100%" },
-  textsContainer: { alignItems: "center", height: "15%", padding: 10 },
+  textsContainer: { alignItems: "center", height: "17%", padding: 10 },
   title: { fontSize: 18, marginVertical: 2, fontFamily: "open-sans-bold" },
   price: { fontSize: 14, color: "#888", fontFamily: "open-sans" },
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    height: "25%",
+    height: "23%",
     paddingHorizontal: 20
   }
 })

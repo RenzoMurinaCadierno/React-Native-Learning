@@ -32,7 +32,9 @@ export default function Cart(props) {
       <View style={_styles.summary}>
         <Text style={_styles.summaryText}>
           Total:{"  "}
-          <Text style={_styles.amount}>${total.toFixed(2)}</Text>
+          <Text style={_styles.amount}>
+            ${Math.round(total.toFixed(2) * 100) / 100}
+          </Text>
         </Text>
         <Button
           color={colors.SECONDARY}
