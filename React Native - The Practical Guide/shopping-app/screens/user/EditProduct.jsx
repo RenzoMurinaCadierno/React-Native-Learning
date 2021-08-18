@@ -1,22 +1,95 @@
-import React, { useCallback, useEffect, useState } from "react"
-import { View, Text, TextInput, ScrollView, StyleSheet } from "react-native"
-import { useSelector } from "react-redux"
+import React, { useCallback, useEffect, useReducer } from "react"
+import { View, ScrollView, StyleSheet, Alert } from "react-native"
+import { useSelector, useDispatch } from "react-redux"
 import CustomHeaderButtons from "../../UI/CustomHeaderButtons"
+import Input from "../../UI/Input"
+import * as productActions from "../../store/actions/products"
+
+const UPDATE_FORM_INPUT = "UPDATE_FORM_INPUT"
+
+const formReducer = (state, action) => {
+  if (action.type === UPDATE_FORM_INPUT) {
+    const updatedValues = {
+      ...state.values,
+      [action.input]: action.value
+    }
+    const updatedValidations = {
+      ...state.validations,
+      [action.input]: action.isInputValid
+    }
+    let isFormValid = true
+
+    for (const key in updatedValidations) {
+      isFormValid = isFormValid && updatedValidations[key]
+    }
+
+    return {
+      values: updatedValues,
+      validations: updatedValidations,
+      isFormValid
+    }
+  }
+
+  return state
+}
 
 export default function EditProduct(props) {
   const prodId = props.navigation.getParam("productId")
   const targetProduct = useSelector((state) =>
     state.products.userProducts.find((prod) => prod.id === prodId)
   )
+  const dispatch = useDispatch()
 
-  const [title, setTitle] = useState(targetProduct?.title || "")
-  const [imageUrl, setImageUrl] = useState(targetProduct?.imageUrl || "")
-  const [price, setPrice] = useState("")
-  const [description, setDescription] = useState(
-    targetProduct?.description || ""
+  const [formState, formDispatch] = useReducer(formReducer, {
+    values: {
+      title: targetProduct?.title || "",
+      imageUrl: targetProduct?.imageUrl || "",
+      description: targetProduct?.description || "",
+      price: ""
+    },
+    validations: {
+      title: targetProduct ? true : false,
+      imageUrl: targetProduct ? true : false,
+      description: targetProduct ? true : false,
+      // price starts false on 'new product' mode, always true on 'edit' mode
+      price: targetProduct ? true : false
+    },
+    isFormValid: targetProduct ? true : false
+  })
+
+  const handleSubmit = useCallback(() => {
+    if (!formState.isFormValid) {
+      return Alert.alert("Submit failed", "There are validation errors", [
+        { text: "OK", style: "default" }
+      ])
+    }
+
+    const [title, description, imageUrl, price] = formState.values
+
+    if (targetProduct) {
+      dispatch(
+        productActions.updateProduct(prodId, title, description, imageUrl)
+      )
+    } else {
+      dispatch(
+        productActions.createProduct(title, description, imageUrl, +price)
+      )
+    }
+
+    props.navigation.goBack()
+  }, [dispatch, prodId, formState])
+
+  const handleOnChangeText = useCallback(
+    (input, value, isInputValid) => {
+      formDispatch({
+        type: UPDATE_FORM_INPUT,
+        value,
+        isInputValid,
+        input
+      })
+    },
+    [formDispatch]
   )
-
-  const handleSubmit = useCallback(() => console.log("submit"), [])
 
   useEffect(() => {
     props.navigation.setParams({ handleSubmit })
@@ -25,22 +98,69 @@ export default function EditProduct(props) {
   return (
     <ScrollView>
       <View style={_styles.form}>
-        <FormElement label="Title" value={title} onChangeText={setTitle} />
-        <FormElement
+        <Input
+          id="title"
+          initialValue={targetProduct?.title || ""}
+          initialIsValid={Boolean(targetProduct)}
+          label="Title"
+          value={formState.values.title}
+          // binding sets default args at the end!!!
+          onChangeText={handleOnChangeText}
+          isValid={formState.validations.title}
+          validationMsg="Please enter a valid title"
+          keyboardType="default"
+          autoCapitalize="sentences"
+          autoCorrect
+          required
+        />
+        <Input
+          id="imageUrl"
+          initialValue={targetProduct?.imageUrl || ""}
+          initialIsValid={Boolean(targetProduct)}
           label="Image URL"
-          value={imageUrl}
-          onChangeText={setImageUrl}
+          value={formState.values.imageUrl}
+          onChangeText={handleOnChangeText}
+          isValid={formState.validations.imageUrl}
+          validationMsg="Please enter a valid image url"
+          required
+          // {
+          // returnKeyType="next"
+          // onEndEditing: () => console.log("closed keyboard"),
+          // onSelectionChange: () => console.log("selected something"),
+          // onSubmitEditing: () => console.log("hit 'submit' button ")
+          // }
         />
         {
           // edit price only in 'Add product' mode
           !targetProduct && (
-            <FormElement label="Price" value={price} onChangeText={setPrice} />
+            <Input
+              id="price"
+              label="Price"
+              value={formState.values.price}
+              onChangeText={handleOnChangeText}
+              isValid={formState.validations.price}
+              validationMsg="Please enter a valid price"
+              keyboardType="decimal-pad"
+              required
+              min={0.1}
+            />
           )
         }
-        <FormElement
+        <Input
+          id="description"
+          initialValue={targetProduct?.description || ""}
+          initialIsValid={Boolean(targetProduct)}
           label="Description"
-          value={description}
-          onChangeText={setDescription}
+          value={formState.values.description}
+          onChangeText={handleOnChangeText}
+          validationMsg="Please enter a valid description"
+          isValid={formState.validations.description}
+          autoCapitalize="sentences"
+          autoCorrect
+          multiline
+          numberOfLines={3}
+          required
+          minLength={3}
         />
       </View>
     </ScrollView>
@@ -71,27 +191,4 @@ EditProduct.navigationOptions = ({ navigation }) => {
   }
 }
 
-const _styles = StyleSheet.create({
-  form: { margin: 20 },
-  formControl: { width: "100%" },
-  label: { fontFamily: "open-sans-bold", marginVertical: 8 },
-  input: {
-    paddingHorizontal: 2,
-    paddingVertical: 5,
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1
-  }
-})
-
-function FormElement({ label, value, onChangeText }) {
-  return (
-    <View style={_styles.formControl}>
-      <Text style={_styles.label}>{label}</Text>
-      <TextInput
-        style={_styles.input}
-        value={value}
-        onChangeText={onChangeText}
-      />
-    </View>
-  )
-}
+const _styles = StyleSheet.create({ form: { margin: 20 } })

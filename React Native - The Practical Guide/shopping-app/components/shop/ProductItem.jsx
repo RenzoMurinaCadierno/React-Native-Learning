@@ -1,11 +1,11 @@
 import React from "react"
 import { View, Text, Image, StyleSheet } from "react-native"
 import TouchableComponent from "../../UI/TouchableComponent"
-import * as sharedStyles from "../../constants/styles"
+import Card from "../../UI/Card"
 
 export default function ProductItem(props) {
   return (
-    <View style={_styles.container}>
+    <Card style={_styles.container}>
       {/* cannot have Touchable as single view child */}
       <View style={_styles.touchableContainer}>
         {/* `useForeground` enables ripple effect over all elements */}
@@ -23,15 +23,14 @@ export default function ProductItem(props) {
           </View>
         </TouchableComponent>
       </View>
-    </View>
+    </Card>
   )
 }
 
 const _styles = StyleSheet.create({
   container: {
     height: 300,
-    margin: 20,
-    ...sharedStyles.CARD_SHADOW
+    margin: 20
   },
   touchableContainer: {
     overflow: "hidden",

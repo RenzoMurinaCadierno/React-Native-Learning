@@ -1,14 +1,14 @@
 import React, { useState } from "react"
 import { View, Text, Button, StyleSheet } from "react-native"
 import CartItem from "./CartItem"
+import Card from "../../UI/Card"
 import colors from "../../constants/colors"
-import * as sharedStyles from "../../constants/styles"
 
 export default function OrderItem({ total, date, items }) {
   const [showDetails, setShowDetails] = useState(false)
 
   return (
-    <View style={_styles.container}>
+    <Card style={_styles.container}>
       <Text style={_styles.date}>{date}</Text>
       <View style={_styles.totalAndButton}>
         <Text style={_styles.total}>Total: $ {total.toFixed(2)}</Text>
@@ -32,13 +32,12 @@ export default function OrderItem({ total, date, items }) {
           ))}
         </View>
       )}
-    </View>
+    </Card>
   )
 }
 
 const _styles = StyleSheet.create({
   container: {
-    ...sharedStyles.CARD_SHADOW,
     margin: 20,
     paddingHorizontal: 20,
     paddingVertical: 15

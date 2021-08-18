@@ -2,9 +2,9 @@ import React from "react"
 import { View, Text, FlatList, Button, StyleSheet } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import CartItem from "../../components/shop/CartItem"
+import Card from "../../UI/Card"
 import * as cartActions from "../../store/actions/cart"
 import * as orderActions from "../../store/actions/orders"
-import * as sharedStyles from "../../constants/styles"
 import colors from "../../constants/colors"
 
 export default function Cart(props) {
@@ -29,7 +29,7 @@ export default function Cart(props) {
 
   return (
     <View style={_styles.container}>
-      <View style={_styles.summary}>
+      <Card style={_styles.summary}>
         <Text style={_styles.summaryText}>
           Total:{"  "}
           <Text style={_styles.amount}>
@@ -42,7 +42,7 @@ export default function Cart(props) {
           disabled={items.length === 0}
           onPress={() => dispatch(orderActions.addOrder(items, total))}
         />
-      </View>
+      </Card>
       <FlatList
         data={items}
         keyExtractor={({ id }) => id}
@@ -71,8 +71,7 @@ const _styles = StyleSheet.create({
     justifyContent: "space-around",
     marginBottom: 20,
     marginHorizontal: 10,
-    padding: 10,
-    ...sharedStyles.CARD_SHADOW
+    padding: 10
   },
   summaryText: { fontFamily: "open-sans-bold", fontSize: 18 },
   amount: { color: colors.PRIMARY }
