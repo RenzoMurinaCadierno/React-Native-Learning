@@ -1,18 +1,24 @@
-import PRODUCTS from "../../data/dummy"
 import { Product } from "../../models/product"
 import {
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
-  CREATE_PRODUCT
+  CREATE_PRODUCT,
+  SET_PRODUCTS
 } from "../actions/products"
 
 const initialState = {
-  availableProducts: PRODUCTS,
-  userProducts: PRODUCTS.filter((p) => p.ownerId === "u1") // only user 1
+  availableProducts: [],
+  userProducts: []
 }
 
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_PRODUCTS:
+      return {
+        availableProducts: action.payload.products,
+        userProducts: action.payload.products.filter((p) => p.ownerId === "u1")
+      }
+
     case DELETE_PRODUCT:
       return {
         ...state,
@@ -26,7 +32,7 @@ const productsReducer = (state = initialState, action) => {
 
     case CREATE_PRODUCT:
       const newProduct = new Product(
-        new Date().toString(),
+        action.payload.id, // created in firebase, as "name" (check action)
         "u1",
         action.payload.title,
         action.payload.imageUrl,

@@ -1,22 +1,76 @@
-import React from "react"
-import { FlatList, Button } from "react-native"
+import React, { useEffect, useState, useCallback } from "react"
+import {
+  FlatList,
+  Button,
+  ActivityIndicator,
+  View,
+  StyleSheet,
+  Text
+} from "react-native"
 import { useSelector, useDispatch } from "react-redux"
 import ProductItem from "../../components/shop/ProductItem"
 import CustomHeaderButtons from "../../UI/CustomHeaderButtons"
 import * as cartActions from "../../store/actions/cart"
+import * as productsActions from "../../store/actions/products"
+import * as sharedStyles from "../../constants/styles"
 import colors from "../../constants/colors"
 
 export default function ProductsOverview(props) {
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState("")
   const availableProducts = useSelector(
     (state) => state.products.availableProducts
   )
   const dispatch = useDispatch()
+
+  const loadProducts = useCallback(async () => {
+    setIsLoading(true)
+    setErrorMsg("")
+
+    try {
+      await dispatch(productsActions.fetchProducts())
+    } catch (err) {
+      // error object comes from Firebase. It has "message" key
+      setErrorMsg(err.message)
+    }
+
+    setIsLoading(false)
+  }, [setIsLoading, dispatch, setErrorMsg])
+
+  useEffect(() => {
+    loadProducts() // cannot pass a pointer. It's an async function
+  }, [dispatch, loadProducts])
 
   const handleSelectItem = (id, title) => {
     props.navigation.navigate("ProductDetails", {
       productId: id,
       productTitle: title
     })
+  }
+
+  if (errorMsg) {
+    return (
+      <View style={_styles.loadingContainer}>
+        <Text>Error while fetching data</Text>
+        <Button title="Refetch" onPress={loadProducts} color={colors.PRIMARY} />
+      </View>
+    )
+  }
+
+  if (isLoading) {
+    return (
+      <View style={_styles.loadingContainer}>
+        <ActivityIndicator size="large" colors={colors.PRIMARY} />
+      </View>
+    )
+  }
+
+  if (!isLoading && !Boolean(availableProducts.length)) {
+    return (
+      <View style={_styles.loadingContainer}>
+        <Text>No products found</Text>
+      </View>
+    )
   }
 
   return (
@@ -63,4 +117,8 @@ ProductsOverview.navigationOptions = ({ navigation }) => ({
       onPress={navigation.toggleDrawer}
     />
   )
+})
+
+const _styles = StyleSheet.create({
+  loadingContainer: sharedStyles.STRETCH_AND_CENTER
 })

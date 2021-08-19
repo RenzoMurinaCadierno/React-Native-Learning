@@ -69,7 +69,13 @@ export default function Input({
         onBlur={handleOnBlur}
         {...textInputProps}
       />
-      {!state.isValid && <Text>{validationMsg || "Invalid input"}</Text>}
+      {!state.isValid && state.touched && (
+        <View style={_styles.validationMsgContainer}>
+          <Text style={_styles.validationMsgText}>
+            {validationMsg || "Invalid input"}
+          </Text>
+        </View>
+      )}
     </View>
   )
 }
@@ -82,5 +88,7 @@ const _styles = StyleSheet.create({
     paddingVertical: 5,
     borderBottomColor: "#ccc",
     borderBottomWidth: 1
-  }
+  },
+  validationMsgContainer: { marginVertical: 5 },
+  validationMsgText: { fontFamily: "open-sans", color: "red", fontSize: 13 }
 })

@@ -7,3 +7,9 @@ export const CARD_SHADOW = {
   shadowOffset: { width: 0, height: 2 },
   shadowRadius: 8
 }
+
+export const STRETCH_AND_CENTER = {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center"
+}

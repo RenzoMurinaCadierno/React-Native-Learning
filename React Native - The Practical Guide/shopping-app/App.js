@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { ActivityIndicator, View, StyleSheet } from "react-native"
-import { createStore, combineReducers } from "redux"
+import { createStore, combineReducers, applyMiddleware } from "redux"
+import reduxThunk from "redux-thunk"
 import { Provider } from "react-redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 
@@ -17,7 +18,10 @@ const rootReducer = combineReducers({
 })
 
 // remember to remove `composeWithDevtools` before deploying!
-const store = createStore(rootReducer, composeWithDevTools())
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(reduxThunk))
+)
 
 export default function App() {
   const [isFontLoaded, setIsFontLoaded] = useState(false)
