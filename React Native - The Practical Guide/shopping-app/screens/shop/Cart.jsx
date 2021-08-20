@@ -1,5 +1,12 @@
-import React from "react"
-import { View, Text, FlatList, Button, StyleSheet } from "react-native"
+import React, { useState } from "react"
+import {
+  View,
+  Text,
+  FlatList,
+  Button,
+  StyleSheet,
+  ActivityIndicator
+} from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import CartItem from "../../components/shop/CartItem"
 import Card from "../../UI/Card"
@@ -8,11 +15,14 @@ import * as orderActions from "../../store/actions/orders"
 import colors from "../../constants/colors"
 
 export default function Cart(props) {
+  const [isLoading, setIsLoading] = useState(false)
+
   const total = useSelector((state) => state.cart.total)
   const dispatch = useDispatch()
 
   const items = useSelector((state) => {
     const transformedCartItems = []
+
     for (const key in state.cart.items) {
       const currentItem = state.cart.items[key]
       transformedCartItems.push({
@@ -27,6 +37,12 @@ export default function Cart(props) {
     return transformedCartItems.sort((a, b) => (a.id > b.id ? 1 : -1))
   })
 
+  const handleSendOrder = async () => {
+    setIsLoading(true)
+    await dispatch(orderActions.addOrder(items, total))
+    setIsLoading(false)
+  }
+
   return (
     <View style={_styles.container}>
       <Card style={_styles.summary}>
@@ -36,12 +52,16 @@ export default function Cart(props) {
             ${Math.round(total.toFixed(2) * 100) / 100}
           </Text>
         </Text>
-        <Button
-          color={colors.SECONDARY}
-          title="Order"
-          disabled={items.length === 0}
-          onPress={() => dispatch(orderActions.addOrder(items, total))}
-        />
+        {isLoading ? (
+          <ActivityIndicator size="small" color={color.PRIMARY} />
+        ) : (
+          <Button
+            color={colors.SECONDARY}
+            title="Order"
+            disabled={items.length === 0}
+            onPress={handleSendOrder}
+          />
+        )}
       </Card>
       <FlatList
         data={items}
@@ -59,9 +79,7 @@ export default function Cart(props) {
   )
 }
 
-Cart.navigationOptions = {
-  headerTitle: "You cart"
-}
+Cart.navigationOptions = { headerTitle: "Your cart" }
 
 const _styles = StyleSheet.create({
   container: { margin: 20 },

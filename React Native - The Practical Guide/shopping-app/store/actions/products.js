@@ -5,7 +5,23 @@ export const CREATE_PRODUCT = "CREATE_PRODUCT"
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT"
 export const SET_PRODUCTS = "SET_PRODUCTS"
 
-export const deleteProduct = (id) => ({ type: DELETE_PRODUCT, id })
+export const deleteProduct = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `https://rnmcshoppingapp-default-rtdb.firebaseio.com/products/${id}.json`,
+        { method: "DELETE" }
+      )
+
+      if (!response.ok) throw new Error("Something went wrong")
+
+      return dispatch({ type: DELETE_PRODUCT, id })
+    } catch (err) {
+      console.log(err)
+      throw err
+    }
+  }
+}
 
 export const createProduct = (title, description, imageUrl, price) => {
   return async (dispatch) => {
@@ -47,16 +63,36 @@ export const createProduct = (title, description, imageUrl, price) => {
   }
 }
 
-export const updateProduct = (id, title, description, imageUrl) => ({
-  type: UPDATE_PRODUCT,
-  payload: { id, title, description, imageUrl }
-})
+export const updateProduct = (id, title, description, imageUrl) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `https://rnmcshoppingapp-default-rtdb.firebaseio.com/products/${id}.json`,
+        {
+          method: "PATCH", // 'PUT' overrides, 'PATCH' updates where differs
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title, description, imageUrl })
+        }
+      )
+
+      if (!response.ok) throw new Error("Something went wrong")
+
+      return dispatch({
+        type: UPDATE_PRODUCT,
+        payload: { id, title, description, imageUrl }
+      })
+    } catch (err) {
+      console.log(err)
+      throw err
+    }
+  }
+}
 
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        "https://rnmcshoppingapp-default-rtdb.firebaseio.com/products.jso"
+        "https://rnmcshoppingapp-default-rtdb.firebaseio.com/products.json"
       )
 
       // Firebase's response status boolean (400, 500)
@@ -80,10 +116,7 @@ export const fetchProducts = () => {
         )
       }
 
-      dispatch({
-        type: SET_PRODUCTS,
-        payload: { id: data.name, products }
-      })
+      dispatch({ type: SET_PRODUCTS, payload: { id: data.name, products } })
     } catch (err) {
       console.log(err)
       throw err // send to custom analytics server
