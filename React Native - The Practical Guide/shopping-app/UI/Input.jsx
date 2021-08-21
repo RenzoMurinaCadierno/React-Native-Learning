@@ -81,8 +81,8 @@ export default function Input({
 }
 
 const _styles = StyleSheet.create({
-  formControl: { width: "100%" },
-  label: { fontFamily: "open-sans-bold", marginVertical: 8 },
+  formControl: { width: "100%", marginVertical: 5 },
+  label: { fontFamily: "open-sans-bold" },
   input: {
     paddingHorizontal: 2,
     paddingVertical: 5,

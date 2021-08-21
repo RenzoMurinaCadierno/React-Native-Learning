@@ -1,6 +1,6 @@
 import React from "react"
 import { Platform, SafeAreaView, StatusBar } from "react-native"
-import { createAppContainer } from "react-navigation"
+import { createAppContainer, createSwitchNavigator } from "react-navigation"
 import { createStackNavigator } from "react-navigation-stack"
 import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer"
 import { Ionicons } from "@expo/vector-icons"
@@ -10,6 +10,7 @@ import OrdersScreen from "../screens/shop/Orders"
 import UserProductsScreen from "../screens/user/UserProducts"
 import EditProductScreen from "../screens/user/EditProduct"
 import CartScreen from "../screens/shop/Cart"
+import AuthScreen from "../screens/user/Auth"
 import colors from "../constants/colors"
 
 // this setup only overrides defaultNavigator options when the active
@@ -65,6 +66,13 @@ const AdminNavigator = createStackNavigator(
   }
 )
 
+const AuthNavigator = createStackNavigator(
+  {
+    Auth: AuthScreen
+  },
+  { defaultNavigationOptions: sharedDefaultNavOptions }
+)
+
 const ShopNavigator = createDrawerNavigator(
   {
     Products: ProductsNavigator,
@@ -81,4 +89,9 @@ const ShopNavigator = createDrawerNavigator(
   }
 )
 
-export default createAppContainer(ShopNavigator)
+const MainNavigator = createSwitchNavigator({
+  Auth: AuthNavigator,
+  Shop: ShopNavigator
+})
+
+export default createAppContainer(MainNavigator)

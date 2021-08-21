@@ -13,3 +13,5 @@ export const STRETCH_AND_CENTER = {
   justifyContent: "center",
   alignItems: "center"
 }
+
+export const W_100_H_100 = { width: "100%", height: "100%" }

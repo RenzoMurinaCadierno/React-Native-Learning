@@ -10,6 +10,7 @@ import colors from "../../constants/colors"
 
 export default function ProductsOverview(props) {
   const [isLoading, setIsLoading] = useState(false)
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
   const availableProducts = useSelector(
     (state) => state.products.availableProducts
@@ -17,8 +18,8 @@ export default function ProductsOverview(props) {
   const dispatch = useDispatch()
 
   const loadProducts = useCallback(async () => {
-    setIsLoading(true)
     setErrorMsg("")
+    setIsRefreshing(true)
 
     try {
       await dispatch(productsActions.fetchProducts())
@@ -27,12 +28,13 @@ export default function ProductsOverview(props) {
       setErrorMsg(err.message)
     }
 
-    setIsLoading(false)
-  }, [setIsLoading, dispatch, setErrorMsg])
+    setIsRefreshing(false)
+  }, [setIsRefreshing, dispatch, setErrorMsg])
 
   useEffect(() => {
-    loadProducts() // cannot pass a pointer. It's an async function
-  }, [dispatch, loadProducts])
+    setIsLoading(true)
+    loadProducts().then(() => setIsLoading(false))
+  }, [dispatch, loadProducts, setIsLoading])
 
   useEffect(() => {
     // willFocus, willBlur, didFocus, didBlur
@@ -60,6 +62,8 @@ export default function ProductsOverview(props) {
       <FlatList
         data={availableProducts}
         keyExtractor={(item) => item.id} // not neccesary on newer versions!
+        refreshing={isRefreshing}
+        onRefresh={loadProducts}
         renderItem={({ item }) => (
           <ProductItem
             image={item.imageUrl}
