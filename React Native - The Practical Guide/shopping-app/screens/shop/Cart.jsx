@@ -53,7 +53,7 @@ export default function Cart(props) {
           </Text>
         </Text>
         {isLoading ? (
-          <ActivityIndicator size="small" color={color.PRIMARY} />
+          <ActivityIndicator size="small" color={colors.PRIMARY} />
         ) : (
           <Button
             color={colors.SECONDARY}

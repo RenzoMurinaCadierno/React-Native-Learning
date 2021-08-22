@@ -4,17 +4,19 @@ import { createStore, combineReducers, applyMiddleware } from "redux"
 import reduxThunk from "redux-thunk"
 import { Provider } from "react-redux"
 import { composeWithDevTools } from "redux-devtools-extension"
+import * as Font from "expo-font"
 
 import ShopNavigator from "./navigation/Shop"
 import productsReducer from "./store/reducers/products"
 import cartReducer from "./store/reducers/cart"
 import ordersReducer from "./store/reducers/orders"
-import * as Font from "expo-font"
+import authReducer from "./store/reducers/auth"
 
 const rootReducer = combineReducers({
   products: productsReducer,
   cart: cartReducer,
-  orders: ordersReducer
+  orders: ordersReducer,
+  auth: authReducer
 })
 
 // remember to remove `composeWithDevtools` before deploying!

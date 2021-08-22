@@ -15,19 +15,31 @@ async function authUser(authType, email, password) {
     }
   )
 
+  const data = await response.json()
+
   if (!response.ok) {
-    throw new Error("`signup`: Login error @store/actions/auth.js")
+    const error = data.error.message
+    let message = "Something went wrong"
+
+    // login errors
+    if (error === "EMAIL_NOT_FOUND") message = "Invalid email"
+    else if (error === "INVALID_PASSWORD") message = "Invalid password"
+    // signup errors
+    else if (error === "EMAIL_EXISTS") message = "Email already in use"
+    else if (error.includes("WEAK_PASSWORD")) message = "Weak password"
+
+    throw new Error(message)
   }
 
-  return await response.json()
+  return data
 }
 
 export const signup = (email, password) => {
   return async (dispatch) => {
     try {
       const data = await authUser("signup", email, password)
-      console.log(data)
-      dispatch({ type: SIGNUP })
+
+      dispatch({ type: SIGNUP, token: data.idToken, userId: data.localId })
     } catch (err) {
       console.error(err)
       throw err
@@ -39,8 +51,8 @@ export const login = (email, password) => {
   return async (dispatch) => {
     try {
       const data = await authUser("signin", email, password)
-      console.log(data)
-      dispatch({ type: LOGIN })
+
+      dispatch({ type: LOGIN, token: data.idToken, userId: data.localId })
     } catch (err) {
       console.error(err)
       throw err

@@ -3,20 +3,17 @@ import {
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
   CREATE_PRODUCT,
-  SET_PRODUCTS
+  FETCH_PRODUCTS
 } from "../actions/products"
 
-const initialState = {
-  availableProducts: [],
-  userProducts: []
-}
+const initialState = { availableProducts: [], userProducts: [] }
 
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_PRODUCTS:
+    case FETCH_PRODUCTS:
       return {
-        availableProducts: action.payload.products,
-        userProducts: action.payload.products.filter((p) => p.ownerId === "u1")
+        availableProducts: action.payload.availableProducts,
+        userProducts: action.payload.userProducts
       }
 
     case DELETE_PRODUCT:
@@ -33,7 +30,7 @@ const productsReducer = (state = initialState, action) => {
     case CREATE_PRODUCT:
       const newProduct = new Product(
         action.payload.id, // created in firebase, as "name" (check action)
-        "u1",
+        action.payload.userId, // created in firebase, when logging in
         action.payload.title,
         action.payload.imageUrl,
         action.payload.description,
@@ -54,7 +51,7 @@ const productsReducer = (state = initialState, action) => {
       )
       const updatedProduct = new Product(
         action.payload.id,
-        state.userProducts[idxInUserProducts].ownerId,
+        state.userProducts[idxInUserProducts].userId,
         action.payload.title,
         action.payload.imageUrl,
         action.payload.description,

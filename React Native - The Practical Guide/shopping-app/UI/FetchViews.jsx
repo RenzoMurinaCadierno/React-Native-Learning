@@ -8,7 +8,7 @@ export default function FetchViews({
   errorButtonProps,
   emptyResponseMsg,
   isLoading,
-  response,
+  responseGate,
   children
 }) {
   if (errorMsg) {
@@ -17,7 +17,7 @@ export default function FetchViews({
 
   if (isLoading) return <Loading />
 
-  if (!isLoading && !Boolean(response)) {
+  if (!isLoading && !Boolean(responseGate)) {
     return <EmptyResponse message={emptyResponseMsg} />
   }
 

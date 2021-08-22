@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { FlatList } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import OrderItem from "../../components/shop/OrderItem"
@@ -16,7 +16,11 @@ export default function Orders(props) {
   }, [dispatch, setIsLoading])
 
   return (
-    <FetchViews isLoading={isLoading} response={itemsInCart}>
+    <FetchViews
+      isLoading={isLoading}
+      responseGate={itemsInCart.length}
+      emptyResponseMsg="No items found"
+    >
       <FlatList
         data={itemsInCart}
         renderItem={({ item }) => (

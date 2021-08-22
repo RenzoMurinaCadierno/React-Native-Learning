@@ -81,12 +81,11 @@ export default function Auth(props) {
       await dispatch(
         authActions[isSignup ? "signup" : "login"](email, password)
       )
+      props.navigation.navigate("Shop")
     } catch (err) {
       setError(err.message)
+      setIsLoading(false)
     }
-
-    setIsLoading(false)
-    setError("")
   }
 
   return (

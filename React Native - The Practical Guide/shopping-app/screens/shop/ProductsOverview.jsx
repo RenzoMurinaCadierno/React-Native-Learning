@@ -57,7 +57,7 @@ export default function ProductsOverview(props) {
       errorButtonProps={{ title: "Refetch", onPress: loadProducts }}
       emptyResponseMsg="No products found"
       isLoading={isLoading}
-      response={availableProducts}
+      responseGate={availableProducts.length}
     >
       <FlatList
         data={availableProducts}

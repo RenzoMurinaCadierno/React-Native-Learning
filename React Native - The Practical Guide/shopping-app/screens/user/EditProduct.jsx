@@ -118,7 +118,7 @@ export default function EditProduct(props) {
   }, [handleSubmit])
 
   return (
-    <FetchViews isLoading={isLoading} response={!isLoading}>
+    <FetchViews isLoading={isLoading} responseGate={!isLoading}>
       <KeyboardAvoidingView
         style={{ flex: 1 }} // KeyboardAvoidingView needs the whole screen
         behavior="padding"
