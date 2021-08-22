@@ -1,7 +1,9 @@
+import AsyncStorage from "@react-native-async-storage/async-storage"
+
 const FB_API_KEY = `AIzaSyCYMZ0dYeN1G2i72aG0GboxR6uM-B_Ql7w`
 
-export const SIGNUP = "SIGNUP"
-export const LOGIN = "LOGIN"
+export const AUTHENTICATE = "AUTHENTICATE"
+export const LOGOUT = "LOGOUT"
 
 async function authUser(authType, email, password) {
   const fbAuthType = authType === "signin" ? "signInWithPassword" : "signUp"
@@ -34,12 +36,29 @@ async function authUser(authType, email, password) {
   return data
 }
 
+export const authenticate = (userId, token, expirationTime) => (dispatch) => {
+  dispatch(setLogoutTimeout(expirationTime))
+  dispatch({
+    type: AUTHENTICATE,
+    userId,
+    token
+  })
+}
+
 export const signup = (email, password) => {
   return async (dispatch) => {
     try {
       const data = await authUser("signup", email, password)
 
-      dispatch({ type: SIGNUP, token: data.idToken, userId: data.localId })
+      dispatch(
+        authenticate(
+          data.localId,
+          data.idToken,
+          parseInt(data.expiresIn) * 1000
+        )
+      )
+
+      saveDataToStorage(data.idToken, data.localId, data.expiresIn)
     } catch (err) {
       console.error(err)
       throw err
@@ -52,10 +71,52 @@ export const login = (email, password) => {
     try {
       const data = await authUser("signin", email, password)
 
-      dispatch({ type: LOGIN, token: data.idToken, userId: data.localId })
+      dispatch(
+        authenticate(
+          data.localId,
+          data.idToken,
+          parseInt(data.expiresIn) * 1000
+        )
+      )
+
+      saveDataToStorage(data.idToken, data.localId, data.expiresIn)
     } catch (err) {
       console.error(err)
       throw err
     }
   }
+}
+
+let logoutTimeout
+
+function setLogoutTimeout(expirationTime) {
+  return (dispatch) => {
+    logoutTimeout = setTimeout(() => {
+      dispatch(logout())
+    }, expirationTime)
+  }
+}
+
+function clearLogoutTimeout() {
+  logoutTimeout && clearTimeout(logoutTimeout)
+}
+
+export const logout = () => {
+  clearLogoutTimeout()
+
+  AsyncStorage.removeItem("userData")
+
+  return { type: LOGOUT }
+}
+
+function saveDataToStorage(token, userId, expiresIn) {
+  // current time in ms + expiration time in ms, converted to Date()
+  const expirationDate = new Date(
+    new Date().getTime() + parseInt(expiresIn) * 1000
+  ).toISOString()
+
+  return AsyncStorage.setItem(
+    "userData",
+    JSON.stringify({ token, userId, expirationDate })
+  )
 }

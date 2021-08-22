@@ -6,7 +6,7 @@ import { Provider } from "react-redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import * as Font from "expo-font"
 
-import ShopNavigator from "./navigation/Shop"
+import NavigationContainer from "./navigation/NavigationContainer"
 import productsReducer from "./store/reducers/products"
 import cartReducer from "./store/reducers/cart"
 import ordersReducer from "./store/reducers/orders"
@@ -36,7 +36,7 @@ export default function App() {
 
   return isFontLoaded ? (
     <Provider store={store}>
-      <ShopNavigator />
+      <NavigationContainer />
     </Provider>
   ) : (
     <View style={_styles.container}>
