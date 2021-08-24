@@ -1,39 +1,36 @@
-import React from "react"
+import React, { useState } from "react"
 import { Button, View, Text, Image, StyleSheet, Alert } from "react-native"
 import * as ImagePicker from "expo-image-picker"
 import * as Permissions from "expo-permissions"
 import colors from "../constants/colors"
+import { getCameraPermissionsAsync } from "expo-camera"
 
-export default function ImgPicker(props) {
-  // Note: permissions are asked only once, even if the function is
-  // re-triggered. You need to re-launch expo.
-  const verifyPermission = async () => {
-    const result = await Permissions.askAsync(
-      Permissions.CAMERA,
-      Permissions.MEDIA_LIBRARY
-    )
+export default function ImgPicker({ onImageTaken }) {
+  const [PickedImageUri, setPickedImageUri] = useState(null)
 
-    if (result.status !== "granted") {
-      Alert.alert("Failed access", "Camera permission is required", [
-        { text: "OK" }
-      ])
-      return false
-    }
-    return true
-  }
   const handleTakeImage = async () => {
     const hasPermission = await verifyPermission()
 
     if (!hasPermission) return
 
-    ImagePicker.launchCameraAsync()
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 0.5
+    })
+
+    setPickedImageUri(image.uri)
+    onImageTaken?.(image.uri)
   }
 
   return (
     <View style={_styles.container}>
       <View style={_styles.preview}>
-        <Text>No image yet</Text>
-        <Image style={_styles.image} />
+        {PickedImageUri ? (
+          <Image source={{ uri: PickedImageUri }} style={_styles.image} />
+        ) : (
+          <Text>No image yet</Text>
+        )}
       </View>
       <Button
         title="Take pic"
@@ -45,7 +42,7 @@ export default function ImgPicker(props) {
 }
 
 const _styles = StyleSheet.create({
-  container: { alignItems: "center" },
+  container: { alignItems: "center", marginBottom: 15 },
   preview: {
     width: "100%",
     height: 200,
@@ -57,3 +54,21 @@ const _styles = StyleSheet.create({
   },
   image: { width: "100%", height: "100%" }
 })
+
+// Note: permissions are asked only once, even if the function is
+// re-triggered. You need to re-launch expo.
+async function verifyPermission() {
+  // const result = await Permissions.askAsync(
+  //   Permissions.CAMERA,
+  //   Permissions.MEDIA_LIBRARY
+  // )
+  const result = await ImagePicker.requestCameraPermissionsAsync()
+
+  if (result.status !== "granted") {
+    Alert.alert("Failed access", "Camera permission is required", [
+      { text: "OK" }
+    ])
+    return false
+  }
+  return true
+}

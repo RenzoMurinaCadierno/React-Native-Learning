@@ -9,15 +9,19 @@ import {
 } from "react-native"
 import { useDispatch } from "react-redux"
 import ImagePicker from "../components/ImagePicker"
+import LocationPicker from "../components/LocationPicker"
 import * as placesActions from "../store/actions/places"
 import colors from "../constants/colors"
 
 export default function NewPlace(props) {
   const [title, setTitle] = useState("")
+  const [selectedImage, setSelectedImage] = useState(null)
   const dispatch = useDispatch()
 
+  const handleImageTaken = (imageUri) => setSelectedImage(imageUri)
+
   const handleSave = () => {
-    dispatch(placesActions.addPlace(title))
+    dispatch(placesActions.addPlace(title, selectedImage))
     props.navigation.goBack()
   }
 
@@ -30,7 +34,8 @@ export default function NewPlace(props) {
           onChangeText={setTitle}
           style={_styles.input}
         />
-        <ImagePicker />
+        <ImagePicker onImageTaken={handleImageTaken} />
+        <LocationPicker />
         <Button title="Save" color={colors.PRIMARY} onPress={handleSave} />
       </View>
     </ScrollView>

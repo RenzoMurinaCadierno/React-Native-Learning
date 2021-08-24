@@ -1,11 +1,17 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { StyleSheet, FlatList } from "react-native"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import CustomHeaderButtons from "../components/CustomHeaderButtons"
 import PlaceItem from "../components/PlaceItem"
+import * as placesActions from "../store/actions/places"
 
 export default function PlacesList(props) {
   const places = useSelector((state) => state.places.items)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(placesActions.loadPlaces())
+  }, [dispatch])
 
   return (
     <FlatList
@@ -14,12 +20,13 @@ export default function PlacesList(props) {
       renderItem={({ item }) => (
         <PlaceItem
           title={item.title}
-          image={null}
+          image={item.imageUri}
           address={null}
           onSelect={() =>
             props.navigation.navigate("PlaceDetails", {
               title: item.title,
-              id: item.id
+              id: item.id,
+              imageUri: item.imageUri
             })
           }
         />
