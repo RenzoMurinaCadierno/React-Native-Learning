@@ -1,21 +1,21 @@
 import React from "react"
-import { Image, View, StyleSheet } from "react-native"
+import { Image, StyleSheet, TouchableOpacity } from "react-native"
 import API_KEYS from "../env"
 
-export default function MapPreview({ location, children, style }) {
-  const imgPreviewUrl = !location.lat
+export default function MapPreview({ location, children, onPress, style }) {
+  const imgPreviewUrl = !location.latitude
     ? ""
-    : `https://maps.googleapis.com/maps/api/staticmap?center=${location.lat},${location.lng}&zoom=13&size=400x200&maptype=roadmap&markers=color:red%7Clabel:A%7C${location.lat},${location.lng}&key=${API_KEYS.GOOGLE}
+    : `https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&zoom=13&size=400x200&maptype=roadmap&markers=color:red%7Clabel:A%7C${location.latitude},${location.longitude}&key=${API_KEYS.GOOGLE_MAPS}
   `
 
   return (
-    <View style={[_styles.container, style]}>
+    <TouchableOpacity onPress={onPress} style={[_styles.container, style]}>
       {imgPreviewUrl ? (
         <Image source={{ uri: imgPreviewUrl }} style={_styles.image} />
       ) : (
         children
       )}
-    </View>
+    </TouchableOpacity>
   )
 }
 

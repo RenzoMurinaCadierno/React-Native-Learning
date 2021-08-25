@@ -33,7 +33,7 @@ export default function ImgPicker({ onImageTaken }) {
         )}
       </View>
       <Button
-        title="Take pic"
+        title="Take picture"
         color={colors.PRIMARY}
         onPress={handleTakeImage}
       />
@@ -42,7 +42,7 @@ export default function ImgPicker({ onImageTaken }) {
 }
 
 const _styles = StyleSheet.create({
-  container: { alignItems: "center", marginBottom: 15 },
+  container: { alignItems: "flex-end", marginBottom: 15 },
   preview: {
     width: "100%",
     height: 200,

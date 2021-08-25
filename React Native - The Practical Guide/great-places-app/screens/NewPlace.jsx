@@ -1,11 +1,12 @@
-import React, { useState } from "react"
+import React, { useCallback, useState } from "react"
 import {
   View,
   Text,
   TextInput,
   ScrollView,
   StyleSheet,
-  Button
+  Button,
+  Alert
 } from "react-native"
 import { useDispatch } from "react-redux"
 import ImagePicker from "../components/ImagePicker"
@@ -16,12 +17,23 @@ import colors from "../constants/colors"
 export default function NewPlace(props) {
   const [title, setTitle] = useState("")
   const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedLocation, setSelectedLocation] = useState({
+    latitude: null,
+    longitude: null
+  })
   const dispatch = useDispatch()
 
   const handleImageTaken = (imageUri) => setSelectedImage(imageUri)
 
+  const handlePickLocation = useCallback((coordinates) => {
+    setSelectedLocation(coordinates)
+  }, [])
+
   const handleSave = () => {
-    dispatch(placesActions.addPlace(title, selectedImage))
+    if (!selectedImage) return showAlert("Please select an image")
+    if (!selectedLocation.latitude) return showAlert("Please pick a location")
+
+    dispatch(placesActions.addPlace(title, selectedImage, selectedLocation))
     props.navigation.goBack()
   }
 
@@ -35,7 +47,10 @@ export default function NewPlace(props) {
           style={_styles.input}
         />
         <ImagePicker onImageTaken={handleImageTaken} />
-        <LocationPicker />
+        <LocationPicker
+          navigation={props.navigation}
+          onPickLocation={handlePickLocation}
+        />
         <Button title="Save" color={colors.PRIMARY} onPress={handleSave} />
       </View>
     </ScrollView>
@@ -57,3 +72,7 @@ const _styles = StyleSheet.create({
     paddingHorizontal: 2
   }
 })
+
+function showAlert(msg) {
+  Alert.alert("Failed to save", `${msg}`, [{ text: "Ok" }])
+}

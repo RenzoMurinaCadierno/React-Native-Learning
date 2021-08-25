@@ -8,7 +8,15 @@ export default function placesReducer(state = initialState, action) {
     case LOAD_PLACES:
       return {
         items: action.payload.places.map(
-          (p) => new Place(p.id.toString(), p.title, p.imageUri)
+          (p) =>
+            new Place(
+              p.id.toString(),
+              p.title,
+              p.imageUri,
+              p.address,
+              p.latitude,
+              p.longitude
+            )
         )
       }
 
@@ -18,7 +26,10 @@ export default function placesReducer(state = initialState, action) {
           new Place(
             action.payload.id.toString(),
             action.payload.title,
-            action.payload.pathToImg
+            action.payload.pathToImg,
+            action.payload.address,
+            action.payload.coords.latitude,
+            action.payload.coords.longitude
           )
         )
       }
