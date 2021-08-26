@@ -1,9 +1,8 @@
 import React, { useState } from "react"
 import { Button, View, Text, Image, StyleSheet, Alert } from "react-native"
 import * as ImagePicker from "expo-image-picker"
-import * as Permissions from "expo-permissions"
 import colors from "../constants/colors"
-import { getCameraPermissionsAsync } from "expo-camera"
+import { requestCameraPermissionsAsync } from "expo-camera"
 
 export default function ImgPicker({ onImageTaken }) {
   const [PickedImageUri, setPickedImageUri] = useState(null)
@@ -62,12 +61,19 @@ async function verifyPermission() {
   //   Permissions.CAMERA,
   //   Permissions.MEDIA_LIBRARY
   // )
-  const result = await ImagePicker.requestCameraPermissionsAsync()
+  const cameraPermissions = await ImagePicker.requestCameraPermissionsAsync()
+  const mediaPermissions =
+    await ImagePicker.requestMediaLibraryPermissionsAsync()
 
-  if (result.status !== "granted") {
-    Alert.alert("Failed access", "Camera permission is required", [
-      { text: "OK" }
-    ])
+  if (
+    cameraPermissions.status !== "granted" ||
+    mediaPermissions.status !== "granted"
+  ) {
+    Alert.alert(
+      "Failed access",
+      "Camera and media library permissions are required",
+      [{ text: "OK" }]
+    )
     return false
   }
   return true

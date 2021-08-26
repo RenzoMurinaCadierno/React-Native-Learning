@@ -62,7 +62,6 @@ export const addPlace =
 export const loadPlaces = () => async (dispatch) => {
   try {
     const res = await getAllPlaces()
-
     dispatch({ type: LOAD_PLACES, payload: { places: res.rows._array } })
   } catch (err) {
     console.log(err)

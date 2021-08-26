@@ -14,8 +14,8 @@ export default function placesReducer(state = initialState, action) {
               p.title,
               p.imageUri,
               p.address,
-              p.latitude,
-              p.longitude
+              p.lat,
+              p.lng
             )
         )
       }

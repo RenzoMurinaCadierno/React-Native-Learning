@@ -21,7 +21,7 @@ export default function PlacesList(props) {
         <PlaceItem
           title={item.title}
           image={item.imageUri}
-          address={null}
+          address={item.address}
           onSelect={() =>
             props.navigation.navigate("PlaceDetails", {
               title: item.title,
