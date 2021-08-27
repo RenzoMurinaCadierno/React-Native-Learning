@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "RNWithBareWorkflow",
+    "slug": "RNWithBareWorkflow",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "RNWithBareWorkflow"
+}
