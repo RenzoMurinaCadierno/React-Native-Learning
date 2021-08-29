@@ -57,9 +57,7 @@ export default function NewPlace(props) {
   )
 }
 
-NewPlace.navigationOptions = {
-  headerTitle: "Add place"
-}
+NewPlace.navigationOptions = { headerTitle: "Add New place" }
 
 const _styles = StyleSheet.create({
   container: { margin: 30 },
