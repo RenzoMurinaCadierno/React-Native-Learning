@@ -57,7 +57,7 @@ export default function UserProducts(props) {
   )
 }
 
-UserProducts.navigationOptions = ({ navigation }) => ({
+export const screenOptions = ({ navigation }) => ({
   headerTitle: "Your products",
   headerLeft: () => (
     <CustomHeaderButtons

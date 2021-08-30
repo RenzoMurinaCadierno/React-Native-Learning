@@ -27,7 +27,7 @@ export default function ProductDetails(props) {
   )
 }
 
-ProductDetails.navigationOptions = ({ navigation }) => ({
+export const screenOptions = ({ navigation }) => ({
   headerTitle: navigation.getParam("productTitle")
 })
 

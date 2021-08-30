@@ -81,7 +81,7 @@ export default function Auth(props) {
       await dispatch(
         authActions[isSignup ? "signup" : "login"](email, password)
       )
-      props.navigation.navigate("Shop")
+      // props.navigation.navigate("Shop")
     } catch (err) {
       setError(err.message)
       setIsLoading(false)
@@ -145,9 +145,7 @@ export default function Auth(props) {
   )
 }
 
-Auth.navigationOptions = {
-  headerTitle: "Authentication"
-}
+export const screenOptions = { headerTitle: "Authentication" }
 
 const _styles = StyleSheet.create({
   container: { flex: 1 },

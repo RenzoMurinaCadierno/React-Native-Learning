@@ -37,11 +37,8 @@ export default function ProductsOverview(props) {
   }, [dispatch, loadProducts, setIsLoading])
 
   useEffect(() => {
-    // willFocus, willBlur, didFocus, didBlur
-    // > there are new methods on react-navigation ^6: focus, blur
-    // > also, hooks like `useIsFocused`, `useFocusEffect`
-    const willFocusSub = props.navigation.addListener("willFocus", loadProducts)
-    return () => willFocusSub.remove()
+    const unsuscribe = props.navigation.addListener("focus", loadProducts)
+    return () => unsuscribe()
   }, [loadProducts])
 
   const handleSelectItem = (id, title) => {
@@ -88,8 +85,8 @@ export default function ProductsOverview(props) {
   )
 }
 
-ProductsOverview.navigationOptions = ({ navigation }) => ({
-  headerTitle: "All products",
+export const screenOptions = ({ navigation }) => ({
+  title: "All products",
   headerRight: () => (
     // need `npm i --save @react-navigation/native`!
     <CustomHeaderButtons

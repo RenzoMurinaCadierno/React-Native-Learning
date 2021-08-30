@@ -79,7 +79,7 @@ export default function Cart(props) {
   )
 }
 
-Cart.navigationOptions = { headerTitle: "Your cart" }
+export const screenOptions = { headerTitle: "Your cart" }
 
 const _styles = StyleSheet.create({
   container: { margin: 20 },

@@ -197,7 +197,7 @@ export default function EditProduct(props) {
   )
 }
 
-EditProduct.navigationOptions = ({ navigation }) => {
+export const screenOptions = ({ navigation }) => {
   const handleSubmit = navigation.getParam("handleSubmit")
 
   return {

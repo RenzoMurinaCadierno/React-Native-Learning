@@ -35,7 +35,7 @@ export default function Orders(props) {
   )
 }
 
-Orders.navigationOptions = ({ navigation }) => ({
+export const screenOptions = ({ navigation }) => ({
   headerTitle: "Your orders",
   headerLeft: () => (
     <CustomHeaderButtons

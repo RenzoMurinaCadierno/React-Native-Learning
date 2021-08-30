@@ -4,6 +4,7 @@ const FB_API_KEY = `AIzaSyCYMZ0dYeN1G2i72aG0GboxR6uM-B_Ql7w`
 
 export const AUTHENTICATE = "AUTHENTICATE"
 export const LOGOUT = "LOGOUT"
+export const SET_DID_TRY_AUTO_LOGIN = "SET_DID_TRY_AUTO_LOGIN"
 
 async function authUser(authType, email, password) {
   const fbAuthType = authType === "signin" ? "signInWithPassword" : "signUp"
@@ -86,6 +87,8 @@ export const login = (email, password) => {
     }
   }
 }
+
+export const setDidTryAutoLogin = () => ({ type: SET_DID_TRY_AUTO_LOGIN })
 
 let logoutTimeout
 
