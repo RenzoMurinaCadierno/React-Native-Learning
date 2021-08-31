@@ -44,7 +44,8 @@ export default function EditProduct(props) {
   const [isLoading, setIsLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
 
-  const prodId = props.navigation.getParam("productId")
+  // const prodId = props.navigation.getParam("productId")
+  const prodId = props.route.params.productId ?? null // now `route`
   const targetProduct = useSelector((state) =>
     state.products.userProducts.find((prod) => prod.id === prodId)
   )
@@ -113,8 +114,18 @@ export default function EditProduct(props) {
     [formDispatch]
   )
 
+  // no more `navigation.setParams({ handleSubmit })`, as we now
+  // can dynamically set navigation options from inside the component
   useEffect(() => {
-    props.navigation.setParams({ handleSubmit })
+    props.navigation.setOptions({
+      headerRight: () => (
+        <CustomHeaderButtons
+          title="Save"
+          iconName="checkmark"
+          onPress={handleSubmit ?? null}
+        />
+      )
+    })
   }, [handleSubmit])
 
   return (
@@ -197,28 +208,16 @@ export default function EditProduct(props) {
   )
 }
 
-export const screenOptions = ({ navigation }) => {
-  const handleSubmit = navigation.getParam("handleSubmit")
-
-  return {
-    headerTitle: navigation.getParam("productId")
-      ? "Edit Product"
-      : "Add product",
-    headerLeft: () => (
-      <CustomHeaderButtons
-        title="Menu"
-        iconName="menu"
-        onPress={navigation.toggleDrawer}
-      />
-    ),
-    headerRight: () => (
-      <CustomHeaderButtons
-        title="Save"
-        iconName="checkmark"
-        onPress={handleSubmit}
-      />
-    )
-  }
-}
+// headerRight is now in the component
+export const screenOptions = ({ navigation, route }) => ({
+  headerTitle: route.params?.productId ? "Edit Product" : "Add product",
+  headerLeft: () => (
+    <CustomHeaderButtons
+      title="Menu"
+      iconName="menu"
+      onPress={navigation.toggleDrawer}
+    />
+  )
+})
 
 const _styles = StyleSheet.create({ form: { margin: 20 } })

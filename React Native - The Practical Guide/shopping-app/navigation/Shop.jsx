@@ -130,8 +130,11 @@ export const ShopNavigator = () => {
 
   return (
     <ShopDrawer.Navigator
-      // hide default header. We render one on each component
-      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        drawerActiveTintColor: colors.PRIMARY,
+        // hide default header. We render one on each component
+        headerShown: false
+      }}
       drawerContent={(props) => getDrawerContent(props, dispatch)}
     >
       <ShopDrawer.Screen

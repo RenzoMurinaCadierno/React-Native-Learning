@@ -5,7 +5,7 @@ import colors from "../../constants/colors"
 import * as cartActions from "../../store/actions/cart"
 
 export default function ProductDetails(props) {
-  const productId = props.navigation.getParam("productId")
+  const productId = props.route.params.productId
   const selectedProduct = useSelector((state) =>
     state.products.availableProducts.find((prod) => prod.id === productId)
   )
@@ -27,8 +27,8 @@ export default function ProductDetails(props) {
   )
 }
 
-export const screenOptions = ({ navigation }) => ({
-  headerTitle: navigation.getParam("productTitle")
+export const screenOptions = ({ route }) => ({
+  headerTitle: route.params.productTitle
 })
 
 const _styles = StyleSheet.create({
