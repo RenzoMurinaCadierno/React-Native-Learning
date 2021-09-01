@@ -45,7 +45,7 @@ export default function EditProduct(props) {
   const [errorMsg, setErrorMsg] = useState("")
 
   // const prodId = props.navigation.getParam("productId")
-  const prodId = props.route.params.productId ?? null // now `route`
+  const prodId = props.route.params?.productId // now `route`
   const targetProduct = useSelector((state) =>
     state.products.userProducts.find((prod) => prod.id === prodId)
   )

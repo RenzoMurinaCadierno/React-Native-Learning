@@ -1,3 +1,4 @@
+import * as Notifications from "expo-notifications"
 import { Product } from "../../models/product"
 
 export const DELETE_PRODUCT = "DELETE_PRODUCT"
@@ -26,6 +27,23 @@ export const deleteProduct = (id) => {
 
 export const createProduct = (title, description, imageUrl, price) => {
   return async (dispatch, getState) => {
+    // get current permissions (iOS only, Android asks at installation)
+    let permission = await Notifications.getPermissionsAsync()
+    let pushToken = null
+
+    if (permission.status !== "granted") {
+      // request for permissions if not already granted
+      permission = await Notifications.requestPermissionsAsync()
+    }
+
+    if (permission.status !== "granted") {
+      // if no permissions were granted upon request, nothing to do
+      console.log("Permissions not granted for notifications.")
+    } else {
+      // permissions granted. Save push token in `response.data`
+      pushToken = (await Notifications.getExpoPushTokenAsync()).data
+    }
+
     /**
      * you can fire any async code here! Redux thunk handles it.
      *
@@ -51,7 +69,14 @@ export const createProduct = (title, description, imageUrl, price) => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ title, description, imageUrl, price, userId })
+          body: JSON.stringify({
+            title,
+            description,
+            imageUrl,
+            price,
+            userId,
+            pushToken // user's push token (null or defined)
+          })
         }
       )
 
@@ -60,7 +85,15 @@ export const createProduct = (title, description, imageUrl, price) => {
       dispatch({
         type: CREATE_PRODUCT,
         // id is returned as "name" key in generated ducument
-        payload: { id: data.name, title, description, imageUrl, price, userId }
+        payload: {
+          id: data.name,
+          userId,
+          pushToken,
+          title,
+          description,
+          imageUrl,
+          userId
+        }
       })
     } catch (err) {
       console.log(err)
@@ -116,6 +149,7 @@ export const fetchProducts = () => {
           new Product(
             key,
             values.userId,
+            values.pushToken, // key extracted from firebase
             values.title,
             values.imageUrl,
             values.description,

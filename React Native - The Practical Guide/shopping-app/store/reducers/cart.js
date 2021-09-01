@@ -8,7 +8,7 @@ const initialState = { items: {}, total: 0 }
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const { id, price, title } = action.product
+      const { id, price, title, pushToken } = action.product
       let updatedOrNewCartItem = {}
 
       if (state.items[id]) {
@@ -16,10 +16,11 @@ const cartReducer = (state = initialState, action) => {
           state.items[id].quantity + 1,
           price,
           title,
+          pushToken,
           state.items[id].sum + price
         )
       } else {
-        updatedOrNewCartItem = new CartItem(1, price, title, price)
+        updatedOrNewCartItem = new CartItem(1, price, title, pushToken, price)
       }
       return {
         ...state,

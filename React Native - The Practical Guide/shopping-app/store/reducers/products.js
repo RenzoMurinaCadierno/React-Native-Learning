@@ -31,6 +31,7 @@ const productsReducer = (state = initialState, action) => {
       const newProduct = new Product(
         action.payload.id, // created in firebase, as "name" (check action)
         action.payload.userId, // created in firebase, when logging in
+        action.payload.pushToken, // stored, when adding a product
         action.payload.title,
         action.payload.imageUrl,
         action.payload.description,
@@ -52,6 +53,7 @@ const productsReducer = (state = initialState, action) => {
       const updatedProduct = new Product(
         action.payload.id,
         state.userProducts[idxInUserProducts].userId,
+        state.userProducts[idxInUserProducts].pushToken,
         action.payload.title,
         action.payload.imageUrl,
         action.payload.description,

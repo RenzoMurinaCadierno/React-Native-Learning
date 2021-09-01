@@ -59,6 +59,33 @@ export const addOrder = (items, total) => {
         type: ADD_ORDER,
         payload: { id: data.name, items, total, date }
       })
+
+      // we trigger notifications after an order is placed for all items.
+      // > This is sub-optimal! The best solution is handling it from the
+      //   server. We do not do it there as Firestore is not free.
+      for (const item in items) {
+        // firebase has cart items stored in values of objects where
+        // keys are indexes starting from 0. So items[0] is the first,
+        // then item[1], and so on.
+        const { pushToken, title } = items[item]
+
+        fetch("https://exp.host/--/api/v2/push/send", {
+          method: "POST",
+          headers: {
+            Host: "exp.host",
+            Accept: "application/json",
+            "Accept-Encoding": "gzip, deflate",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            to: pushToken,
+            title: "Order was placed!",
+            body: title
+            // data: item, // <- extra data, if required
+          })
+        })
+        console.log(pushToken, title)
+      }
     } catch (err) {
       throw new Error("Error in `addOrder` @ actions/orders.js.", err)
     }

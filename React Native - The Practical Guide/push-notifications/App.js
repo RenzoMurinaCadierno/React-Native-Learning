@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import * as Notifications from "expo-notifications"
 import { Alert, Button, StyleSheet, View } from "react-native"
 
@@ -12,6 +12,8 @@ Notifications.setNotificationHandler({
 })
 
 export default function App() {
+  const [pushToken, setPushToken] = useState(null)
+
   useEffect(() => {
     // this does nothing on Android
     Notifications.getPermissionsAsync()
@@ -23,11 +25,23 @@ export default function App() {
       })
       .then((res) => {
         if (res.status !== "granted") {
-          return Alert.alert("Notification permissions required", "", [
-            { text: "ok" }
-          ])
+          Alert.alert("Notification permissions required", "", [{ text: "ok" }])
+          // res.status can be "undetermined", which will still fall
+          // to the next `then` block. We do not want that.
+          throw new Error("Notification permissions required")
         }
       })
+      .then(() => {
+        // only scenario in this block is "res.status === 'granted'"
+        return Notifications.getExpoPushTokenAsync()
+      })
+      .then((res) => {
+        setPushToken(res.data) // `res.data` being the expo token
+        // > store the token in your own managed database.
+        // fetch('https://your-server-to-store-token.com',
+        // { method: "POST", ..., data: { token: res.data })
+      })
+      .catch((err) => console.log(err))
   }, [])
 
   useEffect(() => {
@@ -51,13 +65,30 @@ export default function App() {
 
   const triggerNotification = () => {
     // create a local notifications. There are a bunch of props!
-    Notifications.scheduleNotificationAsync({
-      content: {
-        title: "Notif!",
-        body: "Learning expo notifs",
-        data: { extra: ["extra", "data"] }
+    // Notifications.scheduleNotificationAsync({
+    //   content: {
+    //     title: "Notif!",
+    //     body: "Learning expo notifs",
+    //     data: { extra: ["extra", "data"] }
+    //   },
+    //   trigger: { seconds: 1 }
+    // })
+
+    // create a push notification.
+    fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        Host: "exp.host",
+        Accept: "application/json",
+        "Accept-Encoding": "gzip, deflate",
+        "Content-Type": "application/json"
       },
-      trigger: { seconds: 2 }
+      body: JSON.stringify({
+        to: pushToken,
+        data: { extra: "some extra data" },
+        title: "Sent by the app",
+        body: "This push notification was sent by the app!"
+      })
     })
   }
 

@@ -30,7 +30,8 @@ export default function Cart(props) {
         title: currentItem.title,
         price: currentItem.price,
         quantity: currentItem.quantity,
-        sum: currentItem.sum
+        sum: currentItem.sum,
+        pushToken: currentItem.pushToken
       })
     }
 
