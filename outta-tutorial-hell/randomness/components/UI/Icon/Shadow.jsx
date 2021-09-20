@@ -1,30 +1,30 @@
 import React, { useEffect, useRef } from "react"
 import { StyleSheet, Animated, Easing } from "react-native"
+import { getAnimatedConfigs } from "./utils"
 
-export default function Shadow({ width, height, style }) {
-  const scale = useRef(new Animated.Value(0.5)).current
+export default function Shadow({
+  syncWithHoverAnimation,
+  width,
+  height,
+  style
+}) {
+  const scale = useRef(new Animated.Value(0.6)).current
   const styles = _styles(width, height)
 
   useEffect(() => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(scale, {
-          toValue: 1,
-          duration: 1000,
-          easing: Easing.in(Easing.ease),
-          useNativeDriver: true
-        }),
-        Animated.delay(200),
-        Animated.timing(scale, {
-          toValue: 0.6,
-          duration: 1000,
-          easing: Easing.out(Easing.ease),
-          useNativeDriver: true
-        }),
-        Animated.delay(200)
-      ])
-    ).start()
-  }, [])
+    if (syncWithHoverAnimation) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.delay(100),
+          Animated.timing(scale, getAnimatedConfigs(1, 1000, "out")),
+          Animated.delay(100),
+          Animated.timing(scale, getAnimatedConfigs(0.6, 1000, "in"))
+        ])
+      ).start()
+    } else {
+      Animated.timing(scale, getAnimatedConfigs(0.6, 500, "out")).start()
+    }
+  }, [syncWithHoverAnimation])
 
   return (
     <Animated.View

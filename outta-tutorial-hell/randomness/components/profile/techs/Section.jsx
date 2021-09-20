@@ -1,9 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import { StyleSheet, View } from "react-native"
-import Layout from "../../layout"
-import UI from "../../UI"
 import IconList from "./IconList"
-import colors from "../../../constants/colors"
+import Header from "../shared/Header"
 
 export default function Section({
   containerStyle,
@@ -12,25 +10,35 @@ export default function Section({
   iconStyle,
   iconContainerStyle,
   iconColor,
-  names,
+  icons,
   title,
-  textSize,
+  titleSize,
   iconSize
 }) {
+  const [activeIcon, setActiveIcon] = useState("")
+
+  const handleIconPress = (id) => {
+    setActiveIcon((prevId) => (prevId === id ? "" : id))
+  }
+
   return (
     <View style={[containerStyle, _styles.container]}>
-      <Layout.Overlay style={overlayStyle}>
-        <UI.Text
-          color={colors.SECONDARY}
-          family="bold"
-          size={textSize}
-          style={titleStyle}
-        >
-          {title}
-        </UI.Text>
-      </Layout.Overlay>
+      <Header
+        title={title}
+        titleSize={titleSize}
+        titleProps={{ style: titleStyle }}
+        overlayProps={{ style: overlayStyle }}
+      />
       <IconList
-        {...{ names, iconColor, iconStyle, iconSize, iconContainerStyle }}
+        onIconPress={handleIconPress}
+        {...{
+          icons,
+          iconColor,
+          iconStyle,
+          iconSize,
+          iconContainerStyle,
+          activeIcon
+        }}
       />
     </View>
   )

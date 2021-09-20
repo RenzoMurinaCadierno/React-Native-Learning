@@ -3,22 +3,26 @@ import { StyleSheet, View } from "react-native"
 import UI from "../../UI"
 
 export default function IconList({
-  names,
+  icons,
   iconSize,
   containerStyle,
   iconStyle,
   iconColor,
-  iconContainerStyle
+  iconContainerStyle,
+  activeIcon,
+  onIconPress
 }) {
   return (
     <View style={[containerStyle, _styles.container]}>
-      {names.map((name) => (
+      {icons.map(({ id, ...rest }) => (
         <UI.Icon
-          key={name}
-          name={name}
+          key={id}
+          {...rest}
           size={iconSize}
           color={iconColor}
           elevate
+          onPress={() => onIconPress?.(id)}
+          active={activeIcon === id}
           {...{ iconStyle, iconContainerStyle }}
         />
       ))}

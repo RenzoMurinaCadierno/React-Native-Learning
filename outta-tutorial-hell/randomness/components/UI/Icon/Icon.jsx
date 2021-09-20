@@ -1,8 +1,9 @@
 import React from "react"
 import { Ionicons } from "@expo/vector-icons"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, Pressable } from "react-native"
 import colors from "../../../constants/colors"
 import Shadow from "./Shadow"
+import IconWithHover from "./IconWithHover"
 
 export default function Icon({
   containerStyle,
@@ -10,17 +11,34 @@ export default function Icon({
   size,
   color,
   elevate,
+  onPress,
+  active,
   ...rest
 }) {
   const styles = _styles(size)
 
   return (
-    <View style={[styles.container, containerStyle]}>
-      <Ionicons size={size} color={color} style={iconStyle} {...rest} />
-      {elevate && (
-        <Shadow width={size / 3} height={size / 5} style={styles.shadow} />
+    <Pressable style={[styles.container, containerStyle]} onPress={onPress}>
+      {elevate ? (
+        <>
+          <IconWithHover
+            size={size}
+            activeColor={color}
+            style={iconStyle}
+            active={active}
+            {...rest}
+          />
+          <Shadow
+            syncWithHoverAnimation={active}
+            width={size / 3}
+            height={size / 5}
+            style={styles.shadow}
+          />
+        </>
+      ) : (
+        <Ionicons size={size} color={color} style={iconStyle} {...rest} />
       )}
-    </View>
+    </Pressable>
   )
 }
 

@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native"
 import Layout from "../../components/layout"
 import Profile from "../../components/profile"
 import useViewPort from "../../hooks/useViewPort"
+import { mainTechsData } from "./utils"
 
 export default function ProfileScreen(props) {
   const { vw } = useViewPort()
@@ -11,17 +12,11 @@ export default function ProfileScreen(props) {
   return (
     <Layout.Screen>
       <Profile.Techs.Section
-        title="Main techs"
-        names={[
-          "logo-html5",
-          "logo-css3",
-          "logo-javascript",
-          "logo-react",
-          "logo-github"
-        ]}
-        textSize={vw(7)}
+        title={mainTechsData.title}
+        icons={mainTechsData.icons}
+        titleSize={vw(7)}
         titleStyle={styles.title}
-        iconSize={vw(13)}
+        iconSize={vw(12)}
       />
     </Layout.Screen>
   )
