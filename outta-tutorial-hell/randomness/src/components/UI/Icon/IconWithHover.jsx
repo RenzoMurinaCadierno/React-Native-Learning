@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react"
 import { Animated } from "react-native"
 import IconWithColorTransition from "./IconWithColorTransition"
-import { getAnimatedConfigs } from "./utils"
+import { getTimingConfig, interpolate } from "./utils"
 
 export default function IconWithHover({ active, style, ...rest }) {
   const val = useRef(new Animated.Value(0)).current
@@ -10,14 +10,12 @@ export default function IconWithHover({ active, style, ...rest }) {
     if (active) {
       Animated.loop(
         Animated.sequence([
-          Animated.delay(100),
-          Animated.timing(val, getAnimatedConfigs(1, 1000, "out")),
-          Animated.delay(100),
-          Animated.timing(val, getAnimatedConfigs(0, 1000, "in"))
+          Animated.timing(val, getTimingConfig(1, 1000, "out", 100)),
+          Animated.timing(val, getTimingConfig(0, 1000, "in", 100))
         ])
       ).start()
     } else {
-      Animated.timing(val, getAnimatedConfigs(0, 500, "in")).start()
+      Animated.timing(val, getTimingConfig(0, 500, "in")).start()
     }
   }, [active])
 
@@ -27,18 +25,11 @@ export default function IconWithHover({ active, style, ...rest }) {
         style,
         {
           transform: [
+            { translateY: interpolate(val, [0, 1], [0, -10]) },
             {
-              translateY: val.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, -10]
-              })
+              rotateY: interpolate(val, [0, 0.5, 1], ["0deg", "90deg", "0deg"])
             },
-            {
-              rotateY: val.interpolate({
-                inputRange: [0, 0.5, 1],
-                outputRange: ["0deg", "90deg", "0deg"]
-              })
-            }
+            { scale: interpolate(val, [0, 1], [1, 1.15]) }
           ]
         }
       ]}

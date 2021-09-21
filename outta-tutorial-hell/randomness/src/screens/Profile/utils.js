@@ -1,6 +1,7 @@
 import colors from "../../constants/colors"
 
 export const mainTechsData = {
+  id: "mainTechs",
   title: "Main Techs",
   icons: [
     {
@@ -28,4 +29,26 @@ export const mainTechsData = {
       inactiveColor: colors.PRIMARY_RGB_FORMATTED
     }
   ]
+}
+
+export const bannerData = {
+  mainTechs: {
+    category: "Main technologies",
+    sections: {
+      html: {
+        title: "HTML5",
+        subtitle: "Standard markup language for web programming",
+        color: mainTechsData.icons.find((i) => i.id === "html").activeColor,
+        bullets: ["5 certified courses", "2 practise projects"],
+        urls: "https://asd.com"
+      },
+      css: {
+        title: "CSS3",
+        subtitle: "Style sheet language for markup documents",
+        color: mainTechsData.icons.find((i) => i.id === "html").activeColor,
+        bullets: ["5 certified courses", "2 practise projects"],
+        urls: "https://asd.com"
+      }
+    }
+  }
 }

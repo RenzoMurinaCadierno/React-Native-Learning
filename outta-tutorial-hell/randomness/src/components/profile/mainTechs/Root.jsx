@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { StyleSheet, View } from "react-native"
 import IconList from "./IconList"
-import Header from "../shared/Header"
+import SectionHeader from "../shared/SectionHeader"
 
-export default function Section({
+export default function Root({
   containerStyle,
   overlayStyle,
   titleStyle,
@@ -23,7 +23,7 @@ export default function Section({
 
   return (
     <View style={[containerStyle, _styles.container]}>
-      <Header
+      <SectionHeader
         title={title}
         titleSize={titleSize}
         titleProps={{ style: titleStyle }}
@@ -44,4 +44,4 @@ export default function Section({
   )
 }
 
-const _styles = StyleSheet.create({ container: { flex: 1, width: "100%" } })
+const _styles = StyleSheet.create({ container: { flex: 1 } })

@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
-import UI from "../../UI"
+import UI from "@components/UI"
 
 export default function IconList({
   icons,
@@ -38,6 +38,7 @@ const _styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
-    alignContent: "center"
+    alignContent: "center",
+    paddingVertical: "2.5%"
   }
 })

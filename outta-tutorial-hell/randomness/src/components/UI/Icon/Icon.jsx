@@ -1,9 +1,9 @@
 import React from "react"
-import { Ionicons } from "@expo/vector-icons"
 import { StyleSheet, Pressable } from "react-native"
 import colors from "../../../constants/colors"
 import Shadow from "./Shadow"
 import IconWithHover from "./IconWithHover"
+import Base from "./Base"
 
 export default function Icon({
   containerStyle,
@@ -36,7 +36,7 @@ export default function Icon({
           />
         </>
       ) : (
-        <Ionicons size={size} color={color} style={iconStyle} {...rest} />
+        <Base size={size} color={color} style={iconStyle} {...rest} />
       )}
     </Pressable>
   )

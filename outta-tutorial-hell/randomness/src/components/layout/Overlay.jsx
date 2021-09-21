@@ -1,7 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient"
 import React from "react"
 import { StyleSheet } from "react-native"
-import colors from "../../constants/colors"
+import colors from "@constants/colors"
 
 export default function Overlay({ children, style, colors, ...rest }) {
   return (
@@ -24,10 +24,8 @@ Overlay.defaultProps = {
 
 const _styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.PRIMARY,
-    opacity: 0.5,
-    elevation: 5,
+    opacity: 0.9,
     width: "100%",
-    paddingVertical: 5
+    paddingVertical: "1.25%"
   }
 })

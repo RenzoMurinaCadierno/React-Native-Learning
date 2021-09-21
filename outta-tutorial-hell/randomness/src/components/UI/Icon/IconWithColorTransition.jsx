@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from "react"
 import { Animated } from "react-native"
-import colors from "../../../constants/colors"
-import withCreateAnimatedComponent from "../../../hoc/withCreateAnimationComponent"
+import colors from "@constants/colors"
+import withCreateAnimatedComponent from "@hoc/withCreateAnimationComponent"
 import Base from "./Base"
+import { getTimingConfig, interpolate } from "./utils"
 
 const AnimatedIconBase = withCreateAnimatedComponent(Base)
 
@@ -16,27 +17,19 @@ export default function IconWithColorTransition({
 
   useEffect(() => {
     if (active) {
-      Animated.timing(color, {
-        toValue: 1,
-        duration: 1000,
-        useNativeDriver: false
-      }).start()
+      Animated.timing(
+        color,
+        getTimingConfig(1, 1000, "inOut", 0, false)
+      ).start()
     } else {
-      Animated.timing(color, {
-        toValue: 0,
-        duration: 500,
-        useNativeDriver: false
-      }).start()
+      Animated.timing(color, getTimingConfig(0, 500, "inOut", 0, false)).start()
     }
   }, [active])
 
   return (
     <AnimatedIconBase
       {...rest}
-      color={color.interpolate({
-        inputRange: [0, 1],
-        outputRange: [inactiveColor, activeColor]
-      })}
+      color={interpolate(color, [0, 1], [inactiveColor, activeColor])}
     />
   )
 }

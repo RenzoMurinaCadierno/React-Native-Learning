@@ -1,7 +1,7 @@
 import React from "react"
 import { LinearGradient } from "expo-linear-gradient"
-import { default as sharedStyles } from "../../constants/styles"
-import colors from "../../constants/colors"
+import { default as sharedStyles } from "@constants/styles"
+import colors from "@constants/colors"
 
 export default function Screen({ children, style }) {
   return (

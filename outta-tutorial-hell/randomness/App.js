@@ -9,9 +9,10 @@ import {
   Livvic_600SemiBold_Italic,
   Livvic_700Bold
 } from "@expo-google-fonts/livvic"
-import { TabNavigator } from "./navigation/Main"
+// import { TabNavigator } from "./navigation/Main"
+import { TabNavigator } from "@navigation/Main"
 import { NavigationContainer } from "@react-navigation/native"
-import colors from "./constants/colors"
+import colors from "@constants/colors"
 
 export default function App() {
   const [areFontsLoaded] = useFonts({

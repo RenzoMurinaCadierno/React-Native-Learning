@@ -1,7 +1,7 @@
 import React from "react"
-import Layout from "../../layout"
-import UI from "../../UI"
-import colors from "../../../constants/colors"
+import Layout from "@components/layout"
+import UI from "@components/UI"
+import colors from "@constants/colors"
 
 export default function Header({ title, titleSize, titleProps, overlayProps }) {
   return (

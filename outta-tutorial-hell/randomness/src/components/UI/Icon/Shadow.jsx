@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
-import { StyleSheet, Animated, Easing } from "react-native"
-import { getAnimatedConfigs } from "./utils"
+import { StyleSheet, Animated } from "react-native"
+import { getTimingConfig } from "./utils"
 
 export default function Shadow({
   syncWithHoverAnimation,
@@ -15,14 +15,12 @@ export default function Shadow({
     if (syncWithHoverAnimation) {
       Animated.loop(
         Animated.sequence([
-          Animated.delay(100),
-          Animated.timing(scale, getAnimatedConfigs(1, 1000, "out")),
-          Animated.delay(100),
-          Animated.timing(scale, getAnimatedConfigs(0.6, 1000, "in"))
+          Animated.timing(scale, getTimingConfig(1, 1000, "out", 100)),
+          Animated.timing(scale, getTimingConfig(0.6, 1000, "in", 100))
         ])
       ).start()
     } else {
-      Animated.timing(scale, getAnimatedConfigs(0.6, 500, "out")).start()
+      Animated.timing(scale, getTimingConfig(0.6, 500, "out")).start()
     }
   }, [syncWithHoverAnimation])
 
@@ -35,10 +33,5 @@ export default function Shadow({
 
 const _styles = (width, height) =>
   StyleSheet.create({
-    container: {
-      width,
-      height,
-      borderRadius: width / 2,
-      elevation: 4
-    }
+    container: { width, height, borderRadius: width / 2, elevation: 4 }
   })
