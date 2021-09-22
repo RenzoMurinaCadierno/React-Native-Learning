@@ -33,22 +33,36 @@ export const mainTechsData = {
 
 export const bannerData = {
   mainTechs: {
-    category: "Main technologies",
-    sections: {
-      html: {
-        title: "HTML5",
-        subtitle: "Standard markup language for web programming",
-        color: mainTechsData.icons.find((i) => i.id === "html").activeColor,
-        bullets: ["5 certified courses", "2 practise projects"],
-        urls: "https://asd.com"
-      },
-      css: {
-        title: "CSS3",
-        subtitle: "Style sheet language for markup documents",
-        color: mainTechsData.icons.find((i) => i.id === "html").activeColor,
-        bullets: ["5 certified courses", "2 practise projects"],
-        urls: "https://asd.com"
-      }
+    html: {
+      category: "Main technologies",
+      title: "HTML5",
+      subtitle: "Standard markup language for web programming",
+      color: mainTechsData.icons.find((i) => i.id === "html").activeColor,
+      bullets: ["5 certified courses", "2 practise projects"],
+      urls: "https://asd.com"
+    },
+    css: {
+      category: "Main technologies",
+      title: "CSS3",
+      subtitle: "Style sheet language for markup documents",
+      color: mainTechsData.icons.find((i) => i.id === "css").activeColor,
+      bullets: ["5 certified courses", "2 practise projects"],
+      urls: "https://asd.com"
     }
   }
+}
+
+function mapIconIdstoCategoryId(categoryObj) {
+  // { html: 'mainTechs', css: 'mainTechs', react: 'mainTechs', ... }
+  const categoryId = categoryObj.id
+  const iconsArray = categoryObj.icons
+
+  return iconsArray.reduce(
+    (acc, iconObj) => ({ ...acc, [iconObj.id]: categoryId }),
+    {}
+  )
+}
+
+export const iconIdsToCategoryIdsMap = {
+  ...mapIconIdstoCategoryId(mainTechsData)
 }

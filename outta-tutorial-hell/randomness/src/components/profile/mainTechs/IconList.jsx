@@ -9,7 +9,7 @@ export default function IconList({
   iconStyle,
   iconColor,
   iconContainerStyle,
-  activeIcon,
+  activeIconId,
   onIconPress
 }) {
   return (
@@ -22,7 +22,7 @@ export default function IconList({
           color={iconColor}
           elevate
           onPress={() => onIconPress?.(id)}
-          active={activeIcon === id}
+          active={activeIconId === id}
           {...{ iconStyle, iconContainerStyle }}
         />
       ))}

@@ -3,6 +3,7 @@ import BannerRoot from "./banner/Root"
 import BannerContent from "./banner/Content"
 import BannerHeader from "./banner/Header"
 import BannerBody from "./banner/Body"
+import BannerSwipeArrow from "./banner/SwipeArrow"
 import MainTechsRoot from "./mainTechs/Root"
 import MainTechsIconList from "./mainTechs/IconList"
 import SectionHeader from "./shared/SectionHeader"
@@ -14,6 +15,7 @@ function ComposedBanner(props) {
 ComposedBanner.Content = BannerContent
 ComposedBanner.Header = BannerHeader
 ComposedBanner.Body = BannerBody
+ComposedBanner.SwipeArrow = BannerSwipeArrow
 
 function ComposedMainTechs(props) {
   return <MainTechsRoot {...props} />

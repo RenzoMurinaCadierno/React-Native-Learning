@@ -11,16 +11,12 @@ export default function Root({
   iconContainerStyle,
   iconColor,
   icons,
+  activeIconId,
   title,
   titleSize,
-  iconSize
+  iconSize,
+  onIconPress
 }) {
-  const [activeIcon, setActiveIcon] = useState("")
-
-  const handleIconPress = (id) => {
-    setActiveIcon((prevId) => (prevId === id ? "" : id))
-  }
-
   return (
     <View style={[containerStyle, _styles.container]}>
       <SectionHeader
@@ -30,14 +26,14 @@ export default function Root({
         overlayProps={{ style: overlayStyle }}
       />
       <IconList
-        onIconPress={handleIconPress}
         {...{
           icons,
           iconColor,
           iconStyle,
           iconSize,
           iconContainerStyle,
-          activeIcon
+          activeIconId,
+          onIconPress
         }}
       />
     </View>

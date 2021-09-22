@@ -4,16 +4,24 @@ import Header from "./Header"
 import Body from "./Body"
 import { default as sharedStyles } from "@constants/styles"
 
-export default function Content({ items, fontScale, style }) {
+export default function Content({ content, fontScale, style }) {
+  const { title, subtitle, category, color } = content
   return (
     <View style={[_styles.container, style]}>
-      <Header fontScale={fontScale} flexValue={0.3} />
+      <Header
+        fontScale={fontScale}
+        flexValue={0.3}
+        title={title}
+        titleColor={color}
+        subtitle={subtitle}
+        category={category}
+      />
       <Body fontScale={fontScale} flexValue={0.7} />
     </View>
   )
 }
 
-Content.defaultProps = { fontScale: 16 }
+Content.defaultProps = { content: {}, fontScale: 16 }
 
 const _styles = StyleSheet.create({
   container: {

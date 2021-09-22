@@ -7,22 +7,36 @@ export default function Content({
   title,
   subtitle,
   category,
+  titleColor,
   flexValue,
   fontScale
 }) {
+  layout animation
   return (
     <View style={[_styles.container, { flex: flexValue }]}>
       <View style={[_styles.titleAndCategoryContainer]}>
-        <UI.Text size={fontScale * 1.5} color={colors.SECONDARY}>
-          React
+        <UI.Text
+          size={fontScale * 1.5}
+          color={titleColor}
+          style={_styles.title}
+        >
+          {title}
         </UI.Text>
-        <UI.Text size={fontScale} color={colors.SECONDARY}>
-          Main Technologyyyy
+        <UI.Text
+          size={fontScale}
+          color={colors.SECONDARY}
+          style={_styles.category}
+        >
+          {category}
         </UI.Text>
       </View>
       <View style={[_styles.subtitleContainer]}>
-        <UI.Text size={fontScale} color={colors.SECONDARY}>
-          Cool web tech
+        <UI.Text
+          size={fontScale}
+          color={colors.SECONDARY}
+          style={_styles.subtitle}
+        >
+          {subtitle}
         </UI.Text>
       </View>
     </View>
@@ -33,19 +47,16 @@ Content.defaultProps = { fontScale: 16 }
 
 const _styles = StyleSheet.create({
   container: {
-    // flex: 1,
     width: "100%",
     paddingHorizontal: "1.5%",
     paddingVertical: "0.5%"
-    // flexDirection: 'row',
-    // flex: 1
   },
   titleAndCategoryContainer: {
-    // flex: 0.5,
     flexDirection: "row",
     justifyContent: "space-between"
   },
-  subtitleContainer: {
-    // flex: 0.5
-  }
+  title: { fontFamily: "livvic-semi-bold" },
+  category: { fontFamily: "livvic-regular-italic" },
+  subtitle: {},
+  subtitleContainer: {}
 })
