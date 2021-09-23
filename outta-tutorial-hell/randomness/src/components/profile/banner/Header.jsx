@@ -11,7 +11,6 @@ export default function Content({
   flexValue,
   fontScale
 }) {
-  layout animation
   return (
     <View style={[_styles.container, { flex: flexValue }]}>
       <View style={[_styles.titleAndCategoryContainer]}>

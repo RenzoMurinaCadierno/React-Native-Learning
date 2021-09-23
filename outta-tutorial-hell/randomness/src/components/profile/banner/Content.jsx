@@ -10,13 +10,13 @@ export default function Content({ content, fontScale, style }) {
     <View style={[_styles.container, style]}>
       <Header
         fontScale={fontScale}
-        flexValue={0.3}
+        flexValue={0.4}
         title={title}
         titleColor={color}
         subtitle={subtitle}
         category={category}
       />
-      <Body fontScale={fontScale} flexValue={0.7} />
+      <Body fontScale={fontScale} flexValue={0.6} />
     </View>
   )
 }
