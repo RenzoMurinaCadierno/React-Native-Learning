@@ -5,16 +5,20 @@ const colors = {
   SECONDARY: "#8a38d1",
   SECONDARY_RGB: "138, 56, 209",
   SECONDARY_RGB_FORMATTED: "rgb(138, 56, 209)",
-  ACCENT: "#81dbd2",
-  ACCENT_RGB: "129, 219, 210",
-  ACCENT_RGB_FORMATTED: "rgb(129, 219, 210)",
+  ACCENT_PRIMARY: "#81dbd2",
+  ACCENT_PRIMARY_RGB: "129, 219, 210",
+  ACCENT_PRIMARY_RGB_FORMATTED: "rgb(129, 219, 210)",
+  ACCENT_SECONDARY: "#ecbbfa",
+  ACCENT_SECONDARY_RGB: "236, 187, 250",
+  ACCENT_SECONDARY_RGB_FORMATTED: "rgb(236, 187, 250)",
   DANGER: "#ff4a36",
   DANGER_RGB: "255, 74, 54",
   DANGER_RGB_FORMATTED: "rgb(255, 74, 54)",
   background: {
     PRIMARY: "snow",
     SECONDARY: "powderblue",
-    CONTRAST: "ghostwhite"
+    CONTRAST: "ghostwhite",
+    DARK: "#121212"
   }
 }
 

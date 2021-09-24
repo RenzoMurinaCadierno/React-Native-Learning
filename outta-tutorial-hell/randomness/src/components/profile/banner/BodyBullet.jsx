@@ -1,20 +1,24 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
-import UI from "@components/UI"
-import colors from "@constants/colors"
+import UI from "@app-components/UI"
+import colors from "@app-constants/colors"
 
-export default function BodyBullet({ fontScale }) {
-  return <UI.Icon.WithCircle name="bookmark" size={fontScale} />
+export default function BodyBullet({
+  fontScale,
+  containerProps,
+  containerStyle
+}) {
+  return (
+    <View style={[_styles.container, containerStyle]} {...containerProps}>
+      <UI.Icon.WithAura type="secondary" name="bookmark" size={fontScale} />
+      <UI.Text></UI.Text>
+    </View>
+  )
 }
 
 const _styles = StyleSheet.create({
-  wrapper: {
-    width: 50,
-    height: 50,
-    padding: 2,
-    borderRadius: 25,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center"
+  container: {
+    flexDirection: "row",
+    borderWidth: 1
   }
 })

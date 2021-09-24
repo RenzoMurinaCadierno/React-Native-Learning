@@ -6,6 +6,7 @@ import Base from "./Icon/Base"
 import Shadow from "./Icon/Shadow"
 import IconWithHover from "./Icon/IconWithHover"
 import IconWithCircle from "./Icon/IconWithCircle"
+import IconWithAura from "./Icon/IconWithAura"
 import IconWithColorTransition from "./Icon/IconWithColorTransition"
 
 function ComposedIcon(props) {
@@ -16,6 +17,7 @@ ComposedIcon.Aura = Aura
 ComposedIcon.Base = Base
 ComposedIcon.Shadow = Shadow
 ComposedIcon.WithCircle = IconWithCircle
+ComposedIcon.WithAura = IconWithAura
 ComposedIcon.WithColorTransition = IconWithColorTransition
 ComposedIcon.WithHover = IconWithHover
 

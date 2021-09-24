@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
-import UI from "@components/UI"
-import colors from "@constants/colors"
+import UI from "@app-components/UI"
+import colors from "@app-constants/colors"
 import BodyBullet from "./BodyBullet"
 
 export default function BodyContent({ title, fontScale }) {
@@ -11,12 +11,14 @@ export default function BodyContent({ title, fontScale }) {
         <UI.Text
           color={colors.PRIMARY}
           size={fontScale * 1.3}
+          elevation={3.5}
+          shadowColor={colors.ACCENT_PRIMARY}
           style={_styles.title}
         >
           {title}
         </UI.Text>
-        <BodyBullet fontScale={fontScale} />
       </View>
+      <BodyBullet fontScale={fontScale * 0.8} />
     </View>
   )
 }
@@ -27,15 +29,12 @@ const _styles = StyleSheet.create({
     flexGrow: 1,
     alignSelf: "stretch",
     flex: 1,
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "space-between",
     paddingVertical: "1%",
     paddingHorizontal: "3%"
   },
   title: {
-    alignSelf: "flex-end",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 5,
-    textShadowColor: colors.ACCENT
+    alignSelf: "flex-end"
   }
 })

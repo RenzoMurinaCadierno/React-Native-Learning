@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { ScrollView } from "react-native"
-import Layout from "@components/layout"
-import Profile from "@components/profile"
-import useViewPort from "@hooks/useViewPort"
+import Layout from "@app-components/layout"
+import Profile from "@app-components/profile"
+import useViewPort from "@app-hooks/useViewPort"
 import { bannerData, mainTechsData, iconIdsToCategoryIdsMap } from "./utils"
 
 export default function ProfileScreen(props) {

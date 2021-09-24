@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet, View } from "react-native"
 import Header from "./Header"
 import Body from "./Body"
-import { default as sharedStyles } from "@constants/styles"
+import { default as sharedStyles } from "@app-constants/styles"
 
 export default function Content({ content, fontScale, style }) {
   const { title, subtitle, category, color } = content

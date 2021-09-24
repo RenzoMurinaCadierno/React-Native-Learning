@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react"
 import { Animated } from "react-native"
-import colors from "@constants/colors"
-import withCreateAnimatedComponent from "@hoc/withCreateAnimationComponent"
+import colors from "@app-constants/colors"
+import withCreateAnimatedComponent from "@app-hoc/withCreateAnimationComponent"
 import Base from "./Base"
 import { getTimingConfig, interpolate } from "./utils"
 

@@ -2,7 +2,7 @@ import React from "react"
 import { View, StyleSheet } from "react-native"
 import Aura from "./Aura"
 import Base from "./Base"
-import colors from "@constants/colors"
+import colors from "@app-constants/colors"
 
 export default function IconWithCircle({
   size,

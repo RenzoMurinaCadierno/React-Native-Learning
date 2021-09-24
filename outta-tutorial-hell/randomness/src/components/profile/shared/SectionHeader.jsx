@@ -1,14 +1,14 @@
 import React from "react"
-import Layout from "@components/layout"
-import UI from "@components/UI"
-import colors from "@constants/colors"
+import Layout from "@app-components/layout"
+import UI from "@app-components/UI"
+import colors from "@app-constants/colors"
 
 export default function Header({ title, titleSize, titleProps, overlayProps }) {
   return (
     <Layout.Overlay {...overlayProps}>
       <UI.Text
         color={colors.SECONDARY}
-        family="bold"
+        type="bold"
         size={titleSize}
         {...titleProps}
       >

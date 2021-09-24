@@ -1,6 +1,6 @@
 import React from "react"
 import { View, StyleSheet } from "react-native"
-import colors from "@constants/colors"
+import colors from "@app-constants/colors"
 import SwipeArrows from "./SwipeArrows"
 import BodyContent from "./BodyContent"
 
@@ -9,7 +9,7 @@ export default function Body({ fontScale, flexValue, style }) {
     <View style={[_styles.container, { flex: flexValue }, style]}>
       <BodyContent title="Education" fontScale={fontScale} />
       <View style={_styles.footer}>
-        <SwipeArrows size={fontScale} color={colors.ACCENT} />
+        <SwipeArrows size={fontScale} color={colors.ACCENT_PRIMARY} />
       </View>
     </View>
   )

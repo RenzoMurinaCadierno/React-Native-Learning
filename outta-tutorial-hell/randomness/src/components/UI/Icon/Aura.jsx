@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import { StyleSheet, Animated, Easing } from "react-native"
-import colors from "@constants/colors"
+import colors from "@app-constants/colors"
 
 export default function Aura({ style, radius, color, ...rest }) {
   const val = useRef(new Animated.Value(1)).current
@@ -19,7 +19,6 @@ export default function Aura({ style, radius, color, ...rest }) {
       style={[
         {
           ...StyleSheet.absoluteFill,
-          // zIndex: 0,
           backgroundColor: color,
           borderRadius: radius,
           opacity: val.interpolate({

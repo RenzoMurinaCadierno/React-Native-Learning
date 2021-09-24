@@ -14,11 +14,16 @@ function ComposedBanner(props) {
   return <BannerRoot {...props} />
 }
 
+function ComposedBannerBody(props) {
+  return <BannerBody {...props} />
+}
+
+ComposedBannerBody.Content = BannerBodyContent
+ComposedBannerBody.Bullet = BannerBodyBullet
+
 ComposedBanner.Content = BannerContent
 ComposedBanner.Header = BannerHeader
-ComposedBanner.Body = BannerBody
-ComposedBanner.BodyContent = BannerBodyContent
-ComposedBanner.BodyBullet = BannerBodyBullet
+ComposedBanner.Body = ComposedBannerBody
 ComposedBanner.SwipeArrow = BannerSwipeArrow
 
 function ComposedMainTechs(props) {

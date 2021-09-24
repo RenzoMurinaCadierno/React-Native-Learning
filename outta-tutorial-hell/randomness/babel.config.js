@@ -8,12 +8,13 @@ module.exports = function (api) {
         {
           root: ["./"],
           alias: {
-            "@screens": ["./src/screens"],
-            "@navigation": ["./src/navigation"],
-            "@constants": ["./src/constants"],
-            "@components": ["./src/components"],
-            "@hooks": ["./src/hooks"],
-            "@hoc": ["./src/hoc"]
+            "@app-screens": ["./src/screens"],
+            "@app-navigation": ["./src/navigation"],
+            "@app-constants": ["./src/constants"],
+            "@app-components": ["./src/components"],
+            "@app-hooks": ["./src/hooks"],
+            "@app-hoc": ["./src/hoc"],
+            "@app-store": ["./src/store"]
           }
         }
       ]

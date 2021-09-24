@@ -1,4 +1,4 @@
-import withCreateAnimatedComponent from "@hoc/withCreateAnimationComponent"
+import withCreateAnimatedComponent from "@app-hoc/withCreateAnimationComponent"
 import { Ionicons } from "@expo/vector-icons"
 
 const Animated = {

@@ -1,7 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient"
 import React from "react"
 import { StyleSheet } from "react-native"
-import colors from "@constants/colors"
+import colors from "@app-constants/colors"
 
 export default function Overlay({ children, style, colors, ...rest }) {
   return (

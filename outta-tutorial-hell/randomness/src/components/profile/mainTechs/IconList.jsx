@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
-import UI from "@components/UI"
+import UI from "@app-components/UI"
 
 export default function IconList({
   icons,

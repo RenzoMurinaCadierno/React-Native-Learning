@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react"
 import { Animated } from "react-native"
-import Enhanced from "@components/enhanced"
+import Enhanced from "@app-components/enhanced"
 
 export default function SwipeArrow({ animationDelay, ...rest }) {
   const val = useRef(new Animated.Value(0)).current

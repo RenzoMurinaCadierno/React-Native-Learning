@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
-import UI from "@components/UI"
-import colors from "@constants/colors"
+import UI from "@app-components/UI"
+import colors from "@app-constants/colors"
 
 export default function Content({
   title,
@@ -14,30 +14,20 @@ export default function Content({
   return (
     <View style={[_styles.container, { flex: flexValue }]}>
       <View style={[_styles.titleAndCategoryContainer]}>
-        <UI.Text
-          size={fontScale * 1.5}
-          color={titleColor}
-          style={_styles.title}
-        >
+        <UI.Text size={fontScale * 1.5} color={titleColor} type="semi-bold">
           {title}
         </UI.Text>
         <UI.Text
           size={fontScale}
           color={colors.SECONDARY}
-          style={_styles.category}
+          type="regular-italic"
         >
           {category}
         </UI.Text>
       </View>
-      <View style={[_styles.subtitleContainer]}>
-        <UI.Text
-          size={fontScale}
-          color={colors.SECONDARY}
-          style={_styles.subtitle}
-        >
-          {subtitle}
-        </UI.Text>
-      </View>
+      <UI.Text size={fontScale} color={colors.SECONDARY}>
+        {subtitle}
+      </UI.Text>
     </View>
   )
 }
@@ -53,9 +43,5 @@ const _styles = StyleSheet.create({
   titleAndCategoryContainer: {
     flexDirection: "row",
     justifyContent: "space-between"
-  },
-  title: { fontFamily: "livvic-semi-bold" },
-  category: { fontFamily: "livvic-regular-italic" },
-  subtitle: {},
-  subtitleContainer: {}
+  }
 })

@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
-import { default as sharedStyles } from "@constants/styles"
+import { default as sharedStyles } from "@app-constants/styles"
 import Content from "./Content"
 
 export default function Container({
