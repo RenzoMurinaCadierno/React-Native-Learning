@@ -14,7 +14,8 @@ module.exports = function (api) {
             "@app-components": ["./src/components"],
             "@app-hooks": ["./src/hooks"],
             "@app-hoc": ["./src/hoc"],
-            "@app-store": ["./src/store"]
+            "@app-store": ["./src/store"],
+            "@app-models": ["./src/models"]
           }
         }
       ]

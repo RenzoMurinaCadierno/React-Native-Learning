@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, StyleSheet } from "react-native"
 import UI from "@app-components/UI"
 import colors from "@app-constants/colors"
 import BodyBullet from "./BodyBullet"
@@ -29,7 +29,6 @@ const _styles = StyleSheet.create({
     flexGrow: 1,
     alignSelf: "stretch",
     flex: 1,
-    // alignItems: "center",
     justifyContent: "space-between",
     paddingVertical: "1%",
     paddingHorizontal: "3%"

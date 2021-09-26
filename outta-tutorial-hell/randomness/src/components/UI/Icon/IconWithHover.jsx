@@ -10,8 +10,8 @@ export default function IconWithHover({ active, style, ...rest }) {
     if (active) {
       Animated.loop(
         Animated.sequence([
-          Animated.timing(val, getTimingConfig(1, 1000, "out", 100)),
-          Animated.timing(val, getTimingConfig(0, 1000, "in", 100))
+          Animated.timing(val, getTimingConfig(1, 1000, "out")),
+          Animated.timing(val, getTimingConfig(0, 1000, "in"))
         ])
       ).start()
     } else {

@@ -32,8 +32,6 @@ export default function Content({
   )
 }
 
-Content.defaultProps = { fontScale: 16 }
-
 const _styles = StyleSheet.create({
   container: {
     width: "100%",

@@ -14,7 +14,7 @@ export default function IconList({
 }) {
   return (
     <View style={[containerStyle, _styles.container]}>
-      {icons.map(({ id, ...rest }) => (
+      {icons?.map(({ id, ...rest }) => (
         <UI.Icon
           key={id}
           {...rest}
