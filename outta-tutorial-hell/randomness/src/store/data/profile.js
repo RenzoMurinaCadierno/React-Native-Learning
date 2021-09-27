@@ -39,16 +39,80 @@ export const bannerData = {
       "HTML5",
       "Standard markup language for web programming",
       getTitleColor("html"),
-      ["5 certified courses", "2 practise projects"],
-      "https://asd.com"
+      [
+        {
+          title: "Education",
+          items: [
+            {
+              iconName: "bookmark",
+              iconType: "primary",
+              text: "5 certified courses",
+              sideText: "EducacionIT"
+            },
+            {
+              iconName: "bookmark",
+              iconType: "secondary",
+              text: "10 certified courses",
+              sideText: "Udemy"
+            }
+          ]
+        },
+        {
+          title: "Projects",
+          items: [
+            {
+              iconName: "bookmark",
+              iconType: "primary",
+              sideText: "https://asd.com"
+            },
+            {
+              iconName: "bookmark",
+              iconType: "primary",
+              sideText: "https://asd.com"
+            }
+          ]
+        }
+      ]
     ),
     css: new SectionItem(
       "Main technologies",
       "CSS3",
       "Style sheet language for markup documents",
       getTitleColor("css"),
-      ["5 certified courses", "2 practise projects"],
-      "https://asd.com"
+      [
+        {
+          title: "Education",
+          items: [
+            {
+              iconName: "bookmark",
+              iconType: "primary",
+              text: "5 certified courses",
+              sideText: "EducacionIT"
+            },
+            {
+              iconName: "bookmark",
+              iconType: "secondary",
+              text: "10 certified courses",
+              sideText: "Udemy"
+            }
+          ]
+        },
+        {
+          title: "Projects",
+          items: [
+            {
+              iconName: "bookmark",
+              iconType: "primary",
+              sideText: "https://asd.com"
+            },
+            {
+              iconName: "bookmark",
+              iconType: "primary",
+              sideText: "https://asd.com"
+            }
+          ]
+        }
+      ]
     )
   }
 }

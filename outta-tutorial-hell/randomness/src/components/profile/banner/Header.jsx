@@ -21,6 +21,8 @@ export default function Content({
           size={fontScale}
           color={colors.SECONDARY}
           type="regular-italic"
+          elevation={fontScale / 7}
+          shadowColor={colors.PRIMARY}
         >
           {category}
         </UI.Text>

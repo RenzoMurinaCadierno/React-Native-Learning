@@ -3,11 +3,12 @@ import { Animated } from "react-native"
 import IconWithColorTransition from "./IconWithColorTransition"
 import { getTimingConfig, interpolate } from "./utils"
 
-export default function IconWithHover({ active, style, ...rest }) {
+export default function IconWithHover({ active, style, startDelay, ...rest }) {
   const val = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
     if (active) {
+      Animated.delay(startDelay)
       Animated.loop(
         Animated.sequence([
           Animated.timing(val, getTimingConfig(1, 1000, "out")),
@@ -38,3 +39,5 @@ export default function IconWithHover({ active, style, ...rest }) {
     </Animated.View>
   )
 }
+
+IconWithHover.defaultProps = { startDelay: 0 }

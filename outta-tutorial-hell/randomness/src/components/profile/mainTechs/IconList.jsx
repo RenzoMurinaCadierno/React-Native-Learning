@@ -21,6 +21,7 @@ export default function IconList({
           size={iconSize}
           color={iconColor}
           elevate
+          startDelay={500}
           onPress={() => onIconPress?.(id)}
           active={activeIconId === id}
           {...{ iconStyle, iconContainerStyle }}
@@ -29,8 +30,6 @@ export default function IconList({
     </View>
   )
 }
-
-IconList.defaultProps = { names: [] }
 
 const _styles = StyleSheet.create({
   container: {

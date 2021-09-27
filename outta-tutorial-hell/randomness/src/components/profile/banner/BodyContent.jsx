@@ -4,7 +4,7 @@ import UI from "@app-components/UI"
 import colors from "@app-constants/colors"
 import BodyBullet from "./BodyBullet"
 
-export default function BodyContent({ title, fontScale }) {
+export default function BodyContent({ title, items, fontScale }) {
   return (
     <View style={_styles.container}>
       <View style={_styles.title}>
@@ -18,10 +18,18 @@ export default function BodyContent({ title, fontScale }) {
           {title}
         </UI.Text>
       </View>
-      <BodyBullet fontScale={fontScale * 0.8} />
+      {items.map(({ iconName, iconType, text, sideText }) => (
+        <BodyBullet
+          key={text}
+          {...{ iconName, iconType, text, sideText }}
+          fontScale={fontScale * 0.8}
+        />
+      ))}
     </View>
   )
 }
+
+BodyContent.defaultProps = { items: [] }
 
 const _styles = StyleSheet.create({
   container: {

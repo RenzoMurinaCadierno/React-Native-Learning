@@ -1,4 +1,4 @@
-import { INITIALIZE_PROFILE_DATA } from "../types/profile"
+import { INITIALIZE_DATA_IN_STORE } from "../types/profile"
 
 const initialState = {
   sections: {}, // contains banner data
@@ -8,7 +8,7 @@ const initialState = {
 
 export default function profileReducer(state = initialState, action) {
   switch (action.type) {
-    case INITIALIZE_PROFILE_DATA:
+    case INITIALIZE_DATA_IN_STORE:
       return {
         ...state,
         sections: action.payload.sections,

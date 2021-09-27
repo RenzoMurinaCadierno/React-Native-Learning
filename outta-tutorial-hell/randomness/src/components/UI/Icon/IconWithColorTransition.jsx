@@ -1,11 +1,8 @@
 import React, { useRef, useEffect } from "react"
 import { Animated } from "react-native"
 import colors from "@app-constants/colors"
-import withCreateAnimatedComponent from "@app-hoc/withCreateAnimationComponent"
-import Base from "./Base"
-import { getTimingConfig, interpolate } from "./utils"
-
-const AnimatedIconBase = withCreateAnimatedComponent(Base)
+import Enhanced from "@app-components/enhanced"
+import { interpolate, getTimingConfig } from "./utils"
 
 export default function IconWithColorTransition({
   active,
@@ -27,7 +24,7 @@ export default function IconWithColorTransition({
   }, [active])
 
   return (
-    <AnimatedIconBase
+    <Enhanced.Animated.BaseIcon
       {...rest}
       color={interpolate(color, [0, 1], [inactiveColor, activeColor])}
     />

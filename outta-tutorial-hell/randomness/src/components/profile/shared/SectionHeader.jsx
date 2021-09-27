@@ -10,6 +10,9 @@ export default function Header({ title, titleSize, titleProps, overlayProps }) {
         color={colors.SECONDARY}
         type="bold"
         size={titleSize}
+        elevation={titleSize / 7}
+        shadowRadius={titleSize / 2}
+        shadowColor={colors.PRIMARY}
         {...titleProps}
       >
         {title}

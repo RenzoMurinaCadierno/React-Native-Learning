@@ -1,7 +1,10 @@
-import { INITIALIZE_PROFILE_DATA } from "../types/profile"
+import {
+  CHANGE_ACTIVE_ICON_ID,
+  INITIALIZE_DATA_IN_STORE
+} from "../types/profile"
 import { bannerData, mainTechsData } from "../data/profile"
 
-export const initializeProfileData = (
+export const initializeDataInStore = (
   iconCategories = [mainTechsData],
   sections = bannerData
 ) => {
@@ -14,7 +17,7 @@ export const initializeProfileData = (
   })
 
   return {
-    type: INITIALIZE_PROFILE_DATA,
+    type: INITIALIZE_DATA_IN_STORE,
     payload: { iconsToCategoryMap, iconCategories, sections }
   }
 }

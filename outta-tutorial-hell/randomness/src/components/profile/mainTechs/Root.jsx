@@ -1,9 +1,9 @@
-import React, { useRef } from "react"
+import React from "react"
 import { StyleSheet, View } from "react-native"
 import { useSelector } from "react-redux"
 import IconList from "./IconList"
 import SectionHeader from "../shared/SectionHeader"
-import { mainTechsData } from "../../../store/data/profile"
+import { mainTechsData } from "@app-store/data/profile"
 
 export default function Root({
   containerStyle,
@@ -17,11 +17,10 @@ export default function Root({
   iconSize,
   onIconPress
 }) {
-  // const { iconCategories } = useSelector((state) => state.profile)
-  const whyReduxNoWorkGeez = useRef([mainTechsData]).current
-  // console.log(iconCategories)
+  // const iconCategories = useSelector((state) => state.profile.iconCategories)
+  const iconCategories = [mainTechsData]
 
-  return whyReduxNoWorkGeez.map((category) => (
+  return iconCategories.map((category) => (
     <View key={category.id} style={[containerStyle, _styles.container]}>
       <SectionHeader
         title={category.title}
