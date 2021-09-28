@@ -42,7 +42,19 @@ export const bannerData = {
       [
         {
           title: "Education",
-          items: [
+          data: [
+            {
+              iconName: "bookmark",
+              iconType: "primary",
+              text: "5 certified courses",
+              sideText: "EducacionIT"
+            },
+            {
+              iconName: "bookmark",
+              iconType: "secondary",
+              text: "10 certified courses",
+              sideText: "Udemy"
+            },
             {
               iconName: "bookmark",
               iconType: "primary",
@@ -59,7 +71,7 @@ export const bannerData = {
         },
         {
           title: "Projects",
-          items: [
+          data: [
             {
               iconName: "bookmark",
               iconType: "primary",
@@ -82,7 +94,7 @@ export const bannerData = {
       [
         {
           title: "Education",
-          items: [
+          data: [
             {
               iconName: "bookmark",
               iconType: "primary",
@@ -99,7 +111,7 @@ export const bannerData = {
         },
         {
           title: "Projects",
-          items: [
+          data: [
             {
               iconName: "bookmark",
               iconType: "primary",

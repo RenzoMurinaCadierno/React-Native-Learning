@@ -27,6 +27,7 @@ export default function App() {
     "livvic-regular": Livvic_400Regular,
     "livvic-regular-italic": Livvic_400Regular_Italic,
     "livvic-semi-bold": Livvic_600SemiBold,
+    "livvic-semi-bold-italic": Livvic_600SemiBold_Italic,
     "livvic-bold": Livvic_700Bold
   })
 

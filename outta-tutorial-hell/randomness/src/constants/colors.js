@@ -15,10 +15,18 @@ const colors = {
   DANGER_RGB: "255, 74, 54",
   DANGER_RGB_FORMATTED: "rgb(255, 74, 54)",
   background: {
-    PRIMARY: "snow",
-    SECONDARY: "powderblue",
-    CONTRAST: "ghostwhite",
-    DARK: "#121212"
+    PRIMARY: "#fffafa",
+    PRIMARY_RGB: "255, 250, 250",
+    PRIMARY_RGB_FORMATTED: "rgb(255, 250, 250)",
+    SECONDARY: "#b6d0e2",
+    SECONDARY_RGB: "182, 208, 226",
+    SECONDARY_RGB_FORMATTED: "rgb(182, 208, 226)",
+    CONTRAST: "#f8f8ff",
+    CONTRAST_RGB: "248, 248, 255",
+    CONTRAST_RGB_FORMATTED: "rgb(248, 248, 255)",
+    DARK: "#121212",
+    DARK_RGB: "18, 18, 18",
+    DARK_RGB_FORMATTED: "rgb(18, 18, 18)"
   }
 }
 
