@@ -7,12 +7,12 @@ export default function Header({ title, titleSize, titleProps, overlayProps }) {
   return (
     <Layout.Overlay {...overlayProps}>
       <UI.Text
-        color={colors.SECONDARY}
+        color={colors.main.SECONDARY}
         type="bold"
         size={titleSize}
         elevation={titleSize / 7}
         shadowRadius={titleSize / 2}
-        shadowColor={colors.PRIMARY}
+        shadowColor={colors.main.PRIMARY}
         {...titleProps}
       >
         {title}

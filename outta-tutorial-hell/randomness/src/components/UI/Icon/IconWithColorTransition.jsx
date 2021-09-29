@@ -32,6 +32,6 @@ export default function IconWithColorTransition({
 }
 
 IconWithColorTransition.defaultProps = {
-  activeColor: colors.PRIMARY,
-  inactiveColor: colors.SECONDARY
+  activeColor: colors.main.PRIMARY,
+  inactiveColor: colors.main.SECONDARY
 }

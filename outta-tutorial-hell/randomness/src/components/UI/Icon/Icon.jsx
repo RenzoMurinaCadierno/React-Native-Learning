@@ -42,7 +42,7 @@ export default function Icon({
   )
 }
 
-Icon.defaultProps = { color: colors.PRIMARY, size: 18 }
+Icon.defaultProps = { color: colors.main.PRIMARY, size: 18 }
 
 const _styles = (size) =>
   StyleSheet.create({

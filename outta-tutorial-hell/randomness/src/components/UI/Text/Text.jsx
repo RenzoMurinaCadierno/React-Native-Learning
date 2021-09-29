@@ -26,7 +26,7 @@ export default function AppText({
   )
 }
 
-AppText.defaultProps = { type: "regular", color: colors.PRIMARY, size: 16 }
+AppText.defaultProps = { type: "regular", color: colors.main.PRIMARY, size: 16 }
 
 function getTextElevation(elevation, shadowColor, shadowRadius) {
   return elevation

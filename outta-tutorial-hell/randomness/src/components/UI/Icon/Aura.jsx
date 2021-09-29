@@ -34,7 +34,7 @@ export default function Aura({ style, radius, color, ...rest }) {
   )
 }
 
-Aura.defaultProps = { color: colors.PRIMARY }
+Aura.defaultProps = { color: colors.main.PRIMARY }
 
 function getTimingConfig(toValue, duration) {
   return { toValue, duration, easing: Easing.linear, useNativeDriver: true }

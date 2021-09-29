@@ -1,5 +1,6 @@
 import React from "react"
 import AppText from "./Text/Text"
+import DirectionalArrows from "./DirectionalArrows/DirectionalArrows"
 import Icon from "./Icon/Icon"
 import Aura from "./Icon/Aura"
 import Base from "./Icon/Base"
@@ -21,6 +22,6 @@ ComposedIcon.WithAura = IconWithAura
 ComposedIcon.WithColorTransition = IconWithColorTransition
 ComposedIcon.WithHover = IconWithHover
 
-const UI = { Text: AppText, Icon: ComposedIcon }
+const UI = { Text: AppText, Icon: ComposedIcon, DirectionalArrows }
 
 export default UI

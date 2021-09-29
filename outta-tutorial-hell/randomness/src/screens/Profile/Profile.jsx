@@ -5,7 +5,6 @@ import Layout from "@app-components/layout"
 import Profile from "@app-components/profile"
 import useViewPort from "@app-hooks/useViewPort"
 import * as profileActionTypes from "@app-store/actions/profile"
-import { useSelector } from "react-redux"
 
 export default function ProfileScreen(props) {
   const [activeIconId, setActiveIconId] = useState("")

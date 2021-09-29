@@ -5,7 +5,7 @@ export class SectionItem {
     this.category = category
     this.title = title
     this.subtitle = subtitle
-    this.color = color || colors.PRIMARY
+    this.color = color || colors.main.PRIMARY
     this.bullets = bullets
   }
 }

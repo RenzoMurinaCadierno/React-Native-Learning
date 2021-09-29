@@ -21,8 +21,8 @@ export default function IconWithAura({
   iconProps,
   auraProps
 }) {
-  const color = colors[type?.toUpperCase()]
-  const bgColor = colors[`ACCENT_${type?.toUpperCase()}`]
+  const color = colors.main[type?.toUpperCase() ?? "PRIMARY"]
+  const bgColor = colors.accent[type?.toUpperCase() ?? "PRIMARY"]
   const styles = _styles(size, color ?? borderColor, bgColor ?? backgroundColor)
 
   return (
@@ -55,10 +55,10 @@ IconWithAura.defaultProps = {
   auraProps: {},
   iconContainerProps: {},
   aura: true,
-  iconColor: colors.PRIMARY,
-  borderColor: colors.PRIMARY,
-  auraColor: colors.PRIMARY,
-  backgroundColor: colors.ACCENT_PRIMARY
+  iconColor: colors.main.PRIMARY,
+  borderColor: colors.main.PRIMARY,
+  auraColor: colors.main.PRIMARY,
+  backgroundColor: colors.accent.PRIMARY
 }
 
 const _styles = (size, borderColor, backgroundColor) =>

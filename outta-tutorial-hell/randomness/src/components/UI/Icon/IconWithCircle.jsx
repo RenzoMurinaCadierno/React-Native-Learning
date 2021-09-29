@@ -36,8 +36,8 @@ export default function IconWithCircle({
 }
 
 IconWithCircle.defaultProps = {
-  color: colors.SECONDARY,
-  borderColor: colors.SECONDARY,
+  color: colors.main.SECONDARY,
+  borderColor: colors.main.SECONDARY,
   backgroundColor: "white"
   // containerProps: { onPress: () => {} }
 }
@@ -50,7 +50,7 @@ const _styles = (size, borderColor, backgroundColor) =>
       borderRadius: size,
       borderWidth: size * 0.1,
       borderColor: borderColor,
-      backgroundColor: backgroundColor ?? `rgba(${colors.SECONDARY_RGB}, 0.1)`,
+      backgroundColor: backgroundColor ?? colors.main.SECONDARY_ALPHA(0.1),
       alignItems: "center",
       justifyContent: "center",
       position: "relative"

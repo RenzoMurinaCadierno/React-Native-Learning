@@ -19,9 +19,9 @@ export const TabNavigator = () => {
         // backgroundColor: colors.background.CONTRAST
       }}
       screenOptions={{
-        tabBarActiveTintColor: colors.PRIMARY,
+        tabBarActiveTintColor: colors.main.PRIMARY,
         // tabBarInactiveTintColor: colors.SECONDARY,
-        tabBarIndicatorStyle: { backgroundColor: colors.SECONDARY },
+        tabBarIndicatorStyle: { backgroundColor: colors.main.SECONDARY },
         tabBarStyle: {
           backgroundColor: colors.background.CONTRAST,
           elevation: 3

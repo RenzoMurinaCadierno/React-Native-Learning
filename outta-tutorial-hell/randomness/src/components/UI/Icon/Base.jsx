@@ -6,4 +6,4 @@ export default function Base({ size, color, ...rest }) {
   return <Ionicons size={size} color={color} {...rest} />
 }
 
-Base.defaultProps = { color: colors.PRIMARY, size: 18 }
+Base.defaultProps = { color: colors.main.PRIMARY, size: 18 }

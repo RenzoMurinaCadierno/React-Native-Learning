@@ -1,32 +1,27 @@
+function getColorDistribution(name, hex, rgb) {
+  return {
+    [name]: hex,
+    [name + "_RGB"]: rgb,
+    [name + "_RGB_FORMATTED"]: `rgb(${rgb})`,
+    [name + "_ALPHA"]: (alphaValue) => `rgba(${rgb}, ${alphaValue ?? 1})`
+  }
+}
+
 const colors = {
-  PRIMARY: "#3885d1",
-  PRIMARY_RGB: "56, 133, 209",
-  PRIMARY_RGB_FORMATTED: "rgb(56, 133, 209)",
-  SECONDARY: "#8a38d1",
-  SECONDARY_RGB: "138, 56, 209",
-  SECONDARY_RGB_FORMATTED: "rgb(138, 56, 209)",
-  ACCENT_PRIMARY: "#81dbd2",
-  ACCENT_PRIMARY_RGB: "129, 219, 210",
-  ACCENT_PRIMARY_RGB_FORMATTED: "rgb(129, 219, 210)",
-  ACCENT_SECONDARY: "#ecbbfa",
-  ACCENT_SECONDARY_RGB: "236, 187, 250",
-  ACCENT_SECONDARY_RGB_FORMATTED: "rgb(236, 187, 250)",
-  DANGER: "#ff4a36",
-  DANGER_RGB: "255, 74, 54",
-  DANGER_RGB_FORMATTED: "rgb(255, 74, 54)",
+  main: {
+    ...getColorDistribution("PRIMARY", "#3885d1", "56, 133, 209"),
+    ...getColorDistribution("SECONDARY", "#8a38d1", "138, 56, 209"),
+    ...getColorDistribution("DANGER", "#ff4a36", "255, 74, 54")
+  },
+  accent: {
+    ...getColorDistribution("PRIMARY", "#81dbd2", "129, 219, 210"),
+    ...getColorDistribution("SECONDARY", "#ecbbfa", "236, 187, 250")
+  },
   background: {
-    PRIMARY: "#fffafa",
-    PRIMARY_RGB: "255, 250, 250",
-    PRIMARY_RGB_FORMATTED: "rgb(255, 250, 250)",
-    SECONDARY: "#b6d0e2",
-    SECONDARY_RGB: "182, 208, 226",
-    SECONDARY_RGB_FORMATTED: "rgb(182, 208, 226)",
-    CONTRAST: "#f8f8ff",
-    CONTRAST_RGB: "248, 248, 255",
-    CONTRAST_RGB_FORMATTED: "rgb(248, 248, 255)",
-    DARK: "#121212",
-    DARK_RGB: "18, 18, 18",
-    DARK_RGB_FORMATTED: "rgb(18, 18, 18)"
+    ...getColorDistribution("PRIMARY", "#fffafa", "255, 250, 250"),
+    ...getColorDistribution("SECONDARY", "#b6d0e2", "182, 208, 226"),
+    ...getColorDistribution("CONTRAST", "#f8f8ff", "248, 248, 255"),
+    ...getColorDistribution("DARK", "#121212", "18, 18, 18")
   }
 }
 

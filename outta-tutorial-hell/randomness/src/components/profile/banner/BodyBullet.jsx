@@ -64,14 +64,14 @@ function getGradientColors(gradientColors, type) {
   const _type = type?.toLowerCase()
 
   if (_type === "secondary") {
-    return [colors.background.PRIMARY, `rgba(${colors.SECONDARY_RGB}, 0.5)`]
+    return [colors.background.PRIMARY, colors.main.SECONDARY_ALPHA(0.5)]
   } else if (_type === "primary") {
-    return [colors.background.PRIMARY, `rgba(${colors.PRIMARY_RGB}, 0.5)`]
+    return [colors.background.PRIMARY, colors.main.PRIMARY_ALPHA(0.5)]
   }
 
   return undefined // fallbacks to default `colors` in `Overlay`
 }
 
 function getTextColor(type) {
-  return type ? colors[type.toUpperCase()] : undefined
+  return type ? colors.main[type.toUpperCase()] : undefined
 }
