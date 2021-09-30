@@ -7,8 +7,10 @@ export default function Container({
   containerStyle,
   contentStyle,
   containerProps,
+  // activeIconId,
   ...rest
 }) {
+  make this show an intro screen if activeIconId is ''
   return (
     <View style={[_styles.container, containerStyle]} {...containerProps}>
       <Content style={contentStyle} {...rest} />

@@ -2,10 +2,11 @@ import {
   CHANGE_ACTIVE_ICON_ID,
   INITIALIZE_DATA_IN_STORE
 } from "../types/profile"
-import { bannerData, mainTechsData } from "../data/profile"
+import { bannerData, screenBodyData } from "../data/profile"
 
 export const initializeDataInStore = (
-  iconCategories = [mainTechsData],
+  iconCategories = screenBodyData,
+  // iconCategories = [mainTechsData],
   sections = bannerData
 ) => {
   const iconsToCategoryMap = {}

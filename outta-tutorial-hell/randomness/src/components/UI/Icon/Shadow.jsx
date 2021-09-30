@@ -15,8 +15,8 @@ export default function Shadow({
     if (syncWithHoverAnimation) {
       Animated.loop(
         Animated.sequence([
-          Animated.timing(scale, getTimingConfig(1, 1000, "out", 100)),
-          Animated.timing(scale, getTimingConfig(0.6, 1000, "in", 100))
+          Animated.timing(scale, getTimingConfig(1, 1000, "out")),
+          Animated.timing(scale, getTimingConfig(0.6, 1000, "in"))
         ])
       ).start()
     } else {

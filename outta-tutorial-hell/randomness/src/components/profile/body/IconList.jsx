@@ -17,13 +17,13 @@ export default function IconList({
       {icons?.map(({ id, ...rest }) => (
         <UI.Icon
           key={id}
+          id={id}
           {...rest}
           size={iconSize}
           color={iconColor}
           elevate
-          startDelay={500}
-          onPress={() => onIconPress?.(id)}
           active={activeIconId === id}
+          onPress={() => onIconPress?.(id)}
           {...{ iconStyle, iconContainerStyle }}
         />
       ))}

@@ -6,8 +6,8 @@ import BannerBody from "./banner/Body"
 import BannerBodyContent from "./banner/BodyContent"
 import BannerBodyBullet from "./banner/BodyBullet"
 import BannerSwipeArrows from "./banner/SwipeArrows"
-import MainTechsRoot from "./mainTechs/Root"
-import MainTechsIconList from "./mainTechs/IconList"
+import BodyRoot from "./body/Root"
+import BodyIconList from "./body/IconList"
 import SectionHeader from "./shared/SectionHeader"
 
 function ComposedBanner(props) {
@@ -26,15 +26,15 @@ ComposedBanner.Header = BannerHeader
 ComposedBanner.Body = ComposedBannerBody
 ComposedBanner.SwipeArrow = BannerSwipeArrows
 
-function ComposedMainTechs(props) {
-  return <MainTechsRoot {...props} />
+function ComposedBody(props) {
+  return <BodyRoot {...props} />
 }
 
-ComposedMainTechs.IconList = MainTechsIconList
+ComposedBody.IconList = BodyIconList
 
 const Profile = {
   Banner: ComposedBanner,
-  MainTechs: ComposedMainTechs,
+  Body: ComposedBody,
   Shared: { SectionHeader }
 }
 

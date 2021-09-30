@@ -26,7 +26,7 @@ export default function ProfileScreen(props) {
       </Layout.Screen.Separator>
       <Layout.Screen.Separator flexValue={0.65}>
         <ScrollView style={{ width: "100%" }}>
-          <Profile.MainTechs
+          <Profile.Body
             activeIconId={activeIconId}
             onIconPress={changeActiveIconId}
             titleSize={vw(7)}

@@ -1,5 +1,6 @@
 import React from "react"
-import Overlay from "./Overlay"
+import Divider from "./Divider/Divider"
+import Overlay from "./Overlay/Overlay"
 import Screen from "./Screen/Screen"
 import Separator from "./Screen/Separator"
 
@@ -9,6 +10,6 @@ function ComposedScreen(props) {
 
 ComposedScreen.Separator = Separator
 
-const Layout = { Overlay, Screen: ComposedScreen }
+const Layout = { Divider, Overlay, Screen: ComposedScreen }
 
 export default Layout

@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native"
 import { useSelector } from "react-redux"
 import IconList from "./IconList"
 import SectionHeader from "../shared/SectionHeader"
-import { mainTechsData } from "@app-store/data/profile"
+import { screenBodyData } from "@app-store/data/profile"
 
 export default function Root({
   containerStyle,
@@ -18,7 +18,7 @@ export default function Root({
   onIconPress
 }) {
   // const iconCategories = useSelector((state) => state.profile.iconCategories)
-  const iconCategories = [mainTechsData]
+  const iconCategories = screenBodyData
 
   return iconCategories.map((category) => (
     <View key={category.id} style={[containerStyle, _styles.container]}>
@@ -43,4 +43,6 @@ export default function Root({
   ))
 }
 
-const _styles = StyleSheet.create({ container: { flex: 1 } })
+const _styles = StyleSheet.create({
+  container: { flex: 1, paddingBottom: "3%" }
+})
