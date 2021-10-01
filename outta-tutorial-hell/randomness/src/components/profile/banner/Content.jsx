@@ -13,7 +13,7 @@ export default function Content({ activeIconId, fontScale, style }) {
     <View style={[_styles.container, style]}>
       <Header
         fontScale={fontScale}
-        flexValue={0.4}
+        flexValue={0.32}
         title={activeSection.title}
         titleColor={activeSection.color}
         subtitle={activeSection.subtitle}
@@ -23,7 +23,7 @@ export default function Content({ activeIconId, fontScale, style }) {
       <Body
         bullets={activeSection.bullets}
         fontScale={fontScale}
-        flexValue={0.6}
+        flexValue={0.68}
       />
     </View>
   )

@@ -21,10 +21,10 @@ export default function ProfileScreen(props) {
 
   return (
     <Layout.Screen>
-      <Layout.Screen.Separator flexValue={0.35}>
+      <Layout.Screen.Separator flexValue={0.45}>
         <Profile.Banner activeIconId={activeIconId} fontScale={vw(5)} />
       </Layout.Screen.Separator>
-      <Layout.Screen.Separator flexValue={0.65}>
+      <Layout.Screen.Separator flexValue={0.55}>
         <ScrollView style={{ width: "100%" }}>
           <Profile.Body
             activeIconId={activeIconId}

@@ -9,6 +9,7 @@ export default function BodyBullet({
   gradientColors,
   text,
   sideText,
+  descriptionText,
   iconName,
   iconType,
   fontScale,
@@ -23,19 +24,33 @@ export default function BodyBullet({
       style={[_styles.container, containerStyle]}
       {...containerProps}
     >
-      <UI.Icon.WithAura type={iconType} name={iconName} size={fontScale} />
+      <UI.Icon.WithAura
+        type={iconType}
+        name={iconName}
+        size={fontScale * 0.9}
+      />
       <View style={_styles.textsContainer}>
-        <UI.Text color={textColor} size={fontScale * 1.1} type="semi-bold">
-          {text}
-        </UI.Text>
+        <View style={_styles.titleAndSideTextContainer}>
+          <UI.Text color={textColor} size={fontScale * 0.9} type="semi-bold">
+            {text}
+          </UI.Text>
+          <UI.Text
+            color={colors.background.CONTRAST}
+            shadowColor={textColor}
+            size={fontScale * 0.9}
+            elevation={fontScale / 3.5}
+            type="semi-bold-italic"
+          >
+            {sideText}
+          </UI.Text>
+        </View>
         <UI.Text
-          color={colors.background.CONTRAST}
-          shadowColor={textColor}
-          size={fontScale * 1.1}
-          elevation={fontScale / 3.5}
-          type="semi-bold-italic"
+          color={textColor}
+          type="regular-italic"
+          size={fontScale * 0.85}
+          style={_styles.description}
         >
-          {sideText}
+          {descriptionText}
         </UI.Text>
       </View>
     </Layout.Overlay>
@@ -51,10 +66,17 @@ const _styles = StyleSheet.create({
   },
   textsContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
     marginLeft: "3%",
     marginRight: "1%"
+  },
+  titleAndSideTextContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  description: {
+    width: "70%",
+    paddingHorizontal: "0.5%",
+    borderWidth: 1
   }
 })
 

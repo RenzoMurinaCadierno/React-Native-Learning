@@ -21,13 +21,13 @@ function BodyContent({ bullets, fontScale, onScrollSectionList }) {
   )
 
   const renderItem = ({
-    item: { iconName, iconType, text, sideText },
+    item: { iconName, iconType, text, sideText, descriptionText },
     index
   }) => (
     <BodyBullet
       type={index % 2 === 0 ? "primary" : "secondary"}
-      {...{ iconName, iconType, text, sideText }}
-      fontScale={fontScale * 0.8}
+      {...{ iconName, iconType, text, sideText, descriptionText }}
+      fontScale={fontScale}
     />
   )
 

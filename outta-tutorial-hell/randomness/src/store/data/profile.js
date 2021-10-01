@@ -64,25 +64,29 @@ export const bannerData = {
               iconName: "bookmark",
               iconType: "primary",
               text: "5 certified courses",
-              sideText: "EducacionIT"
+              sideText: "EducacionIT",
+              descriptionText: "Certified course (12 hours)."
             },
             {
               iconName: "bookmark",
               iconType: "secondary",
               text: "10 certified courses",
-              sideText: "Udemy"
+              sideText: "Udemy",
+              descriptionText: "Certified course (12 hours)."
             },
             {
               iconName: "bookmark",
               iconType: "primary",
               text: "5 certified courses",
-              sideText: "EducacionIT"
+              sideText: "EducacionIT",
+              descriptionText: "Certified course (12 hours)."
             },
             {
               iconName: "bookmark",
               iconType: "secondary",
               text: "10 certified courses",
-              sideText: "Udemy"
+              sideText: "Udemy",
+              descriptionText: "Certified course (12 hours)."
             }
           ]
         },
@@ -92,12 +96,14 @@ export const bannerData = {
             {
               iconName: "bookmark",
               iconType: "primary",
-              sideText: "https://asd.com"
+              sideText: "https://asd.com",
+              descriptionText: "Certified course (12 hours)."
             },
             {
               iconName: "bookmark",
               iconType: "primary",
-              sideText: "https://asd.com"
+              sideText: "https://asd.com",
+              descriptionText: "Certified course (12 hours)."
             }
           ]
         }
@@ -116,13 +122,15 @@ export const bannerData = {
               iconName: "bookmark",
               iconType: "primary",
               text: "5 certified courses",
-              sideText: "EducacionIT"
+              sideText: "EducacionIT",
+              descriptionText: "Certified course (12 hours)."
             },
             {
               iconName: "bookmark",
               iconType: "secondary",
               text: "10 certified courses",
-              sideText: "Udemy"
+              sideText: "Udemy",
+              descriptionText: "Certified course (12 hours)."
             }
           ]
         },
@@ -132,12 +140,14 @@ export const bannerData = {
             {
               iconName: "bookmark",
               iconType: "primary",
-              sideText: "https://asd.com"
+              sideText: "https://asd.com",
+              descriptionText: "Certified course (12 hours)."
             },
             {
               iconName: "bookmark",
               iconType: "primary",
-              sideText: "https://asd.com"
+              sideText: "https://asd.com",
+              descriptionText: "Certified course (12 hours)."
             }
           ]
         }
@@ -156,13 +166,15 @@ export const bannerData = {
               iconName: "bookmark",
               iconType: "primary",
               text: "5 certified courses",
-              sideText: "EducacionIT"
+              sideText: "EducacionIT",
+              descriptionText: "Certified course (12 hours)."
             },
             {
               iconName: "bookmark",
               iconType: "secondary",
               text: "10 certified courses",
-              sideText: "Udemy"
+              sideText: "Udemy",
+              descriptionText: "Certified course (12 hours)."
             }
           ]
         },
@@ -172,12 +184,14 @@ export const bannerData = {
             {
               iconName: "bookmark",
               iconType: "primary",
-              sideText: "https://asd.com"
+              sideText: "https://asd.com",
+              descriptionText: "Certified course (12 hours)."
             },
             {
               iconName: "bookmark",
               iconType: "primary",
-              sideText: "https://asd.com"
+              sideText: "https://asd.com",
+              descriptionText: "Certified course (12 hours)."
             }
           ]
         }
@@ -185,3 +199,6 @@ export const bannerData = {
     )
   }
 }
+modify projects to be rendered properly. Add pressable with ripple
+to deeplink in future
+Add Future Interests section. Start animating everythiing

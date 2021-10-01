@@ -2,23 +2,28 @@ import React from "react"
 import { StyleSheet, View } from "react-native"
 import { default as sharedStyles } from "@app-constants/styles"
 import Content from "./Content"
+import Placeholder from "./Placeholder"
 
 export default function Container({
   containerStyle,
   contentStyle,
+  placeholderStyle,
   containerProps,
-  // activeIconId,
+  activeIconId,
   ...rest
 }) {
-  make this show an intro screen if activeIconId is ''
   return (
     <View style={[_styles.container, containerStyle]} {...containerProps}>
-      <Content style={contentStyle} {...rest} />
+      {Boolean(activeIconId) ? (
+        <Content style={contentStyle} activeIconId={activeIconId} {...rest} />
+      ) : (
+        <Placeholder style={placeholderStyle} {...rest} />
+      )}
     </View>
   )
 }
 
-Container.defaultProps = { containerProps: {}, contentProps: {} }
+Container.defaultProps = { containerProps: {} }
 
 const _styles = StyleSheet.create({
   container: {
