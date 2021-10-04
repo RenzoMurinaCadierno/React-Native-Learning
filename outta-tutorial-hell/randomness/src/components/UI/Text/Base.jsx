@@ -2,7 +2,7 @@ import React from "react"
 import { Text } from "react-native"
 import colors from "../../../constants/colors"
 
-export default function AppText({
+export default function Base({
   children,
   type, // 'light', 'italic', 'regular', 'semi-bold', 'bold'
   color,
@@ -26,7 +26,7 @@ export default function AppText({
   )
 }
 
-AppText.defaultProps = { type: "regular", color: colors.main.PRIMARY, size: 16 }
+Base.defaultProps = { type: "regular", color: colors.main.PRIMARY, size: 16 }
 
 function getTextElevation(elevation, shadowColor, shadowRadius) {
   return elevation

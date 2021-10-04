@@ -31,7 +31,7 @@ export default function IconWithHover({ active, style, ...rest }) {
           transform: [
             { translateY: interpolate(val, [0, 1], [0, -10]) },
             {
-              rotateY: interpolate(val, [0, 0.5, 1], ["0deg", "90deg", "0deg"])
+              rotateY: interpolate(val, [0, 1], ["0deg", "180deg"])
             },
             { scale: interpolate(val, [0, 1], [1, 1.15]) }
           ]

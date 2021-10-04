@@ -19,9 +19,10 @@ export default function BodyBullet({
   const textColor = getTextColor(type)
 
   return (
-    <Layout.Overlay
+    <Layout.Overlay.Pressable
       colors={getGradientColors(gradientColors, type)}
       style={[_styles.container, containerStyle]}
+      onPress={() => console.log("link created")}
       {...containerProps}
     >
       <UI.Icon.WithAura
@@ -53,7 +54,7 @@ export default function BodyBullet({
           {descriptionText}
         </UI.Text>
       </View>
-    </Layout.Overlay>
+    </Layout.Overlay.Pressable>
   )
 }
 

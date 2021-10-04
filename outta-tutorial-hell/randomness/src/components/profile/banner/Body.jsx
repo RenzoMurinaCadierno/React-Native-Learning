@@ -3,16 +3,26 @@ import { View, StyleSheet } from "react-native"
 import SwipeArrows from "./SwipeArrows"
 import BodyContent from "./BodyContent"
 
-export default function Body({ bullets, fontScale, flexValue, style }) {
+function Body({
+  bullets,
+  fontScale,
+  flexValue,
+  style,
+  onScrollBodySectionList
+}) {
+  console.log("render")
   const [showArrows, setShowArrows] = useState(true)
 
-  const hideArrows = useCallback(() => setShowArrows(false), [])
+  const hideArrowsAndTriggerParentCallback = useCallback((e) => {
+    setShowArrows(false)
+    onScrollBodySectionList?.(e.nativeEvent.contentOffset.y)
+  }, [])
 
   return (
     <View style={[_styles.container, { flex: flexValue }, style]}>
       <BodyContent
         bullets={bullets}
-        onScrollSectionList={hideArrows}
+        onScrollSectionList={hideArrowsAndTriggerParentCallback}
         fontScale={fontScale}
       />
       <SwipeArrows
@@ -24,6 +34,8 @@ export default function Body({ bullets, fontScale, flexValue, style }) {
 }
 
 Body.defaultProps = { bullets: [] }
+
+export default React.memo(Body)
 
 const _styles = StyleSheet.create({
   container: {

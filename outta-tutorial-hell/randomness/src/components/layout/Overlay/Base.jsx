@@ -3,7 +3,7 @@ import React from "react"
 import { StyleSheet } from "react-native"
 import colors from "@app-constants/colors"
 
-export default function Overlay({ children, style, colors, ...rest }) {
+export default function Base({ children, style, colors, ...rest }) {
   return (
     <LinearGradient
       colors={colors}
@@ -18,7 +18,7 @@ export default function Overlay({ children, style, colors, ...rest }) {
   )
 }
 
-Overlay.defaultProps = {
+Base.defaultProps = {
   colors: [colors.background.SECONDARY, colors.background.CONTRAST]
 }
 

@@ -43,10 +43,21 @@ export const currentlyLearningData = {
   ]
 }
 
+export const contactMeData = {
+  id: "contactMe",
+  title: "Contact me",
+  icons: [
+    getTechIconProperties("cm-linkedin", "logo-linkedin", "rgb(14, 118, 168)"),
+    getTechIconProperties("cm-gmail", "logo-google", "rgb(187, 0, 28)"),
+    getTechIconProperties("cm-github", "logo-github", "rgb(23, 21, 21)")
+  ]
+}
+
 export const screenBodyData = [
   mainTechsData,
   secondaryTechsData,
-  currentlyLearningData
+  currentlyLearningData,
+  contactMeData
 ]
 
 export const bannerData = {
@@ -199,6 +210,3 @@ export const bannerData = {
     )
   }
 }
-modify projects to be rendered properly. Add pressable with ripple
-to deeplink in future
-Add Future Interests section. Start animating everythiing

@@ -40,6 +40,7 @@ function BodyContent({ bullets, fontScale, onScrollSectionList }) {
       keyExtractor={_keyExtractor}
       style={_styles.container}
       onScroll={onScrollSectionList}
+      // scrollEventThrottle={100}
       stickySectionHeadersEnabled
     />
   )

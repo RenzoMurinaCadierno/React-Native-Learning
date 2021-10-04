@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient"
 import React from "react"
-import { View, StyleSheet } from "react-native"
+import { StyleSheet } from "react-native"
 import UI from "@app-components/UI"
 import colors from "@app-constants/colors"
 
