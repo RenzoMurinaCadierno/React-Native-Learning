@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
 import ProfileScreen from "../screens/Profile/Profile"
 import ProjectsScreen from "../screens/Projects/Projects"
+import ContactScreen from "../screens/Projects/Projects"
 import colors from "../constants/colors"
 import useViewPort from "../hooks/useViewPort"
 
@@ -32,6 +33,7 @@ export const TabNavigator = () => {
         },
         tabBarItemStyle: { flexDirection: "row" }
       }}
+      initialRouteName="Projects"
     >
       <TabNavigation.Screen
         name="Profile"
@@ -42,6 +44,11 @@ export const TabNavigator = () => {
         name="Projects"
         component={ProjectsScreen}
         options={{ tabBarIcon: getTabBarIcon("briefcase", vw(6)) }}
+      />
+      <TabNavigation.Screen
+        name="Contact"
+        component={ContactScreen}
+        options={{ tabBarIcon: getTabBarIcon("mail", vw(6)) }}
       />
     </TabNavigation.Navigator>
   )

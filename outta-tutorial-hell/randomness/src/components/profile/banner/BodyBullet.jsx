@@ -39,7 +39,7 @@ export default function BodyBullet({
             color={colors.background.CONTRAST}
             shadowColor={textColor}
             size={fontScale * 0.9}
-            elevation={fontScale / 3.5}
+            elevation={fontScale / 4.5}
             type="semi-bold-italic"
           >
             {sideText}
@@ -75,7 +75,6 @@ const _styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   description: {
-    width: "70%",
     paddingHorizontal: "0.5%",
     borderWidth: 1
   }

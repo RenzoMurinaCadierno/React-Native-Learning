@@ -47,7 +47,7 @@ const _styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "flex-start",
-    paddingHorizontal: "1.5%",
+    paddingHorizontal: "2%",
     paddingVertical: "5%"
   },
   footer: { alignSelf: "flex-end" }

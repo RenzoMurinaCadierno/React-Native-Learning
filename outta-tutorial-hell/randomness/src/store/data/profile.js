@@ -43,21 +43,10 @@ export const currentlyLearningData = {
   ]
 }
 
-export const contactMeData = {
-  id: "contactMe",
-  title: "Contact me",
-  icons: [
-    getTechIconProperties("cm-linkedin", "logo-linkedin", "rgb(14, 118, 168)"),
-    getTechIconProperties("cm-gmail", "logo-google", "rgb(187, 0, 28)"),
-    getTechIconProperties("cm-github", "logo-github", "rgb(23, 21, 21)")
-  ]
-}
-
 export const screenBodyData = [
   mainTechsData,
   secondaryTechsData,
-  currentlyLearningData,
-  contactMeData
+  currentlyLearningData
 ]
 
 export const bannerData = {
@@ -105,16 +94,16 @@ export const bannerData = {
           title: "Projects",
           data: [
             {
-              iconName: "bookmark",
+              iconName: "briefcase",
               iconType: "primary",
-              sideText: "https://asd.com",
-              descriptionText: "Certified course (12 hours)."
+              sideText: "React Fanmade Hooks",
+              descriptionText: "Custom Hooks for many needs."
             },
             {
-              iconName: "bookmark",
-              iconType: "primary",
-              sideText: "https://asd.com",
-              descriptionText: "Certified course (12 hours)."
+              iconName: "briefcase",
+              iconType: "secondary",
+              sideText: "Yugi-Calculator-MAX",
+              descriptionText: "Yu-gi-oh! multi-purpose app."
             }
           ]
         }

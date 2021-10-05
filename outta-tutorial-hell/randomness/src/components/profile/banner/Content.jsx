@@ -26,6 +26,7 @@ export default function Content({ activeIconId, fontScale, style }) {
         bullets={activeSection.bullets}
         fontScale={fontScale}
         flexValue={1}
+        activeIconId={activeIconId}
         onScrollBodySectionList={setSectionListOffsetY}
       />
     </View>

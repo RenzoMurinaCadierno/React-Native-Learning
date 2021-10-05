@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react"
-import { Animated, View, StyleSheet } from "react-native"
+import { Animated, StyleSheet } from "react-native"
 import colors from "@app-constants/colors"
 import UI from "@app-components/UI"
 

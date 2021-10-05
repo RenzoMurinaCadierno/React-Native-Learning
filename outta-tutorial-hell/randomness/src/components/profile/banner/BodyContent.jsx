@@ -1,11 +1,18 @@
-import React from "react"
+import React, { useRef, useEffect } from "react"
 import { View, StyleSheet, SectionList } from "react-native"
 import BodyBullet from "./BodyBullet"
 import UI from "@app-components/UI"
 import colors from "@app-constants/colors"
 import { default as sharedStyles } from "@app-constants/styles"
 
-function BodyContent({ bullets, fontScale, onScrollSectionList }) {
+function BodyContent({
+  bullets,
+  fontScale,
+  activeIconId,
+  onScrollSectionList
+}) {
+  const sectionListRef = useRef()
+
   const renderSectionHeader = ({ section: { title } }) => (
     <View style={_styles.title}>
       <UI.Text
@@ -31,8 +38,19 @@ function BodyContent({ bullets, fontScale, onScrollSectionList }) {
     />
   )
 
+  useEffect(() => {
+    if (Boolean(bullets.length)) {
+      sectionListRef.current.scrollToLocation({
+        itemIndex: 0,
+        sectionIndex: 0,
+        animated: false
+      })
+    }
+  }, [activeIconId])
+
   return (
     <SectionList
+      ref={sectionListRef}
       sections={bullets}
       renderSectionHeader={renderSectionHeader}
       SectionSeparatorComponent={_SectionSeparatorComponent}
@@ -40,7 +58,7 @@ function BodyContent({ bullets, fontScale, onScrollSectionList }) {
       keyExtractor={_keyExtractor}
       style={_styles.container}
       onScroll={onScrollSectionList}
-      // scrollEventThrottle={100}
+      // scrollEventThrottle={1}
       stickySectionHeadersEnabled
     />
   )

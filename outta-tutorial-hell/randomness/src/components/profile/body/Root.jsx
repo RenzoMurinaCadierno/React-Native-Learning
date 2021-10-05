@@ -1,48 +1,43 @@
-import React from "react"
-import { StyleSheet, View } from "react-native"
-import { useSelector } from "react-redux"
-import IconList from "./IconList"
-import SectionHeader from "../shared/SectionHeader"
-import { screenBodyData } from "@app-store/data/profile"
+import React, { useState } from "react"
+import { ScrollView, StyleSheet, View } from "react-native"
+import Sections from "./Sections"
+import SwipeArrows from "../shared/SwipeArrows"
 
 export default function Root({
-  containerStyle,
-  overlayStyle,
-  titleStyle,
-  iconStyle,
-  iconContainerStyle,
-  iconColor,
-  activeIconId,
-  titleSize,
-  iconSize,
-  onIconPress
+  containerProps,
+  scrollViewProps,
+  swipeArrowProps,
+  fontScale,
+  ...rest
 }) {
-  // const iconCategories = useSelector((state) => state.profile.iconCategories)
-  const iconCategories = screenBodyData
+  const [showArrows, setShowArrows] = useState(true)
 
-  return iconCategories.map((category) => (
-    <View key={category.id} style={[containerStyle, _styles.container]}>
-      <SectionHeader
-        title={category.title}
-        titleSize={titleSize}
-        titleProps={{ style: titleStyle }}
-        overlayProps={{ style: overlayStyle }}
-      />
-      <IconList
-        icons={category.icons}
-        {...{
-          iconColor,
-          iconStyle,
-          iconSize,
-          iconContainerStyle,
-          activeIconId,
-          onIconPress
-        }}
+  const hideArrows = () => showArrows && setShowArrows(false)
+
+  return (
+    <View style={_styles.container} {...containerProps}>
+      <ScrollView
+        onScroll={hideArrows}
+        scrollEventThrottle={250}
+        {...scrollViewProps}
+      >
+        <Sections fontScale={fontScale} {...rest} />
+      </ScrollView>
+      <SwipeArrows
+        show={showArrows}
+        size={fontScale * 1.5}
+        {...swipeArrowProps}
       />
     </View>
-  ))
+  )
+}
+
+Root.defaultProps = {
+  containerProps: {},
+  scrollViewProps: {},
+  swipeArrowProps: {}
 }
 
 const _styles = StyleSheet.create({
-  container: { flex: 1, paddingBottom: "3%" }
+  container: { width: "100%", position: "relative" }
 })

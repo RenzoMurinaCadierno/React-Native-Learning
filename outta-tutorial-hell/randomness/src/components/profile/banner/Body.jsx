@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react"
 import { View, StyleSheet } from "react-native"
-import SwipeArrows from "./SwipeArrows"
+import SwipeArrows from "../shared/SwipeArrows"
 import BodyContent from "./BodyContent"
 
 function Body({
@@ -8,9 +8,9 @@ function Body({
   fontScale,
   flexValue,
   style,
+  activeIconId,
   onScrollBodySectionList
 }) {
-  console.log("render")
   const [showArrows, setShowArrows] = useState(true)
 
   const hideArrowsAndTriggerParentCallback = useCallback((e) => {
@@ -22,6 +22,7 @@ function Body({
     <View style={[_styles.container, { flex: flexValue }, style]}>
       <BodyContent
         bullets={bullets}
+        activeIconId={activeIconId}
         onScrollSectionList={hideArrowsAndTriggerParentCallback}
         fontScale={fontScale}
       />

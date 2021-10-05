@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, View } from "react-native"
+import { Dimensions, StyleSheet, View } from "react-native"
 import UI from "@app-components/UI"
 import Layout from "@app-components/layout"
 import colors from "@app-constants/colors"
@@ -14,7 +14,6 @@ export default function Content({
   fontScale,
   sectionListOffsetY
 }) {
-  // console.log(sectionListOffsetY, sectionListOffsetY / 100)
   return (
     <Layout.Overlay
       colors={[colors.background.PRIMARY, castRgbToRgba(titleColor, 0.4)]}
@@ -41,7 +40,7 @@ export default function Content({
         </UI.Text>
       </View>
       <UI.Text.WithTransition
-        value={sectionListOffsetY / 100}
+        value={sectionListOffsetY / 85}
         size={fontScale * 0.95}
         type="regular-italic"
         color={colors.main.SECONDARY}

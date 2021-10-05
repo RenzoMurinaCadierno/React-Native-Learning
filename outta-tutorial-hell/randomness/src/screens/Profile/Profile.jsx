@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { ScrollView } from "react-native"
 import { useDispatch } from "react-redux"
 import Layout from "@app-components/layout"
 import Profile from "@app-components/profile"
@@ -21,19 +20,15 @@ export default function ProfileScreen(props) {
 
   return (
     <Layout.Screen>
-      <Layout.Screen.Separator flexValue={0.45}>
+      <Layout.Screen.Separator flexValue={0.53}>
         <Profile.Banner activeIconId={activeIconId} fontScale={vw(5)} />
       </Layout.Screen.Separator>
-      <Layout.Screen.Separator flexValue={0.55}>
-        <ScrollView style={{ width: "100%" }}>
-          <Profile.Body
-            activeIconId={activeIconId}
-            onIconPress={changeActiveIconId}
-            titleSize={vw(7)}
-            titleStyle={{ letterSpacing: vw(0.3), paddingHorizontal: vw(3) }}
-            iconSize={vw(12)}
-          />
-        </ScrollView>
+      <Layout.Screen.Separator flexValue={0.47}>
+        <Profile.Body
+          activeIconId={activeIconId}
+          onIconPress={changeActiveIconId}
+          fontScale={vw(3)}
+        />
       </Layout.Screen.Separator>
     </Layout.Screen>
   )
