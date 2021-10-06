@@ -17,9 +17,12 @@ import {
 import { TabNavigator } from "@app-navigation/Main"
 import { NavigationContainer } from "@react-navigation/native"
 import profileReducer from "@app-store/reducers/profile"
+import projectsReducer from "@app-store/reducers/projects"
 import colors from "@app-constants/colors"
 
-const store = createStore(combineReducers({ profile: profileReducer }))
+const store = createStore(
+  combineReducers({ profile: profileReducer, projects: projectsReducer })
+)
 
 export default function App() {
   const [areFontsLoaded] = useFonts({

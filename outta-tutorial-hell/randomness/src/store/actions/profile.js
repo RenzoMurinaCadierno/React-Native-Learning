@@ -6,15 +6,14 @@ import { bannerData, screenBodyData } from "../data/profile"
 
 export const initializeDataInStore = (
   iconCategories = screenBodyData,
-  // iconCategories = [mainTechsData],
   sections = bannerData
 ) => {
   const iconsToCategoryMap = {}
 
   iconCategories.forEach((category) => {
-    category?.icons?.forEach(
-      (icon) => (iconsToCategoryMap[icon.id] = category.id)
-    )
+    category?.icons?.forEach((icon) => {
+      iconsToCategoryMap[icon.id] = category.id
+    })
   })
 
   return {

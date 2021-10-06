@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import Layout from "@app-components/layout"
 import Profile from "@app-components/profile"
 import useViewPort from "@app-hooks/useViewPort"
-import * as profileActionTypes from "@app-store/actions/profile"
+import * as profileActions from "@app-store/actions/profile"
 
 export default function ProfileScreen(props) {
   const [activeIconId, setActiveIconId] = useState("")
@@ -15,7 +15,7 @@ export default function ProfileScreen(props) {
   }
 
   useEffect(() => {
-    dispatch(profileActionTypes.initializeDataInStore())
+    dispatch(profileActions.initializeDataInStore())
   }, [])
 
   return (

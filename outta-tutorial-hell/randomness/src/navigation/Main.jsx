@@ -15,24 +15,8 @@ export const TabNavigator = () => {
 
   return (
     <TabNavigation.Navigator
-      style={{
-        paddingTop: StatusBar.currentHeight
-        // backgroundColor: colors.background.CONTRAST
-      }}
-      screenOptions={{
-        tabBarActiveTintColor: colors.main.PRIMARY,
-        // tabBarInactiveTintColor: colors.SECONDARY,
-        tabBarIndicatorStyle: { backgroundColor: colors.main.SECONDARY },
-        tabBarStyle: {
-          backgroundColor: colors.background.CONTRAST,
-          elevation: 3
-        },
-        tabBarLabelStyle: {
-          fontFamily: "livvic-semi-bold",
-          fontSize: vw(4.5)
-        },
-        tabBarItemStyle: { flexDirection: "row" }
-      }}
+      style={{ paddingTop: StatusBar.currentHeight }}
+      screenOptions={getTabBarScreenOptions(vw)}
       initialRouteName="Projects"
     >
       <TabNavigation.Screen
@@ -52,6 +36,23 @@ export const TabNavigator = () => {
       />
     </TabNavigation.Navigator>
   )
+}
+
+function getTabBarScreenOptions(vw) {
+  return {
+    tabBarActiveTintColor: colors.main.PRIMARY,
+    // tabBarInactiveTintColor: colors.SECONDARY,
+    tabBarIndicatorStyle: { backgroundColor: colors.main.SECONDARY },
+    tabBarStyle: {
+      backgroundColor: colors.background.CONTRAST,
+      elevation: 3
+    },
+    tabBarLabelStyle: {
+      fontFamily: "livvic-semi-bold",
+      fontSize: vw(4.5)
+    },
+    tabBarItemStyle: { flexDirection: "row" }
+  }
 }
 
 function getTabBarIcon(name, size) {
