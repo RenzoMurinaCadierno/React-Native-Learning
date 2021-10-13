@@ -1,22 +1,25 @@
 import React from "react"
 import { FlatList, StyleSheet } from "react-native"
 import UI from "@app-components/UI"
+import { useSelector } from "react-redux"
 
-export default function IconList({ icons, fontScale, ...rest }) {
+export default function IconList({ fontScale, onIconPress, ...rest }) {
+  const { icons, activeIconId } = useSelector((state) => state.projects)
+
   const renderItem = ({ item }) => (
     <UI.Icon.WithSpring
-      active={true}
+      active={item.id === activeIconId}
       name={item.name}
       color={item.activeColor}
       size={fontScale}
       style={_styles.icon}
+      onPress={() => onIconPress(item.id)}
     />
   )
 
   return (
     <FlatList
       data={icons}
-      keyExtractor={_keyExtractor}
       renderItem={renderItem}
       style={_styles.container}
       contentContainerStyle={_styles.contentContainer}
@@ -34,7 +37,3 @@ const _styles = StyleSheet.create({
   },
   icon: { marginVertical: "15%" }
 })
-
-function _keyExtractor(_, index) {
-  return index.toString()
-}

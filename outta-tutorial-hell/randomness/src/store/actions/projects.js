@@ -1,7 +1,4 @@
-import {
-  CHANGE_ACTIVE_ICON_ID,
-  INITIALIZE_DATA_IN_STORE
-} from "../types/profile"
+import { CHANGE_ACTIVE_ICON, INITIALIZE_DATA_IN_STORE } from "../types/projects"
 import { profileBodyData } from "../data/projects"
 
 export const initializeDataInStore = (iconCategories = profileBodyData) => {
@@ -18,3 +15,8 @@ export const initializeDataInStore = (iconCategories = profileBodyData) => {
     payload: { icons }
   }
 }
+
+export const changeActiveIcon = (id) => ({
+  type: CHANGE_ACTIVE_ICON,
+  payload: { id }
+})

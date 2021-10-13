@@ -4,7 +4,8 @@ import Layout from "@app-components/layout"
 import Profile from "@app-components/profile"
 import useViewPort from "@app-hooks/useViewPort"
 import * as profileActions from "@app-store/actions/profile"
-
+see why clicking icons do not work. Go on abstracting animations, 
+add animations to projects icons
 export default function ProfileScreen(props) {
   const [activeIconId, setActiveIconId] = useState("")
   const { vw } = useViewPort()

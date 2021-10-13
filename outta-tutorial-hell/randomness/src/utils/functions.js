@@ -15,3 +15,7 @@ export function castRgbToRgba(rgbString, alphaValue = 1, warnInConsole) {
     .replace("rgb(", "rgba(")
     .replace(")", "," + alphaValue.toString() + ")")
 }
+
+export function interpolate(value, outputRange) {
+  return value.interpolate({ inputRange: [0, 1], outputRange })
+}
