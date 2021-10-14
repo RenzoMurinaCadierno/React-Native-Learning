@@ -4,7 +4,7 @@ import colors from "../../../constants/colors"
 
 export default function Base({
   children,
-  type, // 'light', 'italic', 'regular', 'semi-bold', 'bold'
+  type, // 'light', 'italic', 'regular', 'semi-bold', 'semi-bold-italic', 'bold'
   color,
   size,
   elevation,

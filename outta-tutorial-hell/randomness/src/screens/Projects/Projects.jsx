@@ -12,11 +12,9 @@ export default function ProjectsScreen(props) {
   const dispatch = useDispatch()
 
   const changeActiveIcon = useCallback((id) => {
-    console.log("change")
     dispatch(projectsActions.changeActiveIcon(id))
   }, [])
 
-  // add active icon select logic. Try reducer. If not possible, emulate profile
   useEffect(() => {
     dispatch(projectsActions.initializeDataInStore())
   }, [])

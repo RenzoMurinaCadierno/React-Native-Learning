@@ -20,7 +20,8 @@ export const mainTechsData = {
   icons: [
     getTechIconProperties("html", "logo-html5", "rgb(227, 76, 38)"),
     getTechIconProperties("css", "logo-css3", "rgb(38, 77, 228)"),
-    getTechIconProperties("js", "logo-javascript", "rgb(240, 219, 79)"),
+    // getTechIconProperties("js", "logo-javascript", "rgb(240, 219, 79)"),
+    getTechIconProperties("js", "logo-javascript", "rgb(232, 206, 39)"),
     getTechIconProperties("react", "logo-react", "rgb(97, 219, 251)")
   ]
 }

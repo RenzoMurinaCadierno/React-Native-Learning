@@ -12,9 +12,14 @@ export default function Color({
 }) {
   const color = useLinearAnimatedValue({
     active,
-    activeAnimation: activeAnimation || animations.effects.color.IN,
-    inactiveAnimation: inactiveAnimation || animations.effects.color.OUT
+    activeAnimation,
+    inactiveAnimation
   })
 
   return children(interpolate(color, [inactiveColor, activeColor]))
+}
+
+Color.defaultProps = {
+  activeAnimation: animations.effects.color.IN,
+  inactiveAnimation: animations.effects.color.OUT
 }

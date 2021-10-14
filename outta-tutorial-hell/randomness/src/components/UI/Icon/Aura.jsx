@@ -1,18 +1,20 @@
-import React, { useEffect, useRef } from "react"
-import { StyleSheet, Animated, Easing } from "react-native"
+import React from "react"
+import { StyleSheet, Animated } from "react-native"
 import colors from "@app-constants/colors"
+import animations from "@app-constants/animations"
+import useLoopingAnimatedValue from "@app-hooks/useLoopingAnimatedValue"
+import { interpolate } from "@app-utils/functions"
 
-export default function Aura({ style, radius, color, ...rest }) {
-  const val = useRef(new Animated.Value(1)).current
-
-  useEffect(() => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(val, getTimingConfig(1.4, 2000)),
-        Animated.timing(val, getTimingConfig(1, 0))
-      ])
-    ).start()
-  }, [])
+export default function Aura({
+  style,
+  radius,
+  color,
+  active,
+  activeSequence,
+  startingValue,
+  ...rest
+}) {
+  const val = useLoopingAnimatedValue({ active, activeSequence, startingValue })
 
   return (
     <Animated.View
@@ -21,11 +23,8 @@ export default function Aura({ style, radius, color, ...rest }) {
           ...StyleSheet.absoluteFill,
           backgroundColor: color,
           borderRadius: radius,
-          opacity: val.interpolate({
-            inputRange: [1, 1.4],
-            outputRange: [1, 0.1]
-          }),
-          transform: [{ scale: val }]
+          opacity: interpolate(val, [1, 0]),
+          transform: [{ scale: interpolate(val, [0.4, 1.4]) }]
         },
         style
       ]}
@@ -34,8 +33,9 @@ export default function Aura({ style, radius, color, ...rest }) {
   )
 }
 
-Aura.defaultProps = { color: colors.main.PRIMARY }
-
-function getTimingConfig(toValue, duration) {
-  return { toValue, duration, easing: Easing.linear, useNativeDriver: true }
+Aura.defaultProps = {
+  color: colors.main.PRIMARY,
+  active: true,
+  activeSequence: animations.icons.aura.ACTIVE_SEQUENCE,
+  startingValue: 0
 }

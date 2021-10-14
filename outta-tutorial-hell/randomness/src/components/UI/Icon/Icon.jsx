@@ -29,7 +29,7 @@ export default function Icon({
             {...rest}
           />
           <Shadow
-            syncWithHoverAnimation={active}
+            active={active}
             width={size / 3}
             height={size / 5}
             style={styles.shadow}

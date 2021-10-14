@@ -1,4 +1,7 @@
-import { CHANGE_ACTIVE_ICON, INITIALIZE_DATA_IN_STORE } from "../types/projects"
+import {
+  CHANGE_ACTIVE_ICON,
+  INITIALIZE_PROJECT_DATA_IN_STORE
+} from "../types/projects"
 
 const initialState = {
   icons: [], // [ { icon1InCategory1, icon2InCategory1, icon1InCategory2, ...} ]
@@ -7,7 +10,7 @@ const initialState = {
 
 export default function projectsReducer(state = initialState, action) {
   switch (action.type) {
-    case INITIALIZE_DATA_IN_STORE:
+    case INITIALIZE_PROJECT_DATA_IN_STORE:
       return {
         ...state,
         icons: action.payload.icons,

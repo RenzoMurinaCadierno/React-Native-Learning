@@ -4,9 +4,10 @@ import { Animated } from "react-native"
 export default function useLinearAnimatedValue({
   active,
   activeAnimation,
-  inactiveAnimation
+  inactiveAnimation,
+  startingValue = 0
 }) {
-  const val = useRef(new Animated.Value(0)).current
+  const val = useRef(new Animated.Value(startingValue)).current
 
   useEffect(() => {
     if (active) activeAnimation(val).start()
@@ -15,36 +16,3 @@ export default function useLinearAnimatedValue({
 
   return val
 }
-
-// import { useEffect, useRef } from "react"
-// import { Animated } from "react-native"
-
-// export default function useLinearAnimatedValue({
-//   active,
-//   activeAnimationType = "spring",
-//   inactiveAnimationType = "spring",
-//   activeAnimationConfig = _getSpringConfig(1),
-//   inActiveAnimationConfig = _getSpringConfig(0)
-// }) {
-//   const val = useRef(new Animated.Value(0)).current
-
-//   useEffect(() => {
-//     if (active) {
-//       Animated[activeAnimationType](val, activeAnimationConfig).start()
-//     } else if (inactiveAnimationType) {
-//       Animated[inactiveAnimationType](val, inActiveAnimationConfig).start()
-//     }
-//   }, [active])
-
-//   return val
-// }
-
-// function _getSpringConfig(toValue) {
-//   return {
-//     toValue,
-//     duration: 1000,
-//     speed: 20,
-//     bounciness: 20,
-//     useNativeDriver: true
-//   }
-// }

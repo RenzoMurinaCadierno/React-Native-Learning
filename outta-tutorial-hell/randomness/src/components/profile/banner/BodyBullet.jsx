@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, StyleSheet } from "react-native"
 import UI from "@app-components/UI"
 import Layout from "@app-components/layout"
 import colors from "@app-constants/colors"
@@ -75,8 +75,7 @@ const _styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   description: {
-    paddingHorizontal: "0.5%",
-    borderWidth: 1
+    paddingHorizontal: "0.5%"
   }
 })
 

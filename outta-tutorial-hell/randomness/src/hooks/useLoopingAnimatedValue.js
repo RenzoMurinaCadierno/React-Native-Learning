@@ -4,10 +4,11 @@ import { Animated } from "react-native"
 export default function useLoopingAnimatedValue({
   active,
   activeSequence,
-  inactiveAnimation
+  inactiveAnimation,
+  startingValue = 0
 }) {
   const [isAnimationActive, setIsAnimationActive] = useState(false)
-  const val = useRef(new Animated.Value(0)).current
+  const val = useRef(new Animated.Value(startingValue)).current
 
   useEffect(() => {
     if (active) {
@@ -24,13 +25,3 @@ export default function useLoopingAnimatedValue({
 
   return val
 }
-
-// function _getSpringConfig(toValue) {
-//   return {
-//     toValue,
-//     duration: 1000,
-//     speed: 20,
-//     bounciness: 20,
-//     useNativeDriver: true
-//   }
-// }

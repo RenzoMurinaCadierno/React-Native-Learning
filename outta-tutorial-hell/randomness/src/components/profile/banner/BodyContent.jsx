@@ -33,8 +33,7 @@ function BodyContent({
   }) => (
     <BodyBullet
       type={index % 2 === 0 ? "primary" : "secondary"}
-      {...{ iconName, iconType, text, sideText, descriptionText }}
-      fontScale={fontScale}
+      {...{ iconName, iconType, text, sideText, descriptionText, fontScale }}
     />
   )
 

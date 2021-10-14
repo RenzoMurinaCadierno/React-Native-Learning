@@ -1,7 +1,13 @@
 import React from "react"
 import { FlatList, StyleSheet } from "react-native"
-import UI from "@app-components/UI"
 import { useSelector } from "react-redux"
+import UI from "@app-components/UI"
+import animations from "@app-constants/animations"
+
+const colorProps = {
+  activeAnimation: animations.icons.color.IN,
+  inactiveAnimation: animations.icons.color.OUT
+}
 
 export default function IconList({ fontScale, onIconPress, ...rest }) {
   const { icons, activeIconId } = useSelector((state) => state.projects)
@@ -10,10 +16,11 @@ export default function IconList({ fontScale, onIconPress, ...rest }) {
     <UI.Icon.WithSpring
       active={item.id === activeIconId}
       name={item.name}
-      color={item.activeColor}
+      activeColor={item.activeColor}
       size={fontScale}
       style={_styles.icon}
       onPress={() => onIconPress(item.id)}
+      colorProps={colorProps}
     />
   )
 

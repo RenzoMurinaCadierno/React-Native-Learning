@@ -4,11 +4,21 @@ import { interpolate } from "@app-utils/functions"
 import useLoopingAnimatedValue from "@app-hooks/useLoopingAnimatedValue"
 import animations from "@app-constants/animations"
 
-export default function Hover({ active, style, children, ...rest }) {
+export default function Hover({
+  active,
+  activeSequence,
+  inactiveAnimation,
+  style,
+  children,
+  translateYOutputRange,
+  rotateYOutputRange,
+  scaleOutputRange,
+  ...rest
+}) {
   const val = useLoopingAnimatedValue({
     active,
-    activeSequence: animations.icons.hover.ACTIVE_SEQUENCE,
-    inactiveAnimation: animations.icons.hover.OUT
+    activeSequence,
+    inactiveAnimation
   })
 
   return (
@@ -17,11 +27,11 @@ export default function Hover({ active, style, children, ...rest }) {
         style,
         {
           transform: [
-            { translateY: interpolate(val, [0, -10]) },
+            { translateY: interpolate(val, translateYOutputRange) },
             {
-              rotateY: interpolate(val, ["0deg", "180deg"])
+              rotateY: interpolate(val, rotateYOutputRange)
             },
-            { scale: interpolate(val, [1, 1.15]) }
+            { scale: interpolate(val, scaleOutputRange) }
           ]
         }
       ]}
@@ -30,4 +40,12 @@ export default function Hover({ active, style, children, ...rest }) {
       {children}
     </Animated.View>
   )
+}
+
+Hover.defaultProps = {
+  activeSequence: animations.icons.hover.ACTIVE_SEQUENCE,
+  inactiveAnimation: animations.icons.hover.OUT,
+  translateYOutputRange: [0, -10],
+  rotateYOutputRange: ["0deg", "180deg"],
+  scaleOutputRange: [1, 1.15]
 }

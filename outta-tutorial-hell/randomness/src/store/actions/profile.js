@@ -1,7 +1,4 @@
-import {
-  CHANGE_ACTIVE_ICON_ID,
-  INITIALIZE_DATA_IN_STORE
-} from "../types/profile"
+import { INITIALIZE_PROFILE_DATA_IN_STORE } from "../types/profile"
 import { bannerData, screenBodyData } from "../data/profile"
 
 export const initializeDataInStore = (
@@ -17,7 +14,7 @@ export const initializeDataInStore = (
   })
 
   return {
-    type: INITIALIZE_DATA_IN_STORE,
+    type: INITIALIZE_PROFILE_DATA_IN_STORE,
     payload: { iconsToCategoryMap, iconCategories, sections }
   }
 }

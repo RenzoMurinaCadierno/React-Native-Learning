@@ -1,28 +1,23 @@
-import React, { useEffect, useRef } from "react"
+import React from "react"
 import { StyleSheet, Animated } from "react-native"
-import { getTimingConfig } from "./utils"
+import animations from "@app-constants/animations"
+import useLoopingAnimatedValue from "@app-hooks/useLoopingAnimatedValue"
 
 export default function Shadow({
-  syncWithHoverAnimation,
+  active,
+  activeSequence,
+  inactiveAnimation,
   width,
   height,
   style
 }) {
-  const scale = useRef(new Animated.Value(0.6)).current
+  const scale = useLoopingAnimatedValue({
+    active,
+    activeSequence,
+    inactiveAnimation,
+    startingValue: 0.6
+  })
   const styles = _styles(width, height)
-
-  useEffect(() => {
-    if (syncWithHoverAnimation) {
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(scale, getTimingConfig(1, 1000, "out")),
-          Animated.timing(scale, getTimingConfig(0.6, 1000, "in"))
-        ])
-      ).start()
-    } else {
-      Animated.timing(scale, getTimingConfig(0.6, 500, "out")).start()
-    }
-  }, [syncWithHoverAnimation])
 
   return (
     <Animated.View
@@ -35,3 +30,8 @@ const _styles = (width, height) =>
   StyleSheet.create({
     container: { width, height, borderRadius: width / 2, elevation: 4 }
   })
+
+Shadow.defaultProps = {
+  activeSequence: animations.icons.shadow.ACTIVE_SEQUENCE,
+  inactiveAnimation: animations.icons.shadow.OUT
+}

@@ -1,8 +1,15 @@
 import React from "react"
 import Spring from "./Animation/Spring"
+import Color from "./Animation/Color"
+import Hover from "./Animation/Spring"
 import TextBase from "./Text/Base"
 import TextWithTransition from "./Text/TextWithTransition"
 import DirectionalArrows from "./DirectionalArrows/DirectionalArrows"
+import CardRoot, {
+  RootWithContextProvider as CardRootWithContextProvider,
+  CardContext
+} from "./Card/Root"
+import CardTitle from "./Card/Title"
 import Icon from "./Icon/Icon"
 import Aura from "./Icon/Aura"
 import IconBase from "./Icon/Base"
@@ -32,13 +39,20 @@ function ComposedText(props) {
 
 ComposedText.WithTransition = TextWithTransition
 
-const Animation = { Spring }
+function ComposedCard(props) {
+  return <CardRootWithContextProvider {...props} />
+}
+
+ComposedCard.Root = CardRoot
+ComposedCard.Title = CardTitle
+ComposedCard.Context = CardContext
 
 const UI = {
-  Animation,
+  Animation: { Spring, Color, Hover },
   Text: ComposedText,
   Icon: ComposedIcon,
-  DirectionalArrows
+  DirectionalArrows,
+  Card: ComposedCard
 }
 
 export default UI

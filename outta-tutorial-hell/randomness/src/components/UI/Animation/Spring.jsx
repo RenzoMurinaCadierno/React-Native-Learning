@@ -4,11 +4,20 @@ import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
 import { interpolate } from "@app-utils/functions"
 import animations from "@app-constants/animations"
 
-export default function Spring({ active, style, children, ...rest }) {
+export default function Spring({
+  active,
+  activeAnimation,
+  inactiveAnimation,
+  style,
+  children,
+  translateYOutputRange,
+  scaleOutputRange,
+  ...rest
+}) {
   const val = useLinearAnimatedValue({
     active,
-    activeAnimation: animations.effects.spring.IN,
-    inactiveAnimation: animations.effects.spring.OUT
+    activeAnimation,
+    inactiveAnimation
   })
 
   return (
@@ -17,8 +26,8 @@ export default function Spring({ active, style, children, ...rest }) {
         style,
         {
           transform: [
-            { translateY: interpolate(val, [0, -5]) },
-            { scale: interpolate(val, [1, 1.2]) }
+            { translateY: interpolate(val, translateYOutputRange) },
+            { scale: interpolate(val, scaleOutputRange) }
           ]
         }
       ]}
@@ -27,4 +36,11 @@ export default function Spring({ active, style, children, ...rest }) {
       {children}
     </Animated.View>
   )
+}
+
+Spring.defaultProps = {
+  activeAnimation: animations.effects.spring.IN,
+  inactiveAnimation: animations.effects.spring.OUT,
+  translateYOutputRange: [0, -5],
+  scaleOutputRange: [1, 1.2]
 }
