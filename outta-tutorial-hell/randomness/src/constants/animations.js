@@ -42,7 +42,6 @@ const animations = {
           getTimingConfig(0, 125, easings.LINEAR, 0, false)
         )
     },
-    hover: effects.hover,
     shadow: {
       ACTIVE_SEQUENCE: (value) => [
         Animated.timing(value, getTimingConfig(1, 1000, easings.IN)),

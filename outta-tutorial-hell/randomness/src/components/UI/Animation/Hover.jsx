@@ -43,8 +43,8 @@ export default function Hover({
 }
 
 Hover.defaultProps = {
-  activeSequence: animations.icons.hover.ACTIVE_SEQUENCE,
-  inactiveAnimation: animations.icons.hover.OUT,
+  activeSequence: animations.effects.hover.ACTIVE_SEQUENCE,
+  inactiveAnimation: animations.effects.hover.OUT,
   translateYOutputRange: [0, -10],
   rotateYOutputRange: ["0deg", "180deg"],
   scaleOutputRange: [1, 1.15]

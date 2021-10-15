@@ -16,7 +16,8 @@ module.exports = function (api) {
             "@app-hoc": ["./src/hoc"],
             "@app-store": ["./src/store"],
             "@app-models": ["./src/models"],
-            "@app-utils": ["./src/utils"]
+            "@app-utils": ["./src/utils"],
+            "@app-assets": ["./assets"]
           }
         }
       ]

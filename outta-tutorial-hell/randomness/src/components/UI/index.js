@@ -5,11 +5,14 @@ import Hover from "./Animation/Spring"
 import TextBase from "./Text/Base"
 import TextWithTransition from "./Text/TextWithTransition"
 import DirectionalArrows from "./DirectionalArrows/DirectionalArrows"
-import CardRoot, {
-  RootWithContextProvider as CardRootWithContextProvider,
-  CardContext
-} from "./Card/Root"
-import CardTitle from "./Card/Title"
+import CardContext, { CardContextProvider } from "./Card/context"
+import CardRoot from "./Card/Root"
+import CardContainer from "./Card/Container"
+import CardImage from "./Card/Image"
+import CardText, {
+  Title as CardTitle,
+  Subtitle as CardSubtitle
+} from "./Card/Text"
 import Icon from "./Icon/Icon"
 import Aura from "./Icon/Aura"
 import IconBase from "./Icon/Base"
@@ -40,12 +43,21 @@ function ComposedText(props) {
 ComposedText.WithTransition = TextWithTransition
 
 function ComposedCard(props) {
-  return <CardRootWithContextProvider {...props} />
+  return <CardRoot {...props} />
 }
 
-ComposedCard.Root = CardRoot
-ComposedCard.Title = CardTitle
+function ComposedCardText(props) {
+  return <CardText {...props} />
+}
+
 ComposedCard.Context = CardContext
+ComposedCard.ContextProvider = CardContextProvider
+ComposedCard.Container = CardContainer
+ComposedCard.Image = CardImage
+ComposedCard.Text = ComposedCardText
+
+ComposedCardText.Title = CardTitle
+ComposedCardText.Subtitle = CardSubtitle
 
 const UI = {
   Animation: { Spring, Color, Hover },
