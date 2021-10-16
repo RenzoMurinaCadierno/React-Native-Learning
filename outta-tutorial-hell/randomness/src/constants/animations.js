@@ -57,6 +57,14 @@ const animations = {
       ]
     }
   },
+  images: {
+    opacity: {
+      IN: (value) =>
+        Animated.timing(value, getTimingConfig(1, 2000, easings.LINEAR)),
+      OUT: (value) =>
+        Animated.timing(value, getTimingConfig(0, 2000, easings.LINEAR))
+    }
+  },
   effects,
   easings
 }
