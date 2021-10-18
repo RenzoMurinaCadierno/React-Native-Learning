@@ -14,12 +14,15 @@ import CardText, {
   Title as CardTitle,
   Subtitle as CardSubtitle
 } from "./Card/Text"
+import CardActions from "./Card/ActionsContainer"
+import CardActionIcon from "./Card/ActionIcon"
 import ImageBase from "./Image/Base"
 import ImageWithTransition from "./Image/ImageWithTransition"
 import Icon from "./Icon/Icon"
 import Aura from "./Icon/Aura"
 import IconBase from "./Icon/Base"
 import Shadow from "./Icon/Shadow"
+import IconWithScale from "./Icon/IconWithScale"
 import IconWithSpring from "./Icon/IconWithSpring"
 import IconWithHover from "./Icon/IconWithHover"
 import IconWithCircle from "./Icon/IconWithCircle"
@@ -38,6 +41,7 @@ ComposedIcon.WithAura = IconWithAura
 ComposedIcon.WithColorTransition = IconWithColorTransition
 ComposedIcon.WithHover = IconWithHover
 ComposedIcon.WithSpring = IconWithSpring
+ComposedIcon.WithScale = IconWithScale
 
 function ComposedImage(props) {
   return <ImageBase {...props} />
@@ -59,15 +63,22 @@ function ComposedCardText(props) {
   return <CardText {...props} />
 }
 
+function ComposedCardActions(props) {
+  return <CardActions {...props} />
+}
+
 ComposedCard.Context = CardContext
 ComposedCard.ContextProvider = CardContextProvider
 ComposedCard.Container = CardContainer
 ComposedCard.Carousel = CardCarousel
 ComposedCard.Image = CardImage
 ComposedCard.Text = ComposedCardText
+ComposedCard.Actions = ComposedCardActions
 
 ComposedCardText.Title = CardTitle
 ComposedCardText.Subtitle = CardSubtitle
+
+ComposedCardActions.Icon = CardActionIcon
 
 const UI = {
   Animation: { Spring, Color, Hover },

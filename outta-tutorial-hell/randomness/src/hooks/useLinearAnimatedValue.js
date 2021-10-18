@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react"
 import { Animated } from "react-native"
+import animations from "@app-constants/animations"
 
 export default function useLinearAnimatedValue({
   active,
-  activeAnimation,
+  activeAnimation = animations.effects.default.IN,
   inactiveAnimation,
   startingValue = 0
 }) {

@@ -51,7 +51,8 @@ function getTabBarScreenOptions(vw) {
       fontFamily: "livvic-semi-bold",
       fontSize: vw(4.5)
     },
-    tabBarItemStyle: { flexDirection: "row" }
+    tabBarItemStyle: { flexDirection: "row" },
+    swipeEnabled: false
   }
 }
 

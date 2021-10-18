@@ -1,8 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { View, Text, FlatList } from "react-native"
 import UI from "@app-components/UI"
 
+const dummy = [0, 1, 2]
+
 export default function ProjectsList() {
+  const [active, setActive] = useState(null)
   return (
     <UI.Card>
       <UI.Card.Text.Title>React Fanmade Hooks</UI.Card.Text.Title>
@@ -16,6 +19,16 @@ export default function ProjectsList() {
         // }}
         source={require("@app-assets/images/rfh00.jpg")}
       /> */}
+      <UI.Card.Actions>
+        {dummy.map((i) => (
+          <UI.Card.Actions.Icon
+            key={i}
+            active={i === active}
+            index={i}
+            onPress={() => setActive(i)}
+          />
+        ))}
+      </UI.Card.Actions>
     </UI.Card>
   )
 }

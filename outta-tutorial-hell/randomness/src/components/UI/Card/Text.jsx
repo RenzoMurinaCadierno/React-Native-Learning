@@ -64,23 +64,6 @@ const _styles = StyleSheet.create({
   }
 })
 
-// const _styles = {
-//   container: { marginVertical: 2 },
-//   title: StyleSheet.create({
-//     text: {
-//       letterSpacing: 0.75,
-//       textTransform: "uppercase",
-//       textAlign: "right"
-//     }
-//   }),
-//   subtitle: StyleSheet.create({
-//     text: { letterSpacing: 0.5 }
-//   }),
-//   default: StyleSheet.create({
-//     text: { letterSpacing: 0.75, textTransform: "uppercase" }
-//   })
-// }
-
 function _getTextPropsForRole(role, fontScale, vw) {
   switch (role.toLowerCase()) {
     case "title":

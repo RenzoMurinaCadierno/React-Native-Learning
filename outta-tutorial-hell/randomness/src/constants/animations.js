@@ -9,6 +9,10 @@ const easings = {
 }
 
 const effects = {
+  default: {
+    IN: (value) => Animated.timing(value, getTimingConfig(1, 350, easings.IN)),
+    OUT: (value) => Animated.timing(value, getTimingConfig(0, 350, easings.OUT))
+  },
   spring: {
     IN: (value) => Animated.spring(value, getSpringConfig(1, 1000)),
     OUT: (value) => Animated.spring(value, getSpringConfig(0, 1000))
@@ -63,6 +67,20 @@ const animations = {
         Animated.timing(value, getTimingConfig(1, 2000, easings.LINEAR)),
       OUT: (value) =>
         Animated.timing(value, getTimingConfig(0, 2000, easings.LINEAR))
+    }
+  },
+  card: {
+    actionIcon: {
+      scale: {
+        IN: (value) => Animated.spring(value, getSpringConfig(1, 350)),
+        OUT: (value) => Animated.spring(value, getSpringConfig(0, 350))
+      },
+      color: {
+        IN: (value) =>
+          Animated.timing(value, getTimingConfig(1, 350, easings.IN, 0, false)),
+        OUT: (value) =>
+          Animated.timing(value, getTimingConfig(0, 350, easings.OUT, 0, false))
+      }
     }
   },
   effects,
