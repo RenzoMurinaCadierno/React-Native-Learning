@@ -1,18 +1,21 @@
 import {
   PROFILE_POPULATE_STORE,
   PROFILE_TRIGGER_LOADING,
-  PROFILE_FETCH_DATABASE_FAIL
+  PROFILE_FETCH_DATABASE_FAIL,
+  PROFILE_CHANGE_ACTIVE_SUBSECTION
 } from "../types/profile"
-// import { bannerData, screenBodyData } from "../data/profile"
+import { status, messages } from "../data/profile"
 import initDb from "../data/mockDb"
 
-// (iconCategories = screenBodyData, sections = bannerData) =>
 export const populateStore = () => async (dispatch) => {
   dispatch({ type: PROFILE_TRIGGER_LOADING })
 
   try {
-    make error work, then restructure projects store, then 1/3, 2/3...
-    const { profile } = await initDb(true)
+    const db = await initDb()
+
+    if (!db.ok) throw new Error(messages[status.FETCH_DATABASE_ERROR])
+
+    const { profile } = await JSON.parse(db.data)
 
     let iconCategories = []
     const sections = {}
@@ -50,6 +53,11 @@ export const populateStore = () => async (dispatch) => {
     dispatch({ type: PROFILE_FETCH_DATABASE_FAIL })
   }
 }
+
+export const changeActiveSubSection = (subCategoryId) => ({
+  type: PROFILE_CHANGE_ACTIVE_SUBSECTION,
+  payload: { subCategoryId }
+})
 
 // import { INITIALIZE_PROFILE_DATA_IN_STORE } from "../types/profile"
 // import { bannerData, screenBodyData } from "../data/profile"

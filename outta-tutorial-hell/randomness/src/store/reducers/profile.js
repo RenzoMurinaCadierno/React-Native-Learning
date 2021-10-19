@@ -1,4 +1,5 @@
 import {
+  PROFILE_CHANGE_ACTIVE_SUBSECTION,
   PROFILE_FETCH_DATABASE_FAIL,
   PROFILE_POPULATE_STORE,
   PROFILE_TRIGGER_LOADING
@@ -10,7 +11,8 @@ const initialState = {
   message: messages[status.CICLE_STARTUP],
   sections: {}, // contains banner data
   iconCategories: [], // contains sections data
-  iconToCategoryMap: {} // { html: 'mainTechs', css: 'mainTechs', ... }
+  iconToCategoryMap: {}, // { html: 'mainTechs', css: 'mainTechs', ... }
+  activeSubSectionId: ""
 }
 
 export default function profileReducer(state = initialState, action) {
@@ -38,6 +40,9 @@ export default function profileReducer(state = initialState, action) {
         status: status.FETCH_DATABASE_ERROR,
         message: messages[status.FETCH_DATABASE_ERROR]
       }
+
+    case PROFILE_CHANGE_ACTIVE_SUBSECTION:
+      return { ...state, activeSubSectionId: action.payload.subCategoryId }
 
     default:
       return state

@@ -1,9 +1,17 @@
 import { useSelector } from "react-redux"
 
-export default function useSelectProfile(activeIconId) {
-  const { sections, iconToCategoryMap } = useSelector((state) => state.profile)
-  const activeCategory = iconToCategoryMap?.[activeIconId] ?? ""
-  const activeSection = sections?.[activeCategory]?.[activeIconId] ?? {}
+export default function useSelectProfile() {
+  const { sections, iconToCategoryMap, activeSubSectionId } = useSelector(
+    (state) => state.profile
+  )
+  const activeCategory = iconToCategoryMap?.[activeSubSectionId] ?? ""
+  const activeSection = sections?.[activeCategory]?.[activeSubSectionId] ?? {}
 
-  return { activeCategory, activeSection, sections, iconToCategoryMap }
+  return {
+    activeCategory,
+    activeSection,
+    sections,
+    iconToCategoryMap,
+    activeSubSectionId
+  }
 }

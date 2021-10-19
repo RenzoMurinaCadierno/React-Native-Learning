@@ -24,7 +24,7 @@ export default function Initialize({ children }) {
     return <ActivityIndicator size="large" color={colors.main.SECONDARY} />
   }
 
-  if (status === storeStatus.FETCH_DATABASE_FAIL) {
+  if (status === storeStatus.FETCH_DATABASE_ERROR) {
     Alert.alert("Error", message, [
       { text: "Try Again", onPress: tryPopulateStore }
     ])

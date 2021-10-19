@@ -6,15 +6,14 @@ import Layout from "@app-components/layout"
 import { default as sharedStyles } from "@app-constants/styles"
 import useSelectProfile from "@app-hooks/useSelectProfile"
 
-export default function Content({ activeIconId, fontScale, style }) {
-  const { activeSection } = useSelectProfile(activeIconId)
+export default function Content({ fontScale, style }) {
+  const { activeSection, activeSubSectionId } = useSelectProfile()
   const [sectionListOffsetY, setSectionListOffsetY] = useState(0)
 
   return (
     <View style={[_styles.container, style]}>
       <Header
         fontScale={fontScale}
-        // flexValue={1}
         title={activeSection.title}
         titleColor={activeSection.color}
         subtitle={activeSection.subtitle}
@@ -26,7 +25,7 @@ export default function Content({ activeIconId, fontScale, style }) {
         bullets={activeSection.bullets}
         fontScale={fontScale}
         flexValue={1}
-        activeIconId={activeIconId}
+        activeIconId={activeSubSectionId}
         onScrollBodySectionList={setSectionListOffsetY}
       />
     </View>

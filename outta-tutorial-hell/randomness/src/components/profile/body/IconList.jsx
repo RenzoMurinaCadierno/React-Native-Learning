@@ -1,35 +1,32 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
+import { useSelector } from "react-redux"
 import UI from "@app-components/UI"
 
-export default function IconList({
-  icons,
-  iconSize,
-  containerStyle,
-  iconStyle,
-  iconColor,
-  iconContainerStyle,
-  activeIconId,
-  onIconPress
-}) {
+function IconList({ icons, iconSize, containerStyle, onIconPress, ...rest }) {
+  const activeSubSectionId = useSelector(
+    (state) => state.profile.activeSubSectionId
+  )
+
   return (
     <View style={[containerStyle, _styles.container]}>
-      {icons.map(({ id, ...rest }) => (
+      {icons.map(({ id, ...otherProps }) => (
         <UI.Icon
+          {...otherProps}
+          {...rest}
           key={id}
           id={id}
-          {...rest}
           size={iconSize}
-          color={iconColor}
           elevate
-          active={activeIconId === id}
-          onPress={() => onIconPress?.(id)}
-          {...{ iconStyle, iconContainerStyle }}
+          active={activeSubSectionId === id}
+          onPress={() => onIconPress(id)}
         />
       ))}
     </View>
   )
 }
+
+export default React.memo(IconList)
 
 const _styles = StyleSheet.create({
   container: {
