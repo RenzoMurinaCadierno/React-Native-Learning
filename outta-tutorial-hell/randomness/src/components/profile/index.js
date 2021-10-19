@@ -1,4 +1,5 @@
 import React from "react"
+import Initialize from "./initialize/Root"
 import BannerRoot from "./banner/Root"
 import BannerContent from "./banner/Content"
 import BannerHeader from "./banner/Header"
@@ -36,6 +37,7 @@ ComposedBody.Sections = BodySections
 ComposedBody.IconList = BodyIconList
 
 const Profile = {
+  Initialize,
   Banner: ComposedBanner,
   Body: ComposedBody,
   Shared: { SectionHeader, SwipeArrows }

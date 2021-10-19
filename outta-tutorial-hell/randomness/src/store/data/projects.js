@@ -1,3 +1,16 @@
 import { screenBodyData } from "./profile"
 
-export const profileBodyData = screenBodyData
+const bodyItems = [
+  {
+    html: {
+      // icon: screenBodyData.icons.html
+    }
+  }
+]
+
+console.log(screenBodyData)
+// const profileBodyData = screenBodyData.map(section => ({
+//   ...section,
+//   content:
+// }))
+export const profileMenuData = screenBodyData

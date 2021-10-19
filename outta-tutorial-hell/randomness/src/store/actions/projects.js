@@ -2,9 +2,9 @@ import {
   CHANGE_ACTIVE_ICON,
   INITIALIZE_PROJECT_DATA_IN_STORE
 } from "../types/projects"
-import { profileBodyData } from "../data/projects"
+import { profileMenuData } from "../data/projects"
 
-export const initializeDataInStore = (iconCategories = profileBodyData) => {
+export const initializeDataInStore = (iconCategories = profileMenuData) => {
   const icons = []
 
   iconCategories.forEach((category) => {

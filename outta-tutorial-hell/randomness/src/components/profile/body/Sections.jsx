@@ -15,8 +15,8 @@ export default function Sections({
   fontScale,
   onIconPress
 }) {
-  // const iconCategories = useSelector((state) => state.profile.iconCategories)
-  const iconCategories = screenBodyData
+  const iconCategories = useSelector((state) => state.profile.iconCategories)
+  // const iconCategories = screenBodyData
 
   return iconCategories.map((category) => (
     <View key={category.id} style={[containerStyle, _styles.container]}>

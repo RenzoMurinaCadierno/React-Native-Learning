@@ -53,3 +53,54 @@ export function getSpringConfig(
     useNativeDriver
   }
 }
+
+export const uid = (function () {
+  const ids = {}
+  const chars = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0"
+  ]
+
+  const getIdString = () => {
+    let newId = ""
+
+    while (newId.length <= 10) {
+      const rndForChar = Math.random()
+      const rndForUpperCase = Math.random()
+      const nextChar = chars[Math.floor(rndForChar * chars.length)]
+
+      newId += rndForUpperCase < 0.5 ? nextChar : nextChar.toUpperCase()
+    }
+
+    return newId
+  }
+
+  const idIsInUse = (newId) => (Boolean(ids[newId]) ? true : false)
+
+  const createId = (optionalNonFalsyValue) => {
+    const newId = getIdString()
+
+    if (idIsInUse(newId)) return createId(optionalNonFalsyValue)
+
+    ids[newId] = Boolean(optionalNonFalsyValue) ? optionalNonFalsyValue : newId
+
+    return newId
+  }
+
+  return createId
+})()

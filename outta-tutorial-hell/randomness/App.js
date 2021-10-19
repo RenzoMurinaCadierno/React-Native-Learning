@@ -1,7 +1,8 @@
 import React from "react"
 import { StatusBar } from "expo-status-bar"
-import { createStore, combineReducers } from "redux"
+import { createStore, combineReducers, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
+import ReduxThunk from "redux-thunk"
 import AppLoading from "expo-app-loading"
 import {
   useFonts,
@@ -20,9 +21,12 @@ import profileReducer from "@app-store/reducers/profile"
 import projectsReducer from "@app-store/reducers/projects"
 import colors from "@app-constants/colors"
 
-const store = createStore(
-  combineReducers({ profile: profileReducer, projects: projectsReducer })
-)
+const rootReducer = combineReducers({
+  profile: profileReducer,
+  projects: projectsReducer
+})
+
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 
 export default function App() {
   const [areFontsLoaded] = useFonts({

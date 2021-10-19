@@ -17,8 +17,8 @@ function ActionIcon({ size, ...rest }) {
     />
   )
 }
-add icon images and toastandroid to open links in new tab
-then 1/2, 2/2, then >>> to scroll
+// add icon images and toastandroid to open links in new tab
+// then 1/2, 2/2, then >>> to scroll
 ActionIcon.defaultProps = { active: false, name: "help-outline" }
 
 export default React.memo(ActionIcon)
