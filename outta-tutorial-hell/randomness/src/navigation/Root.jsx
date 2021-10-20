@@ -10,7 +10,7 @@ import useViewPort from "../hooks/useViewPort"
 
 const TabNavigation = createMaterialTopTabNavigator()
 
-export const TabNavigator = () => {
+const Root = () => {
   const { vw } = useViewPort()
 
   return (
@@ -37,6 +37,8 @@ export const TabNavigator = () => {
     </TabNavigation.Navigator>
   )
 }
+
+export default Root
 
 function getTabBarScreenOptions(vw) {
   return {

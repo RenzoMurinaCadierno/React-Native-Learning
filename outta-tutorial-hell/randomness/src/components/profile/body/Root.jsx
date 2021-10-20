@@ -13,7 +13,7 @@ export default function Root({
   const [showArrows, setShowArrows] = useState(true)
 
   const hideArrows = () => showArrows && setShowArrows(false)
-
+  console.log("render", swipeArrowProps)
   return (
     <View style={_styles.container} {...containerProps}>
       <ScrollView
@@ -23,11 +23,11 @@ export default function Root({
       >
         <Sections fontScale={fontScale} {...rest} />
       </ScrollView>
-      <SwipeArrows
+      {/* <SwipeArrows
         show={showArrows}
         size={fontScale * 1.5}
         {...swipeArrowProps}
-      />
+      /> */}
     </View>
   )
 }

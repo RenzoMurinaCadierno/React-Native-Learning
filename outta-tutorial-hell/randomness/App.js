@@ -14,14 +14,14 @@ import {
   Livvic_600SemiBold_Italic,
   Livvic_700Bold
 } from "@expo-google-fonts/livvic"
-// import { TabNavigator } from "./navigation/Main"
-import { TabNavigator } from "@app-navigation/Main"
-import { NavigationContainer } from "@react-navigation/native"
+import AppNavigation from "@app-navigation"
+import globalReducer from "@app-store/reducers/global"
 import profileReducer from "@app-store/reducers/profile"
 import projectsReducer from "@app-store/reducers/projects"
 import colors from "@app-constants/colors"
 
 const rootReducer = combineReducers({
+  global: globalReducer,
   profile: profileReducer,
   projects: projectsReducer
 })
@@ -43,9 +43,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <StatusBar backgroundColor={colors.background.CONTRAST} />
-      <NavigationContainer>
-        <TabNavigator />
-      </NavigationContainer>
+      <AppNavigation.Initialize />
     </Provider>
   )
 }

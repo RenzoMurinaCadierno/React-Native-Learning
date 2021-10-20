@@ -4,6 +4,8 @@ import colors from "@app-constants/colors"
 import UI from "@app-components/UI"
 
 export default function SwipeArrows({ show, fontScale, ...rest }) {
+  attempted to disconnect on scroll. Try using hook here.
+  Then, remaster projectsReducer, then 1/2 2/2
   const val = useRef(new Animated.Value(0)).current
 
   useEffect(() => {

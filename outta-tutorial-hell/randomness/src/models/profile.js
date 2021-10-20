@@ -24,10 +24,3 @@ export class ProfileIcon {
     yield this.inactiveColor
   }
 }
-
-// export class ProfileBullet {
-//   constructor(title, data) {
-//     this.title = title
-//     this.data = data
-//   }
-// }
