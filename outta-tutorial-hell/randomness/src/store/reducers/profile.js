@@ -2,11 +2,11 @@ import {
   PROFILE_CHANGE_ACTIVE_SUBSECTION,
   PROFILE_POPULATE_STORE
 } from "../types/profile"
-import { status, messages } from "../data/profile"
+import { status, messages, screens } from "../data/global"
 
 const initialState = {
   status: status.CICLE_START,
-  message: messages[status.CICLE_START],
+  message: messages[status.CICLE_START](screens.PROFILE),
   sections: {}, // contains banner data
   iconCategories: [], // contains sections data
   iconToCategoryMap: {}, // { html: 'mainTechs', css: 'mainTechs', ... }

@@ -1,5 +1,4 @@
 import React from "react"
-import Initialize from "./initialize/Root"
 import BannerRoot from "./banner/Root"
 import BannerContent from "./banner/Content"
 import BannerHeader from "./banner/Header"
@@ -9,9 +8,8 @@ import BannerBodyContent from "./banner/BodyContent"
 import BannerBodyBullet from "./banner/BodyBullet"
 import BodyRoot from "./body/Root"
 import BodySections from "./body/Sections"
-import BodyIconList from "./body/IconList"
-import SwipeArrows from "./shared/SwipeArrows"
-import SectionHeader from "./shared/SectionHeader"
+import BodySectionListHeader from "./body/SectionListHeader"
+import BodySectionListItem from "./body/SectionListItem"
 
 function ComposedBanner(props) {
   return <BannerRoot {...props} />
@@ -34,13 +32,12 @@ function ComposedBody(props) {
 }
 
 ComposedBody.Sections = BodySections
-ComposedBody.IconList = BodyIconList
+ComposedBody.SectionListHeader = BodySectionListHeader
+ComposedBody.SectionListItem = BodySectionListItem
 
 const Profile = {
-  Initialize,
   Banner: ComposedBanner,
-  Body: ComposedBody,
-  Shared: { SectionHeader, SwipeArrows }
+  Body: ComposedBody
 }
 
 export default Profile

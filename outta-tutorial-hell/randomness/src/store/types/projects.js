@@ -1,3 +1,5 @@
 export const INITIALIZE_PROJECT_DATA_IN_STORE =
   "INITIALIZE_PROJECT_DATA_IN_STORE"
 export const CHANGE_ACTIVE_ICON = "CHANGE_ACTIVE_ICON"
+
+rework profile reducer, then 1/3, 2/3

@@ -3,15 +3,20 @@ import Layout from "@app-components/layout"
 import UI from "@app-components/UI"
 import colors from "@app-constants/colors"
 
-export default function Header({ title, titleSize, titleProps, overlayProps }) {
+export default function SectionListHeader({
+  title,
+  fontScale,
+  titleProps,
+  overlayProps
+}) {
   return (
     <Layout.Overlay {...overlayProps}>
       <UI.Text
         color={colors.main.SECONDARY}
         type="bold"
-        size={titleSize}
-        elevation={titleSize / 7}
-        shadowRadius={titleSize / 2}
+        size={fontScale}
+        elevation={fontScale / 7}
+        shadowRadius={fontScale / 2}
         shadowColor={colors.main.PRIMARY}
         {...titleProps}
       >
@@ -21,4 +26,4 @@ export default function Header({ title, titleSize, titleProps, overlayProps }) {
   )
 }
 
-Header.defaultProps = { overlayProps: {}, titleProps: {} }
+SectionListHeader.defaultProps = { overlayProps: {}, titleProps: {} }

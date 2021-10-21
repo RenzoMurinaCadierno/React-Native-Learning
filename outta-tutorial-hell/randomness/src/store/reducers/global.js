@@ -3,12 +3,12 @@ import {
   FETCH_DATABASE_ERROR,
   FETCH_DATABASE_SUCCESS
 } from "../types/global"
-import { status, messages } from "../data/global"
+import { status, messages, screens } from "../data/global"
 
 const initialState = {
   data: {},
   status: status.CICLE_START,
-  message: messages[status.CICLE_START],
+  message: messages[status.CICLE_START](screens.GLOBAL),
   stack: ""
 }
 

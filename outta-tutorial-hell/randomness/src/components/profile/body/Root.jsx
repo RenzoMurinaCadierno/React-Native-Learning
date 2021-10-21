@@ -1,42 +1,37 @@
-import React, { useState } from "react"
-import { ScrollView, StyleSheet, View } from "react-native"
+import React, { useState, useCallback } from "react"
+import { StyleSheet, View } from "react-native"
 import Sections from "./Sections"
-import SwipeArrows from "../shared/SwipeArrows"
+import UI from "@app-components/UI"
 
-export default function Root({
-  containerProps,
-  scrollViewProps,
-  swipeArrowProps,
-  fontScale,
-  ...rest
-}) {
+function Root({ containerProps, sectionProps, arrowProps, fontScale }) {
   const [showArrows, setShowArrows] = useState(true)
 
-  const hideArrows = () => showArrows && setShowArrows(false)
-  console.log("render", swipeArrowProps)
+  const hideArrows = useCallback(() => setShowArrows(false), [])
+
   return (
     <View style={_styles.container} {...containerProps}>
-      <ScrollView
-        onScroll={hideArrows}
-        scrollEventThrottle={250}
-        {...scrollViewProps}
-      >
-        <Sections fontScale={fontScale} {...rest} />
-      </ScrollView>
-      {/* <SwipeArrows
+      <Sections
+        fontScale={fontScale}
+        onScrollSectionList={hideArrows}
+        {...sectionProps}
+      />
+      <UI.Arrow.MultipleWithShow
         show={showArrows}
         size={fontScale * 1.5}
-        {...swipeArrowProps}
-      /> */}
+        direction="down"
+        {...arrowProps}
+      />
     </View>
   )
 }
 
 Root.defaultProps = {
   containerProps: {},
-  scrollViewProps: {},
+  sectionProps: {},
   swipeArrowProps: {}
 }
+
+export default React.memo(Root)
 
 const _styles = StyleSheet.create({
   container: { width: "100%", position: "relative" }

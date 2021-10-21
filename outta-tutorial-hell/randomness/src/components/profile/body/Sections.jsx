@@ -1,15 +1,17 @@
 import React, { useCallback } from "react"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, View, FlatList } from "react-native"
 import { useSelector, useDispatch } from "react-redux"
 import * as profileActions from "@app-store/actions/profile"
-import IconList from "./IconList"
-import SectionHeader from "../shared/SectionHeader"
+import SectionListHeader from "./SectionListHeader"
+import SectionListItem from "./SectionListItem"
 
-export default function Sections({
-  containerStyle,
-  overlayStyle,
+function Sections({
   fontScale,
-  iconListProps
+  containerStyle,
+  containerProps,
+  sectionListItemProps,
+  sectionListHeaderProps,
+  onScrollSectionList
 }) {
   const iconCategories = useSelector((state) => state.profile.iconCategories)
   const dispatch = useDispatch()
@@ -19,31 +21,49 @@ export default function Sections({
     []
   )
 
-  return iconCategories.map((category) => (
-    <View key={category.id} style={[containerStyle, _styles.container]}>
-      <SectionHeader
-        title={category.title}
-        titleSize={fontScale * 2.3}
+  const renderItem = ({ item: { icons, title } }) => (
+    <View style={[containerStyle, _styles.container]} {...containerProps}>
+      <SectionListHeader
+        fontScale={fontScale * 2}
+        title={title}
         titleProps={{
           style: {
             letterSpacing: fontScale / 10,
             paddingHorizontal: fontScale
           }
         }}
-        overlayProps={{ style: overlayStyle }}
+        {...sectionListHeaderProps}
       />
-      <IconList
-        icons={category.icons}
+      <SectionListItem
+        icons={icons}
         iconSize={fontScale * 4}
         onIconPress={changeCategory}
-        {...iconListProps}
+        {...sectionListItemProps}
       />
     </View>
-  ))
+  )
+
+  return (
+    <FlatList
+      data={iconCategories}
+      keyExtractor={_keyExtractor}
+      renderItem={renderItem}
+      onScroll={onScrollSectionList}
+    />
+  )
 }
 
-Sections.defaultProps = { fontScale: 12, iconListProps: {} }
+Sections.defaultProps = {
+  fontScale: 12,
+  containerProps: {},
+  sectionListItemProps: {},
+  sectionListHeaderProps: {}
+}
+
+export default React.memo(Sections)
 
 const _styles = StyleSheet.create({
   container: { flex: 1, paddingBottom: "3%" }
 })
+
+const _keyExtractor = ({ id }) => id.toString()

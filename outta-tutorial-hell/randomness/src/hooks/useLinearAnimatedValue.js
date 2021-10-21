@@ -6,13 +6,22 @@ export default function useLinearAnimatedValue({
   active,
   activeAnimation = animations.effects.default.IN,
   inactiveAnimation,
-  startingValue = 0
+  startingValue = 0,
+  onActiveStart,
+  onInactiveStart,
+  onActiveFinish,
+  onInactiveFinish
 }) {
   const val = useRef(new Animated.Value(startingValue)).current
 
   useEffect(() => {
-    if (active) activeAnimation(val).start()
-    else if (inactiveAnimation) inactiveAnimation(val).start()
+    if (active) {
+      activeAnimation(val).start(onActiveFinish)
+      onActiveStart?.()
+    } else if (inactiveAnimation) {
+      inactiveAnimation(val).start(onInactiveFinish)
+      onInactiveStart?.()
+    }
   }, [active])
 
   return val

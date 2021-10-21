@@ -3,7 +3,13 @@ import { StyleSheet, View } from "react-native"
 import { useSelector } from "react-redux"
 import UI from "@app-components/UI"
 
-function IconList({ icons, iconSize, containerStyle, onIconPress, ...rest }) {
+export default function SectionListItem({
+  icons,
+  iconSize,
+  containerStyle,
+  onIconPress,
+  ...rest
+}) {
   const activeSubSectionId = useSelector(
     (state) => state.profile.activeSubSectionId
   )
@@ -25,8 +31,6 @@ function IconList({ icons, iconSize, containerStyle, onIconPress, ...rest }) {
     </View>
   )
 }
-
-export default React.memo(IconList)
 
 const _styles = StyleSheet.create({
   container: {

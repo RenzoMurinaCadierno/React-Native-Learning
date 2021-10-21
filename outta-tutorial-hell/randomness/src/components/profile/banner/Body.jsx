@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react"
 import { View, StyleSheet } from "react-native"
-import SwipeArrows from "../shared/SwipeArrows"
+import UI from "@app-components/UI"
 import BodyContent from "./BodyContent"
 
 function Body({
@@ -26,9 +26,10 @@ function Body({
         onScrollSectionList={hideArrowsAndTriggerParentCallback}
         fontScale={fontScale}
       />
-      <SwipeArrows
+      <UI.Arrow.MultipleWithShow
         show={Boolean(bullets.length) && showArrows}
-        fontScale={fontScale}
+        size={fontScale}
+        direction="down"
       />
     </View>
   )

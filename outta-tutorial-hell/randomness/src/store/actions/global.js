@@ -3,7 +3,7 @@ import {
   FETCH_DATABASE_ERROR,
   FETCH_DATABASE_SUCCESS
 } from "../types/global"
-import { status, messages } from "../data/global"
+import { status, messages, screens } from "../data/global"
 import * as profileActions from "../actions/profile"
 import initDb from "../data/mockDb"
 
@@ -12,7 +12,7 @@ export const initializeDatabase = () => async (dispatch) => {
     type: FETCH_DATABASE_INIT,
     payload: {
       status: status.FETCH_DATABASE_INIT,
-      message: messages[status.FETCH_DATABASE_INIT]
+      message: messages[status.FETCH_DATABASE_INIT](screens.GLOBAL)
     }
   })
 
@@ -28,7 +28,7 @@ export const initializeDatabase = () => async (dispatch) => {
       payload: {
         data,
         status: status.FETCH_DATABASE_SUCCESS,
-        message: messages[status.FETCH_DATABASE_SUCCESS]
+        message: messages[status.FETCH_DATABASE_SUCCESS](screens.GLOBAL)
       }
     })
     dispatch(profileActions.populateStore(data))
@@ -40,7 +40,7 @@ export const initializeDatabase = () => async (dispatch) => {
       payload: {
         stack: err,
         status: status.FETCH_DATABASE_ERROR,
-        message: messages[status.FETCH_DATABASE_ERROR]
+        message: messages[status.FETCH_DATABASE_ERROR](screens.GLOBAL)
       }
     })
   }

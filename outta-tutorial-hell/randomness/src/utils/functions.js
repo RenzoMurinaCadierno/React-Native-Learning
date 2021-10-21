@@ -22,36 +22,48 @@ export function interpolate(value, outputRange) {
   return value.interpolate({ inputRange: [0, 1], outputRange })
 }
 
-export function getTimingConfig(
-  toValue,
-  duration,
-  easing = Easing.inOut(Easing.ease),
-  delay = 0,
-  useNativeDriver = true
-) {
-  return {
+export function interpolate012(value, outputRange) {
+  return value.interpolate({ inputRange: [0, 1, 2], outputRange })
+}
+
+export const animationConfigs = {
+  timing: (
+    toValue,
+    duration,
+    easing = Easing.inOut(Easing.ease),
+    delay = 0,
+    useNativeDriver = true
+  ) => ({
     toValue,
     duration,
     easing,
     delay,
     useNativeDriver
-  }
-}
-
-export function getSpringConfig(
-  toValue,
-  duration,
-  speed = 20,
-  bounciness = 20,
-  useNativeDriver = true
-) {
-  return {
+  }),
+  springBounce: (
+    toValue,
+    duration,
+    speed = 20,
+    bounciness = 20,
+    useNativeDriver = true
+  ) => ({
     toValue,
     duration,
     speed,
     bounciness,
     useNativeDriver
-  }
+  }),
+  springFriction: (
+    toValue,
+    friction = 400,
+    tension = 70,
+    useNativeDriver = true
+  ) => ({
+    toValue,
+    friction,
+    tension,
+    useNativeDriver
+  })
 }
 
 export const uid = (function () {

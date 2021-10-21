@@ -2,7 +2,7 @@ import {
   PROFILE_POPULATE_STORE,
   PROFILE_CHANGE_ACTIVE_SUBSECTION
 } from "../types/profile"
-import { status, messages } from "../data/profile"
+import { status, messages, screens } from "../data/global"
 
 export const populateStore = (data) => {
   const { profile } = data
@@ -38,7 +38,7 @@ export const populateStore = (data) => {
     type: PROFILE_POPULATE_STORE,
     payload: {
       status: status[status.CICLE_FINISH],
-      message: messages[status.CICLE_FINISH],
+      message: messages[status.CICLE_FINISH](screens.PROFILE),
       iconsToCategoryMap,
       iconCategories,
       sections
