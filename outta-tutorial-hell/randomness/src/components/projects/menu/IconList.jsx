@@ -8,15 +8,16 @@ const colorProps = {
   activeAnimation: animations.icons.color.IN,
   inactiveAnimation: animations.icons.color.OUT
 }
-
-export default function IconList({ fontScale, onIconPress, ...rest }) {
-  const { icons, activeIconId } = useSelector((state) => state.projects)
+test renders, onLayout, click same icon to inactivate, keep on with caRD
+function IconList({ fontScale, onIconPress, ...rest }) {
+  const { icons, activeSectionId } = useSelector((state) => state.projects)
 
   const renderItem = ({ item }) => (
     <UI.Icon.WithSpring
-      active={item.id === activeIconId}
+      active={item.id === activeSectionId}
       name={item.name}
       activeColor={item.activeColor}
+      inactiveColor={item.inactiveColor}
       size={fontScale}
       style={_styles.icon}
       onPress={() => onIconPress(item.id)}
@@ -34,6 +35,8 @@ export default function IconList({ fontScale, onIconPress, ...rest }) {
     />
   )
 }
+
+export default React.memo(IconList)
 
 const _styles = StyleSheet.create({
   container: { width: "100%", flex: 1 },

@@ -1,13 +1,14 @@
-// export class DefaultIcon {
-//   constructor(id, name, activeColor) {
-//     this.id = id
-//     this.name = name
-//     this.activeColor = activeColor
-//   }
+export class TechIcon {
+  constructor({ id, name, activeColor, inactiveColor }) {
+    this.id = id
+    this.name = name
+    this.activeColor = activeColor
+    this.inactiveColor = inactiveColor
+  }
 
-//   [Symbol.iterator] = function* () {
-//     yield this.id
-//     yield this.name
-//     yield this.activeColor
-//   }
-// }
+  [Symbol.iterator] = function* () {
+    yield this.name
+    yield this.activeColor
+    yield this.inactiveColor
+  }
+}

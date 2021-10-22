@@ -1,15 +1,20 @@
 import { SectionItem, ProfileIcon } from "@app-models/profile"
+import { ProjectsIcon } from "@app-models/projects"
+import { uid } from "@app-utils/functions"
 
 export default async function initDb(forceCrash) {
   return await new Promise((resolve, reject) => {
     setTimeout(() => {
       forceCrash
         ? reject({ ok: false })
-        : resolve({ ok: true, data: JSON.stringify({ profile }) })
+        : resolve({ ok: true, data: JSON.stringify({ profile, projects }) })
     }, 1000)
   })
 }
 
+/*******************************************************************************
+ * SHARED
+ /*****************************************************************************/
 const defaultIcons = {
   html: { id: "html", name: "logo-html5", activeColor: "rgb(227, 76, 38)" },
   css: { id: "css", name: "logo-css3", activeColor: "rgb(38, 77, 228)" },
@@ -34,6 +39,9 @@ const defaultIcons = {
   }
 }
 
+/*******************************************************************************
+ * PROFILE
+ /*****************************************************************************/
 const profileBullets = {
   html: [
     {
@@ -232,4 +240,80 @@ function getProfileSectionItem(id, title, subtitle) {
     defaultIcons[id].activeColor,
     profileBullets[id]
   )
+}
+
+/*******************************************************************************
+ * PROJECTS
+ /*****************************************************************************/
+const projects = {
+  html: {
+    icon: new ProjectsIcon(defaultIcons.html),
+    items: [
+      {
+        id: uid(),
+        title: "React Fanmade Hooks",
+        subtitle: "Hooks for many needs made by React enthusiasts",
+        images: [
+          {
+            id: uid(),
+            uri: "https://www.gamerfocus.co/wp-content/uploads/2021/07/Eeve.jpg"
+          },
+          {
+            id: uid(),
+            uri: "https://imagenes.20minutos.es/files/image_656_370/uploads/imagenes/2019/09/02/1049582.jpg"
+          }
+        ]
+      },
+      {
+        id: uid(),
+        title: "Yugi-Calculator-MAX",
+        subtitle: "Multi-purpose app to assist Yu-Gi-Oh! duelists.",
+        images: [
+          {
+            id: uid(),
+            uri: "https://www.gamerfocus.co/wp-content/uploads/2021/07/Eeve.jpg"
+          },
+          {
+            id: uid(),
+            uri: "https://imagenes.20minutos.es/files/image_656_370/uploads/imagenes/2019/09/02/1049582.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  css: {
+    id: uid(),
+    icon: new ProjectsIcon(defaultIcons.css),
+    items: []
+  },
+  js: {
+    id: uid(),
+    icon: new ProjectsIcon(defaultIcons.js),
+    items: []
+  },
+  react: {
+    id: uid(),
+    icon: new ProjectsIcon(defaultIcons.react),
+    items: []
+  },
+  nodejs: {
+    id: uid(),
+    icon: new ProjectsIcon(defaultIcons.nodejs),
+    items: []
+  },
+  python: {
+    id: uid(),
+    icon: new ProjectsIcon(defaultIcons.python),
+    items: []
+  },
+  github: {
+    id: uid(),
+    icon: new ProjectsIcon(defaultIcons.github),
+    items: []
+  },
+  "react-native": {
+    id: uid(),
+    icon: new ProjectsIcon(defaultIcons["react-native"]),
+    items: []
+  }
 }

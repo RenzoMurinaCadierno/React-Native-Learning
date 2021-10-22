@@ -3,7 +3,7 @@ import { StatusBar } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
 import ProfileScreen from "../screens/Profile/Profile"
-// import ProjectsScreen from "../screens/Projects/Projects"
+import ProjectsScreen from "../screens/Projects/Projects"
 // import ContactScreen from "../screens/Projects/Projects"
 import colors from "../constants/colors"
 import useViewPort from "../hooks/useViewPort"
@@ -24,12 +24,12 @@ const Root = () => {
         component={ProfileScreen}
         options={{ tabBarIcon: getTabBarIcon("person", vw(6)) }}
       />
-      {/* <TabNavigation.Screen
+      <TabNavigation.Screen
         name="Projects"
         component={ProjectsScreen}
         options={{ tabBarIcon: getTabBarIcon("briefcase", vw(6)) }}
       />
-      <TabNavigation.Screen
+      {/*<TabNavigation.Screen
         name="Contact"
         component={ContactScreen}
         options={{ tabBarIcon: getTabBarIcon("mail", vw(6)) }}

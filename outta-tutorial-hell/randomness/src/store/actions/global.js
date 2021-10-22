@@ -5,6 +5,7 @@ import {
 } from "../types/global"
 import { status, messages, screens } from "../data/global"
 import * as profileActions from "../actions/profile"
+import * as projectsActions from "../actions/projects"
 import initDb from "../data/mockDb"
 
 export const initializeDatabase = () => async (dispatch) => {
@@ -31,7 +32,8 @@ export const initializeDatabase = () => async (dispatch) => {
         message: messages[status.FETCH_DATABASE_SUCCESS](screens.GLOBAL)
       }
     })
-    dispatch(profileActions.populateStore(data))
+    dispatch(profileActions.populateStore(data.profile))
+    dispatch(projectsActions.populateStore(data.projects))
   } catch (err) {
     console.log(err)
 

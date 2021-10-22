@@ -1,34 +1,18 @@
-import React, { useState } from "react"
-import { View, Text, FlatList } from "react-native"
-import UI from "@app-components/UI"
+import React from "react"
+import { FlatList } from "react-native"
+import { useSelector } from "react-redux"
+import ProjectsCard from "./ProjectCard"
 
-const dummy = [0, 1, 2]
+export default function ProjectsList({ items }) {
+  const activeSectionId = useSelector((state) => state.projects.activeSectionId)
 
-export default function ProjectsList() {
-  const [active, setActive] = useState(null)
+  const renderItem = (data) => <ProjectsCard {...data.item} />
+
   return (
-    <UI.Card>
-      <UI.Card.Text.Title>React Fanmade Hooks</UI.Card.Text.Title>
-      <UI.Card.Text.Subtitle>
-        Hooks for many needs made by React enthusiasts
-      </UI.Card.Text.Subtitle>
-      <UI.Card.Carousel />
-      {/* <UI.Card.Image
-        // source={{
-        //   uri: "https://esports.as.com/2021/08/12/pokemon/Eevee_1491460844_733117_1024x576.jpg"
-        // }}
-        source={require("@app-assets/images/rfh00.jpg")}
-      /> */}
-      <UI.Card.Actions>
-        {dummy.map((i) => (
-          <UI.Card.Actions.Icon
-            key={i}
-            active={i === active}
-            index={i}
-            onPress={() => setActive(i)}
-          />
-        ))}
-      </UI.Card.Actions>
-    </UI.Card>
+    <FlatList
+      data={items[activeSectionId]}
+      extraData={activeSectionId}
+      renderItem={renderItem}
+    />
   )
 }

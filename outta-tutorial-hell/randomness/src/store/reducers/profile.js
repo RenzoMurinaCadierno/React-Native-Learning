@@ -26,7 +26,7 @@ export default function profileReducer(state = initialState, action) {
       }
 
     case PROFILE_CHANGE_ACTIVE_SUBSECTION:
-      return { ...state, activeSubSectionId: action.payload.subCategoryId }
+      return { ...state, activeSubSectionId: action.payload.subSectionId }
 
     default:
       return state

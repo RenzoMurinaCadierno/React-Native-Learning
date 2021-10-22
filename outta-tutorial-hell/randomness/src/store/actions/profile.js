@@ -4,14 +4,12 @@ import {
 } from "../types/profile"
 import { status, messages, screens } from "../data/global"
 
-export const populateStore = (data) => {
-  const { profile } = data
-
+export const populateStore = (profileDbData) => {
   let iconCategories = []
   const sections = {}
   const iconsToCategoryMap = {}
 
-  Object.values(profile.sections).forEach((category) => {
+  Object.values(profileDbData.sections).forEach((category) => {
     iconCategories.push({
       id: category.id,
       title: category.title,
@@ -46,7 +44,7 @@ export const populateStore = (data) => {
   }
 }
 
-export const changeActiveSubSection = (subCategoryId) => ({
+export const changeActiveSubSection = (subSectionId) => ({
   type: PROFILE_CHANGE_ACTIVE_SUBSECTION,
-  payload: { subCategoryId }
+  payload: { subSectionId }
 })

@@ -1,30 +1,30 @@
 import {
-  CHANGE_ACTIVE_ICON,
-  INITIALIZE_PROJECT_DATA_IN_STORE
+  PROJECTS_POPULATE_STORE,
+  PROJECTS_CHANGE_ACTIVE_SECTION
 } from "../types/projects"
+import { status, messages, screens } from "../data/global"
 
 const initialState = {
+  status: status.CICLE_START,
+  message: messages[status.CICLE_START](screens.PROJECTS),
   icons: [], // [ { icon1InCategory1, icon2InCategory1, icon1InCategory2, ...} ]
-  activeIconId: ""
+  items: [],
+  activeSectionId: ""
 }
 
 export default function projectsReducer(state = initialState, action) {
   switch (action.type) {
-    case INITIALIZE_PROJECT_DATA_IN_STORE:
+    case PROJECTS_POPULATE_STORE:
       return {
         ...state,
+        status: action.payload.status,
+        message: action.payload.message,
         icons: action.payload.icons,
-        activeIconId: action.payload.activeIconId || ""
+        items: action.payload.items
       }
 
-    case CHANGE_ACTIVE_ICON:
-      const isSameIconAndIconWasActive =
-        Boolean(state.activeIconId) && action.payload.id === state.activeIconId
-
-      return {
-        ...state,
-        activeIconId: isSameIconAndIconWasActive ? "" : action.payload.id
-      }
+    case PROJECTS_CHANGE_ACTIVE_SECTION:
+      return { ...state, activeSectionId: action.payload.sectionId }
 
     default:
       return state

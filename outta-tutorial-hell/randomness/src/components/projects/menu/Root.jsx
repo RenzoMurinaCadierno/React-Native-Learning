@@ -1,17 +1,26 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { LinearGradient } from "expo-linear-gradient"
 import { StyleSheet } from "react-native"
+import { useDispatch } from "react-redux"
 import IconList from "./IconList"
+import * as projectsActions from "@app-store/actions/projects"
 import colors from "@app-constants/colors"
 import { default as sharedStyles } from "@app-constants/styles"
 
-export default function Root({ flexValue, fontScale, style, onIconPress }) {
+export default function Root({ flexValue, fontScale, style }) {
+  const dispatch = useDispatch()
+
+  const changeActiveSection = useCallback(
+    (id) => dispatch(projectsActions.changeActiveSection(id)),
+    []
+  )
+
   return (
     <LinearGradient
       colors={[colors.background.CONTRAST, colors.main.SECONDARY_ALPHA(0.2)]}
       style={[_styles.container, { flex: flexValue }, style]}
     >
-      <IconList fontScale={fontScale} onIconPress={onIconPress} />
+      <IconList fontScale={fontScale} onIconPress={changeActiveSection} />
     </LinearGradient>
   )
 }
