@@ -1,10 +1,10 @@
 import React from "react"
 import Layout from "@app-components/layout"
 import Profile from "@app-components/profile"
-import useViewPort from "@app-hooks/useViewPort"
+import useViewPortContext from "@app-hooks/useViewPortContext"
 
 export default function ProfileScreen() {
-  const { vw } = useViewPort()
+  const { vw } = useViewPortContext()
 
   return (
     <Layout.Screen>

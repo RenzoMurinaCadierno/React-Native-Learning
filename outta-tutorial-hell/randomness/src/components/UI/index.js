@@ -7,17 +7,17 @@ import TextWithTransition from "./Text/TextWithTransition"
 import ArrowBase from "./Arrow/Base"
 import ArrowMultipleWithPulsation from "./Arrow/MultipleWithPulsation"
 import ArrowMultipleWithShow from "./Arrow/MutipleWithShow"
-import CardContext, { CardContextProvider } from "./Card/context"
 import CardRoot from "./Card/Root"
-import CardContainer from "./Card/Container"
-import CardCarousel from "./Card/Carousel"
-import CardImage from "./Card/Image"
 import CardText, {
   Title as CardTitle,
   Subtitle as CardSubtitle
 } from "./Card/Text"
 import CardActions from "./Card/ActionsContainer"
 import CardActionIcon from "./Card/ActionIcon"
+import CarouselRoot from "./Carousel/Root"
+import CarouselChip from "./Carousel/Chip"
+import CarouselImageList from "./Carousel/ImageList"
+import CarouselImage from "./Carousel/Image"
 import ImageBase from "./Image/Base"
 import ImageWithTransition from "./Image/ImageWithTransition"
 import Icon from "./Icon/Icon"
@@ -76,11 +76,6 @@ function ComposedCardActions(props) {
   return <CardActions {...props} />
 }
 
-ComposedCard.Context = CardContext
-ComposedCard.ContextProvider = CardContextProvider
-ComposedCard.Container = CardContainer
-ComposedCard.Carousel = CardCarousel
-ComposedCard.Image = CardImage
 ComposedCard.Text = ComposedCardText
 ComposedCard.Actions = ComposedCardActions
 
@@ -89,13 +84,22 @@ ComposedCardText.Subtitle = CardSubtitle
 
 ComposedCardActions.Icon = CardActionIcon
 
+function ComposedCarousel(props) {
+  return <CarouselRoot {...props} />
+}
+
+ComposedCarousel.Chip = CarouselChip
+ComposedCarousel.ImageList = CarouselImageList
+ComposedCarousel.Image = CarouselImage
+
 const UI = {
   Animation: { Spring, Color, Hover },
   Text: ComposedText,
   Icon: ComposedIcon,
   Image: ComposedImage,
   Arrow: ComposedArrow,
-  Card: ComposedCard
+  Card: ComposedCard,
+  Carousel: ComposedCarousel
 }
 
 export default UI

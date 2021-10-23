@@ -1,7 +1,7 @@
-import React, { useContext } from "react"
+import React from "react"
 import { StyleSheet, View } from "react-native"
 import AppText from "../Text/Base"
-import CardContext from "./context"
+import useViewPortContext from "@app-hooks/useViewPortContext"
 import colors from "@app-constants/colors"
 
 export function Title({ children, ...rest }) {
@@ -29,7 +29,7 @@ export default function CardText({
   containerStyle,
   ...rest
 }) {
-  const vw = useContext(CardContext)
+  const { vw } = useViewPortContext()
   const textProps = _getTextPropsForRole(role, fontScale, vw)
 
   return (

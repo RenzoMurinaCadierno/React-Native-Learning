@@ -1,16 +1,13 @@
-import React, { useContext } from "react"
-import CardContext from "./context"
+import React from "react"
 import ImageWithTransition from "../Image/ImageWithTransition"
 
-export default function CardImage({
+export default function Image({
   source,
   style,
   containerStyle,
   containerProps,
   ...rest
 }) {
-  const vw = useContext(CardContext)
-
   // add Animated.Image and switch between actual image or error one.
   // Then add action buttons. Then work on carousel for images and 1/3 2/3 3/3
   return (
@@ -21,10 +18,10 @@ export default function CardImage({
         alignSelf: "stretch",
         ...containerStyle
       }}
-      style={{ borderRadius: vw(1.5), ...style }}
+      style={{ borderRadius: 5, ...style }}
       {...rest}
     />
   )
 }
 
-CardImage.defaultProps = { containerStyle: {}, style: {} }
+Image.defaultProps = { containerStyle: {}, style: {} }

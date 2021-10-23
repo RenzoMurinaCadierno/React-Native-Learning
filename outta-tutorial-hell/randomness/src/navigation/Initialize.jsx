@@ -1,9 +1,8 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { ActivityIndicator, Alert } from "react-native"
-import { NavigationContainer } from "@react-navigation/native"
 import Layout from "@app-components/layout"
-import Root from "./Root"
+import RootNavigation from "./Root"
 import * as globalActions from "@app-store/actions/global"
 import { status as _globalStoreStatus } from "@app-store/data/global"
 import colors from "@app-constants/colors"
@@ -38,11 +37,7 @@ export default function Initialize() {
     return <Layout.Screen />
   }
 
-  return (
-    <NavigationContainer>
-      <Root />
-    </NavigationContainer>
-  )
+  return <RootNavigation />
 }
 
 function _storeIsLoading(currentGlobalStoreStatus) {

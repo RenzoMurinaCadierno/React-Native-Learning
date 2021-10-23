@@ -1,24 +1,32 @@
 import React, { useContext } from "react"
-import CardContext from "./context"
+import { StyleSheet } from "react-native"
+import { ActionsContext } from "./ActionsContainer"
 import IconWithScale from "../Icon/IconWithScale"
 import animations from "@app-constants/animations"
-import { StyleSheet } from "react-native"
+import useViewPortContext from "@app-hooks/useViewPortContext"
 
-function ActionIcon({ size, ...rest }) {
-  const vw = useContext(CardContext)
+function ActionIcon({ id, size, onPress, ...rest }) {
+  const { vw } = useViewPortContext()
+  const [activeIcon, changeActiveIcon] = useContext(ActionsContext)
+
+  const handlePress = () => {
+    changeActiveIcon(id)
+    onPress?.()
+  }
 
   return (
     <IconWithScale
       size={size ?? vw(7)}
+      onPress={handlePress}
       colorProps={_getAnimationProps("color")}
       scaleProps={_getAnimationProps("scale")}
       style={_styles.container}
       {...rest}
+      active={activeIcon === id}
     />
   )
 }
-// add icon images and toastandroid to open links in new tab
-// then 1/2, 2/2, then >>> to scroll
+
 ActionIcon.defaultProps = { active: false, name: "help-outline" }
 
 export default React.memo(ActionIcon)

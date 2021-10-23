@@ -261,7 +261,20 @@ const projects = {
           {
             id: uid(),
             uri: "https://imagenes.20minutos.es/files/image_656_370/uploads/imagenes/2019/09/02/1049582.jpg"
+          },
+          {
+            id: uid(),
+            uri: "https://cdn.alfabetajuega.com/wp-content/uploads/2020/10/eevee-780x405.jpg"
+          },
+          {
+            id: uid(),
+            uri: "https://pbs.twimg.com/media/DmEzcjdW0AE3omD.jpg"
           }
+        ],
+        actions: [
+          { id: "share", iconName: "share-social" },
+          { id: "example", iconName: "code-slash" },
+          { id: "github", iconName: "logo-github" }
         ]
       },
       {
@@ -277,6 +290,11 @@ const projects = {
             id: uid(),
             uri: "https://imagenes.20minutos.es/files/image_656_370/uploads/imagenes/2019/09/02/1049582.jpg"
           }
+        ],
+        actions: [
+          { id: "share", iconName: "share-social" },
+          { id: "example", iconName: "code-slash" },
+          { id: "github", iconName: "logo-github" }
         ]
       }
     ]

@@ -1,11 +1,32 @@
 import React from "react"
-import { CardContextProvider } from "./context"
-import Container from "./Container"
+import { StyleSheet } from "react-native"
+import { LinearGradient } from "expo-linear-gradient"
+import useViewPortContext from "@app-hooks/useViewPortContext"
+import colors from "@app-constants/colors"
 
-export default function Root(props) {
+export default function Root({ style, children, ...rest }) {
+  const { vw } = useViewPortContext()
+  const styles = _styles(vw)
+
   return (
-    <CardContextProvider>
-      <Container {...props} />
-    </CardContextProvider>
+    <LinearGradient
+      colors={[colors.background.CONTRAST, colors.accent.PRIMARY_ALPHA(0.25)]}
+      style={[styles.container, style]}
+      {...rest}
+    >
+      {children}
+    </LinearGradient>
   )
 }
+
+const _styles = (vw) =>
+  StyleSheet.create({
+    container: {
+      borderRadius: vw(1.5),
+      backgroundColor: colors.background.CONTRAST,
+      padding: vw(2),
+      margin: vw(3),
+      elevation: vw(1),
+      alignSelf: "stretch"
+    }
+  })

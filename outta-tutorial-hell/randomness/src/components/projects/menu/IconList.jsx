@@ -8,7 +8,7 @@ const colorProps = {
   activeAnimation: animations.icons.color.IN,
   inactiveAnimation: animations.icons.color.OUT
 }
-test renders, onLayout, click same icon to inactivate, keep on with caRD
+
 function IconList({ fontScale, onIconPress, ...rest }) {
   const { icons, activeSectionId } = useSelector((state) => state.projects)
 

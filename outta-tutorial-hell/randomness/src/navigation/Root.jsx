@@ -1,17 +1,29 @@
 import React from "react"
 import { StatusBar } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
+import { NavigationContainer } from "@react-navigation/native"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
-import ProfileScreen from "../screens/Profile/Profile"
-import ProjectsScreen from "../screens/Projects/Projects"
-// import ContactScreen from "../screens/Projects/Projects"
-import colors from "../constants/colors"
-import useViewPort from "../hooks/useViewPort"
+import ProfileScreen from "@app-screens/Profile/Profile"
+import ProjectsScreen from "@app-screens/Projects/Projects"
+// import ContactScreen from "@app-screens/Projects/Projects"
+import { ViewPortContextProvider } from "@app-context/viewPort"
+import useViewPortContext from "@app-hooks/useViewPortContext"
+import colors from "@app-constants/colors"
+
+export default function RootNavigation() {
+  return (
+    <ViewPortContextProvider>
+      <NavigationContainer>
+        <TabNavigator />
+      </NavigationContainer>
+    </ViewPortContextProvider>
+  )
+}
 
 const TabNavigation = createMaterialTopTabNavigator()
 
-const Root = () => {
-  const { vw } = useViewPort()
+const TabNavigator = () => {
+  const { vw } = useViewPortContext()
 
   return (
     <TabNavigation.Navigator
@@ -37,8 +49,6 @@ const Root = () => {
     </TabNavigation.Navigator>
   )
 }
-
-export default Root
 
 function getTabBarScreenOptions(vw) {
   return {

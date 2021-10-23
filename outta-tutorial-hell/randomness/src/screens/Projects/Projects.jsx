@@ -2,10 +2,10 @@ import React from "react"
 import { StyleSheet } from "react-native"
 import Layout from "@app-components/layout"
 import Projects from "@app-components/projects"
-import useViewPort from "@app-hooks/useViewPort"
+import useViewPortContext from "@app-hooks/useViewPortContext"
 
 export default function ProjectsScreen() {
-  const { vw } = useViewPort()
+  const { vw } = useViewPortContext()
 
   return (
     <Layout.Screen style={_styles.container}>
