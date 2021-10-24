@@ -94,11 +94,6 @@ const animations = {
             ])
           )
       ]
-      // [
-      //   (val) => Animated.sequence([_getLoopAnim(val)]),
-      //   (val) => Animated.sequence([Animated.delay(200), _getLoopAnim(val)]),
-      //   (val) => Animated.sequence([Animated.delay(400), _getLoopAnim(val)])
-      // ]
     }
   },
   icons: {
@@ -162,6 +157,14 @@ const animations = {
             value,
             animationConfigs.timing(0, 350, easings.OUT, 0, false)
           )
+      }
+    },
+    actionText: {
+      appear: {
+        IN: (value) =>
+          Animated.timing(value, animationConfigs.timing(1, 350, easings.IN)),
+        OUT: (value) =>
+          Animated.timing(value, animationConfigs.timing(0, 350, easings.OUT))
       }
     }
   },

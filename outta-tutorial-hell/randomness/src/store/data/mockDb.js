@@ -272,9 +272,17 @@ const projects = {
           }
         ],
         actions: [
-          { id: "share", iconName: "share-social" },
-          { id: "example", iconName: "code-slash" },
-          { id: "github", iconName: "logo-github" }
+          { id: "share", iconName: "share-social", actionText: "Tap to share" },
+          {
+            id: "example",
+            iconName: "code-slash",
+            actionText: "Tap to open example"
+          },
+          {
+            id: "github",
+            iconName: "logo-github",
+            actionText: "Tap to open repo"
+          }
         ]
       },
       {

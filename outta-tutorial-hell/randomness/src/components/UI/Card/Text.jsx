@@ -48,7 +48,7 @@ CardText.defaultProps = {
 }
 
 const _styles = StyleSheet.create({
-  container: { marginVertical: 3 },
+  container: { marginVertical: 2 },
   title: {
     letterSpacing: 0.75,
     textTransform: "uppercase",

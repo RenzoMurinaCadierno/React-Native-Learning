@@ -18,11 +18,13 @@ export default function Chip({
   return (
     <View style={[_style, containerStyle]} {...containerProps}>
       <AppText color={colors.background.CONTRAST} {...rest}>
-        {index || 0}/{length || 0}
+        {index}/{length}
       </AppText>
     </View>
   )
 }
+
+Chip.defaultProps = { index: 0, length: 0 }
 
 function _getStyles(anchor, vw) {
   return { ..._getAnchor(anchor, vw), ..._getDefaultStyles(vw) }

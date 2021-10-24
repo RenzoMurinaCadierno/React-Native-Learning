@@ -24,7 +24,9 @@ const _styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "flex-end",
+    alignItems: "center",
     marginLeft: 3,
-    marginTop: 5
+    marginTop: 5,
+    overflow: "hidden"
   }
 })
