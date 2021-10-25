@@ -1,5 +1,5 @@
 import React from "react"
-import { Text } from "react-native"
+import { Text, Animated } from "react-native"
 import colors from "../../../constants/colors"
 
 export default function Base({
@@ -10,19 +10,21 @@ export default function Base({
   elevation,
   shadowColor,
   shadowRadius,
+  animated,
   style,
   ...rest
 }) {
   const fontFamily = "livvic-" + type
   const shadow = getTextElevation(elevation, shadowColor, shadowRadius)
+  const Component = Boolean(animated) ? Animated.Text : Text
 
   return (
-    <Text
+    <Component
       style={[{ fontFamily, color, fontSize: size, ...shadow }, style]}
       {...rest}
     >
       {children}
-    </Text>
+    </Component>
   )
 }
 

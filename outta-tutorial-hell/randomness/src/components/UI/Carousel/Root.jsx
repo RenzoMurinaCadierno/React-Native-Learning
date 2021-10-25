@@ -21,13 +21,13 @@ export default function Root({
   return (
     <View style={[_styles.container, containerStyle]} {...containerProps}>
       <ImageList images={images} onNextImageIndex={changeChipIndex} {...rest} />
-      <Chip index={currentIndex} length={images.length} {...chipProps} />
+      {Boolean(currentIndex) && (
+        <Chip index={currentIndex} length={images.length} {...chipProps} />
+      )}
     </View>
   )
 }
 
 Root.defaultProps = { containerProps: {}, chipProps: {} }
 
-const _styles = StyleSheet.create({
-  container: { position: "relative" }
-})
+const _styles = StyleSheet.create({ container: { position: "relative" } })

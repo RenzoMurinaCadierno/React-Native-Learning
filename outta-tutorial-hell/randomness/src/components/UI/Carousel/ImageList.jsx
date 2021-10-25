@@ -39,7 +39,7 @@ function ImageList({ images, onNextImageIndex, imageProps, ...rest }) {
   )
 }
 
-ImageList.defaultProps = { imageProps: {} }
+ImageList.defaultProps = { images: [], imageProps: {} }
 
 export default React.memo(ImageList)
 

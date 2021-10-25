@@ -7,6 +7,8 @@ export default function useLinearAnimatedValue({
   activeAnimation = animations.effects.default.IN,
   inactiveAnimation,
   startingValue = 0,
+  startDelay,
+  finishDelay,
   onActiveStart,
   onInactiveStart,
   onActiveFinish,
@@ -16,10 +18,10 @@ export default function useLinearAnimatedValue({
 
   useEffect(() => {
     if (active) {
-      activeAnimation(val).start(onActiveFinish)
+      activeAnimation(val, startDelay).start(onActiveFinish)
       onActiveStart?.()
     } else if (inactiveAnimation) {
-      inactiveAnimation(val).start(onInactiveFinish)
+      inactiveAnimation(val, finishDelay).start(onInactiveFinish)
       onInactiveStart?.()
     }
   }, [active])

@@ -3,11 +3,13 @@ import Spring from "./Animation/Spring"
 import Color from "./Animation/Color"
 import Hover from "./Animation/Spring"
 import TextBase from "./Text/Base"
-import TextWithTransition from "./Text/TextWithTransition"
+import TextWithShrinkTransition from "./Text/TextWithShrinkTransition"
+import TextWithScaleTransition from "./Text/TextWithScaleTransition"
 import ArrowBase from "./Arrow/Base"
 import ArrowMultipleWithPulsation from "./Arrow/MultipleWithPulsation"
 import ArrowMultipleWithShow from "./Arrow/MutipleWithShow"
 import CardRoot from "./Card/Root"
+import CardAnimatedRoot from "./Card/AnimatedRoot"
 import CardText, {
   Title as CardTitle,
   Subtitle as CardSubtitle
@@ -62,7 +64,8 @@ function ComposedText(props) {
   return <TextBase {...props} />
 }
 
-ComposedText.WithTransition = TextWithTransition
+ComposedText.WithShrinkTransition = TextWithShrinkTransition
+ComposedText.WithScaleTransition = TextWithScaleTransition
 
 function ComposedCard(props) {
   return <CardRoot {...props} />
@@ -76,6 +79,7 @@ function ComposedCardActions(props) {
   return <CardActions {...props} />
 }
 
+ComposedCard.WithAnimation = CardAnimatedRoot
 ComposedCard.Text = ComposedCardText
 ComposedCard.Actions = ComposedCardActions
 

@@ -247,6 +247,7 @@ function getProfileSectionItem(id, title, subtitle) {
  /*****************************************************************************/
 const projects = {
   html: {
+    id: uid(),
     icon: new ProjectsIcon(defaultIcons.html),
     items: [
       {
@@ -310,7 +311,64 @@ const projects = {
   css: {
     id: uid(),
     icon: new ProjectsIcon(defaultIcons.css),
-    items: []
+    items: [
+      {
+        id: uid(),
+        title: "React Fanmade Hooks",
+        subtitle: "Hooks for many needs made by React enthusiasts",
+        images: [
+          {
+            id: uid(),
+            uri: "https://www.gamerfocus.co/wp-content/uploads/2021/07/Eeve.jpg"
+          },
+          {
+            id: uid(),
+            uri: "https://imagenes.20minutos.es/files/image_656_370/uploads/imagenes/2019/09/02/1049582.jpg"
+          },
+          {
+            id: uid(),
+            uri: "https://cdn.alfabetajuega.com/wp-content/uploads/2020/10/eevee-780x405.jpg"
+          },
+          {
+            id: uid(),
+            uri: "https://pbs.twimg.com/media/DmEzcjdW0AE3omD.jpg"
+          }
+        ],
+        actions: [
+          { id: "share", iconName: "share-social", actionText: "Tap to share" },
+          {
+            id: "example",
+            iconName: "code-slash",
+            actionText: "Tap to open example"
+          },
+          {
+            id: "github",
+            iconName: "logo-github",
+            actionText: "Tap to open repo"
+          }
+        ]
+      },
+      {
+        id: uid(),
+        title: "Yugi-Calculator-MAX",
+        subtitle: "Multi-purpose app to assist Yu-Gi-Oh! duelists.",
+        images: [
+          {
+            id: uid(),
+            uri: "https://www.gamerfocus.co/wp-content/uploads/2021/07/Eeve.jpg"
+          },
+          {
+            id: uid(),
+            uri: "https://imagenes.20minutos.es/files/image_656_370/uploads/imagenes/2019/09/02/1049582.jpg"
+          }
+        ],
+        actions: [
+          { id: "share", iconName: "share-social" },
+          { id: "example", iconName: "code-slash" },
+          { id: "github", iconName: "logo-github" }
+        ]
+      }
+    ]
   },
   js: {
     id: uid(),

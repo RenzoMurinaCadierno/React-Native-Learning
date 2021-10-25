@@ -39,7 +39,7 @@ export default function Content({
           {category}
         </UI.Text>
       </View>
-      <UI.Text.WithTransition
+      <UI.Text.WithShrinkTransition
         value={sectionListOffsetY / 85}
         size={fontScale * 0.95}
         type="regular-italic"
@@ -47,7 +47,7 @@ export default function Content({
         style={_styles.subtitle}
       >
         {subtitle}
-      </UI.Text.WithTransition>
+      </UI.Text.WithShrinkTransition>
     </Layout.Overlay>
   )
 }

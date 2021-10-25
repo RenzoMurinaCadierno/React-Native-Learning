@@ -26,8 +26,5 @@ export default function Root({ flexValue, fontScale, style }) {
 }
 
 const _styles = StyleSheet.create({
-  container: {
-    ...sharedStyles.borderElevation.RIGHT
-    // flex: 1
-  }
+  container: sharedStyles.borderElevation.RIGHT
 })

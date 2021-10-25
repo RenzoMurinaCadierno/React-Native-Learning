@@ -10,7 +10,10 @@ export const populateStore = (projectsDbData) => {
 
   Object.entries(projectsDbData).forEach(([techId, { icon, items }]) => {
     iconsInStoreStore.push(icon)
-    itemsInStoreStore[techId] = items
+    itemsInStoreStore[techId] = items.map((item) => ({
+      ...item,
+      section: techId
+    }))
   })
 
   return {

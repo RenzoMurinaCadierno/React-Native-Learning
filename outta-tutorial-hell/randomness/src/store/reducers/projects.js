@@ -24,7 +24,11 @@ export default function projectsReducer(state = initialState, action) {
       }
 
     case PROJECTS_CHANGE_ACTIVE_SECTION:
-      return { ...state, activeSectionId: action.payload.sectionId }
+      const isSameSection = action.payload.sectionId === state.activeSectionId
+      return {
+        ...state,
+        activeSectionId: isSameSection ? "" : action.payload.sectionId
+      }
 
     default:
       return state

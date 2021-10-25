@@ -1,9 +1,16 @@
 import React from "react"
 import UI from "@app-components/UI"
 
-export default function ProjectsCard({ title, subtitle, actions, images }) {
+export default function ProjectsCard({
+  active,
+  index,
+  title,
+  subtitle,
+  actions,
+  images
+}) {
   return (
-    <UI.Card>
+    <UI.Card.WithAnimation active={active} index={index}>
       <UI.Card.Text.Title>{title}</UI.Card.Text.Title>
       <UI.Card.Text.Subtitle>{subtitle}</UI.Card.Text.Subtitle>
       <UI.Carousel images={images} containerStyle={{ marginTop: 7 }} />
@@ -17,6 +24,8 @@ export default function ProjectsCard({ title, subtitle, actions, images }) {
           />
         ))}
       </UI.Card.Actions>
-    </UI.Card>
+    </UI.Card.WithAnimation>
   )
 }
+
+ProjectsCard.defaultProps = { index: 0, actions: [] }

@@ -26,7 +26,12 @@ export default function profileReducer(state = initialState, action) {
       }
 
     case PROFILE_CHANGE_ACTIVE_SUBSECTION:
-      return { ...state, activeSubSectionId: action.payload.subSectionId }
+      const isSameSubSection =
+        action.payload.subSectionId === state.activeSubSectionId
+      return {
+        ...state,
+        activeSubSectionId: isSameSubSection ? "" : action.payload.subSectionId
+      }
 
     default:
       return state

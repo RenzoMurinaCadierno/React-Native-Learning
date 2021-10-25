@@ -44,6 +44,8 @@ const effects = {
 }
 
 const animations = {
+  effects,
+  easings,
   arrows: {
     swipe: {
       IN: (value) => Animated.spring(value, animationConfigs.springFriction(1)),
@@ -166,10 +168,20 @@ const animations = {
         OUT: (value) =>
           Animated.timing(value, animationConfigs.timing(0, 350, easings.OUT))
       }
+    },
+    transition: {
+      IN: (value, delay) =>
+        Animated.timing(
+          value,
+          animationConfigs.timing(1, 200, easings.IN, delay)
+        ),
+      OUT: (value, delay) =>
+        Animated.timing(
+          value,
+          animationConfigs.timing(1, 200, easings.OUT, delay)
+        )
     }
-  },
-  effects,
-  easings
+  }
 }
 
 export default animations

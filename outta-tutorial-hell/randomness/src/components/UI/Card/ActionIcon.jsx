@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet } from "react-native"
 import { ActionsContext } from "./ActionsContainer"
 import IconWithScale from "../Icon/IconWithScale"
 import animations from "@app-constants/animations"
@@ -14,7 +14,7 @@ function ActionIcon({ id, size, actionText, onPress, ...rest }) {
     changeActiveIcon(id)
     onPress?.()
   }
-  change icon color on active, then activeicon to '' on profile, then contacts
+
   return (
     <>
       <IconWithScale
@@ -26,7 +26,7 @@ function ActionIcon({ id, size, actionText, onPress, ...rest }) {
         {...rest}
         active={activeIcon === id}
       />
-      {actionText && (
+      {typeof actionText === "string" && (
         <ActionText active={activeIcon === id}>{actionText}</ActionText>
       )}
     </>

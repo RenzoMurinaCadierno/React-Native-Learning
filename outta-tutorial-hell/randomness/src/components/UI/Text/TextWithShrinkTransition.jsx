@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from "react"
 import { Animated } from "react-native"
-import Enhanced from "@app-components/enhanced"
+import Base from "./Base"
 
-export default function TextWithTransition({
+export default function TextWithShrinkTransition({
   value,
   style,
   direction,
   size,
+  children,
   ...rest
 }) {
   const val = useRef(new Animated.Value(value)).current
@@ -16,7 +17,8 @@ export default function TextWithTransition({
   }, [value])
 
   return (
-    <Enhanced.Animated.BaseText
+    <Base
+      animated
       style={[
         {
           opacity: _interpolate(val, [1, 0]),
@@ -27,11 +29,13 @@ export default function TextWithTransition({
       ]}
       size={size}
       {...rest}
-    />
+    >
+      {children}
+    </Base>
   )
 }
 
-TextWithTransition.defaultProps = { size: 18 }
+TextWithShrinkTransition.defaultProps = { size: 18 }
 
 function _interpolate(val, outputRange) {
   return val.interpolate({
