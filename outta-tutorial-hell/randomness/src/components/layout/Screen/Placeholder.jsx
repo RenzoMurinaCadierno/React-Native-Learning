@@ -1,20 +1,63 @@
 import React from "react"
-import { StyleSheet } from "react-native"
+import { View, StyleSheet } from "react-native"
 import UI from "@app-components/UI"
+import useViewPortContext from "@app-hooks/useViewPortContext"
+import colors from "@app-constants/colors"
 
-export default function Placeholder({ show, children, style, ...rest }) {
+function PlaceholderText({ children, isTitle, style, ...rest }) {
+  const { vw } = useViewPortContext()
+
   return (
     <UI.Text.WithScaleTransition
-      show={show}
-      style={[_styles.container, style]}
+      type={isTitle ? "semi-bold-italic" : "regular"}
+      size={isTitle ? vw(5.5) : vw(4.5)}
+      color={colors.main[isTitle ? "PRIMARY" : "SECONDARY"]}
+      elevation={vw(1)}
+      shadowColor={colors.accent[isTitle ? "PRIMARY" : "SECONDARY"]}
+      style={[_styles.texts, style]}
+      useScaleTransitionArgs={{ inactiveScaleValue: 1.1 }}
       {...rest}
     >
       {children}
     </UI.Text.WithScaleTransition>
   )
 }
-go on with placeholder for when no icons are clicked. Then too many renders
-on projects images, then contacts
+
+export default function Placeholder({
+  show,
+  title,
+  subtitle,
+  style,
+  titleStyle,
+  subtitleStyle,
+  titleProps,
+  subtitleProps,
+  ...rest
+}) {
+  return (
+    <View style={[_styles.container, style]} {...rest}>
+      {title && (
+        <PlaceholderText isTitle show={show} style={titleStyle} {...titleProps}>
+          {title}
+        </PlaceholderText>
+      )}
+      {subtitle && (
+        <PlaceholderText show={show} style={subtitleStyle} {...subtitleProps}>
+          {subtitle}
+        </PlaceholderText>
+      )}
+    </View>
+  )
+}
+
 Placeholder.defaultProps = { show: true }
 
-const _styles = StyleSheet.create({ container: {} })
+const _styles = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  texts: { margin: "2%", textAlign: "center" }
+})

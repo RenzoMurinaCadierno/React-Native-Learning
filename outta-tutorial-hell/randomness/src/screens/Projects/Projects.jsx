@@ -14,7 +14,7 @@ export default function ProjectsScreen() {
     </Layout.Screen>
   )
 }
-
+start with contactsscreen
 const _styles = StyleSheet.create({
   container: {
     flex: 1,

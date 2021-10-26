@@ -3,8 +3,14 @@ import { FlatList } from "react-native"
 import CarouselImage from "./Image"
 import useLayout from "@app-hooks/useLayout"
 
-function ImageList({ images, onNextImageIndex, imageProps, ...rest }) {
-  const [layout, onLayoutChange] = useLayout()
+function ImageList({
+  images,
+  onNextImageIndex,
+  onLayout,
+  imageProps,
+  ...rest
+}) {
+  const [layout, onLayoutChange] = useLayout(onLayout)
 
   function renderItem({ item, index }) {
     return (

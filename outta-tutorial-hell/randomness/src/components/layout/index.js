@@ -1,21 +1,23 @@
 import React from "react"
 import Divider from "./Divider/Divider"
 import BaseOverlay from "./Overlay/Base"
-import PressableOverlay from "./Overlay/Pressable"
+import OverlayPressable from "./Overlay/Pressable"
 import Screen from "./Screen/Screen"
-import Separator from "./Screen/Separator"
+import ScreenSeparator from "./Screen/Separator"
+import ScreenPlaceholder from "./Screen/Placeholder"
 
 function ComposedScreen(props) {
   return <Screen {...props} />
 }
 
-ComposedScreen.Separator = Separator
+ComposedScreen.Separator = ScreenSeparator
+ComposedScreen.Placeholder = ScreenPlaceholder
 
 function ComposedOverlay(props) {
   return <BaseOverlay {...props} />
 }
 
-ComposedOverlay.Pressable = PressableOverlay
+ComposedOverlay.Pressable = OverlayPressable
 
 const Layout = { Divider, Overlay: ComposedOverlay, Screen: ComposedScreen }
 
