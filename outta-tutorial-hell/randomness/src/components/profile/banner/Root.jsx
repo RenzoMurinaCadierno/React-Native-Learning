@@ -5,7 +5,7 @@ import Header from "./Header"
 import Body from "./Body"
 import Layout from "@app-components/layout"
 import useSelectProfile from "@app-hooks/useSelectProfile"
-import { default as sharedStyles } from "@app-constants/styles"
+import sharedStyles from "@app-constants/styles"
 
 export default function Root({
   fontScale,

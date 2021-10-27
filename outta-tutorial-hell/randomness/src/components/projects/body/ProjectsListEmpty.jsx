@@ -10,5 +10,3 @@ export default function ProjectsListEmpty(props) {
     />
   )
 }
-
-ProjectsListEmpty.defaultProps = { titleProps: {}, subtitleProps: {} }

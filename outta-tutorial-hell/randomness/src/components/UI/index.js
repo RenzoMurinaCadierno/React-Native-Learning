@@ -8,6 +8,8 @@ import TextWithScaleTransition from "./Text/TextWithScaleTransition"
 import ArrowBase from "./Arrow/Base"
 import ArrowMultipleWithPulsation from "./Arrow/MultipleWithPulsation"
 import ArrowMultipleWithShow from "./Arrow/MutipleWithShow"
+import BulletRoot from "./Bullet/Root"
+import BulletIcon from "./Bullet/Icon"
 import CardRoot from "./Card/Root"
 import CardAnimatedRoot from "./Card/AnimatedRoot"
 import CardText, {
@@ -54,6 +56,12 @@ function ComposedArrow(props) {
 ComposedArrow.MultipleWithPulsation = ArrowMultipleWithPulsation
 ComposedArrow.MultipleWithShow = ArrowMultipleWithShow
 
+function ComposedBullet(props) {
+  return <BulletRoot {...props} />
+}
+
+ComposedBullet.Icon = BulletIcon
+
 function ComposedImage(props) {
   return <ImageBase {...props} />
 }
@@ -98,12 +106,13 @@ ComposedCarousel.Image = CarouselImage
 
 const UI = {
   Animation: { Spring, Color, Hover },
-  Text: ComposedText,
+  Arrow: ComposedArrow,
+  Bullet: ComposedBullet,
+  Card: ComposedCard,
+  Carousel: ComposedCarousel,
   Icon: ComposedIcon,
   Image: ComposedImage,
-  Arrow: ComposedArrow,
-  Card: ComposedCard,
-  Carousel: ComposedCarousel
+  Text: ComposedText
 }
 
 export default UI

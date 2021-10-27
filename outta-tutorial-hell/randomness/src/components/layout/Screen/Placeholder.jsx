@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native"
 import UI from "@app-components/UI"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import colors from "@app-constants/colors"
+import sharedStyles from "@app-constants/styles"
 
 function PlaceholderText({ children, isTitle, style, ...rest }) {
   const { vw } = useViewPortContext()
@@ -53,11 +54,6 @@ export default function Placeholder({
 Placeholder.defaultProps = { show: true }
 
 const _styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
+  container: sharedStyles.FLEX_CENTER,
   texts: { margin: "2%", textAlign: "center" }
 })

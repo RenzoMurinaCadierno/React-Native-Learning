@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native"
 import Header from "./Header"
 import Body from "./Body"
 import Layout from "@app-components/layout"
-import { default as sharedStyles } from "@app-constants/styles"
+import sharedStyles from "@app-constants/styles"
 import useSelectProfile from "@app-hooks/useSelectProfile"
 
 export default function Content({ fontScale, style }) {

@@ -1,58 +1,56 @@
 import React from "react"
 import { View, StyleSheet } from "react-native"
-import Aura from "./Aura"
 import Base from "./Base"
 import colors from "@app-constants/colors"
 
-export default function IconWithCircle({
+function IconWithCircle({
+  type,
   size,
   name,
   color,
-  aura = true,
   borderColor,
   backgroundColor,
   containerProps,
   containerStyle,
   ...rest
 }) {
-  const styles = _styles(size, borderColor, backgroundColor)
+  const styles = _styles(size, type, borderColor, backgroundColor)
 
   return (
-    <View
-      // android_ripple={{ radius: size * 0.9, borderless: true }}
-      style={[styles.container, containerStyle]}
-      {...containerProps}
-    >
-      {aura && <Aura radius={size * 0.9} />}
+    <View style={[styles.container, containerStyle]} {...containerProps}>
       <Base
         size={size}
         name={name}
-        color={color}
-        // style={StyleSheet.absoluteFill}
+        color={_getColor(type, color, "main", "PRIMARY")}
         {...rest}
       />
     </View>
   )
 }
 
-IconWithCircle.defaultProps = {
-  color: colors.main.SECONDARY,
-  borderColor: colors.main.SECONDARY,
-  backgroundColor: "white"
-  // containerProps: { onPress: () => {} }
-}
+IconWithCircle.defaultProps = { type: "primary", containerProps: {} }
 
-const _styles = (size, borderColor, backgroundColor) =>
+export default React.memo(IconWithCircle)
+
+const _styles = (size, type, borderColor, backgroundColor) =>
   StyleSheet.create({
     container: {
+      position: "relative",
       width: size * 1.75,
       height: size * 1.75,
       borderRadius: size,
       borderWidth: size * 0.1,
-      borderColor: borderColor,
-      backgroundColor: backgroundColor ?? colors.main.SECONDARY_ALPHA(0.1),
+      borderColor: _getColor(type, borderColor, "main", "PRIMARY"),
+      backgroundColor: _getColor(type, backgroundColor, "accent", "PRIMARY"),
       alignItems: "center",
-      justifyContent: "center",
-      position: "relative"
+      justifyContent: "center"
     }
   })
+
+function _getColor(type, colorProp, variantGroup, fallbackVariantType) {
+  return (
+    colors[variantGroup][type?.toUpperCase()] ??
+    colorProp ??
+    colors[variantGroup][fallbackVariantType]
+  )
+}

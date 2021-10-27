@@ -3,7 +3,7 @@ import { View, StyleSheet, SectionList } from "react-native"
 import BodyBullet from "./BodyBullet"
 import UI from "@app-components/UI"
 import colors from "@app-constants/colors"
-import { default as sharedStyles } from "@app-constants/styles"
+import sharedStyles from "@app-constants/styles"
 
 function BodyContent({
   bullets,

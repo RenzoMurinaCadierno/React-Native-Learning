@@ -1,11 +1,14 @@
 import React from "react"
-import { Text } from "react-native"
 import Layout from "@app-components/layout"
+import Contact from "@app-components/contact"
+import useViewPortContext from "@app-hooks/useViewPortContext"
 
-export default function ContactScreen(props) {
+export default function ContactScreen() {
+  const { vw } = useViewPortContext()
+
   return (
     <Layout.Screen>
-      <Text>asd</Text>
+      <Contact.Body fontScale={vw(7)} />
     </Layout.Screen>
   )
 }

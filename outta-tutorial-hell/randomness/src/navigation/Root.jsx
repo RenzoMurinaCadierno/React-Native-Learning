@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
 import ProfileScreen from "@app-screens/Profile/Profile"
 import ProjectsScreen from "@app-screens/Projects/Projects"
-// import ContactScreen from "@app-screens/Projects/Projects"
+import ContactScreen from "@app-screens/Contact/Contact"
 import { ViewPortContextProvider } from "@app-context/viewPort"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import colors from "@app-constants/colors"
@@ -24,33 +24,34 @@ const TabNavigation = createMaterialTopTabNavigator()
 
 const TabNavigator = () => {
   const { vw } = useViewPortContext()
+  const iconSize = vw(6)
 
   return (
     <TabNavigation.Navigator
       style={{ paddingTop: StatusBar.currentHeight }}
-      screenOptions={getTabBarScreenOptions(vw)}
-      initialRouteName="Projects"
+      screenOptions={getTabBarScreenOptions(vw(4.5))}
+      initialRouteName="Contact"
     >
       <TabNavigation.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{ tabBarIcon: getTabBarIcon("person", vw(6)) }}
+        options={{ tabBarIcon: getTabBarIcon("person", iconSize) }}
       />
       <TabNavigation.Screen
         name="Projects"
         component={ProjectsScreen}
-        options={{ tabBarIcon: getTabBarIcon("briefcase", vw(6)) }}
+        options={{ tabBarIcon: getTabBarIcon("briefcase", iconSize) }}
       />
-      {/*<TabNavigation.Screen
+      <TabNavigation.Screen
         name="Contact"
         component={ContactScreen}
-        options={{ tabBarIcon: getTabBarIcon("mail", vw(6)) }}
-      /> */}
+        options={{ tabBarIcon: getTabBarIcon("mail", iconSize) }}
+      />
     </TabNavigation.Navigator>
   )
 }
 
-function getTabBarScreenOptions(vw) {
+function getTabBarScreenOptions(labelFontSize) {
   return {
     tabBarActiveTintColor: colors.main.PRIMARY,
     // tabBarInactiveTintColor: colors.SECONDARY,
@@ -61,7 +62,7 @@ function getTabBarScreenOptions(vw) {
     },
     tabBarLabelStyle: {
       fontFamily: "livvic-semi-bold",
-      fontSize: vw(4.5)
+      fontSize: labelFontSize
     },
     tabBarItemStyle: { flexDirection: "row" },
     swipeEnabled: false

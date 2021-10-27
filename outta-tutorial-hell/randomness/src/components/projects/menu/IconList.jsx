@@ -2,15 +2,18 @@ import React from "react"
 import { FlatList, StyleSheet } from "react-native"
 import { useSelector } from "react-redux"
 import UI from "@app-components/UI"
+import useViewPortContext from "@app-hooks/useViewPortContext"
 import animations from "@app-constants/animations"
+import sharedStyles from "@app-constants/styles"
 
 const colorProps = {
   activeAnimation: animations.icons.color.IN,
   inactiveAnimation: animations.icons.color.OUT
 }
 
-function IconList({ fontScale, onIconPress, ...rest }) {
+function IconList({ onIconPress, ...rest }) {
   const { icons, activeSectionId } = useSelector((state) => state.projects)
+  const { vw } = useViewPortContext()
 
   const renderItem = ({ item }) => (
     <UI.Icon.WithSpring
@@ -18,7 +21,7 @@ function IconList({ fontScale, onIconPress, ...rest }) {
       name={item.name}
       activeColor={item.activeColor}
       inactiveColor={item.inactiveColor}
-      size={fontScale}
+      size={item.size ?? vw(9.5)}
       style={_styles.icon}
       onPress={() => onIconPress(item.id)}
       colorProps={colorProps}
@@ -40,10 +43,6 @@ export default React.memo(IconList)
 
 const _styles = StyleSheet.create({
   container: { width: "100%", flex: 1 },
-  contentContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
+  contentContainer: sharedStyles.FLEX_CENTER,
   icon: { marginVertical: "15%" }
 })
