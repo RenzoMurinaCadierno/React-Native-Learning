@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react"
-import { Animated } from "react-native"
+import React from "react"
 import Base from "./Base"
+import useSetAnimatedValue from "@app-hooks/useSetAnimatedValue"
+import { interpolate } from "@app-utils/functions"
 
 export default function TextWithShrinkTransition({
   value,
@@ -10,20 +11,16 @@ export default function TextWithShrinkTransition({
   children,
   ...rest
 }) {
-  const val = useRef(new Animated.Value(value)).current
-
-  useEffect(() => {
-    val.setValue(value)
-  }, [value])
+  const val = useSetAnimatedValue(value)
 
   return (
     <Base
       animated
       style={[
         {
-          opacity: _interpolate(val, [1, 0]),
-          height: _interpolate(val, [size * 3, 0]),
-          transform: [{ scaleY: _interpolate(val, [1, 0]) }]
+          opacity: interpolate(val, [1, 0], "clamp"),
+          height: interpolate(val, [size * 3, 0], "clamp"),
+          transform: [{ scaleY: interpolate(val, [1, 0], "clamp") }]
         },
         style
       ]}
@@ -36,11 +33,3 @@ export default function TextWithShrinkTransition({
 }
 
 TextWithShrinkTransition.defaultProps = { size: 18 }
-
-function _interpolate(val, outputRange) {
-  return val.interpolate({
-    inputRange: [0, 1],
-    outputRange,
-    extrapolate: "clamp"
-  })
-}

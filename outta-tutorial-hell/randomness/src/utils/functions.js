@@ -22,8 +22,8 @@ export function interpolate(value, outputRange) {
   return value.interpolate({ inputRange: [0, 1], outputRange })
 }
 
-export function interpolate012(value, outputRange) {
-  return value.interpolate({ inputRange: [0, 1, 2], outputRange })
+export function interpolate012(value, outputRange, extrapolate) {
+  return value.interpolate({ inputRange: [0, 1, 2], outputRange, extrapolate })
 }
 
 export const animationConfigs = {

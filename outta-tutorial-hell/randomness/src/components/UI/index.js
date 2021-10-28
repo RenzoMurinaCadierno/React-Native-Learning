@@ -1,7 +1,9 @@
 import React from "react"
 import Spring from "./Animation/Spring"
 import Color from "./Animation/Color"
-import Hover from "./Animation/Spring"
+import Hover from "./Animation/Hover"
+import Scale from "./Animation/Scale"
+import Translate2D from "./Animation/Translate2D"
 import TextBase from "./Text/Base"
 import TextWithShrinkTransition from "./Text/TextWithShrinkTransition"
 import TextWithScaleTransition from "./Text/TextWithScaleTransition"
@@ -105,7 +107,7 @@ ComposedCarousel.ImageList = CarouselImageList
 ComposedCarousel.Image = CarouselImage
 
 const UI = {
-  Animation: { Spring, Color, Hover },
+  Animation: { Spring, Color, Hover, Scale, Translate2D },
   Arrow: ComposedArrow,
   Bullet: ComposedBullet,
   Card: ComposedCard,

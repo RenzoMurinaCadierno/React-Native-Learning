@@ -19,6 +19,7 @@ export default function Scale({
     activeAnimation,
     inactiveAnimation
   })
+
   return (
     <Animated.View
       style={[
