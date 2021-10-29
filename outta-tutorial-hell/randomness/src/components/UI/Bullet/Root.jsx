@@ -34,7 +34,8 @@ const _styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     position: "relative",
-    alignSelf: "stretch"
+    alignSelf: "stretch",
+    height: 500
     // alignItems: "center",
     // justifyContent: "center"
   }

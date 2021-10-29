@@ -1,5 +1,5 @@
 import React from "react"
-import { View, StyleSheet } from "react-native"
+import { Animated, View, StyleSheet } from "react-native"
 import Base from "./Base"
 import colors from "@app-constants/colors"
 
@@ -8,6 +8,7 @@ function IconWithCircle({
   size,
   name,
   color,
+  enableAnimation,
   borderColor,
   backgroundColor,
   containerProps,
@@ -15,16 +16,17 @@ function IconWithCircle({
   ...rest
 }) {
   const styles = _styles(size, type, borderColor, backgroundColor)
+  const Component = enableAnimation ? Animated.View : View
 
   return (
-    <View style={[styles.container, containerStyle]} {...containerProps}>
+    <Component style={[styles.container, containerStyle]} {...containerProps}>
       <Base
         size={size}
         name={name}
         color={_getColor(type, color, "main", "PRIMARY")}
         {...rest}
       />
-    </View>
+    </Component>
   )
 }
 

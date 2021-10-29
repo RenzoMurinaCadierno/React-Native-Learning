@@ -1,94 +1,85 @@
-import React, { useState, useCallback, useRef } from "react"
+import { useRef } from "react"
 import { Animated, PanResponder } from "react-native"
-import { interpolate } from "@app-utils/functions"
-import useSetAnimatedValue from "@app-hooks/useSetAnimatedValue"
 import useLayout from "@app-hooks/useLayout"
 
-export default function Translate2D({
-  axis, // 'x', 'y'
-  style,
-  children,
-  ranges,
-  onTouchMove,
-  translateOutputRange,
-  ...rest
-}) {
-  // const [panOffset, setPanOffset] = useState(0)
-  // const [layout, onLayoutChange] = useLayout()
-  // const animVal = useSetAnimatedValue(panOffset)
-
-  // const setOffset = useCallback(
-  //   (e) => {
-
-  //   },
-  //   [layout]
-  // )
-
+export default function Translate2D({ axis, ranges, children }) {
+  const [childLayout, onChildLayout] = useLayout()
   const pan = useRef(new Animated.ValueXY()).current
 
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onPanResponderGrant: (e, gestureState) => {
-        // pan.setOffset(pan.__getValue())
-        // pan.setValue({ x: 0, y: 0 })
-        let x = pan.x._value < 0 ? 0 : pan.x._value
-
-        pan.setOffset({ x, y: 0 })
+      // onPanResponderGrant: (e, gestureState) => {
+      onPanResponderGrant: () => {
+        pan.setOffset(pan.__getValue())
         pan.setValue({ x: 0, y: 0 })
       },
-      onPanResponderMove: Animated.event([null, { dx: pan.x }], {
+      onPanResponderMove: Animated.event([null, _getMoveDistance(axis, pan)], {
         useNativeDriver: false
-        // listener: (e, g) => console.log(g)
       }),
       onPanResponderRelease: (_, { vx, vy }) => {
         pan.flattenOffset()
         Animated.decay(pan, {
           velocity: { x: vx, y: vy },
+          deceleration: 0.99,
           useNativeDriver: true
-          // }).start(pan._resetState)
         }).start()
       }
     })
   ).current
-
-  return (
-    <Animated.View
-      {...panResponder.panHandlers}
-      style={[
-        style,
-        // pan.getLayout()
-        {
-          transform: [
-            // {
-            //   ["translate" + axis.toUpperCase()]: interpolate(
-            //     val,
-            //     translateOutputRange
-            //   )
-            // },
-            // { ["translate" + axis.toUpperCase()]: pan.x }
-            {
-              ["translate" + axis.toUpperCase()]: pan.x.interpolate({
-                inputRange: [0, ranges.x],
-                outputRange: [0, ranges.x - 72],
-                extrapolate: "clamp"
-              })
-              uselayout instead of 72. make it work for axis x and y
-            }
-          ]
-        }
-      ]}
-      // onLayout={onLayoutChange}
-      // onTouchMove={setOffset}
-      {...rest}
-    >
-      {children}
-    </Animated.View>
-  )
+  pass values to children. Start with contacts screen division
+  return children({
+    transformStyle: _getTransformStyle(axis, ranges, pan, childLayout),
+    panHandlers: { ...panResponder.panHandlers, onLayout: onChildLayout }
+  })
 }
 
-Translate2D.defaultProps = {
-  axis: "x",
-  axisOffset: 0,
-  translateOutputRange: [-100, 100]
+function _getValidAxis(axis) {
+  if (typeof axis !== "string") return null
+
+  const axisLower = axis.toLowerCase()
+
+  return axisLower === "x" || axisLower === "y" ? axisLower : null
+}
+
+function _getMoveDistance(axis, pan) {
+  const _axis = _getValidAxis(axis)
+
+  return _axis ? { ["d" + _axis]: pan[_axis] } : { dx: pan.x, dy: pan.y }
+}
+
+function _getTransformStyle(axis, ranges, pan, childLayout) {
+  const _axis = _getValidAxis(axis)
+
+  if (!_axis) {
+    return {
+      transform: [
+        { translateX: _getInterpolation(pan, "x", ranges, childLayout) },
+        { translateY: _getInterpolation(pan, "y", ranges, childLayout) }
+      ]
+    }
+  }
+
+  return {
+    transform: [
+      {
+        ["translate" + _axis.toUpperCase()]: _getInterpolation(
+          pan,
+          _axis,
+          ranges,
+          childLayout
+        )
+      }
+    ]
+  }
+}
+
+function _getInterpolation(pan, axis, ranges, childLayout) {
+  const targetChildDimension = axis === "x" ? "width" : "height"
+
+  return pan[axis].interpolate({
+    inputRange: [0, ranges[axis]],
+    outputRange: [0, ranges[axis] - childLayout[targetChildDimension]],
+    extrapolate: "clamp"
+  })
 }

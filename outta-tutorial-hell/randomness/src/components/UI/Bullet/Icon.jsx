@@ -4,10 +4,15 @@ import IconWithCircle from "../Icon/IconWithCircle"
 
 export default function Icon({ layout, containerStyle, ...rest }) {
   return (
-    <Translate2D axis="x" ranges={{ x: layout.width, y: layout.height }}>
-      <IconWithCircle {...rest} />
+    <Translate2D axis="xy" ranges={{ x: layout.width, y: layout.height }}>
+      {({ transformStyle, panHandlers }) => (
+        <IconWithCircle
+          {...rest}
+          enableAnimation
+          containerProps={panHandlers}
+          containerStyle={transformStyle}
+        />
+      )}
     </Translate2D>
   )
 }
-
-Icon.defaultProps = { size: 40, type: "primary" }
