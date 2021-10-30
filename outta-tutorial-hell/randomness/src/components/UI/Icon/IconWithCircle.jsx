@@ -32,7 +32,7 @@ function IconWithCircle({
 
 IconWithCircle.defaultProps = { type: "primary", containerProps: {} }
 
-export default React.memo(IconWithCircle)
+export default IconWithCircle
 
 const _styles = (size, type, borderColor, backgroundColor) =>
   StyleSheet.create({

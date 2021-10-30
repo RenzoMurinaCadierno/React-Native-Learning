@@ -8,7 +8,7 @@ export default async function initDb(forceCrash) {
       forceCrash
         ? reject({ ok: false })
         : resolve({ ok: true, data: JSON.stringify({ profile, projects }) })
-    }, 1000)
+    }, 100)
   })
 }
 

@@ -1,5 +1,34 @@
 import { Easing } from "react-native"
 
+export function isPlainObject(value) {
+  return (
+    value &&
+    value instanceof Object &&
+    !Array.isArray(value) &&
+    typeof value !== "function"
+  )
+}
+
+export function objectHasAllProperties(object, ...propertyNames) {
+  if (!isPlainObject(object)) return false
+
+  for (propName of propertyNames) {
+    if (!object.hasOwnProperty(propName)) return false
+  }
+
+  return true
+}
+
+export function objectHasSomeProperties(object, ...propertyNames) {
+  if (!isPlainObject(object)) return false
+
+  for (propName of propertyNames) {
+    if (object.hasOwnProperty(propName)) return true
+  }
+
+  return false
+}
+
 export function castRgbToRgba(rgbString, alphaValue = 1, warnInConsole) {
   const isMatch = /rgb\((\d{1,3},\s){2}\d{1,3}\)/g.test(rgbString)
   const isValidAlpha =

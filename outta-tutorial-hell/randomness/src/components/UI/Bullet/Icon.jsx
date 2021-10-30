@@ -1,18 +1,35 @@
 import React from "react"
-import Translate2D from "../Animation/Translate2D"
 import IconWithCircle from "../Icon/IconWithCircle"
+import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
 
-export default function Icon({ layout, containerStyle, ...rest }) {
+export default function Icon({
+  transformStyle,
+  panHandlers,
+  onChildLayout,
+  ready,
+  containerStyle,
+  iconContainerStyle,
+  iconContainerProps,
+  ...rest
+}) {
+  const val = useLinearAnimatedValue({ active: ready })
+
   return (
-    <Translate2D axis="xy" ranges={{ x: layout.width, y: layout.height }}>
-      {({ transformStyle, panHandlers }) => (
-        <IconWithCircle
-          {...rest}
-          enableAnimation
-          containerProps={panHandlers}
-          containerStyle={transformStyle}
-        />
-      )}
-    </Translate2D>
+    <IconWithCircle
+      {...rest}
+      containerStyle={{
+        ...iconContainerStyle,
+        ...transformStyle,
+        opacity: val
+      }}
+      containerProps={{
+        ...iconContainerProps,
+        ...panHandlers,
+        onLayout: onChildLayout
+      }}
+      enableAnimation
+    />
   )
 }
+
+Icon.defaultProps = { name: "checkmark", type: "primary" }

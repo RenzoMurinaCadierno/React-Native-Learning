@@ -11,7 +11,9 @@ import ArrowBase from "./Arrow/Base"
 import ArrowMultipleWithPulsation from "./Arrow/MultipleWithPulsation"
 import ArrowMultipleWithShow from "./Arrow/MutipleWithShow"
 import BulletRoot from "./Bullet/Root"
+import BulletIconContainer from "./Bullet/IconContainer"
 import BulletIcon from "./Bullet/Icon"
+import BulletItemsContainer from "./Bullet/ItemsContainer"
 import CardRoot from "./Card/Root"
 import CardAnimatedRoot from "./Card/AnimatedRoot"
 import CardText, {
@@ -62,7 +64,9 @@ function ComposedBullet(props) {
   return <BulletRoot {...props} />
 }
 
+ComposedBullet.IconContainer = BulletIconContainer
 ComposedBullet.Icon = BulletIcon
+ComposedBullet.ItemsContainer = BulletItemsContainer
 
 function ComposedImage(props) {
   return <ImageBase {...props} />
@@ -107,7 +111,7 @@ ComposedCarousel.ImageList = CarouselImageList
 ComposedCarousel.Image = CarouselImage
 
 const UI = {
-  Animation: { Spring, Color, Hover, Scale, Translate2D },
+  Animation: { Spring, Color, Hover, Scale, Pan: { Translate2D } },
   Arrow: ComposedArrow,
   Bullet: ComposedBullet,
   Card: ComposedCard,
