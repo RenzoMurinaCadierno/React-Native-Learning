@@ -14,7 +14,7 @@ export default function PressableOverlay({
 }) {
   return (
     <Pressable
-      style={{ width: "100%" }}
+      style={_styles.container}
       {...{ onPress, onPressIn, onPressOut, onLongPress }}
       {...pressableProps}
     >
@@ -27,4 +27,4 @@ PressableOverlay.defaultProps = {
   pressableProps: { android_ripple: { color: colors.background.DARK } }
 }
 
-const _styles = StyleSheet.create({})
+const _styles = StyleSheet.create({ container: { width: "100%" } })

@@ -13,7 +13,8 @@ export default function useImageTransition({
 
   const animatedValue = useLinearAnimatedValue({
     active: !loading,
-    activeAnimation: transitionAnimation
+    activeAnimation: transitionAnimation,
+    animateWhenActiveOnly: true
   })
 
   const onLoad = () => setLoading(false)

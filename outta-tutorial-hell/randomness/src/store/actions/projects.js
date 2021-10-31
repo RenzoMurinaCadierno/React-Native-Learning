@@ -5,12 +5,12 @@ import {
 import { status, messages, screens } from "../data/global"
 
 export const populateStore = (projectsDbData) => {
-  let iconsInStoreStore = []
-  const itemsInStoreStore = {}
+  let iconsInStore = []
+  const itemsInStore = {}
 
   Object.entries(projectsDbData).forEach(([techId, { icon, items }]) => {
-    iconsInStoreStore.push(icon)
-    itemsInStoreStore[techId] = items.map((item) => ({
+    iconsInStore.push(icon)
+    itemsInStore[techId] = items.map((item) => ({
       ...item,
       section: techId
     }))
@@ -21,8 +21,8 @@ export const populateStore = (projectsDbData) => {
     payload: {
       status: status[status.CICLE_FINISH],
       message: messages[status.CICLE_FINISH](screens.PROJECTS),
-      icons: iconsInStoreStore,
-      items: itemsInStoreStore
+      icons: iconsInStore,
+      items: itemsInStore
     }
   }
 }

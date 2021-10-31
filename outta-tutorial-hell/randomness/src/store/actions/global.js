@@ -6,6 +6,7 @@ import {
 import { status, messages, screens } from "../data/global"
 import * as profileActions from "../actions/profile"
 import * as projectsActions from "../actions/projects"
+import * as contactActions from "../actions/contact"
 import initDb from "../data/mockDb"
 
 export const initializeDatabase = () => async (dispatch) => {
@@ -34,6 +35,7 @@ export const initializeDatabase = () => async (dispatch) => {
     })
     dispatch(profileActions.populateStore(data.profile))
     dispatch(projectsActions.populateStore(data.projects))
+    dispatch(contactActions.populateStore(data.contact))
   } catch (err) {
     console.log(err)
 

@@ -5,7 +5,8 @@ import animations from "@app-constants/animations"
 export default function useLinearAnimatedValue({
   active,
   activeAnimation = animations.effects.default.IN,
-  inactiveAnimation,
+  inactiveAnimation = animations.effects.default.OUT,
+  animateWhenActiveOnly,
   startingValue = 0,
   startDelay,
   finishDelay,
@@ -20,7 +21,7 @@ export default function useLinearAnimatedValue({
     if (active) {
       activeAnimation(val, startDelay).start(onActiveFinish)
       onActiveStart?.()
-    } else if (inactiveAnimation) {
+    } else if (inactiveAnimation && !Boolean(animateWhenActiveOnly)) {
       inactiveAnimation(val, finishDelay).start(onInactiveFinish)
       onInactiveStart?.()
     }

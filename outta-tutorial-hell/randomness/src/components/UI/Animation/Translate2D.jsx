@@ -78,7 +78,9 @@ function _getMoveDistance(axis, pan) {
 }
 
 function _getTransformStyle(axis, ranges, pan, childLayout) {
-  if (!Boolean(childLayout.width)) return { transform: [{ scale: 0 }] }
+  if (!Boolean(childLayout.width)) {
+    return { position: "absolute", transform: [{ scale: 0 }] }
+  }
 
   const _axis = _getValidAxis(axis)
 

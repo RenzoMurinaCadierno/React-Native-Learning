@@ -1,5 +1,6 @@
 import { SectionItem, ProfileIcon } from "@app-models/profile"
 import { ProjectsIcon } from "@app-models/projects"
+import { ContactIcon } from "@app-models/contact"
 import { uid } from "@app-utils/functions"
 
 export default async function initDb(forceCrash) {
@@ -7,7 +8,10 @@ export default async function initDb(forceCrash) {
     setTimeout(() => {
       forceCrash
         ? reject({ ok: false })
-        : resolve({ ok: true, data: JSON.stringify({ profile, projects }) })
+        : resolve({
+            ok: true,
+            data: JSON.stringify({ profile, projects, contact })
+          })
     }, 100)
   })
 }
@@ -36,6 +40,12 @@ const defaultIcons = {
     id: "react-native",
     name: "logo-react",
     activeColor: "rgb(97, 219, 251)"
+  },
+  email: { id: "email", name: "mail", activeColor: "rgb(187, 0, 27)" },
+  linkedin: {
+    id: "linkedin",
+    name: "linkedin",
+    activeColor: "rgb(0, 119, 181)"
   }
 }
 
@@ -399,5 +409,31 @@ const projects = {
     id: uid(),
     icon: new ProjectsIcon(defaultIcons["react-native"]),
     items: []
+  }
+}
+
+/*******************************************************************************
+ * CONTACT
+ /*****************************************************************************/
+const contact = {
+  bullets: {
+    email: {
+      id: uid(),
+      icon: new ContactIcon(defaultIcons.email),
+      title: "Email",
+      description: "nmcadierno@gmail.com"
+    },
+    github: {
+      id: uid(),
+      icon: new ContactIcon(defaultIcons.github),
+      title: "Github",
+      description: "github.com/renzomurinacadierno"
+    },
+    linkedin: {
+      id: uid(),
+      icon: new ContactIcon(defaultIcons.linkedin),
+      title: "Linkedin",
+      description: "linkedin.com/in/renzomurinacadierno"
+    }
   }
 }

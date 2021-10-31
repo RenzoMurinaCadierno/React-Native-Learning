@@ -14,6 +14,7 @@ import BulletRoot from "./Bullet/Root"
 import BulletIconContainer from "./Bullet/IconContainer"
 import BulletIcon from "./Bullet/Icon"
 import BulletItemsContainer from "./Bullet/ItemsContainer"
+import BulletItem from "./Bullet/Item"
 import CardRoot from "./Card/Root"
 import CardAnimatedRoot from "./Card/AnimatedRoot"
 import CardText, {
@@ -67,6 +68,7 @@ function ComposedBullet(props) {
 ComposedBullet.IconContainer = BulletIconContainer
 ComposedBullet.Icon = BulletIcon
 ComposedBullet.ItemsContainer = BulletItemsContainer
+ComposedBullet.Item = BulletItem
 
 function ComposedImage(props) {
   return <ImageBase {...props} />

@@ -13,7 +13,7 @@ export default function SectionListHeader({
     <Layout.Overlay {...overlayProps}>
       <UI.Text
         color={colors.main.SECONDARY}
-        type="bold"
+        type="semi-bold"
         size={fontScale}
         elevation={fontScale / 7}
         shadowRadius={fontScale / 2}

@@ -1,11 +1,14 @@
-import { LinearGradient } from "expo-linear-gradient"
 import React from "react"
 import { StyleSheet } from "react-native"
+import { LinearGradient } from "expo-linear-gradient"
+import Enhanced from "@app-components/enhanced"
 import colors from "@app-constants/colors"
 
-export default function Base({ children, style, colors, ...rest }) {
+export default function Base({ animated, children, style, colors, ...rest }) {
+  const Component = animated ? Enhanced.Animated.LinearGradient : LinearGradient
+
   return (
-    <LinearGradient
+    <Component
       colors={colors}
       style={[_styles.container, style]}
       start={{ x: 0, y: 0.5 }}
@@ -14,7 +17,7 @@ export default function Base({ children, style, colors, ...rest }) {
       {...rest}
     >
       {children}
-    </LinearGradient>
+    </Component>
   )
 }
 

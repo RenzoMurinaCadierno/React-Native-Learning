@@ -12,11 +12,13 @@ export default function Initialize() {
   const globalStoreMessage = useSelector((state) => state.global.message)
   const dispatch = useDispatch()
 
-  const initializeDatabase = () => {
-    dispatch(globalActions.initializeDatabase())
-  }
+  useEffect(() => {
+    const initializeDatabase = async () => {
+      await dispatch(globalActions.initializeDatabase())
+    }
 
-  useEffect(initializeDatabase, [])
+    initializeDatabase()
+  }, [])
 
   if (_storeIsLoading(globalStoreStatus)) {
     return (

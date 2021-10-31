@@ -9,7 +9,8 @@ export const status = {
 export const screens = {
   GLOBAL: "GLOBAL",
   PROFILE: "PROFILE",
-  PROJECTS: "PROJECTS"
+  PROJECTS: "PROJECTS",
+  CONTACT: "CONTACT"
 }
 
 export const messages = {
