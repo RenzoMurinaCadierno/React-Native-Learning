@@ -9,6 +9,7 @@ export default function ItemsContainer({
   coords,
   onIconMove,
   onItemLayout,
+  a,
   ...rest
 }) {
   const bulletItems = useSelector((state) => state.contact.bulletItems)
@@ -16,7 +17,16 @@ export default function ItemsContainer({
   return (
     <View style={[_styles.container, style]} {...rest}>
       <Text style={{ position: "absolute", bottom: 0 }}>
-        {coords.x.toFixed(2)} - {coords.y.toFixed(2)}
+        icon {coords.y.toFixed(2)}
+      </Text>
+      <Text style={{ position: "absolute", bottom: 20 }}>
+        email {a?.email?.[0]?.toFixed(2)} - {a?.email?.[1]?.toFixed(2)}
+      </Text>
+      <Text style={{ position: "absolute", bottom: 40 }}>
+        github {a?.github?.[0]?.toFixed(2)} - {a?.github?.[1]?.toFixed(2)}
+      </Text>
+      <Text style={{ position: "absolute", bottom: 60 }}>
+        in {a?.linkedin?.[0]?.toFixed(2)} - {a?.linkedin?.[1]?.toFixed(2)}
       </Text>
       {bulletItems.map((bullet) => (
         <Item
