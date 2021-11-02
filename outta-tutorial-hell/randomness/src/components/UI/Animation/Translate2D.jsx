@@ -23,6 +23,7 @@ export default function Translate2D({
   return children({
     transformStyle: _getTransformStyle(axis, ranges, pan, childLayout),
     panHandlers: panResponder.panHandlers,
+    childLayout,
     onChildLayout,
     ready: Boolean(childLayout.width)
   })

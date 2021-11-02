@@ -1,11 +1,10 @@
-import React, { useCallback, useRef, useState } from "react"
-import { StyleSheet, View, Text, Dimensions } from "react-native"
+import React, { useCallback, useRef, useState, useEffect } from "react"
+import { StyleSheet, View } from "react-native"
 import IconContainer from "./IconContainer"
 import ItemsContainer from "./ItemsContainer"
 import useLayout from "@app-hooks/useLayout"
 import useViewPort from "@app-hooks/useViewPort"
-
-const windowHeight = Dimensions.get("window").height
+import { reverseObject } from "@app-utils/functions"
 
 export default function Root({
   size,
@@ -14,64 +13,78 @@ export default function Root({
   items,
   ...rest
 }) {
-  const [layout, onLayoutChange] = useLayout()
-  const { vw, vh } = useViewPort()
-  const [coords, setCoords] = useState({ x: 0, y: 0 })
+  const [containerLayout, onContainerLayoutChange] = useLayout()
+  const viewPort = useViewPort()
+  const [iconCoordY, setIconCoordY] = useState(0)
+  const [iconHeight, setIconHeight] = useState(0)
+  const [activeItemName, setActiveItemName] = useState("")
   const itemsVerticalSpans = useRef({})
   const [a, setA] = useState({})
 
+  const onChildReady = useCallback((height) => setIconHeight(height), [])
+
   const onIconMove = useCallback(
     ({ nativeEvent: { pageY, locationY } }, { moveY, ...rest }) => {
-      setCoords({ y: moveY })
-      // const tabHeight = windowHeight - layout.height
-      // console.log(pageY - tabHeight, tabHeight)
-      console.log(windowHeight - pageY)
-      // console.log(
-      //   _.nativeEvent.pageY,
-      //   _.nativeEvent.locationY,
-      //   _.nativeEvent.pageY - _.nativeEvent.locationY
-      // )
+      // setIconCoordY(moveY)
+      setIconCoordY(moveY)
+      _setActiveItemName(moveY, itemsVerticalSpans.current, setActiveItemName)
     },
-    [layout]
+    []
+  )
+  // console.log(activeItemName)
+  const onItemLayout = useCallback(
+    (itemName, itemDims) => {
+      const itemTop = viewPort.height - itemDims.y
+      itemsVerticalSpans.current[itemName] = [
+        itemTop,
+        itemTop + itemDims.height
+      ]
+      setA((a) => ({ ...a, [itemName]: [itemTop, itemTop + itemDims.height] }))
+    },
+    [iconHeight]
   )
 
-  const onItemLayout = useCallback(
-    (itemName, { y, height }) => {
-      itemsVerticalSpans.current[itemName] = [y, y + height]
-      // setA((a) => ({ ...a, [itemName]: [y, y + height] }))
-      setA((a) => ({
-        ...a,
-        [itemName]: [
-          windowHeight - layout.height - y,
-          windowHeight - layout.height - y + height
-        ]
-      }))
-      // +0, +1.5
-    },
-    [layout]
-  )
+  useEffect(() => {
+    if (iconHeight !== 0) {
+      _arrangeAndDisplaceItemsSpans(itemsVerticalSpans.current, iconHeight)
+      setA((a) =>
+        Object.entries(a).reduce(
+          (acc, [itemName, itemMeasures]) => ({
+            ...acc,
+            [itemName]: [
+              itemMeasures[0] - iconHeight,
+              itemMeasures[1] - iconHeight
+            ]
+          }),
+          {}
+        )
+      )
+    }
+  }, [iconHeight])
 
   return (
     <View
       style={[_styles.container, containerStyle]}
-      onLayout={onLayoutChange}
+      onLayout={onContainerLayoutChange}
       {...containerProps}
     >
       <ItemsContainer
-        coords={coords}
+        coords={iconCoordY}
+        activeItemName={activeItemName}
         a={a}
         fontScale={size}
         onItemLayout={onItemLayout}
       />
-      {Boolean(layout.width) && (
+      {Boolean(containerLayout.width) && (
         <IconContainer
           size={size * 1.5}
           startingAnchor={{
-            x: layout.width - vw(4),
-            y: layout.height - vh(1.5)
+            x: containerLayout.width - viewPort.vw(4),
+            y: containerLayout.height - viewPort.vh(1.5)
           }}
-          ranges={{ x: layout.width, y: layout.height }}
+          ranges={{ x: containerLayout.width, y: containerLayout.height }}
           onPanResponderMove={onIconMove}
+          onChildReady={onChildReady}
           {...rest}
         />
       )}
@@ -84,9 +97,41 @@ export default function Root({
 Root.defaultProps = { size: 28, items: {}, containerProps: {} }
 
 const _styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: "relative",
-    alignSelf: "stretch"
-  }
+  container: { flex: 1, position: "relative", alignSelf: "stretch" }
 })
+
+function _arrangeAndDisplaceItemsSpans(itemsVerticalSpans, iconHeight) {
+  let itemsEntries = Object.entries(itemsVerticalSpans)
+
+  for (let i = 0; i <= Math.floor(itemsEntries.length / 2); i++) {
+    const spansForCurrentEntry = itemsEntries[i][1]
+    const spansForMirrorEntry = itemsEntries[itemsEntries.length - 1 - i][1]
+
+    _substractIconHeightFromItemSpans(spansForCurrentEntry, iconHeight)
+    _substractIconHeightFromItemSpans(spansForMirrorEntry, iconHeight)
+
+    itemsEntries[i][1] = spansForMirrorEntry
+    itemsEntries[itemsEntries.length - 1 - i][1] = spansForCurrentEntry
+  }
+  // console.log(itemsEntries)
+  // itemsVerticalSpans = itemsEntries
+}
+
+function _substractIconHeightFromItemSpans(verticalSpans, iconHeight) {
+  // console.log(verticalSpans, iconHeight)
+  for (let span of verticalSpans) span -= iconHeight
+  does not substract
+  console.log(verticalSpans, iconHeight)
+}
+
+function _setActiveItemName(moveY, itemsVerticalSpans, setActiveItemName) {
+  for (itemName in itemsVerticalSpans) {
+    if (
+      moveY >= itemsVerticalSpans[itemName][0] &&
+      moveY <= itemsVerticalSpans[itemName][1]
+    ) {
+      return setActiveItemName(itemName)
+    }
+  }
+  setActiveItemName("")
+}

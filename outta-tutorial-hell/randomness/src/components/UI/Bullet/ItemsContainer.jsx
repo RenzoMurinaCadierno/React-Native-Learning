@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import Item from "./Item"
 
 export default function ItemsContainer({
+  activeItemName,
   fontScale,
   style,
   coords,
@@ -17,7 +18,7 @@ export default function ItemsContainer({
   return (
     <View style={[_styles.container, style]} {...rest}>
       <Text style={{ position: "absolute", bottom: 0 }}>
-        icon {coords.y.toFixed(2)}
+        icon {coords.toFixed(2)}
       </Text>
       <Text style={{ position: "absolute", bottom: 20 }}>
         email {a?.email?.[0]?.toFixed(2)} - {a?.email?.[1]?.toFixed(2)}
@@ -30,8 +31,8 @@ export default function ItemsContainer({
       </Text>
       {bulletItems.map((bullet) => (
         <Item
-          active
           key={bullet.id}
+          active={bullet.name === activeItemName}
           backgroundColor={bullet.icon.activeColor}
           fontScale={fontScale}
           onLayout={onItemLayout}

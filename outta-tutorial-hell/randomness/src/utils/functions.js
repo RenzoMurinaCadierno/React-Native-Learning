@@ -29,6 +29,12 @@ export function objectHasSomeProperties(object, ...propertyNames) {
   return false
 }
 
+export function reverseObject(object) {
+  let entries = Object.entries(object)
+  entries.reverse()
+  return Object.fromEntries(entries)
+}
+
 export function castRgbToRgba(rgbString, alphaValue = 1, warnInConsole) {
   const isMatch = /rgb\((\d{1,3},\s){2}\d{1,3}\)/g.test(rgbString)
   const isValidAlpha =

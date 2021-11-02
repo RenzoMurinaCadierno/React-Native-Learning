@@ -7,12 +7,18 @@ export default function Icon({
   panHandlers,
   onChildLayout,
   ready,
+  onChildReady,
   containerStyle,
   iconContainerStyle,
   iconContainerProps,
   ...rest
 }) {
   const val = useLinearAnimatedValue({ active: ready })
+
+  const setIconMeasuresInRootAndInTranslate2D = (e) => {
+    onChildLayout(e)
+    onChildReady(e.nativeEvent.layout.height)
+  }
 
   return (
     <IconWithCircle
@@ -25,7 +31,7 @@ export default function Icon({
       containerProps={{
         ...iconContainerProps,
         ...panHandlers,
-        onLayout: onChildLayout
+        onLayout: setIconMeasuresInRootAndInTranslate2D
       }}
       enableAnimation
     />
