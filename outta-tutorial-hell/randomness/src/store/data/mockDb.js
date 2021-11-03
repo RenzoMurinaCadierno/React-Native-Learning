@@ -44,7 +44,7 @@ const defaultIcons = {
   email: { id: "email", name: "mail", activeColor: "rgb(187, 0, 27)" },
   linkedin: {
     id: "linkedin",
-    name: "linkedin",
+    name: "logo-linkedin",
     activeColor: "rgb(0, 119, 181)"
   }
 }

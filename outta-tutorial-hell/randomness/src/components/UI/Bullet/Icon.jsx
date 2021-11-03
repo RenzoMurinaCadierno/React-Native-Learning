@@ -23,6 +23,7 @@ export default function Icon({
   return (
     <IconWithCircle
       {...rest}
+      type={null}
       containerStyle={{
         ...iconContainerStyle,
         ...transformStyle,

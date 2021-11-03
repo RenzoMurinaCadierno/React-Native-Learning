@@ -1,38 +1,37 @@
 import { Easing } from "react-native"
 
-export function isPlainObject(value) {
-  return (
+export const object = {
+  isPlainObject: (value) =>
     value &&
     value instanceof Object &&
     !Array.isArray(value) &&
-    typeof value !== "function"
-  )
-}
+    typeof value !== "function",
 
-export function objectHasAllProperties(object, ...propertyNames) {
-  if (!isPlainObject(object)) return false
+  hasAllProperties: (object, ...propertyNames) => {
+    if (!isPlainObject(object)) return false
 
-  for (propName of propertyNames) {
-    if (!object.hasOwnProperty(propName)) return false
+    for (propName of propertyNames) {
+      if (!object.hasOwnProperty(propName)) return false
+    }
+
+    return true
+  },
+
+  hasSomeProperties: (object, ...propertyNames) => {
+    if (!isPlainObject(object)) return false
+
+    for (propName of propertyNames) {
+      if (object.hasOwnProperty(propName)) return true
+    }
+
+    return false
+  },
+
+  reverse: (object) => {
+    let entries = Object.entries(object)
+    entries.reverse()
+    return Object.fromEntries(entries)
   }
-
-  return true
-}
-
-export function objectHasSomeProperties(object, ...propertyNames) {
-  if (!isPlainObject(object)) return false
-
-  for (propName of propertyNames) {
-    if (object.hasOwnProperty(propName)) return true
-  }
-
-  return false
-}
-
-export function reverseObject(object) {
-  let entries = Object.entries(object)
-  entries.reverse()
-  return Object.fromEntries(entries)
 }
 
 export function castRgbToRgba(rgbString, alphaValue = 1, warnInConsole) {
