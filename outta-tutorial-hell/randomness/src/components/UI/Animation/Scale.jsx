@@ -8,6 +8,7 @@ export default function Scale({
   active,
   activeAnimation,
   inactiveAnimation,
+  Component,
   style,
   children,
   opacityOutputRange,
@@ -20,19 +21,17 @@ export default function Scale({
     inactiveAnimation
   })
 
+  const animatedStyle = {
+    transform: [{ scale: interpolate(val, scaleOutputRange) }],
+    opacity: interpolate(val, opacityOutputRange)
+  }
+
+  if (!Boolean(Component)) return children(animatedStyle)
+
   return (
-    <Animated.View
-      style={[
-        style,
-        {
-          transform: [{ scale: interpolate(val, scaleOutputRange) }],
-          opacity: interpolate(val, opacityOutputRange)
-        }
-      ]}
-      {...rest}
-    >
+    <Component style={[style, animatedStyle]} {...rest}>
       {children}
-    </Animated.View>
+    </Component>
   )
 }
 
@@ -40,5 +39,6 @@ Scale.defaultProps = {
   activeAnimation: animations.effects.default.IN,
   inactiveAnimation: animations.effects.default.OUT,
   opacityOutputRange: [0.75, 1],
-  scaleOutputRange: [0.9, 1.2]
+  scaleOutputRange: [0.9, 1.2],
+  Component: Animated.View
 }

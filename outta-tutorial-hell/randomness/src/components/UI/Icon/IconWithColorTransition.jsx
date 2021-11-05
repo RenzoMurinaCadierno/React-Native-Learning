@@ -7,14 +7,13 @@ export default function IconWithColorTransition({
   active,
   activeColor,
   inactiveColor,
+  Component,
   colorProps,
   ...rest
 }) {
   return (
     <Color {...{ active, inactiveColor, activeColor, ...colorProps }}>
-      {(animatedColor) => (
-        <Enhanced.Animated.BaseIcon {...rest} color={animatedColor} />
-      )}
+      {(animatedColor) => <Component {...rest} color={animatedColor} />}
     </Color>
   )
 }
@@ -22,5 +21,6 @@ export default function IconWithColorTransition({
 IconWithColorTransition.defaultProps = {
   activeColor: colors.main.PRIMARY,
   inactiveColor: colors.main.SECONDARY,
+  Component: Enhanced.Animated.BaseIcon,
   colorProps: {}
 }

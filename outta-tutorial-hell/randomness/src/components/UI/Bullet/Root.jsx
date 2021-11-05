@@ -15,10 +15,8 @@ export default function Root({
   ...rest
 }) {
   const bullets = useSelector((state) => state.contact.bullets)
-  const [iconCoordY, setIconCoordY] = useState(0)
   const [iconHeight, setIconHeight] = useState(0)
   const [activeItemName, setActiveItemName] = useState("")
-  const [a, setA] = useState({})
   const [containerLayout, onContainerLayoutChange] = useLayout()
   const viewPort = useViewPort()
   const [itemsYLimits] = useControlledUpdate({})
@@ -26,7 +24,6 @@ export default function Root({
   const onChildReady = useCallback((height) => setIconHeight(height), [])
 
   const onIconMove = useCallback((_, { moveY }) => {
-    setIconCoordY(moveY)
     _setActiveItemName(moveY, itemsYLimits.get(), setActiveItemName)
   }, [])
 
@@ -36,7 +33,6 @@ export default function Root({
       itemsYLimits.updateObject({
         [itemName]: [itemTop, itemTop + itemDims.height]
       })
-      setA((a) => ({ ...a, [itemName]: [itemTop, itemTop + itemDims.height] }))
     },
     [iconHeight]
   )
@@ -44,10 +40,9 @@ export default function Root({
   useEffect(() => {
     if (iconHeight !== 0) {
       _arrangeAndDisplaceItemsLimits(itemsYLimits, iconHeight)
-      setA(itemsYLimits.get())
     }
   }, [iconHeight])
-  change icon colors and add color transition
+
   return (
     <View
       style={[_styles.container, containerStyle]}
@@ -55,17 +50,16 @@ export default function Root({
       {...containerProps}
     >
       <ItemsContainer
-        coords={iconCoordY}
         activeItemName={activeItemName}
-        a={a}
         fontScale={size}
         onItemLayout={onItemLayout}
       />
       {Boolean(containerLayout.width) && (
         <IconContainer
           size={size * 1.5}
-          name={bullets[activeItemName]?.icon.name || "heart"}
-          backgroundColor={bullets[activeItemName]?.icon.activeColor}
+          name={bullets[activeItemName]?.icon.name || "eye"}
+          active={Boolean(bullets[activeItemName]?.icon.name)}
+          color={bullets[activeItemName]?.icon.activeColor}
           startingAnchor={{
             x: containerLayout.width - viewPort.vw(4),
             y: containerLayout.height - viewPort.vh(1.5)
@@ -79,9 +73,9 @@ export default function Root({
     </View>
   )
 }
-// work on background. make item draggable to uncover.
-// Then spinning animation, or fading animations on orientation to indicate where
-// to slide o o o
+
+Then spinning animation, or fading animations on orientation to indicate where
+to slide o o o
 Root.defaultProps = { size: 28, items: {}, containerProps: {} }
 
 const _styles = StyleSheet.create({

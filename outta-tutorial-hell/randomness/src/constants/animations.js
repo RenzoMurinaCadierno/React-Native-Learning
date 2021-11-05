@@ -127,6 +127,12 @@ const animations = {
         ),
         Animated.timing(value, animationConfigs.timing(0, 0, easings.LINEAR))
       ]
+    },
+    scale: {
+      IN: (value) =>
+        Animated.spring(value, animationConfigs.springBounce(1, 125)),
+      OUT: (value) =>
+        Animated.spring(value, animationConfigs.springBounce(0, 125))
     }
   },
   images: {

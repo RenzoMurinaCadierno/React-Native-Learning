@@ -16,17 +16,18 @@ function IconWithCircle({
   ...rest
 }) {
   const styles = _styles(size, type, borderColor, backgroundColor)
-  const Component = enableAnimation ? Animated.View : View
+  const Wrapper = enableAnimation ? Animated.View : View
 
   return (
-    <Component style={[styles.container, containerStyle]} {...containerProps}>
+    <Wrapper style={[styles.container, containerStyle]} {...containerProps}>
       <Base
         size={size}
         name={name}
+        animated={enableAnimation}
         color={_getColor(type, color, "main", "PRIMARY")}
         {...rest}
       />
-    </Component>
+    </Wrapper>
   )
 }
 

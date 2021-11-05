@@ -1,9 +1,9 @@
 import React from "react"
 import IconWithCircle from "../Icon/IconWithCircle"
 import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
+import colors from "@app-constants/colors"
 
 export default function Icon({
-  transformStyle,
   panHandlers,
   onChildLayout,
   ready,
@@ -11,6 +11,7 @@ export default function Icon({
   containerStyle,
   iconContainerStyle,
   iconContainerProps,
+  color,
   ...rest
 }) {
   const val = useLinearAnimatedValue({ active: ready })
@@ -26,7 +27,6 @@ export default function Icon({
       type={null}
       containerStyle={{
         ...iconContainerStyle,
-        ...transformStyle,
         opacity: val
       }}
       containerProps={{
@@ -34,6 +34,13 @@ export default function Icon({
         ...panHandlers,
         onLayout: setIconMeasuresInRootAndInTranslate2D
       }}
+      color={color}
+      borderColor={color}
+      backgroundColor={
+        color
+          ? colors.background.CONTRAST_ALPHA(0.5)
+          : colors.accent.PRIMARY_ALPHA(0.5)
+      }
       enableAnimation
     />
   )

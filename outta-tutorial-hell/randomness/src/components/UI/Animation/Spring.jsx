@@ -8,6 +8,7 @@ export default function Spring({
   active,
   activeAnimation,
   inactiveAnimation,
+  Component,
   style,
   children,
   translateYOutputRange,
@@ -21,7 +22,7 @@ export default function Spring({
   })
 
   return (
-    <Animated.View
+    <Component
       style={[
         style,
         {
@@ -34,7 +35,7 @@ export default function Spring({
       {...rest}
     >
       {children}
-    </Animated.View>
+    </Component>
   )
 }
 
@@ -42,5 +43,6 @@ Spring.defaultProps = {
   activeAnimation: animations.effects.spring.IN,
   inactiveAnimation: animations.effects.spring.OUT,
   translateYOutputRange: [0, -5],
-  scaleOutputRange: [1, 1.2]
+  scaleOutputRange: [1, 1.2],
+  Component: Animated.View
 }

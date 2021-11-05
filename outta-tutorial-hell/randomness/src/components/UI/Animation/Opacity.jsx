@@ -34,5 +34,5 @@ Opacity.defaultProps = {
   activeAnimation: animations.effects.default.IN,
   inactiveAnimation: animations.effects.default.OUT,
   opacityOutputRange: [0, 1],
-  component: Animated.View
+  Component: Animated.View
 }
