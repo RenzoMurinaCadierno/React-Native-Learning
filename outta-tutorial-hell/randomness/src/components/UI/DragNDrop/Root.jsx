@@ -1,22 +1,22 @@
 import React, { useCallback, useState, useEffect } from "react"
 import { StyleSheet, View } from "react-native"
-import { useSelector } from "react-redux"
-import IconContainer from "./IconContainer"
-import ItemsContainer from "./ItemsContainer"
+import DraggableRootContainer from "./DraggableRootContainer"
+import DroppableItemsZone from "./DroppableItemsZone"
 import useLayout from "@app-hooks/useLayout"
 import useViewPort from "@app-hooks/useViewPort"
 import useControlledUpdate from "@app-hooks/useControlledUpdate"
 
 export default function Root({
-  size,
+  droppables,
+  fontScale,
   containerStyle,
   containerProps,
-  items,
+  droppableItemsZoneProps,
   ...rest
 }) {
-  const bullets = useSelector((state) => state.contact.bullets)
   const [iconHeight, setIconHeight] = useState(0)
   const [activeItemName, setActiveItemName] = useState("")
+  const [isIconTouched, setIsIconTouched] = useState(false)
   const [containerLayout, onContainerLayoutChange] = useLayout()
   const viewPort = useViewPort()
   const [itemsYLimits] = useControlledUpdate({})
@@ -24,18 +24,16 @@ export default function Root({
   const onChildReady = useCallback((height) => setIconHeight(height), [])
 
   const onIconMove = useCallback((_, { moveY }) => {
+    setIsIconTouched(true)
     _setActiveItemName(moveY, itemsYLimits.get(), setActiveItemName)
   }, [])
 
-  const onItemLayout = useCallback(
-    (itemName, itemDims) => {
-      const itemTop = viewPort.height - itemDims.y
-      itemsYLimits.updateObject({
-        [itemName]: [itemTop, itemTop + itemDims.height]
-      })
-    },
-    [iconHeight]
-  )
+  const onItemLayout = useCallback((itemName, itemDims) => {
+    const itemTop = viewPort.height - itemDims.y
+    itemsYLimits.updateObject({
+      [itemName]: [itemTop, itemTop + itemDims.height]
+    })
+  }, [])
 
   useEffect(() => {
     if (iconHeight !== 0) {
@@ -49,34 +47,38 @@ export default function Root({
       onLayout={onContainerLayoutChange}
       {...containerProps}
     >
-      <ItemsContainer
+      <DroppableItemsZone
+        droppables={droppables}
         activeItemName={activeItemName}
-        fontScale={size}
+        fontScale={fontScale}
         onItemLayout={onItemLayout}
+        {...droppableItemsZoneProps}
       />
-      {Boolean(containerLayout.width) && (
-        <IconContainer
-          size={size * 1.5}
-          name={bullets[activeItemName]?.icon.name || "eye"}
-          active={Boolean(bullets[activeItemName]?.icon.name)}
-          color={bullets[activeItemName]?.icon.activeColor}
-          startingAnchor={{
-            x: containerLayout.width - viewPort.vw(4),
-            y: containerLayout.height - viewPort.vh(1.5)
-          }}
-          ranges={{ x: containerLayout.width, y: containerLayout.height }}
+      <>
+        <DraggableRootContainer
+          size={fontScale * 1.3}
+          name={droppables[activeItemName]?.icon.name || "eye"}
+          active={Boolean(droppables[activeItemName])}
+          color={droppables[activeItemName]?.icon.activeColor}
+          containerLayout={containerLayout}
+          anchorXOffset={viewPort.vw(4)}
+          anchorYOffset={viewPort.vh(1.5)}
           onPanResponderMove={onIconMove}
           onChildReady={onChildReady}
           {...rest}
         />
-      )}
+        {/* <IconDemo show={isIconTouched} /> */}
+      </>
     </View>
   )
 }
 
-Then spinning animation, or fading animations on orientation to indicate where
-to slide o o o
-Root.defaultProps = { size: 28, items: {}, containerProps: {} }
+Root.defaultProps = {
+  fontScale: 28,
+  droppables: {},
+  containerProps: {},
+  droppableItemsZoneProps: {}
+}
 
 const _styles = StyleSheet.create({
   container: { flex: 1, position: "relative", alignSelf: "stretch" }
@@ -96,6 +98,7 @@ function _arrangeAndDisplaceItemsLimits(itemsYLimits, iconHeight) {
     itemsYLimitsEntries[itemsYLimitsEntries.length - 1 - i][1] =
       limitsForCurrentEntry.map((limit) => limit - iconHeight)
   }
+
   itemsYLimits.update(Object.fromEntries(itemsYLimitsEntries))
 }
 

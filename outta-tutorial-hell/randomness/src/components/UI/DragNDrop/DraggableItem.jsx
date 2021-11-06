@@ -3,14 +3,13 @@ import IconWithCircle from "../Icon/IconWithCircle"
 import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
 import colors from "@app-constants/colors"
 
-export default function Icon({
+export default function DraggableItem({
   panHandlers,
   onChildLayout,
   ready,
   onChildReady,
   containerStyle,
-  iconContainerStyle,
-  iconContainerProps,
+  containerProps,
   color,
   ...rest
 }) {
@@ -25,12 +24,9 @@ export default function Icon({
     <IconWithCircle
       {...rest}
       type={null}
-      containerStyle={{
-        ...iconContainerStyle,
-        opacity: val
-      }}
+      containerStyle={{ ...containerStyle, opacity: val }}
       containerProps={{
-        ...iconContainerProps,
+        ...containerProps,
         ...panHandlers,
         onLayout: setIconMeasuresInRootAndInTranslate2D
       }}
@@ -45,5 +41,3 @@ export default function Icon({
     />
   )
 }
-
-Icon.defaultProps = { name: "checkmark", type: "primary" }

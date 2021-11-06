@@ -1,6 +1,6 @@
 import React from "react"
 import Translate2D from "../Animation/Translate2D"
-import IconWithScaleTransition from "./IconWithScaleTransition"
+import DraggableItemScaleTransitionContainer from "./DraggableItemScaleTransitionContainer"
 
 export default function IconContainer({
   axis,
@@ -12,10 +12,10 @@ export default function IconContainer({
 }) {
   return (
     <Translate2D
-      {...{ axis, ranges, decayOnRelease, startingAnchor, onPanResponderMove }}
+      {...{ axis, startingAnchor, ranges, decayOnRelease, onPanResponderMove }}
     >
       {(translate2DArgs) => (
-        <IconWithScaleTransition {...rest} {...translate2DArgs} />
+        <DraggableItemScaleTransitionContainer {...rest} {...translate2DArgs} />
       )}
     </Translate2D>
   )

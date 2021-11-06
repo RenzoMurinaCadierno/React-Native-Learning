@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import { Animated, PanResponder } from "react-native"
 import useLayout from "@app-hooks/useLayout"
-import { object } from "@app-utils/functions"
+import { Obj } from "@app-utils/functions"
 
 export default function Translate2D({
   axis, // 'x' fixes movement alognside 'x' axis. Same for 'y'. undefined removes limits.
@@ -32,7 +32,7 @@ export default function Translate2D({
 function _getStartingAnchor(startingAnchor) {
   const anchor = { x: 0, y: 0 }
 
-  if (!object.isPlainObject(startingAnchor)) return anchor
+  if (!Obj.isPlain(startingAnchor)) return anchor
   if (startingAnchor.x) anchor.x = startingAnchor.x
   if (startingAnchor.y) anchor.y = startingAnchor.y
 
@@ -111,7 +111,7 @@ function _getTransformStyle(axis, ranges, pan, childLayout) {
 }
 
 function _getTranslationValue(pan, axis, ranges, childLayout) {
-  if (object.isPlainObject(ranges) && ranges.hasOwnProperty(axis)) {
+  if (Obj.isPlain(ranges) && ranges.hasOwnProperty(axis)) {
     const targetChildDimension = axis === "x" ? "width" : "height"
 
     return pan[axis].interpolate({

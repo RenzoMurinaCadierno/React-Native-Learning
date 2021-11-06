@@ -1,9 +1,9 @@
 import React from "react"
 import Scale from "../Animation/Scale"
-import Icon from "./Icon"
+import DraggableItem from "./DraggableItem"
 import animations from "@app-constants/animations"
 
-export default function IconWithScaleTransition({
+export default function DraggableItemScaleTransitionContainer({
   active,
   transformStyle,
   ...rest
@@ -14,12 +14,12 @@ export default function IconWithScaleTransition({
       active={active}
       activeAnimation={animations.icons.scale.IN}
       inactiveAnimation={animations.icons.scale.OUT}
-      scaleOutputRange={[0.9, 1.1]}
+      scaleOutputRange={[1, 1.15]}
     >
       {(scaleStyle) => (
-        <Icon
+        <DraggableItem
           {...rest}
-          iconContainerStyle={_mergeStyles(transformStyle, scaleStyle)}
+          containerStyle={_mergeStyles(transformStyle, scaleStyle)}
         />
       )}
     </Scale>

@@ -1,33 +1,35 @@
 import { Easing } from "react-native"
 
-export const object = {
-  isPlainObject: (value) =>
+export class Obj {
+  static isPlain = (value) =>
     value &&
     value instanceof Object &&
     !Array.isArray(value) &&
-    typeof value !== "function",
+    typeof value !== "function"
 
-  hasAllProperties: (object, ...propertyNames) => {
-    if (!isPlainObject(object)) return false
+  static isEmpty = (object) => !Boolean(Object.keys(object).length)
+
+  static hasAllProperties = (object, ...propertyNames) => {
+    if (!this.isPlain(object)) return false
 
     for (propName of propertyNames) {
       if (!object.hasOwnProperty(propName)) return false
     }
 
     return true
-  },
+  }
 
-  hasSomeProperties: (object, ...propertyNames) => {
-    if (!isPlainObject(object)) return false
+  static hasSomeProperties = (object, ...propertyNames) => {
+    if (!this.isPlain(object)) return false
 
     for (propName of propertyNames) {
       if (object.hasOwnProperty(propName)) return true
     }
 
     return false
-  },
+  }
 
-  reverse: (object) => {
+  static reverse = (object) => {
     let entries = Object.entries(object)
     entries.reverse()
     return Object.fromEntries(entries)

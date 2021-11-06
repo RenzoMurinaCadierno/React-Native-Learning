@@ -10,11 +10,14 @@ import TextWithScaleTransition from "./Text/TextWithScaleTransition"
 import ArrowBase from "./Arrow/Base"
 import ArrowMultipleWithPulsation from "./Arrow/MultipleWithPulsation"
 import ArrowMultipleWithShow from "./Arrow/MutipleWithShow"
-import BulletRoot from "./Bullet/Root"
-import BulletIconContainer from "./Bullet/IconContainer"
-import BulletIcon from "./Bullet/Icon"
-import BulletItemsContainer from "./Bullet/ItemsContainer"
-import BulletItem from "./Bullet/Item"
+import DragNDropRoot from "./DragNDrop/Root"
+import DragNDropDraggableRootContainer from "./DragNDrop/DraggableRootContainer"
+import DragNDropDraggableItem from "./DragNDrop/DraggableItem"
+import DragNDropDraggableItemDemo from "./DragNDrop/DraggableItemDemo"
+import DragNDropDraggableItemTranslate2DContainer from "./DragNDrop/DraggableItemTranslate2DContainer"
+import DragNDropDraggableItemScaleTransitionContainer from "./DragNDrop/DraggableItemScaleTransitionContainer"
+import DragNDropDroppableItemsZone from "./DragNDrop/DroppableItemsZone"
+import DragNDropDroppableItem from "./DragNDrop/DroppableItem"
 import CardRoot from "./Card/Root"
 import CardAnimatedRoot from "./Card/AnimatedRoot"
 import CardText, {
@@ -61,14 +64,19 @@ function ComposedArrow(props) {
 ComposedArrow.MultipleWithPulsation = ArrowMultipleWithPulsation
 ComposedArrow.MultipleWithShow = ArrowMultipleWithShow
 
-function ComposedBullet(props) {
-  return <BulletRoot {...props} />
+function ComposedDragNDrop(props) {
+  return <DragNDropRoot {...props} />
 }
 
-ComposedBullet.IconContainer = BulletIconContainer
-ComposedBullet.Icon = BulletIcon
-ComposedBullet.ItemsContainer = BulletItemsContainer
-ComposedBullet.Item = BulletItem
+ComposedDragNDrop.DraggableRootContainer = DragNDropDraggableRootContainer
+ComposedDragNDrop.DraggableItem = DragNDropDraggableItem
+ComposedDragNDrop.DraggableItemDemo = DragNDropDraggableItemDemo
+ComposedDragNDrop.DraggableItemScaleTransitionContainer =
+  DragNDropDraggableItemScaleTransitionContainer
+ComposedDragNDrop.DraggableItemTranslate2DContainer =
+  DragNDropDraggableItemTranslate2DContainer
+ComposedDragNDrop.DroppableItemsZone = DragNDropDroppableItemsZone
+ComposedDragNDrop.DroppableItem = DragNDropDroppableItem
 
 function ComposedImage(props) {
   return <ImageBase {...props} />
@@ -115,7 +123,7 @@ ComposedCarousel.Image = CarouselImage
 const UI = {
   Animation: { Spring, Color, Hover, Scale, Pan: { Translate2D } },
   Arrow: ComposedArrow,
-  Bullet: ComposedBullet,
+  DragNDrop: ComposedDragNDrop,
   Card: ComposedCard,
   Carousel: ComposedCarousel,
   Icon: ComposedIcon,
