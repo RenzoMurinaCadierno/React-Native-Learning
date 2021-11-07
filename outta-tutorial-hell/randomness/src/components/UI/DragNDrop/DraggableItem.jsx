@@ -23,7 +23,6 @@ export default function DraggableItem({
   return (
     <IconWithCircle
       {...rest}
-      type={null}
       containerStyle={{ ...containerStyle, opacity: val }}
       containerProps={{
         ...containerProps,

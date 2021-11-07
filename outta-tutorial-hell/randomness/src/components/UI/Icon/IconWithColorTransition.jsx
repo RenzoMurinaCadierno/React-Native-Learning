@@ -1,6 +1,6 @@
 import React from "react"
 import colors from "@app-constants/colors"
-import Enhanced from "@app-components/enhanced"
+import Base from "./Base"
 import Color from "../Animation/Color"
 
 export default function IconWithColorTransition({
@@ -21,6 +21,6 @@ export default function IconWithColorTransition({
 IconWithColorTransition.defaultProps = {
   activeColor: colors.main.PRIMARY,
   inactiveColor: colors.main.SECONDARY,
-  Component: Enhanced.Animated.BaseIcon,
+  Component: (props) => <Base animated {...props} />,
   colorProps: {}
 }

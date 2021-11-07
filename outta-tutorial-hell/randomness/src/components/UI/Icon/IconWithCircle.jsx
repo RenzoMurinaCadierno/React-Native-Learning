@@ -3,7 +3,7 @@ import { Animated, View, StyleSheet } from "react-native"
 import Base from "./Base"
 import colors from "@app-constants/colors"
 
-function IconWithCircle({
+export default function IconWithCircle({
   type,
   size,
   name,
@@ -31,9 +31,7 @@ function IconWithCircle({
   )
 }
 
-IconWithCircle.defaultProps = { type: "primary", containerProps: {} }
-
-export default IconWithCircle
+IconWithCircle.defaultProps = { containerProps: {} }
 
 const _styles = (size, type, borderColor, backgroundColor) =>
   StyleSheet.create({

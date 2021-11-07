@@ -5,6 +5,9 @@ export default function useLoopingAnimatedValue({
   active,
   activeSequence,
   inactiveAnimation,
+  onStart,
+  onInactiveAnimationFinish,
+  onFinish,
   startingValue = 0
 }) {
   const [isAnimationActive, setIsAnimationActive] = useState(false)
@@ -14,12 +17,17 @@ export default function useLoopingAnimatedValue({
     if (active) {
       Animated.loop(Animated.sequence(activeSequence(val))).start()
       setIsAnimationActive(true)
+      onStart?.()
     } else if (isAnimationActive) {
       if (inactiveAnimation) {
-        inactiveAnimation(val).start(() => setIsAnimationActive(false))
+        inactiveAnimation(val).start((finished) => {
+          setIsAnimationActive(false)
+          onInactiveAnimationFinish?.(finished)
+        })
       } else {
         setIsAnimationActive(false)
       }
+      onFinish?.()
     }
   }, [active])
 

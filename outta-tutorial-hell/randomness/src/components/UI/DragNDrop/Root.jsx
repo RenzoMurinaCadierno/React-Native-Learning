@@ -9,6 +9,7 @@ import useControlledUpdate from "@app-hooks/useControlledUpdate"
 export default function Root({
   droppables,
   fontScale,
+  showDemo,
   containerStyle,
   containerProps,
   droppableItemsZoneProps,
@@ -16,15 +17,19 @@ export default function Root({
 }) {
   const [iconHeight, setIconHeight] = useState(0)
   const [activeItemName, setActiveItemName] = useState("")
-  const [isIconTouched, setIsIconTouched] = useState(false)
+  // const [isIconTouched, setIsIconTouched] = useState(false)
   const [containerLayout, onContainerLayoutChange] = useLayout()
   const viewPort = useViewPort()
   const [itemsYLimits] = useControlledUpdate({})
 
   const onChildReady = useCallback((height) => setIconHeight(height), [])
 
-  const onIconMove = useCallback((_, { moveY }) => {
-    setIsIconTouched(true)
+  // const onIconMove = useCallback((_, { moveY }) => {
+  //   setIsIconTouched(true)
+  //   _setActiveItemName(moveY, itemsYLimits.get(), setActiveItemName)
+  // }, [])
+  const onIconMove = useCallback((moveY) => {
+    // setIsIconTouched(true)
     _setActiveItemName(moveY, itemsYLimits.get(), setActiveItemName)
   }, [])
 
@@ -34,7 +39,7 @@ export default function Root({
       [itemName]: [itemTop, itemTop + itemDims.height]
     })
   }, [])
-
+  items displaced again geez...
   useEffect(() => {
     if (iconHeight !== 0) {
       _arrangeAndDisplaceItemsLimits(itemsYLimits, iconHeight)
@@ -54,21 +59,20 @@ export default function Root({
         onItemLayout={onItemLayout}
         {...droppableItemsZoneProps}
       />
-      <>
-        <DraggableRootContainer
-          size={fontScale * 1.3}
-          name={droppables[activeItemName]?.icon.name || "eye"}
-          active={Boolean(droppables[activeItemName])}
-          color={droppables[activeItemName]?.icon.activeColor}
-          containerLayout={containerLayout}
-          anchorXOffset={viewPort.vw(4)}
-          anchorYOffset={viewPort.vh(1.5)}
-          onPanResponderMove={onIconMove}
-          onChildReady={onChildReady}
-          {...rest}
-        />
-        {/* <IconDemo show={isIconTouched} /> */}
-      </>
+      <DraggableRootContainer
+        size={fontScale * 1.3}
+        name={droppables[activeItemName]?.icon.name || "eye"}
+        active={Boolean(droppables[activeItemName])}
+        color={droppables[activeItemName]?.icon.activeColor}
+        containerLayout={containerLayout}
+        anchorXOffset={viewPort.vw(4)}
+        anchorYOffset={viewPort.vh(1.5)}
+        // isIconTouched={isIconTouched}
+        showDemo={showDemo}
+        onPanResponderMove={onIconMove}
+        onChildReady={onChildReady}
+        {...rest}
+      />
     </View>
   )
 }

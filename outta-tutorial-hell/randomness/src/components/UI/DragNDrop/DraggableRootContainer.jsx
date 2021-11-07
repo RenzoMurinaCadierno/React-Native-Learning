@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import DraggableItemTranslate2DContainer from "./DraggableItemTranslate2DContainer"
+import DraggableItemDemo from "./DraggableItemDemo"
 import { Obj } from "@app-utils/functions"
 
 export default function DraggableRootContainer({
+  size,
   ranges,
   containerLayout,
   startingAnchor,
   anchorXOffset,
   anchorYOffset,
+  // isIconTouched,
+  onPanResponderMove,
+  showDemo,
   ...rest
 }) {
   const [limits, setLimits] = useState({ ranges, startingAnchor })
   const [ready, setReady] = useState(false)
+  const [isIconTouched, setIsIconTouched] = useState(false)
+
+  const touchIconAndTriggerParentCb = useCallback((_, { moveY }) => {
+    setIsIconTouched(true)
+    onPanResponderMove?.(moveY)
+  }, [])
 
   useEffect(() => {
     if (Boolean(containerLayout.width)) {
@@ -35,7 +46,27 @@ export default function DraggableRootContainer({
     }
   }, [containerLayout.width])
 
-  return ready && <DraggableItemTranslate2DContainer {...limits} {...rest} />
+  return (
+    ready && (
+      <>
+        {showDemo && (
+          <DraggableItemDemo
+            active={!isIconTouched}
+            name="eye"
+            size={size}
+            anchor={limits.startingAnchor}
+            offsets={{ x: anchorXOffset, y: anchorYOffset }}
+          />
+        )}
+        <DraggableItemTranslate2DContainer
+          size={size}
+          {...limits}
+          {...rest}
+          onPanResponderMove={touchIconAndTriggerParentCb}
+        />
+      </>
+    )
+  )
 }
 
 DraggableRootContainer.defaultProps = { anchorXOffset: 0, anchorYOffset: 0 }

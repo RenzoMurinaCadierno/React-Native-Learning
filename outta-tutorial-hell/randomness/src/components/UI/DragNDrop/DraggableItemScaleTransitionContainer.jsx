@@ -12,8 +12,8 @@ export default function DraggableItemScaleTransitionContainer({
     <Scale
       Component={null}
       active={active}
-      activeAnimation={animations.icons.scale.IN}
-      inactiveAnimation={animations.icons.scale.OUT}
+      activeAnimation={animations.icons.dragNDrop.scale.IN}
+      inactiveAnimation={animations.icons.dragNDrop.scale.OUT}
       scaleOutputRange={[1, 1.15]}
     >
       {(scaleStyle) => (

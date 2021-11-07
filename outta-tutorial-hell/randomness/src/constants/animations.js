@@ -128,11 +128,22 @@ const animations = {
         Animated.timing(value, animationConfigs.timing(0, 0, easings.LINEAR))
       ]
     },
-    scale: {
-      IN: (value) =>
-        Animated.spring(value, animationConfigs.springBounce(1, 125)),
-      OUT: (value) =>
-        Animated.spring(value, animationConfigs.springBounce(0, 125))
+    dragNDrop: {
+      scale: {
+        IN: (value) =>
+          Animated.spring(value, animationConfigs.springBounce(1, 125)),
+        OUT: (value) =>
+          Animated.spring(value, animationConfigs.springBounce(0, 125))
+      },
+      example: {
+        ACTIVE_SEQUENCE: (value) => [
+          Animated.delay(250),
+          Animated.timing(value, animationConfigs.timing(1, 2000, easings.OUT)),
+          Animated.timing(value, animationConfigs.timing(0, 0, easings.LINEAR))
+        ],
+        OUT: (value) =>
+          Animated.timing(value, animationConfigs.timing(1, 1000, easings.OUT))
+      }
     }
   },
   images: {
