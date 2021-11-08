@@ -10,8 +10,6 @@ export default function DraggableRootContainer({
   startingAnchor,
   anchorXOffset,
   anchorYOffset,
-  // isIconTouched,
-  onPanResponderMove,
   showDemo,
   ...rest
 }) {
@@ -19,9 +17,8 @@ export default function DraggableRootContainer({
   const [ready, setReady] = useState(false)
   const [isIconTouched, setIsIconTouched] = useState(false)
 
-  const touchIconAndTriggerParentCb = useCallback((_, { moveY }) => {
+  const touchIcon = useCallback(() => {
     setIsIconTouched(true)
-    onPanResponderMove?.(moveY)
   }, [])
 
   useEffect(() => {
@@ -62,7 +59,7 @@ export default function DraggableRootContainer({
           size={size}
           {...limits}
           {...rest}
-          onPanResponderMove={touchIconAndTriggerParentCb}
+          onPanResponderGrant={touchIcon}
         />
       </>
     )

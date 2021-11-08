@@ -7,12 +7,20 @@ export default function IconContainer({
   ranges,
   decayOnRelease,
   startingAnchor,
+  onPanResponderGrant,
   onPanResponderMove,
   ...rest
 }) {
   return (
     <Translate2D
-      {...{ axis, startingAnchor, ranges, decayOnRelease, onPanResponderMove }}
+      {...{
+        axis,
+        startingAnchor,
+        ranges,
+        decayOnRelease,
+        onPanResponderGrant,
+        onPanResponderMove
+      }}
     >
       {(translate2DArgs) => (
         <DraggableItemScaleTransitionContainer {...rest} {...translate2DArgs} />

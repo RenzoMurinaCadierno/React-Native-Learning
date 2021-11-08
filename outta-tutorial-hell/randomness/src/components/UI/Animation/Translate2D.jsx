@@ -8,6 +8,7 @@ export default function Translate2D({
   ranges, // { x: 200, y: 100 } allows displacement from 0-200 on x and 0-100 on y
   startingAnchor, // { x: 0, y: 0 } is default
   decayOnRelease, // whether or not add Animated.decay effect on release
+  onPanResponderGrant, // callback for panResponderGrant's async listener
   onPanResponderMove, // callback for panResponderMove's async listener
   children // must spread 'panHandlers' on child, add 'onChildLayout' to child 'onLayout' and 'transformStyle' to child 'style'
 }) {
@@ -17,7 +18,13 @@ export default function Translate2D({
   ).current
 
   const panResponder = useRef(
-    _createPanResponder(pan, axis, decayOnRelease, onPanResponderMove)
+    _createPanResponder(
+      pan,
+      axis,
+      decayOnRelease,
+      onPanResponderGrant,
+      onPanResponderMove
+    )
   ).current
 
   return children({
@@ -39,7 +46,13 @@ function _getStartingAnchor(startingAnchor) {
   return anchor
 }
 
-function _createPanResponder(pan, axis, decayOnRelease, onPanResponderMove) {
+function _createPanResponder(
+  pan,
+  axis,
+  decayOnRelease,
+  onPanResponderGrant,
+  onPanResponderMove
+) {
   return PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onStartShouldSetPanResponderCapture: () => true,
@@ -47,6 +60,7 @@ function _createPanResponder(pan, axis, decayOnRelease, onPanResponderMove) {
     onPanResponderGrant: () => {
       pan.setOffset(pan.__getValue())
       pan.setValue({ x: 0, y: 0 })
+      onPanResponderGrant?.()
     },
     onPanResponderMove: Animated.event([null, _getMoveDistance(axis, pan)], {
       useNativeDriver: false,

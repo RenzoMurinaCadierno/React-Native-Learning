@@ -427,13 +427,15 @@ const contact = {
       id: uid(),
       icon: new ContactIcon(defaultIcons.github),
       title: "Github",
-      description: "github.com/renzomurinacadierno"
+      description: "github.com/renzomurinacadierno",
+      url: "https://github.com/renzomurinacadierno"
     },
     linkedin: {
       id: uid(),
       icon: new ContactIcon(defaultIcons.linkedin),
       title: "Linkedin",
-      description: "linkedin.com/in/renzomurinacadierno"
+      description: "linkedin.com/in/renzomurinacadierno",
+      url: "https://linkedin.com/in/renzomurinacadierno"
     }
   }
 }

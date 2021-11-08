@@ -7,6 +7,8 @@ import Translate2D from "./Animation/Translate2D"
 import TextBase from "./Text/Base"
 import TextWithShrinkTransition from "./Text/TextWithShrinkTransition"
 import TextWithScaleTransition from "./Text/TextWithScaleTransition"
+import ToastRoot from "./Toast/Root"
+import ToastBody from "./Toast/Body"
 import ArrowBase from "./Arrow/Base"
 import ArrowMultipleWithPulsation from "./Arrow/MultipleWithPulsation"
 import ArrowMultipleWithShow from "./Arrow/MutipleWithShow"
@@ -91,6 +93,12 @@ function ComposedText(props) {
 ComposedText.WithShrinkTransition = TextWithShrinkTransition
 ComposedText.WithScaleTransition = TextWithScaleTransition
 
+function ComposedToast(props) {
+  return <ToastRoot {...props} />
+}
+
+ComposedToast.Body = ToastBody
+
 function ComposedCard(props) {
   return <CardRoot {...props} />
 }
@@ -128,7 +136,8 @@ const UI = {
   Carousel: ComposedCarousel,
   Icon: ComposedIcon,
   Image: ComposedImage,
-  Text: ComposedText
+  Text: ComposedText,
+  Toast: ComposedToast
 }
 
 export default UI

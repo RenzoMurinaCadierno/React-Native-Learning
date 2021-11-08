@@ -37,9 +37,5 @@ DroppableItemsZone.defaultProps = {
 }
 
 const _styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-evenly",
-    marginBottom: 30
-  }
+  container: { flex: 1, justifyContent: "space-evenly", marginBottom: 30 }
 })

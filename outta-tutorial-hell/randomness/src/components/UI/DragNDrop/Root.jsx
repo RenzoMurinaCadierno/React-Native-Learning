@@ -5,6 +5,7 @@ import DroppableItemsZone from "./DroppableItemsZone"
 import useLayout from "@app-hooks/useLayout"
 import useViewPort from "@app-hooks/useViewPort"
 import useControlledUpdate from "@app-hooks/useControlledUpdate"
+import useFlag from "@app-hooks/useFlag"
 
 export default function Root({
   droppables,
@@ -17,32 +18,30 @@ export default function Root({
 }) {
   const [iconHeight, setIconHeight] = useState(0)
   const [activeItemName, setActiveItemName] = useState("")
-  // const [isIconTouched, setIsIconTouched] = useState(false)
   const [containerLayout, onContainerLayoutChange] = useLayout()
   const viewPort = useViewPort()
-  const [itemsYLimits] = useControlledUpdate({})
+  const itemsYLimits = useControlledUpdate({})
+  const itemsWereLayedOutFlag = useFlag(false)
 
   const onChildReady = useCallback((height) => setIconHeight(height), [])
 
-  // const onIconMove = useCallback((_, { moveY }) => {
-  //   setIsIconTouched(true)
-  //   _setActiveItemName(moveY, itemsYLimits.get(), setActiveItemName)
-  // }, [])
-  const onIconMove = useCallback((moveY) => {
-    // setIsIconTouched(true)
-    _setActiveItemName(moveY, itemsYLimits.get(), setActiveItemName)
+  const onIconMove = useCallback((_, { moveY }) => {
+    _setActiveItemName(moveY, itemsYLimits.temp(), setActiveItemName)
   }, [])
 
   const onItemLayout = useCallback((itemName, itemDims) => {
+    if (itemsWereLayedOutFlag.is(true)) return
+
     const itemTop = viewPort.height - itemDims.y
     itemsYLimits.updateObject({
       [itemName]: [itemTop, itemTop + itemDims.height]
     })
   }, [])
-  items displaced again geez...
+
   useEffect(() => {
     if (iconHeight !== 0) {
       _arrangeAndDisplaceItemsLimits(itemsYLimits, iconHeight)
+      itemsWereLayedOutFlag.set(true)
     }
   }, [iconHeight])
 
@@ -67,7 +66,6 @@ export default function Root({
         containerLayout={containerLayout}
         anchorXOffset={viewPort.vw(4)}
         anchorYOffset={viewPort.vh(1.5)}
-        // isIconTouched={isIconTouched}
         showDemo={showDemo}
         onPanResponderMove={onIconMove}
         onChildReady={onChildReady}
@@ -89,20 +87,18 @@ const _styles = StyleSheet.create({
 })
 
 function _arrangeAndDisplaceItemsLimits(itemsYLimits, iconHeight) {
-  let itemsYLimitsEntries = Object.entries(itemsYLimits.get())
+  let itemsYLimitsEntries = Object.entries(itemsYLimits.temp())
 
   for (let i = 0; i <= Math.floor(itemsYLimitsEntries.length / 2); i++) {
     const limitsForCurrentEntry = itemsYLimitsEntries[i][1]
     const limitsForMirrorEntry =
       itemsYLimitsEntries[itemsYLimitsEntries.length - 1 - i][1]
-
     itemsYLimitsEntries[i][1] = limitsForMirrorEntry.map(
       (limit) => limit - iconHeight
     )
     itemsYLimitsEntries[itemsYLimitsEntries.length - 1 - i][1] =
       limitsForCurrentEntry.map((limit) => limit - iconHeight)
   }
-
   itemsYLimits.update(Object.fromEntries(itemsYLimitsEntries))
 }
 

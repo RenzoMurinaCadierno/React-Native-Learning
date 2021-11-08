@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef } from "react"
 import { Animated, StyleSheet } from "react-native"
 import IconWithCircle from "../Icon/IconWithCircle"
 import IconBase from "../Icon/Base"
@@ -15,14 +15,12 @@ export default function DraggableItemDemo({
   containerStyle,
   ...rest
 }) {
-  const [show, setShow] = useState(active)
   const animVal = useLoopingAnimatedValue({
     active,
     activeSequence: animations.icons.dragNDrop.example.ACTIVE_SEQUENCE,
-    inactiveAnimation: animations.icons.dragNDrop.example.OUT,
-    onInactiveAnimationFinish: () => setShow(false)
+    inactiveAnimation: animations.icons.dragNDrop.example.OUT
   })
-  const anchorY = useRef(new Animated.Value(-1 * offsets.y)).current
+  const anchorY = useRef(new Animated.Value(-1 * offsets.y + 1)).current
 
   const displacementStyle = {
     opacity: interpolate(animVal, [0.75, 0]),
@@ -33,31 +31,29 @@ export default function DraggableItemDemo({
   }
 
   return (
-    show && (
-      <>
-        <IconWithCircle
-          {...rest}
-          size={size}
-          containerStyle={{
-            ..._styles.container,
-            ...displacementStyle,
-            ...containerStyle
-          }}
-          color={colors.main.PRIMARY}
-          borderColor={colors.main.PRIMARY}
-          backgroundColor={colors.accent.PRIMARY_ALPHA(0.5)}
-          enableAnimation
-        />
-        <IconBase
-          animated
-          size={size}
-          name="cursor-pointer"
-          vector="MaterialCommunityIcons"
-          color={colors.main.SECONDARY}
-          style={[_styles.cursor, displacementStyle]}
-        />
-      </>
-    )
+    <>
+      <IconWithCircle
+        {...rest}
+        size={size}
+        containerStyle={{
+          ..._styles.container,
+          ...displacementStyle,
+          ...containerStyle
+        }}
+        color={colors.main.PRIMARY}
+        borderColor={colors.main.PRIMARY}
+        backgroundColor={colors.accent.PRIMARY_ALPHA(0.5)}
+        enableAnimation
+      />
+      <IconBase
+        animated
+        size={size}
+        name="cursor-pointer"
+        vector="MaterialCommunityIcons"
+        color={colors.main.SECONDARY}
+        style={[_styles.cursor, displacementStyle]}
+      />
+    </>
   )
 }
 
