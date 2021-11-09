@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react"
 
-export default function useTimeoutToggle(trigger, timeout = 1000) {
+export default function useTimeoutToggle(
+  trigger,
+  { timeout = 1000, refreshOn } = {}
+) {
   const [active, setActive] = useState(false)
 
   useEffect(() => {
@@ -14,7 +17,7 @@ export default function useTimeoutToggle(trigger, timeout = 1000) {
     }
 
     return () => clearTimeout(activeTimeoutId)
-  }, [trigger])
+  }, [trigger, refreshOn])
 
   return active
 }

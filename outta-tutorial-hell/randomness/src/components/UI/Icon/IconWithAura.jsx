@@ -2,7 +2,7 @@ import React from "react"
 import { View, StyleSheet } from "react-native"
 import Aura from "./Aura"
 import IconWithCircle from "./IconWithCircle"
-import colors from "@app-constants/colors"
+import { Color } from "@app-utils/functions"
 
 function IconWithAura({
   type, // 'primary', 'secondary'
@@ -24,7 +24,7 @@ function IconWithAura({
       {aura && (
         <Aura
           radius={size * 0.9}
-          color={_getColor(type, auraColor, "main", "PRIMARY")}
+          color={Color.getByTypeOrProp(type, auraColor)}
           style={auraStyle}
           {...auraProps}
         />
@@ -43,7 +43,6 @@ function IconWithAura({
 IconWithAura.defaultProps = {
   size: 20,
   aura: true,
-  auraColor: colors.main.PRIMARY,
   containerProps: {},
   auraProps: {}
 }
@@ -59,11 +58,3 @@ const _styles = (size) =>
     },
     iconContainer: StyleSheet.absoluteFill
   })
-
-function _getColor(type, colorProp, variantGroup, fallbackVariantType) {
-  return (
-    colors[variantGroup][type?.toUpperCase()] ??
-    colorProp ??
-    colors[variantGroup][fallbackVariantType]
-  )
-}

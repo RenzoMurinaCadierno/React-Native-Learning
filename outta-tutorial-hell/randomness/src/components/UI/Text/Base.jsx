@@ -8,6 +8,7 @@ export default function Base({
   color,
   size,
   elevation,
+  letterSpacing,
   shadowColor,
   shadowRadius,
   animated,
@@ -20,7 +21,10 @@ export default function Base({
 
   return (
     <Component
-      style={[{ fontFamily, color, fontSize: size, ...shadow }, style]}
+      style={[
+        { fontFamily, letterSpacing, color, fontSize: size, ...shadow },
+        style
+      ]}
       {...rest}
     >
       {children}

@@ -9,6 +9,7 @@ import TextWithShrinkTransition from "./Text/TextWithShrinkTransition"
 import TextWithScaleTransition from "./Text/TextWithScaleTransition"
 import ToastRoot from "./Toast/Root"
 import ToastBody from "./Toast/Body"
+import ToastText from "./Toast/Text"
 import ArrowBase from "./Arrow/Base"
 import ArrowMultipleWithPulsation from "./Arrow/MultipleWithPulsation"
 import ArrowMultipleWithShow from "./Arrow/MutipleWithShow"
@@ -98,6 +99,7 @@ function ComposedToast(props) {
 }
 
 ComposedToast.Body = ToastBody
+ComposedToast.Text = ToastText
 
 function ComposedCard(props) {
   return <CardRoot {...props} />

@@ -1,7 +1,7 @@
 import React from "react"
 import { Animated, View, StyleSheet } from "react-native"
 import Base from "./Base"
-import colors from "@app-constants/colors"
+import { Color } from "@app-utils/functions"
 
 export default function IconWithCircle({
   type,
@@ -16,18 +16,18 @@ export default function IconWithCircle({
   ...rest
 }) {
   const styles = _styles(size, type, borderColor, backgroundColor)
-  const Wrapper = enableAnimation ? Animated.View : View
+  const Container = enableAnimation ? Animated.View : View
 
   return (
-    <Wrapper style={[styles.container, containerStyle]} {...containerProps}>
+    <Container style={[styles.container, containerStyle]} {...containerProps}>
       <Base
         size={size}
         name={name}
         animated={enableAnimation}
-        color={_getColor(type, color, "main", "PRIMARY")}
+        color={Color.getByTypeOrProp(type, color)}
         {...rest}
       />
-    </Wrapper>
+    </Container>
   )
 }
 
@@ -41,17 +41,9 @@ const _styles = (size, type, borderColor, backgroundColor) =>
       height: size * 1.75,
       borderRadius: size,
       borderWidth: size * 0.1,
-      borderColor: _getColor(type, borderColor, "main", "PRIMARY"),
-      backgroundColor: _getColor(type, backgroundColor, "accent", "PRIMARY"),
+      borderColor: Color.getByTypeOrProp(type, borderColor),
+      backgroundColor: Color.getByTypeOrProp(type, backgroundColor, "accent"),
       alignItems: "center",
       justifyContent: "center"
     }
   })
-
-function _getColor(type, colorProp, variantGroup, fallbackVariantType) {
-  return (
-    colors[variantGroup][type?.toUpperCase()] ??
-    colorProp ??
-    colors[variantGroup][fallbackVariantType]
-  )
-}

@@ -10,7 +10,20 @@ export default function ContactScreen() {
   return (
     <Layout.Screen>
       <Contact.Body fontScale={vw(7)} />
-      <UI.Toast fontScale={vw(4)} />
+      <Asd vw={vw} />
     </Layout.Screen>
   )
 }
+
+function Asd({ vw }) {
+  const [a, A] = React.useState("a")
+
+  const B = () => A((a) => a + "a")
+
+  return (
+    <UI.Toast onPressText={B} refreshTimeoutOn={a} fontScale={vw(5)}>
+      {a}
+    </UI.Toast>
+  )
+}
+add toast texts to redux, link to enable refresh

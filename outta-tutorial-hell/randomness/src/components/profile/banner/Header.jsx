@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native"
 import UI from "@app-components/UI"
 import Layout from "@app-components/layout"
 import colors from "@app-constants/colors"
-import { castRgbToRgba } from "@app-utils/functions"
+import { Color } from "@app-utils/functions"
 
 export default function Content({
   title,
@@ -16,7 +16,7 @@ export default function Content({
 }) {
   return (
     <Layout.Overlay
-      colors={[colors.background.PRIMARY, castRgbToRgba(titleColor, 0.4)]}
+      colors={[colors.background.PRIMARY, Color.castRgbToRgba(titleColor, 0.4)]}
       style={[_styles.container, { flex: flexValue }]}
     >
       <View style={_styles.titleAndCategoryContainer}>
