@@ -13,7 +13,7 @@ function DroppableItem({
   description,
   backgroundColor,
   fontScale,
-  url,
+  onPress,
   onLayout,
   containerStyle,
   titleStyle,
@@ -22,20 +22,7 @@ function DroppableItem({
   descriptionProps,
   ...rest
 }) {
-  const OpacityComponent = Boolean(url) ? OverlayPressable : OverlayBase
-
-  const mayOpenUrl = async () => {
-    if (!Boolean(url)) return
-
-    try {
-      const canOpenUrl = await Linking.canOpenURL(url)
-
-      if (canOpenUrl) Linking.openURL(url)
-      else console.log("Cannot open URL.")
-    } catch (err) {
-      console.log("Failed to open URL.", err)
-    }
-  }
+  const OpacityComponent = Boolean(onPress) ? OverlayPressable : OverlayBase
 
   return (
     <View onLayout={(e) => onLayout?.(name, e.nativeEvent.layout)}>
@@ -45,7 +32,7 @@ function DroppableItem({
         animated
         colors={[backgroundColor, colors.background.CONTRAST_ALPHA(0.1)]}
         style={[_styles.container, containerStyle]}
-        onPress={mayOpenUrl}
+        onPress={onPress}
         {...rest}
       >
         <TextWithScaleTransition

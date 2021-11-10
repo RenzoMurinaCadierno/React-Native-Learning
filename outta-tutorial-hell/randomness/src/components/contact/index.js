@@ -1,10 +1,6 @@
-import React from "react"
 import BodyRoot from "./body/Root"
+import ToastRoot from "./toast/Root"
 
-function Body(props) {
-  return <BodyRoot {...props} />
-}
-
-const Contact = { Body }
+const Contact = { Body: BodyRoot, Toast: ToastRoot }
 
 export default Contact

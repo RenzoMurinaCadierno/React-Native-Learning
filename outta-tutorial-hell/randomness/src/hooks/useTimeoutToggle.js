@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 
 export default function useTimeoutToggle(
   trigger,
-  { timeout = 1000, refreshOn } = {}
+  { timeout = 3000, refreshTimeoutOn, onShow, onHide } = {}
 ) {
   const [active, setActive] = useState(false)
 
@@ -11,13 +11,15 @@ export default function useTimeoutToggle(
 
     if (Boolean(trigger)) {
       setActive(true)
+      onShow?.()
       activeTimeoutId = setTimeout(() => {
         setActive(false)
+        onHide?.()
       }, timeout)
     }
 
     return () => clearTimeout(activeTimeoutId)
-  }, [trigger, refreshOn])
+  }, [trigger, refreshTimeoutOn])
 
   return active
 }

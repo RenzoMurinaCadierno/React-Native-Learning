@@ -1,9 +1,21 @@
 import React from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import * as contactActions from "@app-store/actions/contact"
 import UI from "@app-components/UI"
 
-export default function Body({ flexValue, fontScale }) {
+export default function Body({ fontScale }) {
   const bullets = useSelector((state) => state.contact.bullets)
+  const dispatch = useDispatch()
 
-  return <UI.DragNDrop fontScale={fontScale} droppables={bullets} showDemo />
+  const triggerToast = (activeItemName) =>
+    dispatch(contactActions.triggerToast(activeItemName))
+
+  return (
+    <UI.DragNDrop
+      fontScale={fontScale}
+      droppables={bullets}
+      showDemo
+      onActiveItemNameChange={triggerToast}
+    />
+  )
 }

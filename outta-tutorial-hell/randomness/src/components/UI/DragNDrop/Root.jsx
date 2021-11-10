@@ -11,6 +11,7 @@ export default function Root({
   droppables,
   fontScale,
   showDemo,
+  onActiveItemNameChange,
   containerStyle,
   containerProps,
   droppableItemsZoneProps,
@@ -44,6 +45,10 @@ export default function Root({
       itemsWereLayedOutFlag.set(true)
     }
   }, [iconHeight])
+
+  useEffect(() => {
+    onActiveItemNameChange?.(activeItemName)
+  }, [activeItemName])
 
   return (
     <View

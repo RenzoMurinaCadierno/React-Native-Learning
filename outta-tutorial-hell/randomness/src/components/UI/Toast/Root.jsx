@@ -7,10 +7,7 @@ import Body from "./Body"
 
 export default function Root({ show, timeout, refreshTimeoutOn, ...rest }) {
   const viewPort = useViewPort()
-  const active = useTimeoutToggle(show, {
-    timeout,
-    refreshOn: refreshTimeoutOn
-  })
+  const active = useTimeoutToggle(show, { timeout, refreshTimeoutOn })
   const val = useLinearAnimatedValue({
     active,
     activeAnimation: animations.effects.default.IN,
@@ -19,5 +16,3 @@ export default function Root({ show, timeout, refreshTimeoutOn, ...rest }) {
 
   return <Body viewPort={viewPort} animatedValue={val} {...rest} />
 }
-
-Root.defaultProps = { timeout: 2000, show: true }

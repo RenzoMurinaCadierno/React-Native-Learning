@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, Animated } from "react-native"
+import { Animated } from "react-native"
 import ToastText from "./Text"
 import { Color } from "@app-utils/functions"
 
@@ -17,7 +17,7 @@ export default function Body({
   containerStyle,
   ...rest
 }) {
-  const dynamicStyles = _createDynamicStyles(
+  const dynamicStyles = _createStyles(
     type,
     borderColor,
     backgroundColor,
@@ -28,7 +28,7 @@ export default function Body({
 
   return (
     <Animated.View
-      style={[_styles.container, dynamicStyles.container, containerStyle]}
+      style={[dynamicStyles.container, containerStyle]}
       {...containerProps}
     >
       <ToastText
@@ -45,17 +45,7 @@ export default function Body({
 
 Body.defaultProps = { containerProps: {} }
 
-const _styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  }
-})
-
-function _createDynamicStyles(
+function _createStyles(
   type,
   borderColor,
   backgroundColor,
@@ -65,6 +55,11 @@ function _createDynamicStyles(
 ) {
   return {
     container: {
+      position: "absolute",
+      flex: 1,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
       bottom: viewPort?.vh?.(7) || 50,
       paddingHorizontal: viewPort?.vw?.(3.5) || 12,
       paddingVertical: viewPort?.vw?.(2.5) || 6,
