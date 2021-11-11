@@ -5,14 +5,15 @@ import useTimeoutToggle from "@app-hooks/useTimeoutToggle"
 import animations from "@app-constants/animations"
 import Body from "./Body"
 
-export default function Root({ show, timeout, refreshTimeoutOn, ...rest }) {
+export default function Root({ show, timeout, manualCloseOn, ...rest }) {
   const viewPort = useViewPort()
-  const active = useTimeoutToggle(show, { timeout, refreshTimeoutOn })
-  const val = useLinearAnimatedValue({
+  const active = useTimeoutToggle(show, { timeout, manualCloseOn })
+  const animatedValue = useLinearAnimatedValue({
     active,
     activeAnimation: animations.effects.default.IN,
     inactiveAnimation: animations.effects.default.OUT
   })
 
-  return <Body viewPort={viewPort} animatedValue={val} {...rest} />
+  return <Body viewPort={viewPort} animatedValue={animatedValue} {...rest} />
 }
+check bug with scrolling text in profile. Add more things to mockDb, then fb

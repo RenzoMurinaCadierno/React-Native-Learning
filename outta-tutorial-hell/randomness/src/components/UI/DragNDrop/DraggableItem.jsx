@@ -13,7 +13,7 @@ export default function DraggableItem({
   color,
   ...rest
 }) {
-  const val = useLinearAnimatedValue({ active: ready })
+  const animatedValue = useLinearAnimatedValue({ active: ready })
 
   const setIconMeasuresInRootAndInTranslate2D = (e) => {
     onChildLayout(e)
@@ -23,7 +23,7 @@ export default function DraggableItem({
   return (
     <IconWithCircle
       {...rest}
-      containerStyle={{ ...containerStyle, opacity: val }}
+      containerStyle={{ ...containerStyle, opacity: animatedValue }}
       containerProps={{
         ...containerProps,
         ...panHandlers,

@@ -2,12 +2,19 @@ import React, { useRef } from "react"
 import { Animated, StyleSheet } from "react-native"
 import IconWithCircle from "../Icon/IconWithCircle"
 import IconBase from "../Icon/Base"
+import useTimeoutGate from "@app-hooks/useTimeoutGate"
 import useLoopingAnimatedValue from "@app-hooks/useLoopingAnimatedValue"
 import colors from "@app-constants/colors"
 import animations from "@app-constants/animations"
 import { interpolate } from "@app-utils/functions"
 
-export default function DraggableItemDemo({
+export default function DraggableItemDemoGate({ delayBeforeMount, ...rest }) {
+  const ready = useTimeoutGate(delayBeforeMount)
+
+  return ready && <DraggableItemDemoComponent {...rest} />
+}
+
+function DraggableItemDemoComponent({
   active,
   anchor,
   offsets,
@@ -20,9 +27,10 @@ export default function DraggableItemDemo({
     activeSequence: animations.icons.dragNDrop.example.ACTIVE_SEQUENCE,
     inactiveAnimation: animations.icons.dragNDrop.example.OUT
   })
+
   const anchorY = useRef(new Animated.Value(-1 * offsets.y + 1)).current
 
-  const displacementStyle = {
+  const animationStyle = {
     opacity: interpolate(animVal, [0.75, 0]),
     transform: [
       { translateY: Animated.add(anchorY, interpolate(animVal, [0, -100])) },
@@ -37,7 +45,7 @@ export default function DraggableItemDemo({
         size={size}
         containerStyle={{
           ..._styles.container,
-          ...displacementStyle,
+          ...animationStyle,
           ...containerStyle
         }}
         color={colors.main.PRIMARY}
@@ -51,13 +59,13 @@ export default function DraggableItemDemo({
         name="cursor-pointer"
         vector="MaterialCommunityIcons"
         color={colors.main.SECONDARY}
-        style={[_styles.cursor, displacementStyle]}
+        style={[_styles.cursor, animationStyle]}
       />
     </>
   )
 }
 
-DraggableItemDemo.defaultProps = { containerStyle: {} }
+DraggableItemDemoComponent.defaultProps = { containerStyle: {} }
 
 const _styles = StyleSheet.create({
   container: { position: "absolute", right: 0, bottom: 0 },

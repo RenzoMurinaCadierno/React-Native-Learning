@@ -48,6 +48,7 @@ export default function DraggableRootContainer({
       <>
         {showDemo && (
           <DraggableItemDemo
+            delayBeforeMount={2500}
             active={!isIconTouched}
             name="eye"
             size={size}

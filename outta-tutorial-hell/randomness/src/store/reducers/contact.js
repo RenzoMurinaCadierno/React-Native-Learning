@@ -19,14 +19,7 @@ export default function contactReducer(state = initialState, action) {
       }
 
     case CONTACT_TRIGGER_TOAST:
-      return {
-        ...state,
-        toast: {
-          show: action.payload.show,
-          text: action.payload.text,
-          onPressText: action.payload.onPressText
-        }
-      }
+      return { ...state, toast: { ...state.toast, ...action.payload } }
 
     default:
       return state

@@ -137,7 +137,7 @@ const animations = {
       },
       example: {
         ACTIVE_SEQUENCE: (value) => [
-          Animated.delay(250),
+          Animated.delay(500),
           Animated.timing(value, animationConfigs.timing(1, 2000, easings.OUT)),
           Animated.timing(value, animationConfigs.timing(0, 0, easings.LINEAR))
         ],

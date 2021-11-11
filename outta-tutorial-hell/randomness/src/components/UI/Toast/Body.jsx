@@ -1,7 +1,7 @@
 import React from "react"
 import { Animated } from "react-native"
 import ToastText from "./Text"
-import { Color } from "@app-utils/functions"
+import { Color, interpolate } from "@app-utils/functions"
 
 export default function Body({
   animatedValue,
@@ -73,7 +73,11 @@ function _createStyles(
             alphaValue: 0.3
           }),
       opacity: animatedValue,
-      transform: [{ scaleX: animatedValue }]
+      transform: [
+        {
+          translateY: interpolate(animatedValue, [viewPort?.vh?.(5) || 35, 0])
+        }
+      ]
     },
     text: {
       style: {

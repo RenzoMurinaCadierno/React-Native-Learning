@@ -26,17 +26,18 @@ const mayOpenUrl = async (url) => {
   }
 }
 
-const toastAction = (show, text, onPressText) => ({
-  type: CONTACT_TRIGGER_TOAST,
-  payload: { show, text, onPressText }
-})
-
 export const triggerToast = (bulletName) => async (dispatch, getState) => {
   if (!Boolean(bulletName)) {
-    dispatch(toastAction(false, "", () => {}))
+    dispatch({
+      type: CONTACT_TRIGGER_TOAST,
+      payload: { show: false, onPressText: () => {} }
+    })
   } else {
     const { text, url } = getState().contact.bullets[bulletName].toastData
 
-    dispatch(toastAction(true, text, () => mayOpenUrl(url)))
+    dispatch({
+      type: CONTACT_TRIGGER_TOAST,
+      payload: { show: true, text, onPressText: () => mayOpenUrl(url) }
+    })
   }
 }
