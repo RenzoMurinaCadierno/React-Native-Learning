@@ -12,7 +12,7 @@ export default function Content({
   titleColor,
   flexValue,
   fontScale,
-  sectionListOffsetY
+  shrinkHeader
 }) {
   return (
     <Layout.Overlay
@@ -40,7 +40,8 @@ export default function Content({
         </UI.Text>
       </View>
       <UI.Text.WithShrinkTransition
-        value={sectionListOffsetY / 85}
+        active={shrinkHeader}
+        // value={sectionListOffsetY / 85}
         size={fontScale * 0.95}
         type="regular-italic"
         color={colors.main.SECONDARY}

@@ -33,7 +33,7 @@ function MultipleWithPulsation({
           style={[
             {
               opacity: interpolate012(animValue, [0, 1, 0]),
-              transform: _getScale(direction, animValue)
+              transform: [{ scale: interpolate012(animValue, [0.5, 1, 0.5]) }]
             },
             contentContainerStyle
           ]}
@@ -62,19 +62,5 @@ function _getContainerStyle(direction) {
       return { flexDirection: "column", justifyContent: "space-between" }
     default:
       return { flexDirection: "row", justifyContent: "space-between" }
-  }
-}
-
-function _getScale(direction, val) {
-  switch (direction?.toLowerCase()) {
-    case "up":
-      return [{ scale: interpolate012(val, [0.5, 1, 0.5]) }]
-    case "down":
-      return [{ scale: interpolate012(val, [0.5, 1, 0.5]) }]
-    case "left":
-      return [{ scale: interpolate012(val, [0.5, 1, 0.5]) }]
-    case "right":
-    default:
-      return [{ scale: interpolate012(val, [0.5, 1, 0.5]) }]
   }
 }

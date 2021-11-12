@@ -2,16 +2,18 @@ import React, { useRef } from "react"
 import { Animated, StyleSheet } from "react-native"
 import IconWithCircle from "../Icon/IconWithCircle"
 import IconBase from "../Icon/Base"
-import useTimeoutGate from "@app-hooks/useTimeoutGate"
+import Logic from "../../logic"
 import useLoopingAnimatedValue from "@app-hooks/useLoopingAnimatedValue"
 import colors from "@app-constants/colors"
 import animations from "@app-constants/animations"
 import { interpolate } from "@app-utils/functions"
 
 export default function DraggableItemDemoGate({ delayBeforeMount, ...rest }) {
-  const ready = useTimeoutGate(delayBeforeMount)
-
-  return ready && <DraggableItemDemoComponent {...rest} />
+  return (
+    <Logic.DelayMountPhase delay={delayBeforeMount}>
+      <DraggableItemDemoComponent {...rest} />
+    </Logic.DelayMountPhase>
+  )
 }
 
 function DraggableItemDemoComponent({

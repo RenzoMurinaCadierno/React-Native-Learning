@@ -16,4 +16,3 @@ export default function Root({ show, timeout, manualCloseOn, ...rest }) {
 
   return <Body viewPort={viewPort} animatedValue={animatedValue} {...rest} />
 }
-check bug with scrolling text in profile. Add more things to mockDb, then fb

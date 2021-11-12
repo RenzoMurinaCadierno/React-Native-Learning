@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useCallback } from "react"
 import { StyleSheet, View } from "react-native"
 import Placeholder from "./Placeholder"
 import Header from "./Header"
@@ -9,15 +9,29 @@ import sharedStyles from "@app-constants/styles"
 
 export default function Root({
   fontScale,
+  headerShrinkThereshold,
   containerStyle,
   headerProps,
   bodyProps,
   placeHolderProps,
   containerProps
 }) {
-  const [sectionListOffsetY, setSectionListOffsetY] = useState(0)
+  const [shrinkHeader, setShrinkHeader] = useState(false)
   const { activeSection, activeSubSectionId } = useSelectProfile()
 
+  const mayShrinkHeader = useCallback(
+    ({ contentOffset, contentSize }) => {
+      // Prevents shrinking if list is too small, and controlls it if list is
+      // long enough. Avoids stuttering provoked by auto-scrolling when list
+      // adapts to new header height when it shrinks or grows
+      setShrinkHeader(
+        contentSize.height >= headerShrinkThereshold && // height >= thereshold
+          contentOffset.y >= headerShrinkThereshold / 10 // shrink at 10% scroll
+      )
+    },
+    [headerShrinkThereshold]
+  )
+    add more stuff to mockdb to test behavior. Then fb
   return !Boolean(activeSubSectionId) ? (
     <Placeholder fontScale={fontScale} {...placeHolderProps} />
   ) : (
@@ -28,7 +42,7 @@ export default function Root({
         titleColor={activeSection.color}
         subtitle={activeSection.subtitle}
         category={activeSection.category}
-        sectionListOffsetY={sectionListOffsetY}
+        shrinkHeader={shrinkHeader}
         {...headerProps}
       />
       <Layout.Divider />
@@ -37,7 +51,7 @@ export default function Root({
         fontScale={fontScale}
         flexValue={1}
         activeIconId={activeSubSectionId}
-        onScrollBodySectionList={setSectionListOffsetY}
+        onScrollBodySectionList={mayShrinkHeader}
         {...bodyProps}
       />
     </View>

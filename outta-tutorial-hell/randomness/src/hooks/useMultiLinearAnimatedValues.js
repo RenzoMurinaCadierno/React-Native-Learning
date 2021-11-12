@@ -24,7 +24,7 @@ export default function useMultiLinearAnimatedValues({
       ).start(onActiveFinish)
       onActiveStart?.()
     } else if (
-      Boolean(inactiveAnimations.length) &&
+      Boolean(inactiveAnimations?.length) &&
       activeAnimations.length === inactiveAnimations.length
     ) {
       Animated.parallel(

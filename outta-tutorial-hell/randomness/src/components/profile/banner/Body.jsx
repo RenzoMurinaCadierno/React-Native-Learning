@@ -15,7 +15,7 @@ function Body({
 
   const hideArrowsAndTriggerParentCallback = useCallback((e) => {
     setShowArrows(false)
-    onScrollBodySectionList?.(e.nativeEvent.contentOffset.y)
+    onScrollBodySectionList?.(e.nativeEvent)
   }, [])
 
   return (

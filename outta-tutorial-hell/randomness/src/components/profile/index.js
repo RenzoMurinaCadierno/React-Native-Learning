@@ -1,6 +1,5 @@
 import React from "react"
 import BannerRoot from "./banner/Root"
-import BannerContent from "./banner/Content"
 import BannerHeader from "./banner/Header"
 import BannerPlaceholder from "./banner/Placeholder"
 import BannerBody from "./banner/Body"
@@ -22,7 +21,6 @@ function ComposedBannerBody(props) {
 ComposedBannerBody.Content = BannerBodyContent
 ComposedBannerBody.Bullet = BannerBodyBullet
 
-ComposedBanner.Content = BannerContent
 ComposedBanner.Placeholder = BannerPlaceholder
 ComposedBanner.Header = BannerHeader
 ComposedBanner.Body = ComposedBannerBody

@@ -30,7 +30,7 @@ const TabNavigator = () => {
     <TabNavigation.Navigator
       style={{ paddingTop: StatusBar.currentHeight }}
       screenOptions={getTabBarScreenOptions(vw(4.5))}
-      initialRouteName="Contact"
+      initialRouteName="Profile"
     >
       <TabNavigation.Screen
         name="Profile"
