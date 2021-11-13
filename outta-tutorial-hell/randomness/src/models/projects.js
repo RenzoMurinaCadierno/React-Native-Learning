@@ -11,3 +11,18 @@ export class ProjectsIcon extends TechIcon {
     })
   }
 }
+
+function addLeadingZero(num) {
+  return num <= 9 ? "0" + num : num
+}
+
+function _getImageUrl(imageIndex, basePath, folder, subfolder) {
+  return `${basePath}/${folder}/${subfolder}/${imageIndex}.jpg`
+}
+
+export class ProjectsImage {
+  constructor({ id, index, basePath, folder, subfolder }) {
+    this.id = id
+    this.uri = _getImageUrl(addLeadingZero(index), basePath, folder, subfolder)
+  }
+}

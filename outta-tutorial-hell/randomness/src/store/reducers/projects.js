@@ -2,7 +2,7 @@ import {
   PROJECTS_POPULATE_STORE,
   PROJECTS_CHANGE_ACTIVE_SECTION
 } from "../types/projects"
-import { status, messages, screens } from "../data/global"
+import { status, messages, screens } from "../states/global"
 
 const initialState = {
   status: status.CICLE_START,

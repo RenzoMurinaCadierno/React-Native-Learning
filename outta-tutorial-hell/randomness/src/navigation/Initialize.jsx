@@ -4,7 +4,7 @@ import { ActivityIndicator, Alert } from "react-native"
 import Layout from "@app-components/layout"
 import RootNavigation from "./Root"
 import * as globalActions from "@app-store/actions/global"
-import { status as _globalStoreStatus } from "@app-store/data/global"
+import { status as globalStoreStatus } from "@app-store/states/global"
 import colors from "@app-constants/colors"
 
 export default function Initialize() {
@@ -44,11 +44,11 @@ export default function Initialize() {
 
 function _storeIsLoading(currentGlobalStoreStatus) {
   return (
-    currentGlobalStoreStatus === _globalStoreStatus.CICLE_START ||
-    currentGlobalStoreStatus === _globalStoreStatus.FETCH_DATABASE_INIT
+    currentGlobalStoreStatus === globalStoreStatus.CICLE_START ||
+    currentGlobalStoreStatus === globalStoreStatus.FETCH_DATABASE_INIT
   )
 }
 
 function _databaseFetchFailed(globalStoreStatus) {
-  return globalStoreStatus === _globalStoreStatus.FETCH_DATABASE_ERROR
+  return globalStoreStatus === globalStoreStatus.FETCH_DATABASE_ERROR
 }

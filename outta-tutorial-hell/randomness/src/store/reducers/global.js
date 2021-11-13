@@ -3,7 +3,7 @@ import {
   FETCH_DATABASE_ERROR,
   FETCH_DATABASE_SUCCESS
 } from "../types/global"
-import { status, messages, screens } from "../data/global"
+import { status, messages, screens } from "../states/global"
 
 const initialState = {
   data: {},

@@ -3,11 +3,11 @@ import {
   FETCH_DATABASE_ERROR,
   FETCH_DATABASE_SUCCESS
 } from "../types/global"
-import { status, messages, screens } from "../data/global"
+import { status, messages, screens } from "../states/global"
 import * as profileActions from "../actions/profile"
 import * as projectsActions from "../actions/projects"
 import * as contactActions from "../actions/contact"
-import initDb from "../data/mockDb"
+import initDb from "../db/initialize"
 
 export const initializeDatabase = () => async (dispatch) => {
   dispatch({

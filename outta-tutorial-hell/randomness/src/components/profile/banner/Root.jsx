@@ -23,7 +23,7 @@ export default function Root({
     ({ contentOffset, contentSize }) => {
       // Prevents shrinking if list is too small, and controlls it if list is
       // long enough. Avoids stuttering provoked by auto-scrolling when list
-      // adapts to new header height when it shrinks or grows
+      // adapts to new header height when shrinking or growing
       setShrinkHeader(
         contentSize.height >= headerShrinkThereshold && // height >= thereshold
           contentOffset.y >= headerShrinkThereshold / 10 // shrink at 10% scroll
@@ -31,7 +31,7 @@ export default function Root({
     },
     [headerShrinkThereshold]
   )
-    add more stuff to mockdb to test behavior. Then fb
+
   return !Boolean(activeSubSectionId) ? (
     <Placeholder fontScale={fontScale} {...placeHolderProps} />
   ) : (

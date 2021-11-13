@@ -2,7 +2,7 @@ import {
   PROFILE_CHANGE_ACTIVE_SUBSECTION,
   PROFILE_POPULATE_STORE
 } from "../types/profile"
-import { status, messages, screens } from "../data/global"
+import { status, messages, screens } from "../states/global"
 
 const initialState = {
   status: status.CICLE_START,

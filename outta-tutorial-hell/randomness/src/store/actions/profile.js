@@ -2,7 +2,7 @@ import {
   PROFILE_POPULATE_STORE,
   PROFILE_CHANGE_ACTIVE_SUBSECTION
 } from "../types/profile"
-import { status, messages, screens } from "../data/global"
+import { status, messages, screens } from "../states/global"
 
 export const populateStore = (profileDbData) => {
   let iconCategories = []

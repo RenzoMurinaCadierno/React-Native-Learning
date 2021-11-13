@@ -1,5 +1,5 @@
 import { CONTACT_POPULATE_STORE, CONTACT_TRIGGER_TOAST } from "../types/contact"
-import { status, messages, screens } from "../data/global"
+import { status, messages, screens } from "../states/global"
 
 const initialState = {
   status: status.CICLE_START,
