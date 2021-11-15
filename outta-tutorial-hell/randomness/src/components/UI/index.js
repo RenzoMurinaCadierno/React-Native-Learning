@@ -4,7 +4,9 @@ import Color from "./Animation/Color"
 import Hover from "./Animation/Hover"
 import Scale from "./Animation/Scale"
 import Translate2D from "./Animation/Translate2D"
+import PressableRoot from "./Pressable/Root"
 import TextBase from "./Text/Base"
+import TextPressable from "./Text/Pressable"
 import TextWithShrinkTransition from "./Text/TextWithShrinkTransition"
 import TextWithScaleTransition from "./Text/TextWithScaleTransition"
 import ToastRoot from "./Toast/Root"
@@ -45,6 +47,10 @@ import IconWithHover from "./Icon/IconWithHover"
 import IconWithCircle from "./Icon/IconWithCircle"
 import IconWithAura from "./Icon/IconWithAura"
 import IconWithColorTransition from "./Icon/IconWithColorTransition"
+
+function Pressable(props) {
+  return <PressableRoot {...props} />
+}
 
 function ComposedIcon(props) {
   return <Icon {...props} />
@@ -91,6 +97,7 @@ function ComposedText(props) {
   return <TextBase {...props} />
 }
 
+ComposedText.Pressable = TextPressable
 ComposedText.WithShrinkTransition = TextWithShrinkTransition
 ComposedText.WithScaleTransition = TextWithScaleTransition
 
@@ -138,6 +145,7 @@ const UI = {
   Carousel: ComposedCarousel,
   Icon: ComposedIcon,
   Image: ComposedImage,
+  Pressable,
   Text: ComposedText,
   Toast: ComposedToast
 }

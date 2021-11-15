@@ -5,25 +5,6 @@ import useViewPortContext from "@app-hooks/useViewPortContext"
 import colors from "@app-constants/colors"
 import sharedStyles from "@app-constants/styles"
 
-function PlaceholderText({ children, isTitle, style, ...rest }) {
-  const { vw } = useViewPortContext()
-
-  return (
-    <UI.Text.WithScaleTransition
-      type={isTitle ? "semi-bold-italic" : "regular"}
-      size={isTitle ? vw(5.5) : vw(4.5)}
-      color={colors.main[isTitle ? "PRIMARY" : "SECONDARY"]}
-      elevation={vw(1)}
-      shadowColor={colors.accent[isTitle ? "PRIMARY" : "SECONDARY"]}
-      style={[_styles.texts, style]}
-      useScaleTransitionArgs={{ inactiveScaleValue: 1.1 }}
-      {...rest}
-    >
-      {children}
-    </UI.Text.WithScaleTransition>
-  )
-}
-
 export default function Placeholder({
   show,
   title,
@@ -52,6 +33,25 @@ export default function Placeholder({
 }
 
 Placeholder.defaultProps = { show: true }
+
+function PlaceholderText({ children, isTitle, style, ...rest }) {
+  const { vw } = useViewPortContext()
+
+  return (
+    <UI.Text.WithScaleTransition
+      type={isTitle ? "semi-bold-italic" : "regular"}
+      size={isTitle ? vw(5.5) : vw(4.5)}
+      color={colors.main[isTitle ? "PRIMARY" : "SECONDARY"]}
+      elevation={vw(1)}
+      shadowColor={colors.accent[isTitle ? "PRIMARY" : "SECONDARY"]}
+      style={[_styles.texts, style]}
+      useScaleTransitionArgs={{ inactiveScaleValue: 1.1 }}
+      {...rest}
+    >
+      {children}
+    </UI.Text.WithScaleTransition>
+  )
+}
 
 const _styles = StyleSheet.create({
   container: sharedStyles.FLEX_CENTER,

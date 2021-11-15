@@ -1,6 +1,7 @@
 import React from "react"
 import { StyleSheet, Animated } from "react-native"
 import AppText from "../Text/Base"
+import Enhanced from "../../enhanced"
 import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import animations from "@app-constants/animations"
@@ -12,20 +13,21 @@ export default function ActionText({
   activeAnimation,
   inactiveAnimation,
   translateXOutputRange,
+  onPress,
   containerStyle,
   containerProps,
   ...rest
 }) {
   const { vw } = useViewPortContext()
-
   const val = useLinearAnimatedValue({
     active,
     activeAnimation,
     inactiveAnimation
   })
+  const Wrapper = onPress ? Enhanced.Animated.Pressable : Animated.View
 
   return (
-    <Animated.View
+    <Wrapper
       style={[
         _styles.container,
         {
@@ -34,12 +36,13 @@ export default function ActionText({
         },
         containerStyle
       ]}
+      onPress={onPress}
       {...containerProps}
     >
       <AppText size={vw(4.5)} type="semi-bold-italic" {...rest}>
         {children}
       </AppText>
-    </Animated.View>
+    </Wrapper>
   )
 }
 

@@ -41,7 +41,6 @@ export default function Content({
       </View>
       <UI.Text.WithShrinkTransition
         active={shrinkHeader}
-        // value={sectionListOffsetY / 85}
         size={fontScale * 0.95}
         type="regular-italic"
         color={colors.main.SECONDARY}

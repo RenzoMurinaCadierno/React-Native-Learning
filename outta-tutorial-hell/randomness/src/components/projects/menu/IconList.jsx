@@ -44,5 +44,5 @@ export default React.memo(IconList)
 const _styles = StyleSheet.create({
   container: { width: "100%", flex: 1 },
   contentContainer: sharedStyles.FLEX_CENTER,
-  icon: { marginVertical: "15%" }
+  icon: { marginVertical: "25%" }
 })

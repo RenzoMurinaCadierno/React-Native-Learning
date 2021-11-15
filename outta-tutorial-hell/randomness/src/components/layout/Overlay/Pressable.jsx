@@ -1,7 +1,7 @@
 import React from "react"
-import { StyleSheet, Pressable } from "react-native"
+import { StyleSheet } from "react-native"
 import Base from "./Base"
-import colors from "@app-constants/colors"
+import AppPressable from "../../UI/Pressable/Root"
 
 export default function PressableOverlay({
   children,
@@ -13,18 +13,16 @@ export default function PressableOverlay({
   ...rest
 }) {
   return (
-    <Pressable
+    <AppPressable
       style={_styles.container}
       {...{ onPress, onPressIn, onPressOut, onLongPress }}
       {...pressableProps}
     >
       <Base {...rest}>{children}</Base>
-    </Pressable>
+    </AppPressable>
   )
 }
 
-PressableOverlay.defaultProps = {
-  pressableProps: { android_ripple: { color: colors.background.DARK } }
-}
+PressableOverlay.defaultProps = { pressableProps: {} }
 
 const _styles = StyleSheet.create({ container: { width: "100%" } })

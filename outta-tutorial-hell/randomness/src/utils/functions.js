@@ -1,4 +1,4 @@
-import { Easing } from "react-native"
+import { Easing, Linking } from "react-native"
 import appColors from "@app-constants/colors"
 
 export class Obj {
@@ -77,6 +77,19 @@ export class Color {
       .replace(/\s/g, "")
       .replace("rgb(", "rgba(")
       .replace(")", "," + alphaValue.toString() + ")")
+  }
+}
+
+export async function mayOpenUrl(url) {
+  if (!Boolean(url)) return
+
+  try {
+    const canOpenUrl = await Linking.canOpenURL(url)
+
+    if (canOpenUrl) Linking.openURL(url)
+    else console.log("Cannot open URL.")
+  } catch (err) {
+    console.log("Failed to open URL.", err)
   }
 }
 

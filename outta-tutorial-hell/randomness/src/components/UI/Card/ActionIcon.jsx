@@ -6,13 +6,21 @@ import animations from "@app-constants/animations"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import ActionText from "./ActionText"
 
-function ActionIcon({ id, size, actionText, onPress, ...rest }) {
+function ActionIcon({
+  id,
+  size,
+  actionText,
+  onIconPress,
+  onActionTextPress,
+  actionTextProps,
+  ...rest
+}) {
   const { vw } = useViewPortContext()
   const [activeIcon, changeActiveIcon] = useContext(ActionsContext)
 
   const handlePress = () => {
     changeActiveIcon(id)
-    onPress?.()
+    onIconPress?.(id)
   }
 
   return (
@@ -27,13 +35,23 @@ function ActionIcon({ id, size, actionText, onPress, ...rest }) {
         active={activeIcon === id}
       />
       {typeof actionText === "string" && (
-        <ActionText active={activeIcon === id}>{actionText}</ActionText>
+        <ActionText
+          active={activeIcon === id}
+          onPress={onActionTextPress}
+          {...actionTextProps}
+        >
+          {actionText}
+        </ActionText>
       )}
     </>
   )
 }
 
-ActionIcon.defaultProps = { active: false, name: "help-outline" }
+ActionIcon.defaultProps = {
+  active: false,
+  name: "help-outline",
+  actionTextProps: {}
+}
 
 export default React.memo(ActionIcon)
 

@@ -17,7 +17,7 @@ function addLeadingZero(num) {
 }
 
 function _getImageUrl(imageIndex, basePath, folder, subfolder) {
-  return `${basePath}/${folder}/${subfolder}/${imageIndex}.jpg`
+  return `${basePath}${folder}/${subfolder}/${imageIndex}.jpg`
 }
 
 export class ProjectsImage {

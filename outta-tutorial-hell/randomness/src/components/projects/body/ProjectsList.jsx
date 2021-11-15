@@ -26,4 +26,4 @@ export default function ProjectsList({ items }) {
   )
 }
 
-const _styles = StyleSheet.create({ contentContainerStyle: { flex: 1 } })
+const _styles = StyleSheet.create({ contentContainerStyle: { flexGrow: 1 } })

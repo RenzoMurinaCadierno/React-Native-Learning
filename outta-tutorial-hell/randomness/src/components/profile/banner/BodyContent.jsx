@@ -57,7 +57,6 @@ function BodyContent({
       keyExtractor={_keyExtractor}
       style={_styles.container}
       onScroll={onScrollSectionList}
-      // scrollEventThrottle={1}
       stickySectionHeadersEnabled
     />
   )

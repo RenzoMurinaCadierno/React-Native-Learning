@@ -1,6 +1,6 @@
-import { Linking } from "react-native"
 import { CONTACT_POPULATE_STORE, CONTACT_TRIGGER_TOAST } from "../types/contact"
 import { status, messages, screens } from "../states/global"
+import { mayOpenUrl } from "@app-utils/functions"
 
 export const populateStore = (contactDbData) => async (dispatch) => {
   dispatch({
@@ -11,19 +11,6 @@ export const populateStore = (contactDbData) => async (dispatch) => {
       bullets: contactDbData.bullets
     }
   })
-}
-
-const mayOpenUrl = async (url) => {
-  if (!Boolean(url)) return
-
-  try {
-    const canOpenUrl = await Linking.canOpenURL(url)
-
-    if (canOpenUrl) Linking.openURL(url)
-    else console.log("Cannot open URL.")
-  } catch (err) {
-    console.log("Failed to open URL.", err)
-  }
 }
 
 export const triggerToast = (bulletName) => async (dispatch, getState) => {

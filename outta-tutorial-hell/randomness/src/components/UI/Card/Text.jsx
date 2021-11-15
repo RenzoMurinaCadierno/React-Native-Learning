@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, View } from "react-native"
+import { Pressable, StyleSheet, View } from "react-native"
 import AppText from "../Text/Base"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import colors from "@app-constants/colors"
@@ -25,19 +25,21 @@ export default function CardText({
   fontScale,
   children,
   style,
+  onPress,
   containerProps,
   containerStyle,
   ...rest
 }) {
   const { vw } = useViewPortContext()
+  const Wrapper = onPress ? Pressable : View
   const textProps = _getTextPropsForRole(role, fontScale, vw)
 
   return (
-    <View style={[_styles.container, containerStyle]} {...containerProps}>
+    <Wrapper style={[_styles.container, containerStyle]} {...containerProps}>
       <AppText {...textProps} style={[_styles[role], style]} {...rest}>
         {children}
       </AppText>
-    </View>
+    </Wrapper>
   )
 }
 
