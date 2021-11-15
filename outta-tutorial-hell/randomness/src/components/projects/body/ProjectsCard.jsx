@@ -15,7 +15,7 @@ export default function ProjectsCard({
       <UI.Card.Text.Title>{title}</UI.Card.Text.Title>
       <UI.Card.Text.Subtitle>{subtitle}</UI.Card.Text.Subtitle>
       <UI.Carousel images={images} containerStyle={{ marginTop: 7 }} />
-      <ProjectsCardActions actions={actions} />
+      <ProjectsCardActions actions={actions} title={title} />
     </UI.Card.WithAnimation>
   )
 }

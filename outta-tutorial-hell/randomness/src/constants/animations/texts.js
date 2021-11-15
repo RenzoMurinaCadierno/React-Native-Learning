@@ -22,6 +22,12 @@ const texts = {
       OUT: (val) =>
         Animated.timing(val, animationConfigs.timing(0, 250, easings.OUT))
     }
+  },
+  translate: {
+    IN: (value) =>
+      Animated.timing(value, animationConfigs.timing(1, 350, easings.IN)),
+    OUT: (value) =>
+      Animated.timing(value, animationConfigs.timing(0, 350, easings.OUT))
   }
 }
 

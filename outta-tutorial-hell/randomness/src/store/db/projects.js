@@ -3,14 +3,14 @@ import { defaultIcons } from "./global"
 import * as projectsConstants from "@app-constants/sections/projects"
 import { uid } from "@app-utils/functions"
 
-const { WEB_APP, ALLOW_SHARE, REPOSITORY } = projectsConstants.card.actions
+const { WEB_APP, SHARE_LINK, REPOSITORY } = projectsConstants.card.actions
 const BASE_REPO_URL_PATH = "https://github.com/RenzoMurinaCadierno/"
 const BASE_IMAGES_URL_PATH =
   "https://raw.githubusercontent.com/RenzoMurinaCadierno/assets/master/rn-portfolio/images/"
 
-function _getActions(repoSlug, webAppUrl, allowShare = true) {
+function _getActions(repoSlug, webAppUrl) {
   const sharedActions = {
-    [ALLOW_SHARE]: allowShare,
+    [SHARE_LINK]: BASE_REPO_URL_PATH + repoSlug,
     [REPOSITORY]: BASE_REPO_URL_PATH + repoSlug
   }
 

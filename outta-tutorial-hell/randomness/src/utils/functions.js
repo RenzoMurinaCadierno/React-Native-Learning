@@ -1,4 +1,4 @@
-import { Easing, Linking } from "react-native"
+import { Easing, Linking, Share, Alert } from "react-native"
 import appColors from "@app-constants/colors"
 
 export class Obj {
@@ -80,16 +80,37 @@ export class Color {
   }
 }
 
-export async function mayOpenUrl(url) {
-  if (!Boolean(url)) return
+export class Link {
+  static mayShare = async (message, title, errorMessage) => {
+    if (!message) return
 
-  try {
-    const canOpenUrl = await Linking.canOpenURL(url)
+    try {
+      const result = await Share.share(
+        { message, title },
+        { dialogTitle: title }
+      )
 
-    if (canOpenUrl) Linking.openURL(url)
-    else console.log("Cannot open URL.")
-  } catch (err) {
-    console.log("Failed to open URL.", err)
+      if (result.action === Share.dismissedAction) throw new Error()
+    } catch (err) {
+      Alert.alert(errorMessage, [{ title: "Try later" }])
+    }
+  }
+
+  static mayOpenUrl = async (url) => {
+    if (!Boolean(url)) return
+
+    try {
+      const canOpenUrl = await Linking.canOpenURL(url)
+
+      if (canOpenUrl) Linking.openURL(url)
+      else throw new Error()
+    } catch (err) {
+      Alert.alert(
+        "Cannot open URL",
+        "Check your internet connection and/or app's internet permissions and try again",
+        [{ title: "OK" }]
+      )
+    }
   }
 }
 

@@ -23,14 +23,6 @@ const card = {
         )
     }
   },
-  actionText: {
-    appear: {
-      IN: (value) =>
-        Animated.timing(value, animationConfigs.timing(1, 350, easings.IN)),
-      OUT: (value) =>
-        Animated.timing(value, animationConfigs.timing(0, 350, easings.OUT))
-    }
-  },
   transition: {
     IN: (value, delay) =>
       Animated.timing(

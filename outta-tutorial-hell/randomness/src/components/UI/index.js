@@ -9,6 +9,7 @@ import TextBase from "./Text/Base"
 import TextPressable from "./Text/Pressable"
 import TextWithShrinkTransition from "./Text/TextWithShrinkTransition"
 import TextWithScaleTransition from "./Text/TextWithScaleTransition"
+import TextWithTranslateTransition from "./Text/TextWithTranslateTransition"
 import ToastRoot from "./Toast/Root"
 import ToastBody from "./Toast/Body"
 import ToastText from "./Toast/Text"
@@ -100,6 +101,7 @@ function ComposedText(props) {
 ComposedText.Pressable = TextPressable
 ComposedText.WithShrinkTransition = TextWithShrinkTransition
 ComposedText.WithScaleTransition = TextWithScaleTransition
+ComposedText.WithTranslateTransition = TextWithTranslateTransition
 
 function ComposedToast(props) {
   return <ToastRoot {...props} />

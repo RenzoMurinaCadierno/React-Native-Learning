@@ -1,5 +1,7 @@
 import React from "react"
 import ImageWithTransition from "../Image/ImageWithTransition"
+import colors from "@app-constants/colors"
+import { StyleSheet } from "react-native"
 
 export default function Image({
   source,
@@ -8,20 +10,24 @@ export default function Image({
   containerProps,
   ...rest
 }) {
-  // add Animated.Image and switch between actual image or error one.
-  // Then add action buttons. Then work on carousel for images and 1/3 2/3 3/3
   return (
     <ImageWithTransition
       source={source}
-      containerStyle={{
-        aspectRatio: 1.5,
-        alignSelf: "stretch",
-        ...containerStyle
-      }}
-      style={{ borderRadius: 5, ...style }}
+      containerStyle={[_styles.container, containerStyle]}
+      style={[_styles.image, style]}
       {...rest}
     />
   )
 }
 
 Image.defaultProps = { containerStyle: {}, style: {} }
+
+const _styles = StyleSheet.create({
+  container: {
+    aspectRatio: 1.5,
+    backgroundColor: colors.background.SECONDARY_ALPHA(0.2),
+    borderColor: colors.background.DARK_ALPHA(0.3),
+    borderRadius: 5
+  },
+  image: { borderRadius: 5 }
+})

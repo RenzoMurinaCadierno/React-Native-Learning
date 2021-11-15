@@ -53,6 +53,6 @@ ImageWithTransition.defaultProps = {
 
 const _styles = StyleSheet.create({
   container: { position: "relative" },
-  image: { width: "100%", height: "100%", resizeMode: "cover" },
+  image: { width: "100%", height: "100%", resizeMode: "contain" },
   placeholder: StyleSheet.absoluteFill
 })

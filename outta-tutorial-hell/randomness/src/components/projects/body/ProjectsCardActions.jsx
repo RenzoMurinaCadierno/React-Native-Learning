@@ -1,11 +1,12 @@
 import React from "react"
 import UI from "@app-components/UI"
 import * as projectsConstants from "@app-constants/sections/projects"
-import { mayOpenUrl } from "@app-utils/functions"
+import { Link } from "@app-utils/functions"
 import colors from "@app-constants/colors"
 
 export default function ProjectsCardActions({
   actions,
+  title,
   containerProps,
   ...rest
 }) {
@@ -17,7 +18,7 @@ export default function ProjectsCardActions({
           actionTextProps={{
             containerProps: { color: colors.background.SECONDARY }
           }}
-          {...actionIconsProps[actionId](actionUrlString)}
+          {..._actionIconsProps[actionId](actionUrlString, title)}
           {...rest}
         />
       ))}
@@ -27,25 +28,30 @@ export default function ProjectsCardActions({
 
 ProjectsCardActions.defaultProps = { actions: {}, containerProps: {} }
 
-const { ALLOW_SHARE, REPOSITORY, WEB_APP } = projectsConstants.card.actions
+const { SHARE_LINK, REPOSITORY, WEB_APP } = projectsConstants.card.actions
 
-const actionIconsProps = {
-  [ALLOW_SHARE]: () => ({
-    id: ALLOW_SHARE,
+const _actionIconsProps = {
+  [SHARE_LINK]: (url, title) => ({
+    id: SHARE_LINK,
     name: "share-social",
     actionText: "Tap to share",
-    onActionTextPress: () => console.log("share")
+    onActionTextPress: () =>
+      Link.mayShare(
+        url,
+        `Share ${title} repository link`,
+        `Could not share ${title} repository link`
+      )
   }),
   [REPOSITORY]: (url) => ({
     id: REPOSITORY,
     name: "logo-github",
     actionText: "Tap to open repo",
-    onActionTextPress: () => mayOpenUrl(url)
+    onActionTextPress: () => Link.mayOpenUrl(url)
   }),
   [WEB_APP]: (url) => ({
     id: WEB_APP,
     name: "code-slash",
     actionText: "Tap to open example",
-    onActionTextPress: () => mayOpenUrl(url)
+    onActionTextPress: () => Link.mayOpenUrl(url)
   })
 }

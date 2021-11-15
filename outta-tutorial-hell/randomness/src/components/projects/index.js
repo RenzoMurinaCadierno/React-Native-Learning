@@ -1,5 +1,6 @@
 import React from "react"
 import MenuRoot from "./menu/Root"
+import MenuCategoryTitle from "./menu/CategoryTitle"
 import MenuIconList from "./menu/IconList"
 import BodyRoot from "./body/Root"
 import BodyProjectsList from "./body/ProjectsList"
@@ -12,6 +13,7 @@ function Menu(props) {
 }
 
 Menu.IconList = MenuIconList
+Menu.CategoryTitle = MenuCategoryTitle
 
 function Body(props) {
   return <BodyRoot {...props} />

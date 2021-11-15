@@ -1,6 +1,6 @@
 import { CONTACT_POPULATE_STORE, CONTACT_TRIGGER_TOAST } from "../types/contact"
 import { status, messages, screens } from "../states/global"
-import { mayOpenUrl } from "@app-utils/functions"
+import { Link } from "@app-utils/functions"
 
 export const populateStore = (contactDbData) => async (dispatch) => {
   dispatch({
@@ -24,7 +24,7 @@ export const triggerToast = (bulletName) => async (dispatch, getState) => {
 
     dispatch({
       type: CONTACT_TRIGGER_TOAST,
-      payload: { show: true, text, onPressText: () => mayOpenUrl(url) }
+      payload: { show: true, text, onPressText: () => Link.mayOpenUrl(url) }
     })
   }
 }
