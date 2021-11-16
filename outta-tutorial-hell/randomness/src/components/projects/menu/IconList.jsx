@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import UI from "@app-components/UI"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import animations from "@app-constants/animations"
-import sharedStyles from "@app-constants/styles"
 
 const colorProps = {
   activeAnimation: animations.icons.color.IN,
@@ -43,6 +42,12 @@ export default React.memo(IconList)
 
 const _styles = StyleSheet.create({
   container: { width: "100%", flex: 1 },
-  contentContainer: sharedStyles.FLEX_CENTER,
+  contentContainer: {
+    flex: 1,
+    flexDirection: "column-reverse",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginBottom: 30
+  },
   icon: { marginVertical: "25%" }
 })

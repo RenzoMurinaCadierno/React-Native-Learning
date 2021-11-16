@@ -2,10 +2,11 @@ import { TechIcon } from "./shared"
 import colors from "@app-constants/colors"
 
 export class ProjectsIcon extends TechIcon {
-  constructor({ id, name, activeColor }) {
+  constructor({ id, name, shortName, activeColor }) {
     super({
       id,
       name,
+      shortName,
       activeColor,
       inactiveColor: colors.main.SECONDARY_ALPHA(0.8)
     })

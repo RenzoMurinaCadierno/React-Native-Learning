@@ -1,7 +1,7 @@
 import { defaultIcons } from "./global"
 import { SectionItem, ProfileIcon } from "@app-models/profile"
 import { uid } from "@app-utils/functions"
-
+add data here, all courses
 const profileBullets = {
   html: [
     {

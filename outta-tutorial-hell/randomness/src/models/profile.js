@@ -11,10 +11,11 @@ export class SectionItem {
 }
 
 export class ProfileIcon extends TechIcon {
-  constructor({ id, name, activeColor }) {
+  constructor({ id, name, shortName, activeColor }) {
     super({
       id,
       name,
+      shortName,
       activeColor,
       inactiveColor: colors.main.PRIMARY_RGB_FORMATTED
     })
