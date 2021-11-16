@@ -17,7 +17,7 @@ function Body({
     setShowArrows(false)
     onScrollBodySectionList?.(e.nativeEvent)
   }, [])
-
+  measure sectionlist layout onmount and show arrows if it exceeds space
   return (
     <View style={[_styles.container, { flex: flexValue }, style]}>
       <BodyContent

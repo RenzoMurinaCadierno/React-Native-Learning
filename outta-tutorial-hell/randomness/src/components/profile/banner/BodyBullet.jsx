@@ -20,7 +20,7 @@ export default function BodyBullet({
 
   return (
     <Layout.Overlay.Pressable
-      colors={getGradientColors(gradientColors, type)}
+      colors={_getGradientColors(gradientColors, type)}
       style={[_styles.container, containerStyle]}
       onPress={() => console.log("link created")}
       {...containerProps}
@@ -32,18 +32,26 @@ export default function BodyBullet({
       />
       <View style={_styles.textsContainer}>
         <View style={_styles.titleAndSideTextContainer}>
-          <UI.Text color={textColor} size={fontScale * 0.9} type="semi-bold">
+          <UI.Text
+            color={textColor}
+            size={fontScale * 0.9}
+            type="semi-bold"
+            style={_styles.title}
+          >
             {text}
           </UI.Text>
-          <UI.Text
-            color={colors.background.CONTRAST}
-            shadowColor={textColor}
-            size={fontScale * 0.9}
-            elevation={fontScale / 4.5}
-            type="semi-bold-italic"
-          >
-            {sideText}
-          </UI.Text>
+          {Boolean(sideText) && (
+            <UI.Text
+              color={colors.background.CONTRAST}
+              shadowColor={textColor}
+              size={fontScale * 0.9}
+              elevation={fontScale / 4.5}
+              style={_styles.sideText}
+              type="semi-bold-italic"
+            >
+              {sideText}
+            </UI.Text>
+          )}
         </View>
         <UI.Text
           color={textColor}
@@ -62,24 +70,24 @@ const _styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: "2.5%",
+    paddingLeft: "2.5%",
+    paddingRight: "1.5%",
     paddingVertical: "1.25%"
   },
   textsContainer: {
     flex: 1,
-    marginLeft: "3%",
-    marginRight: "1%"
+    marginLeft: "3%"
   },
   titleAndSideTextContainer: {
     flexDirection: "row",
     justifyContent: "space-between"
   },
-  description: {
-    paddingHorizontal: "0.5%"
-  }
+  title: { flex: 1, flexGrow: 1 },
+  sideText: { flex: 0.5, textAlign: "right" },
+  description: { paddingHorizontal: "0.5%" }
 })
 
-function getGradientColors(gradientColors, type) {
+function _getGradientColors(gradientColors, type) {
   if (gradientColors) return gradientColors
 
   const _type = type?.toLowerCase()

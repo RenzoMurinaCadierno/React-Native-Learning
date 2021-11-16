@@ -21,3 +21,32 @@ export class ProfileIcon extends TechIcon {
     })
   }
 }
+
+export const create = (function () {
+  const _typeMap = new Map()
+  _typeMap.set(true, "primary")
+  _typeMap.set(false, "secondary")
+
+  let _isTypePrimary = true
+
+  function _create(iconName, text, descriptionText, sideText = "", resetType) {
+    if (Boolean(resetType)) _isTypePrimary = true
+
+    const newCourseOrProject = {
+      iconName,
+      iconType: _typeMap.get(_isTypePrimary),
+      text,
+      descriptionText,
+      sideText
+    }
+
+    _isTypePrimary = !_isTypePrimary
+
+    return newCourseOrProject
+  }
+
+  return {
+    course: (...args) => _create("bookmark", ...args),
+    project: (...args) => _create("briefcase", ...args)
+  }
+})()
