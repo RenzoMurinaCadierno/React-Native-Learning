@@ -9,6 +9,7 @@ function BodyContent({
   bullets,
   fontScale,
   activeIconId,
+  mayShowArrows,
   onScrollSectionList
 }) {
   const sectionListRef = useRef()
@@ -38,13 +39,24 @@ function BodyContent({
   )
 
   useEffect(() => {
+    let mayShowArrowsTimeoutId = null
+
     if (Boolean(bullets.length)) {
       sectionListRef.current.scrollToLocation({
         itemIndex: 0,
         sectionIndex: 0,
         animated: false
       })
+
+      mayShowArrowsTimeoutId = setTimeout(() => {
+        const educationItemsLength = bullets[0].data.length || 0
+        const projectsItemsLength = bullets[1]?.data.length || 0
+
+        mayShowArrows(educationItemsLength + projectsItemsLength >= 3)
+      }, 1000) // buffer to allow header's text transition end
     }
+
+    return () => clearTimeout(mayShowArrowsTimeoutId)
   }, [activeIconId])
 
   return (

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react"
 import { View, StyleSheet } from "react-native"
-import UI from "@app-components/UI"
 import BodyContent from "./BodyContent"
+import UI from "@app-components/UI"
 
 function Body({
   bullets,
@@ -11,18 +11,19 @@ function Body({
   activeIconId,
   onScrollBodySectionList
 }) {
-  const [showArrows, setShowArrows] = useState(true)
+  const [showArrows, setShowArrows] = useState(bullets.length >= 3)
 
   const hideArrowsAndTriggerParentCallback = useCallback((e) => {
     setShowArrows(false)
     onScrollBodySectionList?.(e.nativeEvent)
   }, [])
-  measure sectionlist layout onmount and show arrows if it exceeds space
+
   return (
     <View style={[_styles.container, { flex: flexValue }, style]}>
       <BodyContent
         bullets={bullets}
         activeIconId={activeIconId}
+        mayShowArrows={setShowArrows}
         onScrollSectionList={hideArrowsAndTriggerParentCallback}
         fontScale={fontScale}
       />

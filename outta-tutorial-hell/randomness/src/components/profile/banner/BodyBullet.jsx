@@ -16,12 +16,12 @@ export default function BodyBullet({
   containerProps,
   containerStyle
 }) {
-  const textColor = getTextColor(type)
-
+  const textColor = _getTextColor(type)
+  descriptionText float top right, then onPress to link to projects and done
   return (
     <Layout.Overlay.Pressable
       colors={_getGradientColors(gradientColors, type)}
-      style={[_styles.container, containerStyle]}
+      style={[_styles.container, { height: fontScale * 4 }, containerStyle]}
       onPress={() => console.log("link created")}
       {...containerProps}
     >
@@ -37,6 +37,8 @@ export default function BodyBullet({
             size={fontScale * 0.9}
             type="semi-bold"
             style={_styles.title}
+            numberOfLines={2}
+            multiline
           >
             {text}
           </UI.Text>
@@ -72,11 +74,13 @@ const _styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: "2.5%",
     paddingRight: "1.5%",
-    paddingVertical: "1.25%"
+    paddingVertical: "0.5%"
   },
   textsContainer: {
     flex: 1,
-    marginLeft: "3%"
+    marginLeft: "3%",
+    justifyContent: "center",
+    height: "100%"
   },
   titleAndSideTextContainer: {
     flexDirection: "row",
@@ -101,6 +105,6 @@ function _getGradientColors(gradientColors, type) {
   return undefined // fallbacks to default `colors` in `Overlay`
 }
 
-function getTextColor(type) {
+function _getTextColor(type) {
   return type ? colors.main[type.toUpperCase()] : undefined
 }
