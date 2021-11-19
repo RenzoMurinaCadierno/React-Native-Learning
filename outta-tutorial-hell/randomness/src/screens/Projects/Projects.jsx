@@ -3,7 +3,9 @@ import { StyleSheet } from "react-native"
 import Layout from "@app-components/layout"
 import Projects from "@app-components/projects"
 
-export default function ProjectsScreen() {
+export default function ProjectsScreen({ route }) {
+  console.log(route.params)
+  target activeIcon (not section), dispatch on mount if bullet press 
   return (
     <Layout.Screen style={_styles.container}>
       <Projects.Menu flexValue={0.18} />

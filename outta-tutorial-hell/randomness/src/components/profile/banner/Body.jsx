@@ -1,7 +1,11 @@
 import React, { useCallback, useState } from "react"
 import { View, StyleSheet } from "react-native"
+import { useNavigation } from "@react-navigation/native"
+// import { useDispatch } from "react-redux"
 import BodyContent from "./BodyContent"
 import UI from "@app-components/UI"
+import { screenNames } from "@app-constants/navigation"
+// import * as projectsActions from "@app-store/actions/projects"
 
 function Body({
   bullets,
@@ -11,6 +15,8 @@ function Body({
   activeIconId,
   onScrollBodySectionList
 }) {
+  // const dispatch = useDispatch()
+  const navigation = useNavigation()
   const [showArrows, setShowArrows] = useState(bullets.length >= 3)
 
   const hideArrowsAndTriggerParentCallback = useCallback((e) => {
@@ -18,12 +24,23 @@ function Body({
     onScrollBodySectionList?.(e.nativeEvent)
   }, [])
 
+  const moveToProjectsSectionAndTargetItem = useCallback(
+    (sectionId, itemPrimaryKey) => {
+      navigation.navigate(screenNames.PROJECTS, {
+        sectionId,
+        itemPrimaryKey
+      })
+      // dispatch(projectsActions.setActivePointer(sectionId, itemPrimaryKey))
+    }
+  )
+
   return (
     <View style={[_styles.container, { flex: flexValue }, style]}>
       <BodyContent
         bullets={bullets}
         activeIconId={activeIconId}
         mayShowArrows={setShowArrows}
+        onBulletPress={moveToProjectsSectionAndTargetItem}
         onScrollSectionList={hideArrowsAndTriggerParentCallback}
         fontScale={fontScale}
       />

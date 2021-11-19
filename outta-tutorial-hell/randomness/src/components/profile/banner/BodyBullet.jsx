@@ -13,16 +13,17 @@ export default function BodyBullet({
   iconName,
   iconType,
   fontScale,
+  onPress,
   containerProps,
   containerStyle
 }) {
   const textColor = _getTextColor(type)
-  descriptionText float top right, then onPress to link to projects and done
+
   return (
     <Layout.Overlay.Pressable
       colors={_getGradientColors(gradientColors, type)}
       style={[_styles.container, { height: fontScale * 4 }, containerStyle]}
-      onPress={() => console.log("link created")}
+      onPress={onPress}
       {...containerProps}
     >
       <UI.Icon.WithAura
@@ -30,36 +31,26 @@ export default function BodyBullet({
         name={iconName}
         size={fontScale * 0.9}
       />
+      {Boolean(sideText) && (
+        <UI.Text
+          type="semi-bold-italic"
+          size={fontScale * 0.9}
+          color={colors.background.CONTRAST}
+          elevation={fontScale / 4.5}
+          shadowColor={textColor}
+          style={_styles.sideText}
+        >
+          {sideText}
+        </UI.Text>
+      )}
       <View style={_styles.textsContainer}>
-        <View style={_styles.titleAndSideTextContainer}>
-          <UI.Text
-            color={textColor}
-            size={fontScale * 0.9}
-            type="semi-bold"
-            style={_styles.title}
-            numberOfLines={2}
-            multiline
-          >
-            {text}
-          </UI.Text>
-          {Boolean(sideText) && (
-            <UI.Text
-              color={colors.background.CONTRAST}
-              shadowColor={textColor}
-              size={fontScale * 0.9}
-              elevation={fontScale / 4.5}
-              style={_styles.sideText}
-              type="semi-bold-italic"
-            >
-              {sideText}
-            </UI.Text>
-          )}
-        </View>
+        <UI.Text color={textColor} size={fontScale * 0.9} type="semi-bold">
+          {text}
+        </UI.Text>
         <UI.Text
           color={textColor}
           type="regular-italic"
           size={fontScale * 0.85}
-          style={_styles.description}
         >
           {descriptionText}
         </UI.Text>
@@ -72,23 +63,21 @@ const _styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: "2.5%",
-    paddingRight: "1.5%",
-    paddingVertical: "0.5%"
+    paddingLeft: "3%",
+    paddingVertical: "2%",
+    position: "relative"
+  },
+  sideText: {
+    position: "absolute",
+    bottom: "13%",
+    right: "3%"
   },
   textsContainer: {
     flex: 1,
-    marginLeft: "3%",
     justifyContent: "center",
-    height: "100%"
-  },
-  titleAndSideTextContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between"
-  },
-  title: { flex: 1, flexGrow: 1 },
-  sideText: { flex: 0.5, textAlign: "right" },
-  description: { paddingHorizontal: "0.5%" }
+    alignItems: "flex-start",
+    marginLeft: "3%"
+  }
 })
 
 function _getGradientColors(gradientColors, type) {

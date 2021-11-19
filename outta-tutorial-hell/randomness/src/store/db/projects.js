@@ -39,6 +39,7 @@ const projects = {
     items: [
       {
         id: uid(),
+        primaryKey: "js-connect-4",
         title: "Connect 4",
         subtitle: "Vanilla Connect 4 game with HTML, CSS and JS",
         images: _getAllImages(2, "css", "connect-4"),
@@ -46,6 +47,7 @@ const projects = {
       },
       {
         id: uid(),
+        primaryKey: "js-market-list",
         title: "Market list",
         subtitle: "Shopping list configured as a PWA from scratch",
         images: _getAllImages(1, "js", "market-list"),
@@ -62,6 +64,7 @@ const projects = {
     items: [
       {
         id: uid(),
+        primaryKey: "react-react-fanmade-hooks",
         title: "React Fanmade Hooks",
         subtitle: "Hooks for many needs made by React enthusiasts",
         images: _getAllImages(17, "reactjs", "rfh"),
@@ -72,6 +75,7 @@ const projects = {
       },
       {
         id: uid(),
+        primaryKey: "react-yugi-calculator-max",
         title: "Yugi-Calculator-MAX",
         subtitle: "Multi-purpose app to assist Yu-Gi-Oh! duelists",
         images: _getAllImages(19, "reactjs", "ycm"),
@@ -79,6 +83,7 @@ const projects = {
       },
       {
         id: uid(),
+        primaryKey: "react-react-pokedex",
         title: "React Pokedex",
         subtitle:
           "A Pokemon filter app used to teach React basics and a little more",
@@ -93,6 +98,7 @@ const projects = {
     items: [
       {
         id: uid(),
+        primaryKey: "nodejs-login-authentication",
         title: "Login authentication",
         subtitle:
           "Back-end NodeJS auth app with Express, Passport and Mongoose",
@@ -107,6 +113,7 @@ const projects = {
     items: [
       {
         id: uid(),
+        primaryKey: "python-abstract-data-structures",
         title: "Abstract Data Sctructures",
         subtitle: "Collection of custom-made data structures",
         images: _getAllImages(1, "python", "ads"),
@@ -116,6 +123,7 @@ const projects = {
       },
       {
         id: uid(),
+        primaryKey: "python-games",
         title: "Games",
         subtitle: "Collection of simple UI and console games",
         images: _getAllImages(1, "python", "games"),
@@ -125,6 +133,7 @@ const projects = {
       },
       {
         id: uid(),
+        primaryKey: "python-rnmc-videos",
         title: "RNMC Videos",
         subtitle: "Personal and shareable Youtube videos gallery",
         images: _getAllImages(8, "python", "rnmc-videos"),
@@ -132,6 +141,7 @@ const projects = {
       },
       {
         id: uid(),
+        primaryKey: "python-rnmc-movies",
         title: "RNMC Movies",
         subtitle: "A React app to upload and rate movies, powered by Django",
         images: _getAllImages(6, "python", "rnmc-movies"),
@@ -139,6 +149,7 @@ const projects = {
       },
       {
         id: uid(),
+        primaryKey: "python-rnmc-social",
         title: "RNMC Social",
         subtitle:
           "First attempt at the foundations of a social network using Django",
@@ -153,6 +164,7 @@ const projects = {
     items: [
       {
         id: uid(),
+        primaryKey: "react-native-react-native-portfolio",
         title: "React Native Portfolio",
         subtitle: "This app you are using now",
         images: _getAllImages(5, "react-native", "rn-portfolio"),

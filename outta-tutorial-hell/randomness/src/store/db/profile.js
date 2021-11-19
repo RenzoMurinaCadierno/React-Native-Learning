@@ -69,12 +69,14 @@ const profileBullets = {
       title: "Projects",
       data: [
         create.project(
+          "js-connect-4",
           "Connect 4",
           "Vanilla HTML+CSS+JS Connect 4 game",
           "",
           true
         ),
         create.project(
+          "js-market-list",
           "Market list",
           "Shopping list configured as a PWA from scratch"
         )
@@ -129,16 +131,22 @@ const profileBullets = {
       title: "Projects",
       data: [
         create.project(
+          "react-react-fanmade-hooks",
           "React Fanmade Hooks",
           "Hooks for many needs made by React enthusiasts",
           "",
           true
         ),
         create.project(
+          "react-yugi-calculator-max",
           "Yugi-Calculator-MAX",
           "Multi-purpose app to assist Yu-Gi-Oh! duelists"
         ),
-        create.project("React Pokedex", "Basic Pokemon filter app")
+        create.project(
+          "react-react-pokedex",
+          "React Pokedex",
+          "Basic Pokemon filter app"
+        )
       ]
     }
   ],
@@ -165,6 +173,7 @@ const profileBullets = {
       title: "Projects",
       data: [
         create.project(
+          "nodejs-login-authentication",
           "Login Authentication",
           "Node + Passport + Mongoose basic login",
           "",
@@ -206,44 +215,68 @@ const profileBullets = {
       title: "Projects",
       data: [
         create.project(
+          "python-abstract-data-structures",
           "Array",
           "C Array with extended functionality",
           "",
           true
         ),
         create.project(
+          "python-abstract-data-structures",
           "Multi-Dimensional Array",
           "Custom Abstract Data Structure"
         ),
-        create.project("Queue", "Custom Abstract Data Structure"),
         create.project(
+          "python-abstract-data-structures",
+          "Queue",
+          "Custom Abstract Data Structure"
+        ),
+        create.project(
+          "python-abstract-data-structures",
           "Bounded Priority Queue",
           "Custom Abstract Data Structure"
         ),
         create.project(
+          "python-abstract-data-structures",
           "Singly-Sorted Linked List",
           "Custom Abstract Data Structure"
         ),
         create.project(
+          "python-abstract-data-structures",
           "Multi-Sorted Circular Linked List",
           "Custom Abstract Data Structure"
         ),
-        create.project("Stack", "Custom Abstract Data Structure"),
-        create.project("Set", "Custom Abstract Data Structure"),
-        create.project("Black Jack full game", "Desktop game"),
-        create.project("Code guess", "Console game"),
-        create.project("Sudoku", "Desktop game"),
-        create.project("Sudoku generator", "Customizable sudoku generator"),
-        create.project("Card War", "Console game"),
         create.project(
+          "python-abstract-data-structures",
+          "Stack",
+          "Custom Abstract Data Structure"
+        ),
+        create.project(
+          "python-abstract-data-structures",
+          "Set",
+          "Custom Abstract Data Structure"
+        ),
+        create.project("python-games", "Black Jack full game", "Desktop game"),
+        create.project("python-games", "Code guess", "Console game"),
+        create.project("python-games", "Sudoku", "Desktop game"),
+        create.project(
+          "python-games",
+          "Sudoku generator",
+          "Customizable sudoku generator"
+        ),
+        create.project("python-games", "Card War", "Console game"),
+        create.project(
+          "python-rnmc-videos",
           "RNMC Videos",
           "Personal and shareable Youtube videos gallery"
         ),
         create.project(
+          "python-rnmc-movies",
           "RNMC Movies",
           "Upload and rate movies, powered by Django"
         ),
         create.project(
+          "python-rnmc-social",
           "RNMC Social",
           "Foundations of a social network using Django"
         )
@@ -270,6 +303,7 @@ const profileBullets = {
       title: "Education",
       data: [
         create.course(
+          "react-native-react-native-portfolio",
           "React Native 2021 - The practical guide",
           "Certified (33 hours)",
           "Udemy",

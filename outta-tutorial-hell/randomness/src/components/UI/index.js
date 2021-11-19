@@ -13,6 +13,7 @@ import TextWithTranslateTransition from "./Text/TextWithTranslateTransition"
 import ToastRoot from "./Toast/Root"
 import ToastBody from "./Toast/Body"
 import ToastText from "./Toast/Text"
+import PointerBase from "./Pointer/Base"
 import ArrowBase from "./Arrow/Base"
 import ArrowMultipleWithPulsation from "./Arrow/MultipleWithPulsation"
 import ArrowMultipleWithShow from "./Arrow/MutipleWithShow"
@@ -66,6 +67,10 @@ ComposedIcon.WithColorTransition = IconWithColorTransition
 ComposedIcon.WithHover = IconWithHover
 ComposedIcon.WithSpring = IconWithSpring
 ComposedIcon.WithScale = IconWithScale
+
+function ComposedPointer(props) {
+  return <PointerBase {...props} />
+}
 
 function ComposedArrow(props) {
   return <ArrowBase {...props} />
@@ -147,6 +152,7 @@ const UI = {
   Carousel: ComposedCarousel,
   Icon: ComposedIcon,
   Image: ComposedImage,
+  Pointer: PointerBase,
   Pressable,
   Text: ComposedText,
   Toast: ComposedToast

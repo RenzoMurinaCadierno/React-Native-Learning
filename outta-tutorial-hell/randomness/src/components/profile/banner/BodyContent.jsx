@@ -10,6 +10,7 @@ function BodyContent({
   fontScale,
   activeIconId,
   mayShowArrows,
+  onBulletPress,
   onScrollSectionList
 }) {
   const sectionListRef = useRef()
@@ -29,11 +30,13 @@ function BodyContent({
   )
 
   const renderItem = ({
-    item: { iconName, iconType, text, sideText, descriptionText },
+    section: { title },
+    item: { primaryKey, iconName, iconType, text, sideText, descriptionText },
     index
   }) => (
     <BodyBullet
       type={index % 2 === 0 ? "primary" : "secondary"}
+      onPress={() => onBulletPress(title, primaryKey)}
       {...{ iconName, iconType, text, sideText, descriptionText, fontScale }}
     />
   )

@@ -29,10 +29,18 @@ export const create = (function () {
 
   let _isTypePrimary = true
 
-  function _create(iconName, text, descriptionText, sideText = "", resetType) {
+  function _create(
+    iconName,
+    primaryKey,
+    text,
+    descriptionText,
+    sideText = "",
+    resetType
+  ) {
     if (Boolean(resetType)) _isTypePrimary = true
 
     const newCourseOrProject = {
+      primaryKey,
       iconName,
       iconType: _typeMap.get(_isTypePrimary),
       text,
@@ -46,7 +54,7 @@ export const create = (function () {
   }
 
   return {
-    course: (...args) => _create("bookmark", ...args),
+    course: (...args) => _create("bookmark", "", ...args),
     project: (...args) => _create("briefcase", ...args)
   }
 })()

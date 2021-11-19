@@ -6,6 +6,7 @@ import BodyProjectsList from "./body/ProjectsList"
 import BodyProjectsListEmpty from "./body/ProjectsListEmpty"
 import BodyProjectsCardRoot from "./body/ProjectsCard"
 import BodyProjectsCardActions from "./body/ProjectsCardActions"
+import BodyProjectsCardPointer from "./body/ProjectsCardPointer"
 
 function Menu(props) {
   return <MenuRoot {...props} />
@@ -26,6 +27,7 @@ Body.ProjectsListEmpty = BodyProjectsListEmpty
 Body.ProjectsCard = BodyProjectsCard
 
 BodyProjectsCard.Actions = BodyProjectsCardActions
+BodyProjectsCard.Pointer = BodyProjectsCardPointer
 
 const Projects = { Menu, Body }
 

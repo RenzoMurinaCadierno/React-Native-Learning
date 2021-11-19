@@ -7,6 +7,17 @@ const arrows = {
     IN: (value) => Animated.spring(value, animationConfigs.springFriction(1)),
     OUT: (value) => Animated.spring(value, animationConfigs.springFriction(0))
   },
+  pointer: {
+    ACTIVE_SEQUENCE: (val) => [
+      Animated.timing(val, animationConfigs.timing(1, 350, easings.IN)),
+      Animated.timing(val, animationConfigs.timing(2, 350, easings.OUT))
+    ],
+    OUT: (val) =>
+      Animated.sequence([
+        Animated.timing(val, animationConfigs.timing(2, 350, easings.IN)),
+        Animated.timing(val, animationConfigs.timing(0, 200, easings.OUT))
+      ])
+  },
   directional: {
     ACTIVE_SEQUENCE: [
       (val) =>

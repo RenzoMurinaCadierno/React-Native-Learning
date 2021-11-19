@@ -1,7 +1,7 @@
 import React from "react"
 import Enhanced from "@app-components/enhanced"
 
-export default function Base({ direction, style, ...rest }) {
+export default function ArrowBase({ direction, style, ...rest }) {
   return (
     <Enhanced.Animated.Ionicons
       {...rest}
@@ -10,7 +10,7 @@ export default function Base({ direction, style, ...rest }) {
   )
 }
 
-Base.defaultProps = {
+ArrowBase.defaultProps = {
   direction: "right", // up, down, left, right
   name: "play",
   size: 12,

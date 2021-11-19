@@ -1,6 +1,7 @@
 import {
   PROJECTS_POPULATE_STORE,
-  PROJECTS_CHANGE_ACTIVE_SECTION
+  PROJECTS_CHANGE_ACTIVE_SECTION,
+  PROJECTS_SET_ACTIVE_POINTER
 } from "../types/projects"
 import { status, messages, screens } from "../states/global"
 
@@ -30,4 +31,9 @@ export const populateStore = (projectsDbData) => {
 export const changeActiveSection = (sectionId) => ({
   type: PROJECTS_CHANGE_ACTIVE_SECTION,
   payload: { sectionId }
+})
+
+export const setActivePointer = (sectionId, itemPrimaryKey) => ({
+  type: PROJECTS_SET_ACTIVE_POINTER,
+  payload: { sectionId, itemPrimaryKey }
 })

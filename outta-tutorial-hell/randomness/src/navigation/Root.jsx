@@ -9,6 +9,7 @@ import ContactScreen from "@app-screens/Contact/Contact"
 import { ViewPortContextProvider } from "@app-context/viewPort"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import colors from "@app-constants/colors"
+import { screenNames } from "@app-constants/navigation"
 
 export default function RootNavigation() {
   return (
@@ -29,32 +30,31 @@ const TabNavigator = () => {
   return (
     <TabNavigation.Navigator
       style={{ paddingTop: StatusBar.currentHeight }}
-      screenOptions={getTabBarScreenOptions(vw(4.5))}
-      initialRouteName="Profile"
+      screenOptions={_getTabBarScreenOptions(vw(4.5))}
+      initialRouteName={screenNames.PROFILE}
     >
       <TabNavigation.Screen
-        name="Profile"
+        name={screenNames.PROFILE}
         component={ProfileScreen}
-        options={{ tabBarIcon: getTabBarIcon("person", iconSize) }}
+        options={{ tabBarIcon: _getTabBarIcon("person", iconSize) }}
       />
       <TabNavigation.Screen
-        name="Projects"
+        name={screenNames.PROJECTS}
         component={ProjectsScreen}
-        options={{ tabBarIcon: getTabBarIcon("briefcase", iconSize) }}
+        options={{ tabBarIcon: _getTabBarIcon("briefcase", iconSize) }}
       />
       <TabNavigation.Screen
-        name="Contact"
+        name={screenNames.CONTACT}
         component={ContactScreen}
-        options={{ tabBarIcon: getTabBarIcon("mail", iconSize) }}
+        options={{ tabBarIcon: _getTabBarIcon("mail", iconSize) }}
       />
     </TabNavigation.Navigator>
   )
 }
 
-function getTabBarScreenOptions(labelFontSize) {
+function _getTabBarScreenOptions(labelFontSize) {
   return {
     tabBarActiveTintColor: colors.main.PRIMARY,
-    // tabBarInactiveTintColor: colors.SECONDARY,
     tabBarIndicatorStyle: { backgroundColor: colors.main.SECONDARY },
     tabBarStyle: {
       backgroundColor: colors.background.CONTRAST,
@@ -69,7 +69,7 @@ function getTabBarScreenOptions(labelFontSize) {
   }
 }
 
-function getTabBarIcon(name, size) {
+function _getTabBarIcon(name, size) {
   return ({ focused, color }) => (
     <Ionicons name={"md-" + name} size={size} color={color} focused={focused} />
   )

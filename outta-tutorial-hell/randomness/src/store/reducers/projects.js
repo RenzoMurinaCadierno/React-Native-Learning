@@ -1,6 +1,7 @@
 import {
   PROJECTS_POPULATE_STORE,
-  PROJECTS_CHANGE_ACTIVE_SECTION
+  PROJECTS_CHANGE_ACTIVE_SECTION,
+  PROJECTS_SET_ACTIVE_POINTER
 } from "../types/projects"
 import { status, messages, screens } from "../states/global"
 
@@ -9,7 +10,8 @@ const initialState = {
   message: messages[status.CICLE_START](screens.PROJECTS),
   icons: [], // [ { icon1InCategory1, icon2InCategory1, icon1InCategory2, ...} ]
   items: [],
-  activeSectionId: ""
+  activeSectionId: "",
+  activeItemPrimaryKey: ""
 }
 
 export default function projectsReducer(state = initialState, action) {
@@ -28,6 +30,13 @@ export default function projectsReducer(state = initialState, action) {
       return {
         ...state,
         activeSectionId: isSameSection ? "" : action.payload.sectionId
+      }
+
+    case PROJECTS_SET_ACTIVE_POINTER:
+      return {
+        ...state,
+        activeSectionId: action.payload.sectionId,
+        activeItemPrimaryKey: action.payload.itemPrimaryKey
       }
 
     default:
