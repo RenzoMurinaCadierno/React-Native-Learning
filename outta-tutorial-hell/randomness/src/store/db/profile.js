@@ -303,7 +303,6 @@ const profileBullets = {
       title: "Education",
       data: [
         create.course(
-          "react-native-react-native-portfolio",
           "React Native 2021 - The practical guide",
           "Certified (33 hours)",
           "Udemy",
@@ -316,6 +315,7 @@ const profileBullets = {
       title: "Projects",
       data: [
         create.project(
+          "react-native-react-native-portfolio",
           "React Native Portfolio app",
           "This app you are using now",
           "",

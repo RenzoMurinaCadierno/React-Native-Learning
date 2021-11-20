@@ -6,10 +6,14 @@ import ProjectsListEmpty from "./ProjectsListEmpty"
 
 export default function ProjectsList({ items }) {
   const activeSectionId = useSelector((state) => state.projects.activeSectionId)
+  const activeItemPrimaryKey = useSelector(
+    (state) => state.projects.activeItemPrimaryKey
+  )
 
   const renderItem = (data) => (
     <ProjectsCard
       active={activeSectionId === data.item.section}
+      showPointer={data.item.primaryKey === activeItemPrimaryKey}
       index={data.index}
       {...data.item}
     />

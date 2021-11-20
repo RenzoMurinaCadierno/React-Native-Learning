@@ -30,13 +30,12 @@ function BodyContent({
   )
 
   const renderItem = ({
-    section: { title },
     item: { primaryKey, iconName, iconType, text, sideText, descriptionText },
     index
   }) => (
     <BodyBullet
       type={index % 2 === 0 ? "primary" : "secondary"}
-      onPress={() => onBulletPress(title, primaryKey)}
+      onPress={() => onBulletPress(activeIconId, primaryKey)}
       {...{ iconName, iconType, text, sideText, descriptionText, fontScale }}
     />
   )
@@ -55,7 +54,7 @@ function BodyContent({
         const educationItemsLength = bullets[0].data.length || 0
         const projectsItemsLength = bullets[1]?.data.length || 0
 
-        mayShowArrows(educationItemsLength + projectsItemsLength >= 3)
+        mayShowArrows(educationItemsLength + projectsItemsLength > 3)
       }, 1000) // buffer to allow header's text transition end
     }
 

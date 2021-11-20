@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from "react"
 import { View, StyleSheet } from "react-native"
 import { useNavigation } from "@react-navigation/native"
-// import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import BodyContent from "./BodyContent"
 import UI from "@app-components/UI"
 import { screenNames } from "@app-constants/navigation"
-// import * as projectsActions from "@app-store/actions/projects"
+import * as projectsActions from "@app-store/actions/projects"
 
 function Body({
   bullets,
@@ -15,7 +15,7 @@ function Body({
   activeIconId,
   onScrollBodySectionList
 }) {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const navigation = useNavigation()
   const [showArrows, setShowArrows] = useState(bullets.length >= 3)
 
@@ -25,13 +25,11 @@ function Body({
   }, [])
 
   const moveToProjectsSectionAndTargetItem = useCallback(
-    (sectionId, itemPrimaryKey) => {
-      navigation.navigate(screenNames.PROJECTS, {
-        sectionId,
-        itemPrimaryKey
-      })
-      // dispatch(projectsActions.setActivePointer(sectionId, itemPrimaryKey))
-    }
+    (iconId, itemPrimaryKey) => {
+      dispatch(projectsActions.setActivePointer(iconId, itemPrimaryKey))
+      navigation.navigate(screenNames.PROJECTS)
+    },
+    []
   )
 
   return (

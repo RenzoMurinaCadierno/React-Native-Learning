@@ -35,7 +35,11 @@ export default function CardText({
   const textProps = _getTextPropsForRole(role, fontScale, vw)
 
   return (
-    <Wrapper style={[_styles.container, containerStyle]} {...containerProps}>
+    <Wrapper
+      style={[_styles.container, containerStyle]}
+      onPress={onPress}
+      {...containerProps}
+    >
       <AppText {...textProps} style={[_styles[role], style]} {...rest}>
         {children}
       </AppText>

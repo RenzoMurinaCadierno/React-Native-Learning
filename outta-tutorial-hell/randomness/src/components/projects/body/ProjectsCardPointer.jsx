@@ -3,10 +3,9 @@ import { StyleSheet } from "react-native"
 import UI from "@app-components/UI"
 import colors from "@app-constants/colors"
 
-export default function ProjectsCardPointer({ active, style, ...rest }) {
+export default function ProjectsCardPointer({ style, ...rest }) {
   return (
     <UI.Pointer
-      active
       inactiveAnimation={null}
       color={colors.main.SECONDARY}
       size={30}

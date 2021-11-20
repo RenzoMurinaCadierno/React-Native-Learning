@@ -10,7 +10,8 @@ export default function AnimatedRoot({
   inactiveAnimation,
   translateYOutputRange,
   index,
-  children
+  children,
+  ...rest
 }) {
   const val = useLinearAnimatedValue({
     active,
@@ -22,6 +23,7 @@ export default function AnimatedRoot({
   return (
     <Enhanced.Animated.Card
       style={{ translateY: interpolate(val, translateYOutputRange) }}
+      {...rest}
     >
       {children}
     </Enhanced.Animated.Card>
