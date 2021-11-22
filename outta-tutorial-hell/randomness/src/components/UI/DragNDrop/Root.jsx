@@ -6,6 +6,7 @@ import useLayout from "@app-hooks/useLayout"
 import useViewPort from "@app-hooks/useViewPort"
 import useControlledUpdate from "@app-hooks/useControlledUpdate"
 import useFlag from "@app-hooks/useFlag"
+import { Device } from "@app-utils/functions"
 
 export default function Root({
   droppables,
@@ -34,8 +35,11 @@ export default function Root({
     if (itemsWereLayedOutFlag.is(true)) return
 
     const itemTop = viewPort.height - itemDims.y
+
     itemsYLimits.updateObject({
-      [itemName]: [itemTop, itemTop + itemDims.height]
+      [itemName]: Device.isSmall()
+        ? [itemTop - itemDims.height, itemTop + itemDims.height / 2]
+        : [itemTop - itemDims.height / 2, itemTop + itemDims.height]
     })
   }, [])
 

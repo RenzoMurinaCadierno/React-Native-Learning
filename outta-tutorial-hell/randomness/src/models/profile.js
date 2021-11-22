@@ -1,4 +1,5 @@
 import { TechIcon } from "./shared"
+import { defaultIcons } from "@app-store/db/global"
 import colors from "@app-constants/colors"
 
 export class SectionItem {
@@ -29,7 +30,7 @@ export const create = (function () {
 
   let _isTypePrimary = true
 
-  function _create(
+  function _createCourseOrProject(
     iconName,
     primaryKey,
     text,
@@ -54,7 +55,7 @@ export const create = (function () {
   }
 
   return {
-    course: (...args) => _create("bookmark", "", ...args),
-    project: (...args) => _create("briefcase", ...args)
+    course: (...args) => _createCourseOrProject("bookmark", "", ...args),
+    project: (...args) => _createCourseOrProject("briefcase", ...args)
   }
 })()

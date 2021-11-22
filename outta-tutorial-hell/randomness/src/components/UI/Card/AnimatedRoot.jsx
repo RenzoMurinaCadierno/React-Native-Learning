@@ -17,7 +17,7 @@ export default function AnimatedRoot({
     active,
     activeAnimation,
     inactiveAnimation,
-    startDelay: index * 50
+    startDelay: index * 200
   })
 
   return (
@@ -33,5 +33,5 @@ export default function AnimatedRoot({
 AnimatedRoot.defaultProps = {
   activeAnimation: animations.card.transition.IN,
   inactiveAnimation: animations.card.transition.OUT,
-  translateYOutputRange: [500, 0]
+  translateYOutputRange: [750, 0]
 }

@@ -1,4 +1,4 @@
-import { Easing, Linking, Share, Alert } from "react-native"
+import { Easing, Linking, Share, Alert, Dimensions } from "react-native"
 import appColors from "@app-constants/colors"
 
 export class Obj {
@@ -78,6 +78,10 @@ export class Color {
       .replace("rgb(", "rgba(")
       .replace(")", "," + alphaValue.toString() + ")")
   }
+}
+
+export class Device {
+  static isSmall = () => Dimensions.get("window").height <= 575
 }
 
 export class Link {

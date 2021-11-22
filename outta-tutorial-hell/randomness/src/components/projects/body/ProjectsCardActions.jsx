@@ -11,7 +11,7 @@ export default function ProjectsCardActions({
   ...rest
 }) {
   return (
-    <UI.Card.Actions style={{ borderRadius: 10 }} {...containerProps}>
+    <UI.Card.Actions {...containerProps}>
       {Object.entries(actions).map(([actionId, actionUrlString]) => (
         <UI.Card.Actions.Icon
           key={actionId}

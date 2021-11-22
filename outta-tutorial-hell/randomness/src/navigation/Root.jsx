@@ -10,6 +10,7 @@ import { ViewPortContextProvider } from "@app-context/viewPort"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import colors from "@app-constants/colors"
 import { screenNames } from "@app-constants/navigation"
+import { Device } from "@app-utils/functions"
 
 export default function RootNavigation() {
   return (
@@ -25,13 +26,13 @@ const TabNavigation = createMaterialTopTabNavigator()
 
 const TabNavigator = () => {
   const { vw } = useViewPortContext()
-  const iconSize = vw(6)
+  const { iconSize, labelFontSize } = _conditionalStyles(vw)
 
   return (
     <TabNavigation.Navigator
       style={{ paddingTop: StatusBar.currentHeight }}
-      screenOptions={_getTabBarScreenOptions(vw(4.5))}
-      initialRouteName={screenNames.PROJECTS}
+      screenOptions={_getTabBarScreenOptions(labelFontSize)}
+      initialRouteName={screenNames.CONTACT}
     >
       <TabNavigation.Screen
         name={screenNames.PROFILE}
@@ -74,3 +75,8 @@ function _getTabBarIcon(name, size) {
     <Ionicons name={"md-" + name} size={size} color={color} focused={focused} />
   )
 }
+
+const _conditionalStyles = (vw) => ({
+  iconSize: Device.isSmall() ? vw(7) : vw(6),
+  labelFontSize: Device.isSmall() ? vw(5) : vw(4.5)
+})

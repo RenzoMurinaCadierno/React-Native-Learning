@@ -70,7 +70,7 @@ function _createStyles(
         ? Color.getByTypeOrProp(type, backgroundColor, "accent")
         : Color.getRgbaByType("CONTRAST", {
             variantGroup: "background",
-            alphaValue: 0.3
+            alphaValue: 0.75
           }),
       opacity: animatedValue,
       transform: [

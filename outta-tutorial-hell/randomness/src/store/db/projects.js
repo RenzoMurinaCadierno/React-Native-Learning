@@ -76,7 +76,7 @@ const projects = {
       {
         id: uid(),
         primaryKey: "react-yugi-calculator-max",
-        title: "Yugi-Calculator-MAX",
+        title: "Yugi Calculator MAX",
         subtitle: "Multi-purpose app to assist Yu-Gi-Oh! duelists",
         images: _getAllImages(19, "reactjs", "ycm"),
         actions: _getActions("Yugi-Calculator-Max", "ycm.netlify.app/calc")
