@@ -2,7 +2,6 @@ import React from "react"
 import { FlatList, StyleSheet } from "react-native"
 import { useSelector } from "react-redux"
 import UI from "@app-components/UI"
-import useViewPortContext from "@app-hooks/useViewPortContext"
 import animations from "@app-constants/animations"
 
 const colorProps = {
@@ -10,9 +9,8 @@ const colorProps = {
   inactiveAnimation: animations.icons.color.OUT
 }
 
-function IconList({ onIconPress, ...rest }) {
+function IconList({ onIconPress, fontScale, ...rest }) {
   const { icons, activeSectionId } = useSelector((state) => state.projects)
-  const { vw } = useViewPortContext()
 
   const renderItem = ({ item }) => (
     <UI.Icon.WithSpring
@@ -20,7 +18,7 @@ function IconList({ onIconPress, ...rest }) {
       name={item.name}
       activeColor={item.activeColor}
       inactiveColor={item.inactiveColor}
-      size={item.size ?? vw(9.5)}
+      size={item.size || fontScale}
       style={_styles.icon}
       onPress={() => onIconPress(item.id)}
       colorProps={colorProps}
@@ -37,6 +35,8 @@ function IconList({ onIconPress, ...rest }) {
     />
   )
 }
+
+IconList.defaultProps = { fontScale: 23 }
 
 export default React.memo(IconList)
 

@@ -8,7 +8,7 @@ import * as projectsActions from "@app-store/actions/projects"
 import colors from "@app-constants/colors"
 import sharedStyles from "@app-constants/styles"
 
-export default function Root({ flexValue, style }) {
+export default function Root({ flexValue, fontScale, style }) {
   const dispatch = useDispatch()
 
   const changeActiveSection = useCallback(
@@ -21,8 +21,8 @@ export default function Root({ flexValue, style }) {
       colors={[colors.background.CONTRAST, colors.main.SECONDARY_ALPHA(0.2)]}
       style={[_styles.container, { flex: flexValue }, style]}
     >
-      <CategoryTitle />
-      <IconList onIconPress={changeActiveSection} />
+      <CategoryTitle fontScale={fontScale} />
+      <IconList fontScale={fontScale} onIconPress={changeActiveSection} />
     </LinearGradient>
   )
 }

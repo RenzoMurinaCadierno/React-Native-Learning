@@ -2,11 +2,19 @@ import React from "react"
 import { StyleSheet } from "react-native"
 import Layout from "@app-components/layout"
 import Projects from "@app-components/projects"
+import useViewPortContext from "@app-hooks/useViewPortContext"
+import useBreakpoints from "@app-hooks/useBreakpoints"
 
 export default function ProjectsScreen() {
+  const { vw } = useViewPortContext()
+  const breakpoints = useBreakpoints()
+
   return (
     <Layout.Screen style={_styles.container}>
-      <Projects.Menu flexValue={0.18} />
+      <Projects.Menu
+        fontScale={breakpoints.select({ sm: vw(11), any: vw(9.5) })}
+        flexValue={0.18}
+      />
       <Projects.Body flexValue={0.82} />
     </Layout.Screen>
   )

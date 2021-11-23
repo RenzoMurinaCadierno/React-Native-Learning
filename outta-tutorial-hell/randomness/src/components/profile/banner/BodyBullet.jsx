@@ -17,10 +17,11 @@ export default function BodyBullet({
   containerProps,
   containerStyle
 }) {
+  const WrapperComponent = onPress ? Layout.Overlay.Pressable : Layout.Overlay
   const textColor = _getTextColor(type)
 
   return (
-    <Layout.Overlay.Pressable
+    <WrapperComponent
       colors={_getGradientColors(gradientColors, type)}
       style={[_styles.container, { height: fontScale * 4 }, containerStyle]}
       onPress={onPress}
@@ -55,7 +56,7 @@ export default function BodyBullet({
           {descriptionText}
         </UI.Text>
       </View>
-    </Layout.Overlay.Pressable>
+    </WrapperComponent>
   )
 }
 

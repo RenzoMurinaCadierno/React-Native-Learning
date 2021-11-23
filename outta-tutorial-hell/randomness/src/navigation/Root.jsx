@@ -8,9 +8,9 @@ import ProjectsScreen from "@app-screens/Projects/Projects"
 import ContactScreen from "@app-screens/Contact/Contact"
 import { ViewPortContextProvider } from "@app-context/viewPort"
 import useViewPortContext from "@app-hooks/useViewPortContext"
+import useBreakpoints from "@app-hooks/useBreakpoints"
 import colors from "@app-constants/colors"
 import { screenNames } from "@app-constants/navigation"
-import { Device } from "@app-utils/functions"
 
 export default function RootNavigation() {
   return (
@@ -26,7 +26,9 @@ const TabNavigation = createMaterialTopTabNavigator()
 
 const TabNavigator = () => {
   const { vw } = useViewPortContext()
-  const { iconSize, labelFontSize } = _conditionalStyles(vw)
+  const breakpoints = useBreakpoints()
+  const iconSize = breakpoints.select({ sm: vw(7), any: vw(6) })
+  const labelFontSize = breakpoints.select({ sm: vw(5), any: vw(4.5) })
 
   return (
     <TabNavigation.Navigator
@@ -75,8 +77,3 @@ function _getTabBarIcon(name, size) {
     <Ionicons name={"md-" + name} size={size} color={color} focused={focused} />
   )
 }
-
-const _conditionalStyles = (vw) => ({
-  iconSize: Device.isSmall() ? vw(7) : vw(6),
-  labelFontSize: Device.isSmall() ? vw(5) : vw(4.5)
-})

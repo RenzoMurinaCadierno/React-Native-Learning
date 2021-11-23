@@ -80,10 +80,6 @@ export class Color {
   }
 }
 
-export class Device {
-  static isSmall = () => Dimensions.get("window").height <= 575
-}
-
 export class Link {
   static mayShare = async (message, title, errorMessage) => {
     if (!message) return

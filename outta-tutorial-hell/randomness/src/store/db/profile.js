@@ -1,12 +1,13 @@
 import { defaultIcons } from "./global"
 import { SectionItem, ProfileIcon, create } from "@app-models/profile"
 import { uid } from "@app-utils/functions"
+import { sectionNames } from "@app-constants/sections/profile"
 
 const profileBullets = {
   html: [
     {
       id: uid(),
-      title: "Education",
+      title: sectionNames.EDUCATION,
       data: [
         create.course(
           "HTML5: Web page fundamentals",
@@ -20,7 +21,7 @@ const profileBullets = {
   css: [
     {
       id: uid(),
-      title: "Education",
+      title: sectionNames.EDUCATION,
       data: [
         create.course(
           "Intro to web layout with HTML5 and CSS3",
@@ -44,7 +45,7 @@ const profileBullets = {
   js: [
     {
       id: uid(),
-      title: "Education",
+      title: sectionNames.EDUCATION,
       data: [
         create.course(
           "Intro to JS programming",
@@ -66,7 +67,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: "Projects",
+      title: sectionNames.PROJECTS,
       data: [
         create.project(
           "js-connect-4",
@@ -86,7 +87,7 @@ const profileBullets = {
   react: [
     {
       id: uid(),
-      title: "Education",
+      title: sectionNames.EDUCATION,
       data: [
         create.course(
           "Intro to ReactJS",
@@ -128,7 +129,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: "Projects",
+      title: sectionNames.PROJECTS,
       data: [
         create.project(
           "react-react-fanmade-hooks",
@@ -153,7 +154,7 @@ const profileBullets = {
   nodejs: [
     {
       id: uid(),
-      title: "Education",
+      title: sectionNames.EDUCATION,
       data: [
         create.course(
           "NodeJS and MongoDB",
@@ -170,7 +171,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: "Projects",
+      title: sectionNames.PROJECTS,
       data: [
         create.project(
           "nodejs-login-authentication",
@@ -185,7 +186,7 @@ const profileBullets = {
   python: [
     {
       id: uid(),
-      title: "Education",
+      title: sectionNames.EDUCATION,
       data: [
         create.course(
           "Python Programming",
@@ -212,7 +213,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: "Projects",
+      title: sectionNames.PROJECTS,
       data: [
         create.project(
           "python-abstract-data-structures",
@@ -286,7 +287,7 @@ const profileBullets = {
   github: [
     {
       id: uid(),
-      title: "Education",
+      title: sectionNames.EDUCATION,
       data: [
         create.course(
           "GIT: collaborative development",
@@ -300,7 +301,7 @@ const profileBullets = {
   "react-native": [
     {
       id: uid(),
-      title: "Education",
+      title: sectionNames.EDUCATION,
       data: [
         create.course(
           "React Native 2021 - The practical guide",
@@ -312,7 +313,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: "Projects",
+      title: sectionNames.PROJECTS,
       data: [
         create.project(
           "react-native-react-native-portfolio",

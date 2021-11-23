@@ -6,7 +6,7 @@ import useLayout from "@app-hooks/useLayout"
 import useViewPort from "@app-hooks/useViewPort"
 import useControlledUpdate from "@app-hooks/useControlledUpdate"
 import useFlag from "@app-hooks/useFlag"
-import { Device } from "@app-utils/functions"
+import useBreakpoints from "@app-hooks/useBreakpoints"
 
 export default function Root({
   droppables,
@@ -24,6 +24,7 @@ export default function Root({
   const viewPort = useViewPort()
   const itemsYLimits = useControlledUpdate({})
   const itemsWereLayedOutFlag = useFlag(false)
+  const breakpoints = useBreakpoints()
 
   const onChildReady = useCallback((height) => setIconHeight(height), [])
 
@@ -37,9 +38,10 @@ export default function Root({
     const itemTop = viewPort.height - itemDims.y
 
     itemsYLimits.updateObject({
-      [itemName]: Device.isSmall()
-        ? [itemTop - itemDims.height, itemTop + itemDims.height / 2]
-        : [itemTop - itemDims.height / 2, itemTop + itemDims.height]
+      [itemName]: breakpoints.select({
+        sm: [itemTop - itemDims.height, itemTop + itemDims.height / 2],
+        any: [itemTop - itemDims.height / 2, itemTop + itemDims.height]
+      })
     })
   }, [])
 

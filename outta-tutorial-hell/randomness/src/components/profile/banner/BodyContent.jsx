@@ -4,6 +4,7 @@ import BodyBullet from "./BodyBullet"
 import UI from "@app-components/UI"
 import colors from "@app-constants/colors"
 import sharedStyles from "@app-constants/styles"
+import { sectionNames } from "@app-constants/sections/profile"
 
 function BodyContent({
   bullets,
@@ -30,12 +31,17 @@ function BodyContent({
   )
 
   const renderItem = ({
+    section: { title },
     item: { primaryKey, iconName, iconType, text, sideText, descriptionText },
     index
   }) => (
     <BodyBullet
       type={index % 2 === 0 ? "primary" : "secondary"}
-      onPress={() => onBulletPress(activeIconId, primaryKey)}
+      onPress={
+        title === sectionNames.PROJECTS
+          ? () => onBulletPress(activeIconId, primaryKey)
+          : null
+      }
       {...{ iconName, iconType, text, sideText, descriptionText, fontScale }}
     />
   )

@@ -4,7 +4,6 @@ import UI from "@app-components/UI"
 import Layout from "@app-components/layout"
 import colors from "@app-constants/colors"
 import { Color } from "@app-utils/functions"
-go on adapting for small devices. Profile and Projects
 
 export default function Content({
   title,
@@ -26,6 +25,7 @@ export default function Content({
           color={titleColor}
           type="semi-bold"
           elevation={fontScale / 10}
+          shadowRadius={fontScale / 10}
           shadowColor={colors.background.DARK}
         >
           {title}
@@ -35,6 +35,7 @@ export default function Content({
           color={colors.main.SECONDARY}
           type="regular-italic"
           elevation={fontScale / 10}
+          shadowRadius={fontScale / 10}
           shadowColor={colors.main.PRIMARY}
         >
           {category}

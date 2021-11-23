@@ -1,10 +1,8 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import TextWithTranslateTransition from "../../UI/Text/TextWithTranslateTransition"
-import useViewPortContext from "@app-hooks/useViewPortContext"
 
-export default function CategoryTitle(props) {
-  const { vw } = useViewPortContext()
+export default function CategoryTitle({ fontScale, ...rest }) {
   const icons = useSelector((state) => state.projects.icons)
   const activeSectionId = useSelector((state) => state.projects.activeSectionId)
 
@@ -13,15 +11,18 @@ export default function CategoryTitle(props) {
       key={icon.id}
       active={icon.id === activeSectionId}
       orientation="top"
-      translateOutputRange={[-vw(10), 0]}
+      translateOutputRange={[-20, 0]}
       type="semi-bold"
-      size={vw(6)}
-      elevation={vw(0.5)}
+      size={fontScale * 0.55}
+      elevation={fontScale * 0.05}
+      shadowRadius={fontScale * 0.05}
       color={icon.activeColor}
-      style={{ marginTop: vw(4), textAlign: "center" }}
-      {...props}
+      style={{ marginTop: fontScale * 0.4, textAlign: "center" }}
+      {...rest}
     >
       {icon.shortName}
     </TextWithTranslateTransition>
   ))
 }
+
+CategoryTitle.defaultProps = { fontScale: 30 }

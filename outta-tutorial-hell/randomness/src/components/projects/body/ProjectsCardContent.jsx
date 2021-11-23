@@ -4,7 +4,7 @@ import ProjectsCardActions from "./ProjectsCardActions"
 import UI from "@app-components/UI"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
-import { interpolate, Device } from "@app-utils/functions"
+import { interpolate } from "@app-utils/functions"
 import animations from "@app-constants/animations"
 
 export default function ProjectsCardContentRoot({ title, ...rest }) {
@@ -18,7 +18,6 @@ export default function ProjectsCardContentRoot({ title, ...rest }) {
       </UI.Card.Text.Title>
       <ProjectsCardContentExpandable
         active={expanded}
-        // maxHeight={Device.isSmall() ? vh(43.5) : vh(43.5)}
         maxHeight={vh(43.5)}
         title={title}
         {...rest}
