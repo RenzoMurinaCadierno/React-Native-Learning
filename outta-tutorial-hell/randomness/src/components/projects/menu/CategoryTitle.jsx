@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useSelector } from "react-redux"
 import TextWithTranslateTransition from "../../UI/Text/TextWithTranslateTransition"
+import Context from "@app-context"
 
-export default function CategoryTitle({ fontScale, ...rest }) {
+export default function CategoryTitle(props) {
+  const { fontScale } = useContext(Context.Projects.Menu.Consumable)
   const icons = useSelector((state) => state.projects.icons)
   const activeSectionId = useSelector((state) => state.projects.activeSectionId)
 
@@ -18,7 +20,7 @@ export default function CategoryTitle({ fontScale, ...rest }) {
       shadowRadius={fontScale * 0.05}
       color={icon.activeColor}
       style={{ marginTop: fontScale * 0.4, textAlign: "center" }}
-      {...rest}
+      {...props}
     >
       {icon.shortName}
     </TextWithTranslateTransition>

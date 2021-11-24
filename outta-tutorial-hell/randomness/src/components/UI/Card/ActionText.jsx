@@ -1,18 +1,17 @@
 import React from "react"
 import TextWithTranslateTransition from "../Text/TextWithTranslateTransition"
-import useViewPortContext from "@app-hooks/useViewPortContext"
 
-export default function ActionText({ active, ...rest }) {
-  const { vw } = useViewPortContext()
-
+export default function ActionText({ active, size, ...rest }) {
   return (
     <TextWithTranslateTransition
       active={active}
+      size={size}
       orientation="left"
-      size={vw(4.5)}
       type="semi-bold-italic"
-      translateOutputRange={[-vw(50), 0]}
+      translateOutputRange={[-200, 0]}
       {...rest}
     />
   )
 }
+
+ActionText.defaultProps = { size: 17 }

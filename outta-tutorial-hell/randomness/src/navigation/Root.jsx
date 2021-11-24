@@ -6,7 +6,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import ProfileScreen from "@app-screens/Profile/Profile"
 import ProjectsScreen from "@app-screens/Projects/Projects"
 import ContactScreen from "@app-screens/Contact/Contact"
-import { ViewPortContextProvider } from "@app-context/viewPort"
+import Context from "@app-context"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import useBreakpoints from "@app-hooks/useBreakpoints"
 import colors from "@app-constants/colors"
@@ -14,11 +14,11 @@ import { screenNames } from "@app-constants/navigation"
 
 export default function RootNavigation() {
   return (
-    <ViewPortContextProvider>
+    <Context.ViewPort.Provider>
       <NavigationContainer>
         <TabNavigator />
       </NavigationContainer>
-    </ViewPortContextProvider>
+    </Context.ViewPort.Provider>
   )
 }
 
@@ -34,7 +34,7 @@ const TabNavigator = () => {
     <TabNavigation.Navigator
       style={{ paddingTop: StatusBar.currentHeight }}
       screenOptions={_getTabBarScreenOptions(labelFontSize)}
-      initialRouteName={screenNames.CONTACT}
+      initialRouteName={screenNames.PROJECTS}
     >
       <TabNavigation.Screen
         name={screenNames.PROFILE}

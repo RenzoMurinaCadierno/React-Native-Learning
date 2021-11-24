@@ -7,6 +7,7 @@ import colors from "@app-constants/colors"
 export default function ProjectsCardActions({
   actions,
   title,
+  fontScale,
   containerProps,
   ...rest
 }) {
@@ -15,8 +16,12 @@ export default function ProjectsCardActions({
       {Object.entries(actions).map(([actionId, actionUrlString]) => (
         <UI.Card.Actions.Icon
           key={actionId}
+          size={fontScale * 1.525}
           actionTextProps={{
-            containerProps: { color: colors.background.SECONDARY }
+            size: fontScale * 0.965,
+            containerProps: {
+              color: colors.background.SECONDARY
+            }
           }}
           {..._actionIconsProps[actionId](actionUrlString, title)}
           {...rest}
@@ -51,7 +56,7 @@ const _actionIconsProps = {
   [WEB_APP]: (url) => ({
     id: WEB_APP,
     name: "code-slash",
-    actionText: "Tap to open example",
+    actionText: "Tap to open app",
     onActionTextPress: () => Link.mayOpenUrl(url)
   })
 }

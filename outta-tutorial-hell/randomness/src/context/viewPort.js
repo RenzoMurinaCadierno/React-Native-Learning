@@ -3,7 +3,7 @@ import useViewPort from "@app-hooks/useViewPort"
 
 const ViewPortContext = createContext({}) // arbitrary default fontScale
 
-export function ViewPortContextProvider({ children }) {
+function ViewPortContextProvider({ children }) {
   const viewPortFunctions = useViewPort()
 
   return (
@@ -13,4 +13,9 @@ export function ViewPortContextProvider({ children }) {
   )
 }
 
-export default ViewPortContext
+const Context = {
+  Consumable: ViewPortContext,
+  Provider: ViewPortContextProvider
+}
+
+export default Context

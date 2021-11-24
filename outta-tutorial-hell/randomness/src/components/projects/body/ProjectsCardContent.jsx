@@ -1,24 +1,38 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { Animated } from "react-native"
 import ProjectsCardActions from "./ProjectsCardActions"
 import UI from "@app-components/UI"
-import useViewPortContext from "@app-hooks/useViewPortContext"
 import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
 import { interpolate } from "@app-utils/functions"
 import animations from "@app-constants/animations"
+import Context from "@app-context"
 
-export default function ProjectsCardContentRoot({ title, ...rest }) {
-  const { vh } = useViewPortContext()
+// keep context in top component to prevent being called each time state changes
+// in `ProjectsCardContentStateContainer` (card expands or collapses)
+export default function ProjectsCardContentRoot(props) {
+  const context = useContext(Context.Projects.Body.Consumable)
+
+  return <ProjectsCardContentStateContainer context={context} {...props} />
+}
+
+// separate business logic to prevent disconnects in animated views in
+// `ProjectsCardContentExpandable`
+function ProjectsCardContentStateContainer({ context, title, ...rest }) {
+  const { fontScale, cardMaxHeight } = context
   const [expanded, setExpanded] = useState(false)
 
   return (
     <>
-      <UI.Card.Text.Title onPress={() => setExpanded((prevSt) => !prevSt)}>
+      <UI.Card.Text.Title
+        fontScale={fontScale * 1.05}
+        onPress={() => setExpanded((prevSt) => !prevSt)}
+      >
         {title}
       </UI.Card.Text.Title>
       <ProjectsCardContentExpandable
         active={expanded}
-        maxHeight={vh(43.5)}
+        fontScale={fontScale}
+        maxHeight={cardMaxHeight}
         title={title}
         {...rest}
       />
@@ -26,8 +40,10 @@ export default function ProjectsCardContentRoot({ title, ...rest }) {
   )
 }
 
+// finally, card expandable content's application logic
 function ProjectsCardContentExpandable({
   active,
+  fontScale,
   maxHeight,
   title,
   subtitle,
@@ -48,9 +64,15 @@ function ProjectsCardContentExpandable({
         justifyContent: "space-evenly"
       }}
     >
-      <UI.Card.Text.Subtitle>{subtitle}</UI.Card.Text.Subtitle>
+      <UI.Card.Text.Subtitle fontScale={fontScale}>
+        {subtitle}
+      </UI.Card.Text.Subtitle>
       <UI.Carousel images={images} containerStyle={{ marginTop: 7 }} />
-      <ProjectsCardActions actions={actions} title={title} />
+      <ProjectsCardActions
+        actions={actions}
+        title={title}
+        fontScale={fontScale}
+      />
     </Animated.View>
   )
 }

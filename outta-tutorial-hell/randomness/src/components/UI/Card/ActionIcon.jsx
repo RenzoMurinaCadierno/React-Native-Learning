@@ -2,9 +2,8 @@ import React, { useContext } from "react"
 import { StyleSheet } from "react-native"
 import { ActionsContext } from "./ActionsContainer"
 import IconWithScale from "../Icon/IconWithScale"
-import animations from "@app-constants/animations"
-import useViewPortContext from "@app-hooks/useViewPortContext"
 import ActionText from "./ActionText"
+import animations from "@app-constants/animations"
 
 function ActionIcon({
   id,
@@ -15,7 +14,6 @@ function ActionIcon({
   actionTextProps,
   ...rest
 }) {
-  const { vw } = useViewPortContext()
   const [activeIcon, changeActiveIcon] = useContext(ActionsContext)
 
   const handlePress = () => {
@@ -27,7 +25,7 @@ function ActionIcon({
     <>
       <IconWithScale
         style={_styles.container}
-        size={size ?? vw(7)}
+        size={size}
         onPress={handlePress}
         colorProps={_getAnimationProps("color")}
         scaleProps={_getAnimationProps("scale")}
@@ -49,6 +47,7 @@ function ActionIcon({
 
 ActionIcon.defaultProps = {
   active: false,
+  size: 26,
   name: "help-outline",
   actionTextProps: {}
 }

@@ -1,15 +1,17 @@
-import React from "react"
+import React, { useContext } from "react"
 import { FlatList, StyleSheet } from "react-native"
 import { useSelector } from "react-redux"
 import UI from "@app-components/UI"
 import animations from "@app-constants/animations"
+import Context from "@app-context"
 
 const colorProps = {
   activeAnimation: animations.icons.color.IN,
   inactiveAnimation: animations.icons.color.OUT
 }
 
-function IconList({ onIconPress, fontScale, ...rest }) {
+function IconList({ onIconPress, ...rest }) {
+  const { fontScale } = useContext(Context.Projects.Menu.Consumable)
   const { icons, activeSectionId } = useSelector((state) => state.projects)
 
   const renderItem = ({ item }) => (

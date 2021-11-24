@@ -7,7 +7,7 @@ import useBreakpoints from "@app-hooks/useBreakpoints"
 
 export default function Placeholder({ fontScale }) {
   const isSmallDevice = useBreakpoints().get("sm")
-  check if fontScale works on all devices up to now. Adapt card
+
   return (
     <LinearGradient
       style={[
