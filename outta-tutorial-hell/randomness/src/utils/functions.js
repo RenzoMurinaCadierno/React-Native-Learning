@@ -1,4 +1,4 @@
-import { Easing, Linking, Share, Alert, Dimensions } from "react-native"
+import { Easing, Linking, Share, Alert } from "react-native"
 import appColors from "@app-constants/colors"
 
 export class Obj {

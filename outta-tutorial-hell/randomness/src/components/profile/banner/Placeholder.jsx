@@ -1,19 +1,13 @@
-import { LinearGradient } from "expo-linear-gradient"
 import React from "react"
 import { StyleSheet } from "react-native"
+import { LinearGradient } from "expo-linear-gradient"
 import UI from "@app-components/UI"
 import colors from "@app-constants/colors"
-import useBreakpoints from "@app-hooks/useBreakpoints"
 
-export default function Placeholder({ fontScale }) {
-  const isSmallDevice = useBreakpoints().get("sm")
-
+export default function Placeholder({ fontScale, isSmallDevice }) {
   return (
     <LinearGradient
-      style={[
-        _styles.container,
-        { paddingVertical: _dynamicStyles.paddingVertical(isSmallDevice) }
-      ]}
+      style={[_styles.container, _dynamicStyles.padding(isSmallDevice)]}
       colors={[colors.main.PRIMARY_ALPHA(0.15), colors.background.PRIMARY]}
     >
       <UI.Text
@@ -60,16 +54,17 @@ const _dynamicStyles = {
     isSmallDevice ? fontScale * 1.075 : fontScale,
   footerText: (fontScale, isSmallDevice) =>
     isSmallDevice ? fontScale * 0.9 : fontScale * 0.8,
-  paddingVertical: (isSmallDevice) => (isSmallDevice ? "2.5%" : "5%")
+  padding: (isSmallDevice) => ({
+    paddingVertical: isSmallDevice ? "2.5%" : "5%",
+    paddingHorizontal: isSmallDevice ? "2.5%" : "3.5%"
+  })
 }
 
 const _styles = StyleSheet.create({
   container: {
-    alignSelf: "stretch",
     flex: 1,
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    paddingHorizontal: "2%"
+    justifyContent: "space-around",
+    alignItems: "flex-start"
   },
   footer: { alignSelf: "flex-end" }
 })

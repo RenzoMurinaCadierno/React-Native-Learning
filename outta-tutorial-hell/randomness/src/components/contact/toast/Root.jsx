@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import UI from "@app-components/UI"
 import { useSelector } from "react-redux"
+import Context from "@app-context"
 
-export default function Toast({ fontScale, ...rest }) {
+export default function Toast(props) {
+  const { fontScale } = useContext(Context.Contact.Toast.Consumable)
   const toast = useSelector((state) => state.contact.toast)
 
   return (
@@ -13,7 +15,7 @@ export default function Toast({ fontScale, ...rest }) {
       type="secondary"
       onPressText={toast.onPressText}
       fontScale={fontScale}
-      {...rest}
+      {...props}
     >
       {toast.text}
     </UI.Toast>

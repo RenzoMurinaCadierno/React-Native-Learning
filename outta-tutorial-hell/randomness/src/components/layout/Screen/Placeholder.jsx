@@ -1,7 +1,6 @@
 import React from "react"
 import { View, StyleSheet } from "react-native"
 import UI from "@app-components/UI"
-import useViewPortContext from "@app-hooks/useViewPortContext"
 import colors from "@app-constants/colors"
 import sharedStyles from "@app-constants/styles"
 
@@ -9,6 +8,7 @@ export default function Placeholder({
   show,
   title,
   subtitle,
+  size,
   style,
   titleStyle,
   subtitleStyle,
@@ -19,12 +19,23 @@ export default function Placeholder({
   return (
     <View style={[_styles.container, style]} {...rest}>
       {title && (
-        <PlaceholderText isTitle show={show} style={titleStyle} {...titleProps}>
+        <PlaceholderText
+          isTitle
+          show={show}
+          style={titleStyle}
+          size={size}
+          {...titleProps}
+        >
           {title}
         </PlaceholderText>
       )}
       {subtitle && (
-        <PlaceholderText show={show} style={subtitleStyle} {...subtitleProps}>
+        <PlaceholderText
+          show={show}
+          style={subtitleStyle}
+          size={size}
+          {...subtitleProps}
+        >
           {subtitle}
         </PlaceholderText>
       )}
@@ -34,15 +45,13 @@ export default function Placeholder({
 
 Placeholder.defaultProps = { show: true }
 
-function PlaceholderText({ children, isTitle, style, ...rest }) {
-  const { vw } = useViewPortContext()
-
+function PlaceholderText({ children, isTitle, size, style, ...rest }) {
   return (
     <UI.Text.WithScaleTransition
       type={isTitle ? "semi-bold-italic" : "regular"}
-      size={isTitle ? vw(5.5) : vw(4.5)}
+      size={isTitle ? size * 1.225 : size}
       color={colors.main[isTitle ? "PRIMARY" : "SECONDARY"]}
-      elevation={vw(1)}
+      elevation={3.25}
       shadowColor={colors.accent[isTitle ? "PRIMARY" : "SECONDARY"]}
       style={[_styles.texts, style]}
       useScaleTransitionArgs={{ inactiveScaleValue: 1.1 }}
@@ -52,6 +61,8 @@ function PlaceholderText({ children, isTitle, style, ...rest }) {
     </UI.Text.WithScaleTransition>
   )
 }
+
+PlaceholderText.defaultProps = { size: 14.5 }
 
 const _styles = StyleSheet.create({
   container: sharedStyles.FLEX_CENTER,

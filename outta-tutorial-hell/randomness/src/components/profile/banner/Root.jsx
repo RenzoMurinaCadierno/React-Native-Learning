@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react"
+import React, { useState, useCallback, useContext } from "react"
 import { StyleSheet, View } from "react-native"
 import Placeholder from "./Placeholder"
 import Header from "./Header"
@@ -6,16 +6,18 @@ import Body from "./Body"
 import Layout from "@app-components/layout"
 import useSelectProfile from "@app-hooks/useSelectProfile"
 import sharedStyles from "@app-constants/styles"
+import Context from "@app-context"
 
 export default function Root({
-  fontScale,
-  headerShrinkThereshold,
   containerStyle,
   headerProps,
   bodyProps,
   placeHolderProps,
   containerProps
 }) {
+  const { headerShrinkThereshold, fontScale, isSmallDevice } = useContext(
+    Context.Profile.Banner.Consumable
+  )
   const [shrinkHeader, setShrinkHeader] = useState(false)
   const { activeSection, activeSubSectionId } = useSelectProfile()
 
@@ -26,14 +28,18 @@ export default function Root({
       // adapts to new header height when shrinking or growing
       setShrinkHeader(
         contentSize.height >= headerShrinkThereshold && // height >= thereshold
-          contentOffset.y >= headerShrinkThereshold / 10 // shrink at 10% scroll
+          contentOffset.y >= headerShrinkThereshold * 0.1 // shrink @ 10% scroll
       )
     },
     [headerShrinkThereshold]
   )
 
   return !Boolean(activeSubSectionId) ? (
-    <Placeholder fontScale={fontScale} {...placeHolderProps} />
+    <Placeholder
+      fontScale={fontScale}
+      isSmallDevice={isSmallDevice}
+      {...placeHolderProps}
+    />
   ) : (
     <View style={[_styles.container, containerStyle]} {...containerProps}>
       <Header

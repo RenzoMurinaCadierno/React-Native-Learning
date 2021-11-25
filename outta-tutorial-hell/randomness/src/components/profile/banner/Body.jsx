@@ -8,8 +8,8 @@ import { screenNames } from "@app-constants/navigation"
 import * as projectsActions from "@app-store/actions/projects"
 
 function Body({
-  bullets,
   fontScale,
+  bullets,
   flexValue,
   style,
   activeIconId,

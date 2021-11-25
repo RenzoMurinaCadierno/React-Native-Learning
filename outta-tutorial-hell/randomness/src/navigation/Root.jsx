@@ -34,7 +34,7 @@ const TabNavigator = () => {
     <TabNavigation.Navigator
       style={{ paddingTop: StatusBar.currentHeight }}
       screenOptions={_getTabBarScreenOptions(labelFontSize)}
-      initialRouteName={screenNames.PROJECTS}
+      initialRouteName={screenNames.PROFILE}
     >
       <TabNavigation.Screen
         name={screenNames.PROFILE}

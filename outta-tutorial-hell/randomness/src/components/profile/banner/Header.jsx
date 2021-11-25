@@ -24,8 +24,8 @@ export default function Content({
           size={fontScale * 1.5}
           color={titleColor}
           type="semi-bold"
-          elevation={fontScale / 10}
-          shadowRadius={fontScale / 10}
+          elevation={fontScale * 0.1}
+          shadowRadius={fontScale * 0.1}
           shadowColor={colors.background.DARK}
         >
           {title}
@@ -34,8 +34,8 @@ export default function Content({
           size={fontScale}
           color={colors.main.SECONDARY}
           type="regular-italic"
-          elevation={fontScale / 10}
-          shadowRadius={fontScale / 10}
+          elevation={fontScale * 0.1}
+          shadowRadius={fontScale * 0.1}
           shadowColor={colors.main.PRIMARY}
         >
           {category}

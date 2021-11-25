@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import * as contactActions from "@app-store/actions/contact"
 import UI from "@app-components/UI"
+import Context from "@app-context"
 
-export default function Body({ fontScale }) {
+export default function Body(props) {
+  const { fontScale } = useContext(Context.Contact.Body.Consumable)
   const bullets = useSelector((state) => state.contact.bullets)
   const dispatch = useDispatch()
 
@@ -16,6 +18,7 @@ export default function Body({ fontScale }) {
       droppables={bullets}
       showDemo
       onActiveItemNameChange={triggerToast}
+      {...props}
     />
   )
 }

@@ -1,9 +1,13 @@
 import ViewPortContext from "./viewPort"
+import ProfileContext from "./profile"
 import ProjectsContext from "./projects"
+import ContactContext from "./contact"
 
 const Context = {
   ViewPort: ViewPortContext,
-  Projects: ProjectsContext
+  Profile: ProfileContext,
+  Projects: ProjectsContext,
+  Contact: ContactContext
 }
 
 export default Context

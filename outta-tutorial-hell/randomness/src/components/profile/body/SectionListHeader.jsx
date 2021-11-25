@@ -16,7 +16,7 @@ export default function SectionListHeader({
         type="semi-bold"
         size={fontScale}
         elevation={fontScale / 7}
-        shadowRadius={fontScale / 2}
+        shadowRadius={fontScale * 0.5}
         shadowColor={colors.main.PRIMARY}
         {...titleProps}
       >

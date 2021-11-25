@@ -1,9 +1,11 @@
-import React, { useState, useCallback } from "react"
+import React, { useState, useCallback, useContext } from "react"
 import { StyleSheet, View } from "react-native"
 import Sections from "./Sections"
 import UI from "@app-components/UI"
+import Context from "@app-context"
 
-function Root({ containerProps, sectionProps, arrowProps, fontScale }) {
+function Root({ containerProps, sectionProps, arrowProps }) {
+  const { fontScale } = useContext(Context.Profile.Body.Consumable)
   const [showArrows, setShowArrows] = useState(true)
 
   const hideArrows = useCallback(() => setShowArrows(false), [])

@@ -1,25 +1,20 @@
 import React from "react"
 import Layout from "@app-components/layout"
 import Profile from "@app-components/profile"
-import useViewPortContext from "@app-hooks/useViewPortContext"
-import useBreakpoints from "@app-hooks/useBreakpoints"
+import Context from "@app-context"
 
 export default function ProfileScreen() {
-  const { vw, vh } = useViewPortContext()
-  const breakpoints = useBreakpoints()
-
   return (
     <Layout.Screen>
       <Layout.Screen.Separator flexValue={0.53}>
-        <Profile.Banner
-          fontScale={breakpoints.select({ sm: vw(5.5), any: vw(5) })}
-          headerShrinkThereshold={vh(50)}
-        />
+        <Context.Profile.Banner.Provider>
+          <Profile.Banner />
+        </Context.Profile.Banner.Provider>
       </Layout.Screen.Separator>
       <Layout.Screen.Separator flexValue={0.47}>
-        <Profile.Body
-          fontScale={breakpoints.select({ sm: vw(3.5), any: vw(3) })}
-        />
+        <Context.Profile.Body.Provider>
+          <Profile.Body />
+        </Context.Profile.Body.Provider>
       </Layout.Screen.Separator>
     </Layout.Screen>
   )
