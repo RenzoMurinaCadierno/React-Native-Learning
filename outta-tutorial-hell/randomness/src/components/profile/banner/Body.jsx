@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import BodyContent from "./BodyContent"
 import UI from "@app-components/UI"
 import { screenNames } from "@app-constants/navigation"
+import * as profileActions from "@app-store/actions/profile"
 import * as projectsActions from "@app-store/actions/projects"
 
 function Body({
@@ -24,10 +25,14 @@ function Body({
     onScrollBodySectionList?.(e.nativeEvent)
   }, [])
 
-  const moveToProjectsSectionAndTargetItem = useCallback(
-    (iconId, itemPrimaryKey) => {
-      dispatch(projectsActions.setActivePointer(iconId, itemPrimaryKey))
-      navigation.navigate(screenNames.PROJECTS)
+  const triggerToastOrMoveToProjectsSectionAndTargetItem = useCallback(
+    ({ isEducationBullet, iconId, itemPrimaryKey, courseUrl }) => {
+      if (isEducationBullet) {
+        dispatch(profileActions.triggerToast(courseUrl))
+      } else {
+        dispatch(projectsActions.setActivePointer(iconId, itemPrimaryKey))
+        navigation.navigate(screenNames.PROJECTS)
+      }
     },
     []
   )
@@ -38,7 +43,7 @@ function Body({
         bullets={bullets}
         activeIconId={activeIconId}
         mayShowArrows={setShowArrows}
-        onBulletPress={moveToProjectsSectionAndTargetItem}
+        onBulletPress={triggerToastOrMoveToProjectsSectionAndTargetItem}
         onScrollSectionList={hideArrowsAndTriggerParentCallback}
         fontScale={fontScale}
       />

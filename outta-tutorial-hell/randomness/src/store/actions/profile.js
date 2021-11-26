@@ -1,8 +1,10 @@
 import {
   PROFILE_POPULATE_STORE,
-  PROFILE_CHANGE_ACTIVE_SUBSECTION
+  PROFILE_CHANGE_ACTIVE_SUBSECTION,
+  PROFILE_TRIGGER_TOAST
 } from "../types/profile"
 import { status, messages, screens } from "../states/global"
+import { Link } from "@app-utils/functions"
 
 export const populateStore = (profileDbData) => {
   let iconCategories = []
@@ -47,4 +49,15 @@ export const populateStore = (profileDbData) => {
 export const changeActiveSubSection = (subSectionId) => ({
   type: PROFILE_CHANGE_ACTIVE_SUBSECTION,
   payload: { subSectionId }
+})
+
+export const triggerToast = (url) => ({
+  type: PROFILE_TRIGGER_TOAST,
+  payload: Boolean(url)
+    ? {
+        show: true,
+        text: "Go to course website",
+        onPressText: () => Link.mayOpenUrl(url)
+      }
+    : { show: false, text: "", onPressText: () => {} }
 })

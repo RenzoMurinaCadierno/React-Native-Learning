@@ -9,6 +9,7 @@ import BodyRoot from "./body/Root"
 import BodySections from "./body/Sections"
 import BodySectionListHeader from "./body/SectionListHeader"
 import BodySectionListItem from "./body/SectionListItem"
+import ToastRoot from "./toast/Root"
 
 function ComposedBanner(props) {
   return <BannerRoot {...props} />
@@ -35,7 +36,8 @@ ComposedBody.SectionListItem = BodySectionListItem
 
 const Profile = {
   Banner: ComposedBanner,
-  Body: ComposedBody
+  Body: ComposedBody,
+  Toast: ToastRoot
 }
 
 export default Profile

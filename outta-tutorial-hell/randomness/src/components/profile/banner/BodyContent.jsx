@@ -32,17 +32,21 @@ function BodyContent({
 
   const renderItem = ({
     section: { title },
-    item: { primaryKey, iconName, iconType, text, sideText, descriptionText },
+    item: { primaryKey, url, ...rest },
     index
   }) => (
     <BodyBullet
       type={index % 2 === 0 ? "primary" : "secondary"}
-      onPress={
-        title === sectionNames.PROJECTS
-          ? () => onBulletPress(activeIconId, primaryKey)
-          : null
-      }
-      {...{ iconName, iconType, text, sideText, descriptionText, fontScale }}
+      fontScale={fontScale}
+      onPress={() => {
+        onBulletPress({
+          isEducationBullet: title === sectionNames.EDUCATION,
+          iconId: activeIconId,
+          itemPrimaryKey: primaryKey,
+          courseUrl: url
+        })
+      }}
+      {...rest}
     />
   )
 

@@ -15,6 +15,9 @@ export default function ProfileScreen() {
         <Context.Profile.Body.Provider>
           <Profile.Body />
         </Context.Profile.Body.Provider>
+        <Context.Toast.Provider>
+          <Profile.Toast />
+        </Context.Toast.Provider>
       </Layout.Screen.Separator>
     </Layout.Screen>
   )

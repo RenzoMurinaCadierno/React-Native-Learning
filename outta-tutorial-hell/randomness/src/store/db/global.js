@@ -36,7 +36,12 @@ export const defaultIcons = {
     shortName: "Py",
     activeColor: "rgb(48, 105, 152)"
   },
-  github: { id: "github", name: "logo-github", activeColor: "rgb(23, 21, 21)" },
+  github: {
+    id: "github",
+    name: "logo-github",
+    shortName: "Git",
+    activeColor: "rgb(23, 21, 21)"
+  },
   "react-native": {
     id: "react-native",
     name: "logo-react",

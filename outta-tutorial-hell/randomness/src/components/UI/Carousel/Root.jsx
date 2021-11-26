@@ -11,7 +11,7 @@ export default function Root({
   ...rest
 }) {
   const [currentIndex, setCurrentIndex] = useState(0)
-add fullscreen image, maybe?
+
   const changeChipIndex = useCallback((nextIndex) => {
     setCurrentIndex((prevIdx) =>
       nextIndex === undefined ? prevIdx : nextIndex + 1

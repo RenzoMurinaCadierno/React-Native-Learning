@@ -1,6 +1,7 @@
 import {
   PROFILE_CHANGE_ACTIVE_SUBSECTION,
-  PROFILE_POPULATE_STORE
+  PROFILE_POPULATE_STORE,
+  PROFILE_TRIGGER_TOAST
 } from "../types/profile"
 import { status, messages, screens } from "../states/global"
 
@@ -10,7 +11,8 @@ const initialState = {
   sections: {}, // contains banner data
   iconCategories: [], // contains sections data
   iconToCategoryMap: {}, // { html: 'mainTechs', css: 'mainTechs', ... }
-  activeSubSectionId: ""
+  activeSubSectionId: "",
+  toast: { show: false, text: "", onPressText: () => {} }
 }
 
 export default function profileReducer(state = initialState, action) {
@@ -32,6 +34,9 @@ export default function profileReducer(state = initialState, action) {
         ...state,
         activeSubSectionId: isSameSubSection ? "" : action.payload.subSectionId
       }
+
+    case PROFILE_TRIGGER_TOAST:
+      return { ...state, toast: { ...state.toast, ...action.payload } }
 
     default:
       return state

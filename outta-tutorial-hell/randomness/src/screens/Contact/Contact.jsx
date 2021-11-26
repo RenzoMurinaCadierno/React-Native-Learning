@@ -9,9 +9,9 @@ export default function ContactScreen() {
       <Context.Contact.Body.Provider>
         <Contact.Body />
       </Context.Contact.Body.Provider>
-      <Context.Contact.Toast.Provider>
+      <Context.Toast.Provider>
         <Contact.Toast />
-      </Context.Contact.Toast.Provider>
+      </Context.Toast.Provider>
     </Layout.Screen>
   )
 }

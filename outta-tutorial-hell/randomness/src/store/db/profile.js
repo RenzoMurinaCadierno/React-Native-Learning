@@ -2,19 +2,20 @@ import { defaultIcons } from "./global"
 import { SectionItem, ProfileIcon, create } from "@app-models/profile"
 import { uid } from "@app-utils/functions"
 import { sectionNames } from "@app-constants/sections/profile"
-
+complete here vvv, then fullscreen maybe. Then splashscreen!
 const profileBullets = {
   html: [
     {
       id: uid(),
       title: sectionNames.EDUCATION,
       data: [
-        create.course(
-          "HTML5: Web page fundamentals",
-          "Certified (12 hours)",
-          "EducacionIT",
-          true
-        )
+        create.course({
+          text: "HTML5: Web page fundamentals",
+          descriptionText: "Certified (12 hours)",
+          sideText: "EducacionIT",
+          url: "https://google.com",
+          doResetType: true
+        })
       ]
     }
   ],
@@ -23,22 +24,22 @@ const profileBullets = {
       id: uid(),
       title: sectionNames.EDUCATION,
       data: [
-        create.course(
-          "Intro to web layout with HTML5 and CSS3",
-          "Certified (18 hours)",
-          "EducacionIT",
-          true
-        ),
-        create.course(
-          "Advanced web layout with HTML5 and CSS3",
-          "Certified (15 hours)",
-          "EducacionIT"
-        ),
-        create.course(
-          "Responsive web design and Bootstrap",
-          "Certified (12 hours)",
-          "EducacionIT"
-        )
+        create.course({
+          text: "Intro to web layout with HTML5 and CSS3",
+          descriptionText: "Certified (18 hours)",
+          sideText: "EducacionIT",
+          doResetType: true
+        }),
+        create.course({
+          text: "Advanced web layout with HTML5 and CSS3",
+          descriptionText: "Certified (15 hours)",
+          sideText: "EducacionIT"
+        }),
+        create.course({
+          text: "Responsive web design and Bootstrap",
+          sideText: "Certified (12 hours)",
+          descriptionText: "EducacionIT"
+        })
       ]
     }
   ],
@@ -47,40 +48,39 @@ const profileBullets = {
       id: uid(),
       title: sectionNames.EDUCATION,
       data: [
-        create.course(
-          "Intro to JS programming",
-          "Certified (15 hours)",
-          "EducacionIT",
-          true
-        ),
-        create.course(
-          "JS Advanced Development",
-          "Certified (36 hours)",
-          "EducacionIT"
-        ),
-        create.course(
-          "JQuery for designers",
-          "Certified (15 hours)",
-          "EducacionIT"
-        )
+        create.course({
+          text: "Intro to JS programming",
+          descriptionText: "Certified (15 hours)",
+          sideText: "EducacionIT",
+          doResetType: true
+        }),
+        create.course({
+          text: "JS Advanced Development",
+          descriptionText: "Certified (36 hours)",
+          sideText: "EducacionIT"
+        }),
+        create.course({
+          text: "JQuery for designers",
+          descriptionText: "Certified (15 hours)",
+          sideText: "EducacionIT"
+        })
       ]
     },
     {
       id: uid(),
       title: sectionNames.PROJECTS,
       data: [
-        create.project(
-          "js-connect-4",
-          "Connect 4",
-          "Vanilla HTML+CSS+JS Connect 4 game",
-          "",
-          true
-        ),
-        create.project(
-          "js-market-list",
-          "Market list",
-          "Shopping list configured as a PWA from scratch"
-        )
+        create.project({
+          primaryKey: "js-connect-4",
+          text: "Connect 4",
+          descriptionText: "Vanilla HTML+CSS+JS Connect 4 game",
+          doResetType: true
+        }),
+        create.project({
+          primaryKey: "js-market-list",
+          text: "Market list",
+          descriptionText: "Shopping list configured as a PWA from scratch"
+        })
       ]
     }
   ],
@@ -89,65 +89,64 @@ const profileBullets = {
       id: uid(),
       title: sectionNames.EDUCATION,
       data: [
-        create.course(
-          "Intro to ReactJS",
-          "Certified (15 hours)",
-          "EducacionIT",
-          true
-        ),
-        create.course(
-          "React & Django Full Stack",
-          "Completed (17 hours)",
-          "Udemy"
-        ),
-        create.course(
-          "React & Firebase for beginners",
-          "Completed (6 hours)",
-          "Udemy"
-        ),
-        create.course(
-          "Complete React Developer in 2020",
-          "Completed (39.5 hours)",
-          "Udemy"
-        ),
-        create.course(
-          "React - The complete guide",
-          "Completed (40.5 hours)",
-          "Udemy"
-        ),
-        create.course(
-          "The Modern React Bootcamp",
-          "Completed (39 hours)",
-          "Udemy"
-        ),
-        create.course(
-          "Complete React Hooks course 2020",
-          "Completed (8 hours)",
-          "Udemy"
-        )
+        create.course({
+          text: "Intro to ReactJS",
+          descriptionText: "Certified (15 hours)",
+          sideText: "EducacionIT",
+          doResetType: true
+        }),
+        create.course({
+          text: "React & Django Full Stack",
+          descriptionText: "Completed (17 hours)",
+          sideText: "Udemy"
+        }),
+        create.course({
+          text: "React & Firebase for beginners",
+          descriptionText: "Completed (6 hours)",
+          sideText: "Udemy"
+        }),
+        create.course({
+          text: "Complete React Developer in 2020",
+          descriptionText: "Completed (39.5 hours)",
+          sideText: "Udemy"
+        }),
+        create.course({
+          text: "React - The complete guide",
+          descriptionText: "Completed (40.5 hours)",
+          sideText: "Udemy"
+        }),
+        create.course({
+          text: "The Modern React Bootcamp",
+          descriptionText: "Completed (39 hours)",
+          sideText: "Udemy"
+        }),
+        create.course({
+          text: "Complete React Hooks course 2020",
+          descriptionText: "Completed (8 hours)",
+          sideText: "Udemy"
+        })
       ]
     },
     {
       id: uid(),
       title: sectionNames.PROJECTS,
       data: [
-        create.project(
-          "react-react-fanmade-hooks",
-          "React Fanmade Hooks",
-          "Hooks for many needs made by React enthusiasts",
-          "",
-          true
-        ),
-        create.project(
-          "react-yugi-calculator-max",
-          "Yugi-Calculator-MAX",
-          "Multi-purpose app to assist Yu-Gi-Oh! duelists"
-        ),
-        create.project(
-          "react-react-pokedex",
-          "React Pokedex",
-          "Basic Pokemon filter app"
-        )
+        create.project({
+          primaryKey: "react-react-fanmade-hooks",
+          text: "React Fanmade Hooks",
+          descriptionText: "Hooks for many needs made by React enthusiasts",
+          doResetType: true
+        }),
+        create.project({
+          primaryKey: "react-yugi-calculator-max",
+          text: "Yugi-Calculator-MAX",
+          descriptionText: "Multi-purpose app to assist Yu-Gi-Oh! duelists"
+        }),
+        create.project({
+          primaryKey: "react-react-pokedex",
+          text: "React Pokedex",
+          descriptionText: "Basic Pokemon filter app"
+        })
       ]
     }
   ],
@@ -156,30 +155,29 @@ const profileBullets = {
       id: uid(),
       title: sectionNames.EDUCATION,
       data: [
-        create.course(
-          "NodeJS and MongoDB",
-          "Certified (18 hours)",
-          "EducacionIT",
-          true
-        ),
-        create.course(
-          "MongoDB fundamentals",
-          "Certified (6 hours)",
-          "EducacionIT"
-        )
+        create.course({
+          text: "NodeJS and MongoDB",
+          descriptionText: "Certified (18 hours)",
+          sideText: "EducacionIT",
+          doResetType: true
+        }),
+        create.course({
+          text: "MongoDB fundamentals",
+          descriptionText: "Certified (6 hours)",
+          sideText: "EducacionIT"
+        })
       ]
     },
     {
       id: uid(),
       title: sectionNames.PROJECTS,
       data: [
-        create.project(
-          "nodejs-login-authentication",
-          "Login Authentication",
-          "Node + Passport + Mongoose basic login",
-          "",
-          true
-        )
+        create.project({
+          primaryKey: "nodejs-login-authentication",
+          text: "Login Authentication",
+          descriptionText: "Node + Passport + Mongoose basic login",
+          doResetType: true
+        })
       ]
     }
   ],
@@ -188,99 +186,114 @@ const profileBullets = {
       id: uid(),
       title: sectionNames.EDUCATION,
       data: [
-        create.course(
-          "Python Programming",
-          "Certified (21 hours)",
-          "EducacionIT",
-          true
-        ),
-        create.course(
-          "Python Programming Masterclass",
-          "Completed (42 hours)",
-          "Udemy"
-        ),
-        create.course(
-          "Python and Django Developer Bootcamp",
-          "Completed (32 hours)",
-          "Udemy"
-        ),
-        create.course(
-          "Django 2.2 & Python, Ultimate Developer Bootcamp",
-          "Completed (10 hours)",
-          "Udemy"
-        )
+        create.course({
+          text: "Python Programming",
+          descriptionText: "Certified (21 hours)",
+          sideText: "EducacionIT",
+          doResetType: true
+        }),
+        create.course({
+          text: "Python Programming Masterclass",
+          descriptionText: "Completed (42 hours)",
+          sideText: "Udemy"
+        }),
+        create.course({
+          text: "Python and Django Developer Bootcamp",
+          descriptionText: "Completed (32 hours)",
+          sideText: "Udemy"
+        }),
+        create.course({
+          text: "Django 2.2 & Python, Ultimate Developer Bootcamp",
+          descriptionText: "Completed (10 hours)",
+          sideText: "Udemy"
+        })
       ]
     },
     {
       id: uid(),
       title: sectionNames.PROJECTS,
       data: [
-        create.project(
-          "python-abstract-data-structures",
-          "Array",
-          "C Array with extended functionality",
-          "",
-          true
-        ),
-        create.project(
-          "python-abstract-data-structures",
-          "Multi-Dimensional Array",
-          "Custom Abstract Data Structure"
-        ),
-        create.project(
-          "python-abstract-data-structures",
-          "Queue",
-          "Custom Abstract Data Structure"
-        ),
-        create.project(
-          "python-abstract-data-structures",
-          "Bounded Priority Queue",
-          "Custom Abstract Data Structure"
-        ),
-        create.project(
-          "python-abstract-data-structures",
-          "Singly-Sorted Linked List",
-          "Custom Abstract Data Structure"
-        ),
-        create.project(
-          "python-abstract-data-structures",
-          "Multi-Sorted Circular Linked List",
-          "Custom Abstract Data Structure"
-        ),
-        create.project(
-          "python-abstract-data-structures",
-          "Stack",
-          "Custom Abstract Data Structure"
-        ),
-        create.project(
-          "python-abstract-data-structures",
-          "Set",
-          "Custom Abstract Data Structure"
-        ),
-        create.project("python-games", "Black Jack full game", "Desktop game"),
-        create.project("python-games", "Code guess", "Console game"),
-        create.project("python-games", "Sudoku", "Desktop game"),
-        create.project(
-          "python-games",
-          "Sudoku generator",
-          "Customizable sudoku generator"
-        ),
-        create.project("python-games", "Card War", "Console game"),
-        create.project(
-          "python-rnmc-videos",
-          "RNMC Videos",
-          "Personal and shareable Youtube videos gallery"
-        ),
-        create.project(
-          "python-rnmc-movies",
-          "RNMC Movies",
-          "Upload and rate movies, powered by Django"
-        ),
-        create.project(
-          "python-rnmc-social",
-          "RNMC Social",
-          "Foundations of a social network using Django"
-        )
+        create.project({
+          primaryKey: "python-abstract-data-structures",
+          text: "Array",
+          descriptionText: "C Array with extended functionality",
+          doResetType: true
+        }),
+        create.project({
+          primaryKey: "python-abstract-data-structures",
+          text: "Multi-Dimensional Array",
+          descriptionText: "Custom Abstract Data Structure"
+        }),
+        create.project({
+          primaryKey: "python-abstract-data-structures",
+          text: "Queue",
+          descriptionText: "Custom Abstract Data Structure"
+        }),
+        create.project({
+          primaryKey: "python-abstract-data-structures",
+          text: "Bounded Priority Queue",
+          descriptionText: "Custom Abstract Data Structure"
+        }),
+        create.project({
+          primaryKey: "python-abstract-data-structures",
+          text: "Singly-Sorted Linked List",
+          descriptionText: "Custom Abstract Data Structure"
+        }),
+        create.project({
+          primaryKey: "python-abstract-data-structures",
+          text: "Multi-Sorted Circular Linked List",
+          descriptionText: "Custom Abstract Data Structure"
+        }),
+        create.project({
+          primaryKey: "python-abstract-data-structures",
+          text: "Stack",
+          descriptionText: "Custom Abstract Data Structure"
+        }),
+        create.project({
+          primaryKey: "python-abstract-data-structures",
+          text: "Set",
+          descriptionText: "Custom Abstract Data Structure"
+        }),
+        create.project({
+          primaryKey: "python-games",
+          text: "Black Jack full game",
+          descriptionText: "Desktop game"
+        }),
+        create.project({
+          primaryKey: "python-games",
+          text: "Code guess",
+          descriptionText: "Console game"
+        }),
+        create.project({
+          primaryKey: "python-games",
+          text: "Sudoku",
+          descriptionText: "Desktop game"
+        }),
+        create.project({
+          primaryKey: "python-games",
+          text: "Sudoku generator",
+          descriptionText: "Customizable sudoku generator"
+        }),
+        create.project({
+          primaryKey: "python-games",
+          text: "Card War",
+          descriptionText: "Console game"
+        }),
+        create.project({
+          primaryKey: "python-rnmc-videos",
+          text: "RNMC Videos",
+          descriptionText: "Personal and shareable Youtube videos gallery"
+        }),
+        create.project({
+          primaryKey: "python-rnmc-movies",
+          text: "RNMC Movies",
+          descriptionText: "Upload and rate movies, powered by Django"
+        }),
+        create.project({
+          primaryKey: "python-rnmc-social",
+          text: "RNMC Social",
+          descriptionText: "Foundations of a social network using Django"
+        })
       ]
     }
   ],
@@ -289,12 +302,12 @@ const profileBullets = {
       id: uid(),
       title: sectionNames.EDUCATION,
       data: [
-        create.course(
-          "GIT: collaborative development",
-          "Certified (12 hours)",
-          "EducacionIT",
-          true
-        )
+        create.course({
+          text: "GIT: collaborative development",
+          descriptionText: "Certified (12 hours)",
+          sideText: "EducacionIT",
+          doResetType: true
+        })
       ]
     }
   ],
@@ -303,25 +316,24 @@ const profileBullets = {
       id: uid(),
       title: sectionNames.EDUCATION,
       data: [
-        create.course(
-          "React Native 2021 - The practical guide",
-          "Certified (33 hours)",
-          "Udemy",
-          true
-        )
+        create.course({
+          text: "React Native 2021 - The practical guide",
+          descriptionText: "Certified (33 hours)",
+          sideText: "Udemy",
+          doResetType: true
+        })
       ]
     },
     {
       id: uid(),
       title: sectionNames.PROJECTS,
       data: [
-        create.project(
-          "react-native-react-native-portfolio",
-          "React Native Portfolio app",
-          "This app you are using now",
-          "",
-          true
-        )
+        create.project({
+          primaryKey: "react-native-react-native-portfolio",
+          text: "React Native Portfolio app",
+          descriptionText: "This app you are using now",
+          doResetType: true
+        })
       ]
     }
   ]
@@ -407,8 +419,3 @@ const profile = {
           "React-based Native development library"
         )
       }
-    }
-  }
-}
-
-export default profile

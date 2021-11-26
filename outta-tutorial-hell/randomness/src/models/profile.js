@@ -30,32 +30,51 @@ export const create = (function () {
 
   let _isTypePrimary = true
 
-  function _createCourseOrProject(
-    iconName,
-    primaryKey,
-    text,
-    descriptionText,
-    sideText = "",
-    resetType
-  ) {
-    if (Boolean(resetType)) _isTypePrimary = true
+  function _createNewCourseOrProject(iconName, obj = {}) {
+    if (obj.doResetType) _isTypePrimary = true
 
-    const newCourseOrProject = {
-      primaryKey,
-      iconName,
-      iconType: _typeMap.get(_isTypePrimary),
-      text,
-      descriptionText,
-      sideText
-    }
+    let newCourse = { iconName, iconType: _typeMap.get(_isTypePrimary) }
+
+    for (let key in obj) newCourse[key] = obj[key]
 
     _isTypePrimary = !_isTypePrimary
 
-    return newCourseOrProject
+    return newCourse
   }
 
+  // function _createCourse(
+  //   primaryKey,
+  //   text,
+  //   descriptionText,
+  //   sideText,
+  //   url,
+  //   doResetType
+  // ) {
+  //   return _createNewCourseOrProject({
+  //     primaryKey,
+  //     text,
+  //     descriptionText,
+  //     sideText,
+  //     url,
+  //     doResetType
+  //   })
+  // }
+
+  // function _createProject(primaryKey, text, descriptionText, doResetType) {
+  //   return _createNewCourseOrProject({
+  //     primaryKey,
+  //     text,
+  //     descriptionText,
+  //     doResetType
+  //   })
+  // }
+
+  // return {
+  //   course: (...args) => _createCourse(...args),
+  //   project: (...args) => _createProject(...args)
+  // }
   return {
-    course: (...args) => _createCourseOrProject("bookmark", "", ...args),
-    project: (...args) => _createCourseOrProject("briefcase", ...args)
+    course: (...args) => _createNewCourseOrProject("bookmark", ...args),
+    project: (...args) => _createNewCourseOrProject("briefcase", ...args)
   }
 })()
