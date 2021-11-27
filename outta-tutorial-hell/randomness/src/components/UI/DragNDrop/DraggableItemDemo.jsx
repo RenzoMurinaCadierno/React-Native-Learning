@@ -8,9 +8,13 @@ import colors from "@app-constants/colors"
 import animations from "@app-constants/animations"
 import { interpolate } from "@app-utils/functions"
 
-export default function DraggableItemDemoGate({ delayBeforeMount, ...rest }) {
+export default function DraggableItemDemoGate({
+  delayBeforeMount,
+  abortOn,
+  ...rest
+}) {
   return (
-    <Logic.DelayMountPhase delay={delayBeforeMount}>
+    <Logic.DelayMountPhase delay={delayBeforeMount} abortOn={abortOn}>
       <DraggableItemDemoComponent {...rest} />
     </Logic.DelayMountPhase>
   )

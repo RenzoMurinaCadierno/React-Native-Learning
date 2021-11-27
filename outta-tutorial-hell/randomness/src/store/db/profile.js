@@ -2,7 +2,7 @@ import { defaultIcons } from "./global"
 import { SectionItem, ProfileIcon, create } from "@app-models/profile"
 import { uid } from "@app-utils/functions"
 import { sectionNames } from "@app-constants/sections/profile"
-complete here vvv, then fullscreen maybe. Then splashscreen!
+
 const profileBullets = {
   html: [
     {
@@ -13,7 +13,7 @@ const profileBullets = {
           text: "HTML5: Web page fundamentals",
           descriptionText: "Certified (12 hours)",
           sideText: "EducacionIT",
-          url: "https://google.com",
+          url: "https://www.educacionit.com/curso-de-html",
           doResetType: true
         })
       ]
@@ -28,17 +28,20 @@ const profileBullets = {
           text: "Intro to web layout with HTML5 and CSS3",
           descriptionText: "Certified (18 hours)",
           sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-css-divs",
           doResetType: true
         }),
         create.course({
           text: "Advanced web layout with HTML5 and CSS3",
           descriptionText: "Certified (15 hours)",
-          sideText: "EducacionIT"
+          sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-html5-y-css3"
         }),
         create.course({
           text: "Responsive web design and Bootstrap",
           sideText: "Certified (12 hours)",
-          descriptionText: "EducacionIT"
+          descriptionText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-responsive-design"
         })
       ]
     }
@@ -52,17 +55,20 @@ const profileBullets = {
           text: "Intro to JS programming",
           descriptionText: "Certified (15 hours)",
           sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-javascript",
           doResetType: true
         }),
         create.course({
           text: "JS Advanced Development",
           descriptionText: "Certified (36 hours)",
-          sideText: "EducacionIT"
+          sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-javascript-avanzado"
         }),
         create.course({
           text: "JQuery for designers",
           descriptionText: "Certified (15 hours)",
-          sideText: "EducacionIT"
+          sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-jquery"
         })
       ]
     },
@@ -93,37 +99,44 @@ const profileBullets = {
           text: "Intro to ReactJS",
           descriptionText: "Certified (15 hours)",
           sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-reactjs",
           doResetType: true
         }),
         create.course({
           text: "React & Django Full Stack",
           descriptionText: "Completed (17 hours)",
-          sideText: "Udemy"
+          sideText: "Udemy",
+          url: "https://www.educacionit.com/curso-de-reactjs-avanzado"
         }),
         create.course({
           text: "React & Firebase for beginners",
           descriptionText: "Completed (6 hours)",
-          sideText: "Udemy"
+          sideText: "Udemy",
+          url: "https://www.udemy.com/course/new-react-firebase-real-time-serverless-apps/"
         }),
         create.course({
           text: "Complete React Developer in 2020",
           descriptionText: "Completed (39.5 hours)",
-          sideText: "Udemy"
+          sideText: "Udemy",
+          url: "https://www.udemy.com/course/complete-react-developer-zero-to-mastery/"
         }),
         create.course({
           text: "React - The complete guide",
           descriptionText: "Completed (40.5 hours)",
-          sideText: "Udemy"
+          sideText: "Udemy",
+          url: "https://www.udemy.com/course/react-the-complete-guide-incl-redux/"
         }),
         create.course({
           text: "The Modern React Bootcamp",
           descriptionText: "Completed (39 hours)",
-          sideText: "Udemy"
+          sideText: "Udemy",
+          url: "https://www.udemy.com/course/modern-react-bootcamp/"
         }),
         create.course({
           text: "Complete React Hooks course 2020",
           descriptionText: "Completed (8 hours)",
-          sideText: "Udemy"
+          sideText: "Udemy",
+          url: "https://www.udemy.com/course/react-hooks-course/"
         })
       ]
     },
@@ -159,12 +172,20 @@ const profileBullets = {
           text: "NodeJS and MongoDB",
           descriptionText: "Certified (18 hours)",
           sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-nodejs-y-mongodb",
           doResetType: true
         }),
         create.course({
           text: "MongoDB fundamentals",
           descriptionText: "Certified (6 hours)",
-          sideText: "EducacionIT"
+          sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-mongodb-fundamentos"
+        }),
+        create.course({
+          text: "MongoDB fundamentals",
+          descriptionText: "Certified (12 hours)",
+          sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-mongodb"
         })
       ]
     },
@@ -190,22 +211,26 @@ const profileBullets = {
           text: "Python Programming",
           descriptionText: "Certified (21 hours)",
           sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-programacion-en-python",
           doResetType: true
         }),
         create.course({
           text: "Python Programming Masterclass",
           descriptionText: "Completed (42 hours)",
-          sideText: "Udemy"
+          sideText: "Udemy",
+          url: "https://www.udemy.com/course/python-the-complete-python-developer-course/"
         }),
         create.course({
           text: "Python and Django Developer Bootcamp",
           descriptionText: "Completed (32 hours)",
-          sideText: "Udemy"
+          sideText: "Udemy",
+          url: "https://www.udemy.com/course/python-and-django-full-stack-web-developer-bootcamp/"
         }),
         create.course({
           text: "Django 2.2 & Python, Ultimate Developer Bootcamp",
           descriptionText: "Completed (10 hours)",
-          sideText: "Udemy"
+          sideText: "Udemy",
+          url: "https://www.udemy.com/course/the-ultimate-beginners-guide-to-django-django-2-python-web-dev-website/"
         })
       ]
     },
@@ -306,6 +331,7 @@ const profileBullets = {
           text: "GIT: collaborative development",
           descriptionText: "Certified (12 hours)",
           sideText: "EducacionIT",
+          url: "https://www.educacionit.com/curso-de-git",
           doResetType: true
         })
       ]
@@ -320,6 +346,7 @@ const profileBullets = {
           text: "React Native 2021 - The practical guide",
           descriptionText: "Certified (33 hours)",
           sideText: "Udemy",
+          url: "https://www.udemy.com/course/react-native-the-practical-guide/",
           doResetType: true
         })
       ]
@@ -419,3 +446,8 @@ const profile = {
           "React-based Native development library"
         )
       }
+    }
+  }
+}
+
+export default profile

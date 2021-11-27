@@ -11,7 +11,6 @@ import {
   Livvic_400Regular_Italic,
   Livvic_600SemiBold,
   Livvic_600SemiBold_Italic
-  // Livvic_700Bold
 } from "@expo-google-fonts/livvic"
 import AppNavigation from "@app-navigation"
 import globalReducer from "@app-store/reducers/global"
@@ -28,7 +27,7 @@ const rootReducer = combineReducers({
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
-
+errorboundary maybe? and image full screen
 export default function App() {
   const [areFontsLoaded] = useFonts({
     "livvic-light": Livvic_200ExtraLight,
@@ -36,7 +35,6 @@ export default function App() {
     "livvic-regular-italic": Livvic_400Regular_Italic,
     "livvic-semi-bold": Livvic_600SemiBold,
     "livvic-semi-bold-italic": Livvic_600SemiBold_Italic
-    // "livvic-bold": Livvic_700Bold
   })
 
   if (!areFontsLoaded) return <AppLoading />

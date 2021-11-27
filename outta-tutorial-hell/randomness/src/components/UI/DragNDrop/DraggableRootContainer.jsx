@@ -50,6 +50,7 @@ export default function DraggableRootContainer({
           <DraggableItemDemo
             delayBeforeMount={2500}
             active={!isIconTouched}
+            abortOn={isIconTouched}
             name="eye"
             size={size}
             anchor={limits.startingAnchor}

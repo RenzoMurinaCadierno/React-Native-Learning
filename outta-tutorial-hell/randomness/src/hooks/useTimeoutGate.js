@@ -1,16 +1,21 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
-export default function useTimeoutGate(delay = 0, onReady) {
+export default function useTimeoutGate(delay = 0, { onReady, abortOn } = {}) {
   const [ready, setReady] = useState(false)
+  const readyTimeoutId = useRef(null)
 
   useEffect(() => {
-    const readyTimeoutId = setTimeout(() => {
+    readyTimeoutId.current = setTimeout(() => {
       setReady(true)
       onReady?.()
     }, delay)
 
-    return () => clearTimeout(readyTimeoutId)
+    return () => clearTimeout(readyTimeoutId.current)
   }, [])
+
+  useEffect(() => {
+    if (abortOn && !ready) clearTimeout(readyTimeoutId.current)
+  }, [abortOn])
 
   return ready
 }

@@ -65,7 +65,7 @@ function BodyContent({
         const projectsItemsLength = bullets[1]?.data.length || 0
 
         mayShowArrows(educationItemsLength + projectsItemsLength > 3)
-      }, 1000) // buffer to allow header's text transition end
+      }, 1000) // delay to allow header's text transition end
     }
 
     return () => clearTimeout(mayShowArrowsTimeoutId)
