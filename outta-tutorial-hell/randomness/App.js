@@ -12,6 +12,7 @@ import {
   Livvic_600SemiBold,
   Livvic_600SemiBold_Italic
 } from "@expo-google-fonts/livvic"
+import ErrorBoundary from "@app-screens/ErrorBoundary"
 import AppNavigation from "@app-navigation"
 import globalReducer from "@app-store/reducers/global"
 import profileReducer from "@app-store/reducers/profile"
@@ -27,8 +28,21 @@ const rootReducer = combineReducers({
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
-errorboundary maybe? and image full screen
+
 export default function App() {
+  return (
+    <ErrorBoundary>
+      <Provider store={store}>
+        <StatusBar backgroundColor={colors.background.CONTRAST} />
+        <LoadAssetsBeforeChildren>
+          <AppNavigation.Initialize />
+        </LoadAssetsBeforeChildren>
+      </Provider>
+    </ErrorBoundary>
+  )
+}
+
+function LoadAssetsBeforeChildren({ children }) {
   const [areFontsLoaded] = useFonts({
     "livvic-light": Livvic_200ExtraLight,
     "livvic-regular": Livvic_400Regular,
@@ -39,10 +53,5 @@ export default function App() {
 
   if (!areFontsLoaded) return <AppLoading />
 
-  return (
-    <Provider store={store}>
-      <StatusBar backgroundColor={colors.background.CONTRAST} />
-      <AppNavigation.Initialize />
-    </Provider>
-  )
+  return children
 }

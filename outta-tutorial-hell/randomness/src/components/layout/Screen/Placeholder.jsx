@@ -14,6 +14,7 @@ export default function Placeholder({
   subtitleStyle,
   titleProps,
   subtitleProps,
+  children,
   ...rest
 }) {
   return (
@@ -29,20 +30,23 @@ export default function Placeholder({
           {title}
         </PlaceholderText>
       )}
-      {subtitle && (
-        <PlaceholderText
-          show={show}
-          style={subtitleStyle}
-          size={size}
-          {...subtitleProps}
-        >
-          {subtitle}
-        </PlaceholderText>
-      )}
+      {subtitle &&
+        subtitle.split("\\n").map((paragraph, i) => (
+          <PlaceholderText
+            key={i}
+            show={show}
+            style={subtitleStyle}
+            size={size}
+            {...subtitleProps}
+          >
+            {paragraph}
+          </PlaceholderText>
+        ))}
+      {children}
     </View>
   )
 }
-
+add <Scale /> transition for children
 Placeholder.defaultProps = { show: true }
 
 function PlaceholderText({ children, isTitle, size, style, ...rest }) {

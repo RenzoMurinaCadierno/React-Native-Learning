@@ -3,14 +3,11 @@ import { StatusBar } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { NavigationContainer } from "@react-navigation/native"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
-import ProfileScreen from "@app-screens/Profile/Profile"
-import ProjectsScreen from "@app-screens/Projects/Projects"
-import ContactScreen from "@app-screens/Contact/Contact"
+import Screens from "@app-screens"
 import Context from "@app-context"
 import useViewPortContext from "@app-hooks/useViewPortContext"
 import useBreakpoints from "@app-hooks/useBreakpoints"
 import colors from "@app-constants/colors"
-import { screenNames } from "@app-constants/navigation"
 
 export default function RootNavigation() {
   return (
@@ -34,21 +31,21 @@ const TabNavigator = () => {
     <TabNavigation.Navigator
       style={{ paddingTop: StatusBar.currentHeight }}
       screenOptions={_getTabBarScreenOptions(labelFontSize)}
-      initialRouteName={screenNames.PROFILE}
+      initialRouteName={Screens.names.PROFILE}
     >
       <TabNavigation.Screen
-        name={screenNames.PROFILE}
-        component={ProfileScreen}
+        name={Screens.names.PROFILE}
+        component={Screens.Profile}
         options={{ tabBarIcon: _getTabBarIcon("person", iconSize) }}
       />
       <TabNavigation.Screen
-        name={screenNames.PROJECTS}
-        component={ProjectsScreen}
+        name={Screens.names.PROJECTS}
+        component={Screens.Projects}
         options={{ tabBarIcon: _getTabBarIcon("briefcase", iconSize) }}
       />
       <TabNavigation.Screen
-        name={screenNames.CONTACT}
-        component={ContactScreen}
+        name={Screens.names.CONTACT}
+        component={Screens.Contact}
         options={{ tabBarIcon: _getTabBarIcon("mail", iconSize) }}
       />
     </TabNavigation.Navigator>

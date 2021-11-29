@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { useSelector } from "react-redux"
-import TextWithTranslateTransition from "../../UI/Text/TextWithTranslateTransition"
+import TextWithTranslateTransition from "../../../UI/Text/TextWithTranslateTransition"
 import Context from "@app-context"
 
 export default function CategoryTitle(props) {
