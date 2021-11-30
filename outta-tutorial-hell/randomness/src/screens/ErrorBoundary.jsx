@@ -1,11 +1,16 @@
 import React from "react"
+import { View } from "react-native"
 import Layout from "@app-components/layout"
-import Enhanced from "@app-components/enhanced"
 import UI from "@app-components/UI"
-import withViewPort from "../hoc/withViewPort"
+import withViewPort from "@app-hoc/withViewPort"
+import colors from "@app-constants/colors"
 
 class ErrorBoundary extends React.Component {
-  state = { hasErrored: false, error: "" }
+  constructor() {
+    super()
+    this.state = { hasErrored: false, error: "" }
+    this.reset = this.reset.bind(this)
+  }
 
   static getDerivedStateFromError(error) {
     return { hasErrored: true, error }
@@ -16,36 +21,70 @@ class ErrorBoundary extends React.Component {
   }
 
   reset() {
-    this.setState({ hasErrored: true, error: "" })
+    this.setState({ hasErrored: false })
+    restart or reset navigator here
+    // DevSettings.reload()
   }
 
   render() {
-    if (this.state.hasErrored) {
-      const { vw, vh } = this.props
+    if (!this.state.hasErrored) return this.props.children
 
-      if (__DEV__) console.log(this.state.error)
+    const { vw, vh } = this.props
+    const styles = _createStyles(vw, vh)
 
-      return (
-        <Layout.Screen>
-          <Layout.Screen.Placeholder
-            title="Something went wrong x_x"
-            subtitle="We do not know why it happened :/\nSo, it would be great if you could contact us to tell us what you remember doing to trigger this error :D\nMeanwhile, we can (hopefully) take you back to home screen the old fashioned way."
-            size={vw(5)}
-            style={{ marginHorizontal: vw(4), borderWidth: 1 }}
-            titleStyle={{ marginBottom: vh(4) }}
-          >
-            <Enhanced.Animated.Pressable style={{ marginTop: vh(4) }}>
-              <UI.Text size={vw(4.5)} type="semi-bold">
-                Take me back
+    if (__DEV__) console.log(this.state.error)
+
+    return (
+      <Layout.Screen>
+        <Layout.Screen.Placeholder
+          title="You found the hidden screen!"
+          subtitle="Congratulations! :D\nSomething you've done in the app triggered what you are seeing here.\nYou've beaten us, the dev team, as we forgot how to access this screen not so long after we created it :c\nWould you be so kind to contact us to tell us what you did to reach it?\nMeanwhile, we can pat you on your shoulder and portal you back to home screen (hopefully).\nP.S.: If QA asks, it's a feature."
+          size={vw(5)}
+          style={styles.placeholder.container}
+          titleStyle={styles.placeholder.title}
+        >
+          <View style={styles.pressable.container}>
+            <UI.Pressable
+              color={colors.background.PRIMARY_ALPHA(0.2)}
+              onPress={this.reset}
+            >
+              <UI.Text
+                size={vw(5)}
+                type="semi-bold"
+                style={styles.pressable.text}
+              >
+                Take me home
               </UI.Text>
-            </Enhanced.Animated.Pressable>
-          </Layout.Screen.Placeholder>
-        </Layout.Screen>
-      )
-    }
-
-    return this.props.children
+            </UI.Pressable>
+          </View>
+        </Layout.Screen.Placeholder>
+      </Layout.Screen>
+    )
   }
 }
 
 export default withViewPort(ErrorBoundary)
+
+function _createStyles(vw, vh) {
+  return {
+    placeholder: {
+      container: { marginHorizontal: vw(4) },
+      title: { marginBottom: vh(3) }
+    },
+    pressable: {
+      container: {
+        marginTop: vh(3),
+        borderWidth: vw(0.5),
+        borderRadius: vw(15),
+        borderColor: colors.main.PRIMARY,
+        backgroundColor: colors.accent.PRIMARY_ALPHA(0.3),
+        overflow: "hidden"
+      },
+      text: {
+        paddingHorizontal: vw(5),
+        paddingVertical: vh(2),
+        letterSpacing: vw(0.25)
+      }
+    }
+  }
+}

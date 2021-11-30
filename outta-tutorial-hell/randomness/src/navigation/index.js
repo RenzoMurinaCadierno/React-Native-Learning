@@ -1,6 +1,6 @@
 import Initialize from "./Initialize"
-import Root from "./Root"
+import Root, { navigationRef } from "./Root"
 
-const AppNavigation = { Initialize, Root }
+const AppNavigation = { Initialize, Root, ref: navigationRef }
 
 export default AppNavigation

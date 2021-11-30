@@ -51,7 +51,5 @@ function LoadAssetsBeforeChildren({ children }) {
     "livvic-semi-bold-italic": Livvic_600SemiBold_Italic
   })
 
-  if (!areFontsLoaded) return <AppLoading />
-
-  return children
+  return areFontsLoaded ? children : <AppLoading />
 }

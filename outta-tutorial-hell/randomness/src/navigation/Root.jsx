@@ -1,7 +1,10 @@
 import React from "react"
 import { StatusBar } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import { NavigationContainer } from "@react-navigation/native"
+import {
+  NavigationContainer,
+  createNavigationContainerRef
+} from "@react-navigation/native"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
 import Screens from "@app-screens"
 import Context from "@app-context"
@@ -9,10 +12,12 @@ import useViewPortContext from "@app-hooks/useViewPortContext"
 import useBreakpoints from "@app-hooks/useBreakpoints"
 import colors from "@app-constants/colors"
 
+export const navigationRef = createNavigationContainerRef()
+
 export default function RootNavigation() {
   return (
     <Context.ViewPort.Provider>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <TabNavigator />
       </NavigationContainer>
     </Context.ViewPort.Provider>

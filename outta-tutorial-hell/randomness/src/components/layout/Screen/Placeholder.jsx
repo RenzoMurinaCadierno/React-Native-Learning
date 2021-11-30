@@ -42,11 +42,15 @@ export default function Placeholder({
             {paragraph}
           </PlaceholderText>
         ))}
-      {children}
+      {children && (
+        <UI.Animation.Scale active={show} scaleOutputRange={[1.1, 1]}>
+          {children}
+        </UI.Animation.Scale>
+      )}
     </View>
   )
 }
-add <Scale /> transition for children
+
 Placeholder.defaultProps = { show: true }
 
 function PlaceholderText({ children, isTitle, size, style, ...rest }) {
