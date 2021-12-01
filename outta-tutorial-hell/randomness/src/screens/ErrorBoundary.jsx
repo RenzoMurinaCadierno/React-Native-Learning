@@ -1,5 +1,6 @@
 import React from "react"
 import { View } from "react-native"
+import RNRestart from "react-native-restart"
 import Layout from "@app-components/layout"
 import UI from "@app-components/UI"
 import withViewPort from "@app-hoc/withViewPort"
@@ -21,16 +22,15 @@ class ErrorBoundary extends React.Component {
   }
 
   reset() {
-    this.setState({ hasErrored: false })
-    restart or reset navigator here
+    // this.setState({ hasErrored: false })
+    RNRestart.Restart()
     // DevSettings.reload()
   }
 
   render() {
     if (!this.state.hasErrored) return this.props.children
 
-    const { vw, vh } = this.props
-    const styles = _createStyles(vw, vh)
+    const styles = _createStyles(this.props.vw, this.props.vh)
 
     if (__DEV__) console.log(this.state.error)
 
