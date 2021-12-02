@@ -19,7 +19,7 @@ export const initializeDatabase = () => async (dispatch) => {
   })
 
   try {
-    const db = await initDb()
+    const db = await initDb({ timeout: 10000 })
 
     if (!db.ok) throw new Error()
 

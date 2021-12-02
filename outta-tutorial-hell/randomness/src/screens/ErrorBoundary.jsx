@@ -1,6 +1,6 @@
 import React from "react"
 import { View } from "react-native"
-import RNRestart from "react-native-restart"
+import { reloadAsync } from "expo-updates"
 import Layout from "@app-components/layout"
 import UI from "@app-components/UI"
 import withViewPort from "@app-hoc/withViewPort"
@@ -10,7 +10,7 @@ class ErrorBoundary extends React.Component {
   constructor() {
     super()
     this.state = { hasErrored: false, error: "" }
-    this.reset = this.reset.bind(this)
+    this.reloadApp = this.reloadApp.bind(this)
   }
 
   static getDerivedStateFromError(error) {
@@ -21,16 +21,16 @@ class ErrorBoundary extends React.Component {
     return { hasErrored: true, error }
   }
 
-  reset() {
-    // this.setState({ hasErrored: false })
-    RNRestart.Restart()
-    // DevSettings.reload()
+  async reloadApp() {
+    await reloadAsync()
   }
 
   render() {
     if (!this.state.hasErrored) return this.props.children
 
-    const styles = _createStyles(this.props.vw, this.props.vh)
+    const { vw, vh } = this.props
+
+    const styles = _createStyles(vw, vh)
 
     if (__DEV__) console.log(this.state.error)
 
@@ -38,7 +38,7 @@ class ErrorBoundary extends React.Component {
       <Layout.Screen>
         <Layout.Screen.Placeholder
           title="You found the hidden screen!"
-          subtitle="Congratulations! :D\nSomething you've done in the app triggered what you are seeing here.\nYou've beaten us, the dev team, as we forgot how to access this screen not so long after we created it :c\nWould you be so kind to contact us to tell us what you did to reach it?\nMeanwhile, we can pat you on your shoulder and portal you back to home screen (hopefully).\nP.S.: If QA asks, it's a feature."
+          subtitle="Congratulations! :D\nSomething you've done in the app triggered what you are seeing here.\nYou've beaten us, the dev team, as we forgot how to access this screen not so long after we created it :c\nWould you be so kind to contact us to tell us what you did to reach it?\nMeanwhile, we can pat you on your shoulder and warp you back to app's startup screen (hopefully).\nP.S.: If QA asks, it's a feature."
           size={vw(5)}
           style={styles.placeholder.container}
           titleStyle={styles.placeholder.title}
@@ -46,14 +46,14 @@ class ErrorBoundary extends React.Component {
           <View style={styles.pressable.container}>
             <UI.Pressable
               color={colors.background.PRIMARY_ALPHA(0.2)}
-              onPress={this.reset}
+              onPress={this.reloadApp}
             >
               <UI.Text
                 size={vw(5)}
                 type="semi-bold"
                 style={styles.pressable.text}
               >
-                Take me home
+                Take me there
               </UI.Text>
             </UI.Pressable>
           </View>

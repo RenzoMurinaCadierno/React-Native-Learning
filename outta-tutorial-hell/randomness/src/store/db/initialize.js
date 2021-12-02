@@ -2,7 +2,7 @@ import profile from "./profile"
 import projects from "./projects"
 import contact from "./contact"
 
-export default async function initDb(forceCrash) {
+export default async function initDb({ forceCrash, timeout = 0 } = {}) {
   return await new Promise((resolve, reject) => {
     setTimeout(() => {
       forceCrash
@@ -11,6 +11,6 @@ export default async function initDb(forceCrash) {
             ok: true,
             data: JSON.stringify({ profile, projects, contact })
           })
-    }, 100)
+    }, timeout)
   })
 }

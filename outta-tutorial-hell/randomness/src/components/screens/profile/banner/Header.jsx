@@ -14,8 +14,6 @@ export default function Content({
   fontScale,
   shrinkHeader
 }) {
-  throw new Error()
-
   return (
     <Layout.Overlay
       colors={[colors.background.PRIMARY, Color.castRgbToRgba(titleColor, 0.4)]}

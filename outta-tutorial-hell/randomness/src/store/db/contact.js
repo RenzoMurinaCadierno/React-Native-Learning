@@ -17,7 +17,7 @@ const contact = {
       title: "Github",
       description: "github.com/renzomurinacadierno",
       toastData: {
-        text: "Tap here to open the repo",
+        text: "Tap me to open the repo",
         url: "https://github.com/renzomurinacadierno"
       }
     },
@@ -27,7 +27,7 @@ const contact = {
       title: "Linkedin",
       description: "linkedin.com/in/renzomurinacadierno",
       toastData: {
-        text: "Tap here to open LinkedIn",
+        text: "Tap me to open LinkedIn",
         url: "https://linkedin.com/in/renzomurinacadierno"
       }
     }

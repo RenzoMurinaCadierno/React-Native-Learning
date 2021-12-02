@@ -12,11 +12,11 @@ export default function Initialize() {
   const globalStoreMessage = useSelector((state) => state.global.message)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    const initializeDatabase = async () => {
-      await dispatch(globalActions.initializeDatabase())
-    }
+  const initializeDatabase = async () => {
+    await dispatch(globalActions.initializeDatabase())
+  }
 
+  useEffect(() => {
     initializeDatabase()
   }, [])
 
@@ -29,12 +29,16 @@ export default function Initialize() {
   }
 
   if (_databaseFetchFailed(globalStoreStatus)) {
-    Alert.alert("Failed to retrieve from database", globalStoreMessage, [
-      {
-        text: "Retry",
-        onPress: initializeDatabase
-      }
-    ])
+    Alert.alert(
+      "Failed to retrieve from database",
+      globalStoreMessage.replace("[GLOBAL] ", ""),
+      [
+        {
+          text: "Retry",
+          onPress: initializeDatabase
+        }
+      ]
+    )
 
     return <Layout.Screen />
   }
@@ -49,6 +53,6 @@ function _storeIsLoading(currentGlobalStoreStatus) {
   )
 }
 
-function _databaseFetchFailed(globalStoreStatus) {
-  return globalStoreStatus === globalStoreStatus.FETCH_DATABASE_ERROR
+function _databaseFetchFailed(currentGlobalStoreStatus) {
+  return currentGlobalStoreStatus === globalStoreStatus.FETCH_DATABASE_ERROR
 }

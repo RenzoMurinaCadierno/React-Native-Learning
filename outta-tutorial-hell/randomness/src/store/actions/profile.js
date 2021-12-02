@@ -56,7 +56,7 @@ export const triggerToast = (url) => ({
   payload: Boolean(url)
     ? {
         show: true,
-        text: "Go to course website",
+        text: "Tap me to go to course site",
         onPressText: () => Link.mayOpenUrl(url)
       }
     : { show: false, text: "", onPressText: () => {} }
