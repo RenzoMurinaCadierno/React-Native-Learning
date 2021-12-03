@@ -114,6 +114,10 @@ export class Link {
   }
 }
 
+export function capitalize(word) {
+  return word[0].toUpperCase() + word.slice(1).toLowerCase()
+}
+
 export function interpolate(value, outputRange) {
   return value.interpolate({ inputRange: [0, 1], outputRange })
 }

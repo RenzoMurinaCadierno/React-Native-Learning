@@ -1,43 +1,34 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { ActivityIndicator, Alert } from "react-native"
+import { Alert } from "react-native"
+import Screens from "@app-screens"
 import Layout from "@app-components/layout"
 import RootNavigation from "./Root"
 import * as globalActions from "@app-store/actions/global"
 import { status as globalStoreStatus } from "@app-store/states/global"
-import colors from "@app-constants/colors"
 
-export default function Initialize() {
+export default function Initialize({ mockDbIntervalLength }) {
   const globalStoreStatus = useSelector((state) => state.global.status)
   const globalStoreMessage = useSelector((state) => state.global.message)
   const dispatch = useDispatch()
 
-  const initializeDatabase = async () => {
-    await dispatch(globalActions.initializeDatabase())
+  const initializeDatabase = async (mockDbIntervalLength) => {
+    await dispatch(globalActions.initializeDatabase(mockDbIntervalLength))
   }
 
   useEffect(() => {
-    initializeDatabase()
+    initializeDatabase(mockDbIntervalLength)
   }, [])
 
   if (_storeIsLoading(globalStoreStatus)) {
-    return (
-      <Layout.Screen>
-        <ActivityIndicator size="large" color={colors.main.SECONDARY} />
-      </Layout.Screen>
-    )
+    return <Screens.Loading textChangeIntervalLength={mockDbIntervalLength} />
   }
 
   if (_databaseFetchFailed(globalStoreStatus)) {
     Alert.alert(
       "Failed to retrieve from database",
       globalStoreMessage.replace("[GLOBAL] ", ""),
-      [
-        {
-          text: "Retry",
-          onPress: initializeDatabase
-        }
-      ]
+      [{ text: "Retry", onPress: initializeDatabase }]
     )
 
     return <Layout.Screen />

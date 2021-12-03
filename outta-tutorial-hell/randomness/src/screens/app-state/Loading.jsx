@@ -1,13 +1,18 @@
-import React from "react"
-import { ActivityIndicator, StyleSheet } from "react-native"
+import React, { useEffect, useRef, useState } from "react"
+import { StyleSheet } from "react-native"
 import Layout from "@app-components/layout"
 import UI from "@app-components/UI"
-import colors from "@app-constants/colors"
-add activitiyindicator on top left, then fade in transition for screens onload
-export default function Loading({ children, containerProps, ...rest }) {
+
+export default function Loading({
+  children,
+  marqueeText,
+  containerProps,
+  textChangeIntervalLength,
+  ...rest
+}) {
   return (
     <Layout.Screen {...containerProps}>
-      {/* <ActivityIndicator size="large" color={colors.main.SECONDARY} /> */}
+      <LoadingTexts interval={textChangeIntervalLength} />
       <UI.Marquee containerStyle={_styles.marqueeContainer} {...rest}>
         Loading
       </UI.Marquee>
@@ -15,8 +20,40 @@ export default function Loading({ children, containerProps, ...rest }) {
   )
 }
 
-Loading.defaultProps = { containerProps: {} }
+Loading.defaultProps = {
+  marqueeText: "Loading",
+  textChangeIntervalLength: 4500,
+  containerProps: {}
+}
 
 const _styles = StyleSheet.create({
   marqueeContainer: { position: "absolute", bottom: 15 }
 })
+
+function LoadingTexts({ interval }) {
+  const texts = useRef([
+    "Loading assets",
+    "Fetching database",
+    "Caching",
+    "Ensuring safe exits",
+    "Praying for no crashes",
+    "Ready!"
+  ]).current
+  const [text, setText] = useState(texts[0])
+
+  useEffect(() => {
+    let currentTextsIndex = 0
+
+    const changeTextsIntervalId = setInterval(() => {
+      if (currentTextsIndex >= texts.length - 1) {
+        return clearInterval(changeTextsIntervalId)
+      }
+
+      setText(texts[++currentTextsIndex])
+    }, interval / text.length)
+
+    return () => clearInterval(changeTextsIntervalId)
+  }, [])
+
+  return <UI.LoadingIndicator>{text}</UI.LoadingIndicator>
+}
