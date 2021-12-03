@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native"
 import { useDispatch } from "react-redux"
 import BodyContent from "./BodyContent"
 import UI from "@app-components/UI"
-import screenNames from "@app-screens/names"
+import screenNames from "@app-screens/utils/names"
 import * as profileActions from "@app-store/actions/profile"
 import * as projectsActions from "@app-store/actions/projects"
 

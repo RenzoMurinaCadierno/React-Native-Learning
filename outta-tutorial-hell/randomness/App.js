@@ -12,13 +12,14 @@ import {
   Livvic_600SemiBold,
   Livvic_600SemiBold_Italic
 } from "@expo-google-fonts/livvic"
-import ErrorBoundary from "@app-screens/ErrorBoundary"
+import ErrorBoundary from "@app-screens/app-state/ErrorBoundary"
 import AppNavigation from "@app-navigation"
 import globalReducer from "@app-store/reducers/global"
 import profileReducer from "@app-store/reducers/profile"
 import projectsReducer from "@app-store/reducers/projects"
 import contactReducer from "@app-store/reducers/contact"
 import colors from "@app-constants/colors"
+import Loading from "@app-screens/app-state/Loading"
 
 const rootReducer = combineReducers({
   global: globalReducer,
@@ -35,7 +36,8 @@ export default function App() {
       <Provider store={store}>
         <StatusBar backgroundColor={colors.background.CONTRAST} />
         <LoadAssetsBeforeChildren>
-          <AppNavigation.Initialize />
+          <Loading />
+          {/* <AppNavigation.Initialize /> */}
         </LoadAssetsBeforeChildren>
       </Provider>
     </ErrorBoundary>

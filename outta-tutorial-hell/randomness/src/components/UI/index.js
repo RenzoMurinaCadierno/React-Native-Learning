@@ -13,6 +13,8 @@ import TextWithTranslateTransition from "./Text/TextWithTranslateTransition"
 import ToastRoot from "./Toast/Root"
 import ToastBody from "./Toast/Body"
 import ToastText from "./Toast/Text"
+import MarqueeRoot from "./Marquee/Root"
+import MarqueeText from "./Marquee/Text"
 import PointerBase from "./Pointer/Base"
 import ArrowBase from "./Arrow/Base"
 import ArrowMultipleWithPulsation from "./Arrow/MultipleWithPulsation"
@@ -71,6 +73,12 @@ ComposedIcon.WithScale = IconWithScale
 function ComposedPointer(props) {
   return <PointerBase {...props} />
 }
+
+function ComposedMarquee(props) {
+  return <MarqueeRoot {...props} />
+}
+
+ComposedMarquee.Text = MarqueeText
 
 function ComposedArrow(props) {
   return <ArrowBase {...props} />
@@ -152,7 +160,8 @@ const UI = {
   Carousel: ComposedCarousel,
   Icon: ComposedIcon,
   Image: ComposedImage,
-  Pointer: PointerBase,
+  Marquee: ComposedMarquee,
+  Pointer: ComposedPointer,
   Pressable,
   Text: ComposedText,
   Toast: ComposedToast
