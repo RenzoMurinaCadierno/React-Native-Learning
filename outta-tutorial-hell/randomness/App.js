@@ -21,14 +21,14 @@ const rootReducer = combineReducers({
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
-check text interval delay bug
+check styles in Loading for all devices. Build expo bundle
 export default function App() {
   return (
     <ErrorBoundary>
       <StatusBar backgroundColor={colors.background.CONTRAST} />
       <Provider store={store}>
         <LoadAssetsBeforeChildren>
-          <AppNavigation.Initialize mockDbIntervalLength={4500} />
+          <AppNavigation.Initialize mockDbIntervalLength={5000} />
         </LoadAssetsBeforeChildren>
       </Provider>
     </ErrorBoundary>

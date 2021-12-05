@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Animated } from "react-native"
 import Base from "./Base"
-import useMultiLinearAnimatedValues from "@app-hooks/useMultiLinearAnimatedValues"
+import { useMultiLinearAnimatedValues } from "@app-hooks"
 import animations from "@app-constants/animations"
 import { interpolate012 } from "@app-utils/functions"
 

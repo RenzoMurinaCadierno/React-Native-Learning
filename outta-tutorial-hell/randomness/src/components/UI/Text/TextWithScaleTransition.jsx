@@ -1,6 +1,6 @@
 import React from "react"
 import Base from "./Base"
-import useScaleTransition from "@app-hooks/useScaleTransition"
+import { useScaleTransition } from "@app-hooks"
 
 export default function TextWithScaleTransition({
   show,

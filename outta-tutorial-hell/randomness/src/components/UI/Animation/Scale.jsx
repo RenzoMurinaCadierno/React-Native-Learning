@@ -1,6 +1,6 @@
 import React from "react"
 import { Animated } from "react-native"
-import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
+import { useLinearAnimatedValue } from "@app-hooks"
 import { interpolate } from "@app-utils/functions"
 import animations from "@app-constants/animations"
 

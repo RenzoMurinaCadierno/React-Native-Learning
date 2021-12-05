@@ -35,7 +35,7 @@ class ErrorBoundary extends React.Component {
     if (__DEV__) console.log(this.state.error)
 
     return (
-      <Layout.Screen>
+      <Layout.Screen.WithMountAnimation>
         <Layout.Screen.Placeholder
           title="You found the hidden screen!"
           subtitle="Congratulations! :D\nSomething you've done in the app triggered what you are seeing here.\nYou've beaten us, the dev team, as we forgot how to access this screen not so long after we created it :c\nWould you be so kind to contact us to tell us what you did to reach it?\nMeanwhile, we can pat you on your shoulder and warp you back to app's startup screen (hopefully).\nP.S.: If QA asks, it's a feature."
@@ -58,7 +58,7 @@ class ErrorBoundary extends React.Component {
             </UI.Pressable>
           </View>
         </Layout.Screen.Placeholder>
-      </Layout.Screen>
+      </Layout.Screen.WithMountAnimation>
     )
   }
 }

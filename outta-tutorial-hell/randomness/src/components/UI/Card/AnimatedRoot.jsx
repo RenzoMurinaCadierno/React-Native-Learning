@@ -1,6 +1,6 @@
 import React from "react"
 import Enhanced from "@app-components/enhanced"
-import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
+import { useLinearAnimatedValue } from "@app-hooks"
 import animations from "@app-constants/animations"
 import { interpolate } from "@app-utils/functions"
 

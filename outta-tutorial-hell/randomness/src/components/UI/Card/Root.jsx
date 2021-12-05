@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
-import useViewPortContext from "@app-hooks/useViewPortContext"
+import { useViewPortContext } from "@app-hooks"
 import colors from "@app-constants/colors"
 
 export default function Root({ style, children, ...rest }) {

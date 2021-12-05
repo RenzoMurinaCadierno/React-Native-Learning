@@ -1,6 +1,6 @@
 import React from "react"
 import { ActivityIndicator, StyleSheet, View } from "react-native"
-import useImageTransition from "@app-hooks/useImageTransition"
+import { useImageTransition } from "@app-hooks"
 import animations from "@app-constants/animations"
 import colors from "@app-constants/colors"
 import Base from "./Base"

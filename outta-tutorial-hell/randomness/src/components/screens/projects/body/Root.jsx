@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React from "react"
 import { View, StyleSheet } from "react-native"
 import { useSelector } from "react-redux"
 import ProjectsList from "./ProjectsList"

@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet, Animated } from "react-native"
 import colors from "@app-constants/colors"
 import animations from "@app-constants/animations"
-import useLoopingAnimatedValue from "@app-hooks/useLoopingAnimatedValue"
+import { useLoopingAnimatedValue } from "@app-hooks"
 import { interpolate } from "@app-utils/functions"
 
 export default function Aura({

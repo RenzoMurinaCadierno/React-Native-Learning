@@ -2,11 +2,13 @@ import React, { useCallback, useState, useEffect } from "react"
 import { StyleSheet, View } from "react-native"
 import DraggableRootContainer from "./DraggableRootContainer"
 import DroppableItemsZone from "./DroppableItemsZone"
-import useLayout from "@app-hooks/useLayout"
-import useViewPort from "@app-hooks/useViewPort"
-import useControlledUpdate from "@app-hooks/useControlledUpdate"
-import useFlag from "@app-hooks/useFlag"
-import useBreakpoints from "@app-hooks/useBreakpoints"
+import {
+  useBreakpoints,
+  useControlledUpdate,
+  useFlag,
+  useLayout,
+  useViewPort
+} from "@app-hooks"
 
 export default function Root({
   droppables,

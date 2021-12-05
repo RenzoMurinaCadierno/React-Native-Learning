@@ -4,7 +4,7 @@ import Placeholder from "./Placeholder"
 import Header from "./Header"
 import Body from "./Body"
 import Layout from "@app-components/layout"
-import useSelectProfile from "@app-hooks/useSelectProfile"
+import { useSelectProfile } from "@app-hooks"
 import sharedStyles from "@app-constants/styles"
 import Context from "@app-context"
 

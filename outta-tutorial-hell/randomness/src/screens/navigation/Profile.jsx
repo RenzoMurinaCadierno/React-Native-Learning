@@ -5,7 +5,7 @@ import Context from "@app-context"
 
 export default function ProfileScreen() {
   return (
-    <Layout.Screen>
+    <Layout.Screen.WithMountAnimation>
       <Layout.Screen.Separator flexValue={0.53}>
         <Context.Profile.Banner.Provider>
           <ScreenComponents.Profile.Banner />
@@ -19,6 +19,6 @@ export default function ProfileScreen() {
           <ScreenComponents.Profile.Toast />
         </Context.Toast.Provider>
       </Layout.Screen.Separator>
-    </Layout.Screen>
+    </Layout.Screen.WithMountAnimation>
   )
 }

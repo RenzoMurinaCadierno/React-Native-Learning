@@ -9,7 +9,7 @@ import * as projectsActions from "../actions/projects"
 import * as contactActions from "../actions/contact"
 import initDb from "../db/initialize"
 
-export const initializeDatabase = (mockDelay) => async (dispatch) => {
+export const initializeDatabase = (mockDbDelay) => async (dispatch) => {
   dispatch({
     type: FETCH_DATABASE_INIT,
     payload: {
@@ -19,7 +19,7 @@ export const initializeDatabase = (mockDelay) => async (dispatch) => {
   })
 
   try {
-    const db = await initDb({ timeout: mockDelay })
+    const db = await initDb({ timeout: mockDbDelay })
 
     if (!db.ok) throw new Error()
 

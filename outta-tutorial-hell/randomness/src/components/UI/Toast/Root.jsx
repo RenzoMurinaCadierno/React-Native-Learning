@@ -1,7 +1,9 @@
 import React from "react"
-import useViewPort from "@app-hooks/useViewPort"
-import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
-import useTimeoutToggle from "@app-hooks/useTimeoutToggle"
+import {
+  useLinearAnimatedValue,
+  useViewPort,
+  useTimeoutToggle
+} from "@app-hooks"
 import animations from "@app-constants/animations"
 import Body from "./Body"
 

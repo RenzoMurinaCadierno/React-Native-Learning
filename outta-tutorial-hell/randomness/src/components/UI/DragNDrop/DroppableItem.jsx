@@ -1,5 +1,5 @@
 import React from "react"
-import { Linking, StyleSheet, View } from "react-native"
+import { StyleSheet, View } from "react-native"
 import Opacity from "../Animation/Opacity"
 import OverlayBase from "../../layout/Overlay/Base"
 import OverlayPressable from "../../layout/Overlay/Pressable"

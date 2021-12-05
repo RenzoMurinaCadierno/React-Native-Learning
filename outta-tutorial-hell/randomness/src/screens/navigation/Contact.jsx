@@ -5,13 +5,13 @@ import Context from "@app-context"
 
 export default function ContactScreen() {
   return (
-    <Layout.Screen>
+    <Layout.Screen.WithMountAnimation>
       <Context.Contact.Body.Provider>
         <ScreenComponents.Contact.Body />
       </Context.Contact.Body.Provider>
       <Context.Toast.Provider>
         <ScreenComponents.Contact.Toast />
       </Context.Toast.Provider>
-    </Layout.Screen>
+    </Layout.Screen.WithMountAnimation>
   )
 }

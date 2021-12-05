@@ -6,14 +6,14 @@ import Context from "@app-context"
 
 export default function ProjectsScreen() {
   return (
-    <Layout.Screen style={_styles.container}>
+    <Layout.Screen.WithMountAnimation style={_styles.container}>
       <Context.Projects.Menu.Provider>
         <ScreenComponents.Projects.Menu flexValue={0.18} />
       </Context.Projects.Menu.Provider>
       <Context.Projects.Body.Provider>
         <ScreenComponents.Projects.Body flexValue={0.82} />
       </Context.Projects.Body.Provider>
-    </Layout.Screen>
+    </Layout.Screen.WithMountAnimation>
   )
 }
 const _styles = StyleSheet.create({

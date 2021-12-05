@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Animated, StyleSheet } from "react-native"
 import MultipleWithPulsation from "./MultipleWithPulsation"
-import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
+import { useLinearAnimatedValue } from "@app-hooks"
 import colors from "@app-constants/colors"
 import animations from "@app-constants/animations"
 import { interpolate } from "@app-utils/functions"

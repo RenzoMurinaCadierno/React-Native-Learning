@@ -1,7 +1,7 @@
 import React, { useCallback } from "react"
 import { FlatList } from "react-native"
 import CarouselImage from "./Image"
-import useLayout from "@app-hooks/useLayout"
+import { useLayout } from "@app-hooks"
 
 function ImageList({
   images,

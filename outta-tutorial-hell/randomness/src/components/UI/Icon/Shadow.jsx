@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, Animated } from "react-native"
+import { useLoopingAnimatedValue } from "@app-hooks"
 import animations from "@app-constants/animations"
-import useLoopingAnimatedValue from "@app-hooks/useLoopingAnimatedValue"
 
 export default function Shadow({
   active,

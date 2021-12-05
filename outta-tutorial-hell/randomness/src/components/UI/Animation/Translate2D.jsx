@@ -56,7 +56,6 @@ function _createPanResponder(
   return PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onStartShouldSetPanResponderCapture: () => true,
-    // onPanResponderGrant: (e, gestureState) => {
     onPanResponderGrant: () => {
       pan.setOffset(pan.__getValue())
       pan.setValue({ x: 0, y: 0 })

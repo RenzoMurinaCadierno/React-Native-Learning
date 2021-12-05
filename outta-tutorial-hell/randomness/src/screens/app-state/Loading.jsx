@@ -32,8 +32,8 @@ const _styles = StyleSheet.create({
 
 function LoadingTexts({ interval }) {
   const texts = useRef([
+    "Warming up",
     "Loading assets",
-    "Fetching database",
     "Caching",
     "Ensuring safe exits",
     "Praying for no crashes",
@@ -46,11 +46,11 @@ function LoadingTexts({ interval }) {
 
     const changeTextsIntervalId = setInterval(() => {
       if (currentTextsIndex >= texts.length - 1) {
-        return clearInterval(changeTextsIntervalId)
+        clearInterval(changeTextsIntervalId)
+      } else {
+        setText(texts[++currentTextsIndex])
       }
-
-      setText(texts[++currentTextsIndex])
-    }, interval / text.length)
+    }, interval / texts.length)
 
     return () => clearInterval(changeTextsIntervalId)
   }, [])

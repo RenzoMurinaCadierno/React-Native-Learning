@@ -1,6 +1,6 @@
 import React from "react"
 import IconWithCircle from "../Icon/IconWithCircle"
-import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
+import { useLinearAnimatedValue } from "@app-hooks"
 import colors from "@app-constants/colors"
 
 export default function DraggableItem({
