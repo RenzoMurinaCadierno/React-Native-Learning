@@ -1,7 +1,7 @@
 import React from "react"
 import Enhanced from "@app-components/enhanced"
 import { useLoopingAnimatedValue } from "@app-hooks"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 import { interpolate012 } from "@app-utils/functions"
 
 export default function PointerBase({

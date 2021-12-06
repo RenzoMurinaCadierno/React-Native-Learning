@@ -1,8 +1,7 @@
 import React from "react"
 import UI from "@app-components/UI"
-import * as projectsConstants from "@app-constants/sections/projects"
 import { Link } from "@app-utils/functions"
-import colors from "@app-constants/colors"
+import { colors, sections } from "@app-constants"
 
 export default function ProjectsCardActions({
   actions,
@@ -33,7 +32,7 @@ export default function ProjectsCardActions({
 
 ProjectsCardActions.defaultProps = { actions: {}, containerProps: {} }
 
-const { SHARE_LINK, REPOSITORY, WEB_APP } = projectsConstants.card.actions
+const { SHARE_LINK, REPOSITORY, WEB_APP } = sections.projects.card.actions
 
 const _actionIconsProps = {
   [SHARE_LINK]: (url, title) => ({

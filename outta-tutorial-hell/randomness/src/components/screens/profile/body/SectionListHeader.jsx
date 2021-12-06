@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "@app-components/layout"
 import UI from "@app-components/UI"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export default function SectionListHeader({
   title,

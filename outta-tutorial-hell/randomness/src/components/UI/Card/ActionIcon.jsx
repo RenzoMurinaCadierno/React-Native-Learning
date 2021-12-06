@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native"
 import { ActionsContext } from "./ActionsContainer"
 import IconWithScale from "../Icon/IconWithScale"
 import ActionText from "./ActionText"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 
 function ActionIcon({
   id,

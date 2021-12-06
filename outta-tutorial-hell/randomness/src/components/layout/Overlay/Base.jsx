@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import Enhanced from "@app-components/enhanced"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export default function Base({ animated, children, style, colors, ...rest }) {
   const Component = animated ? Enhanced.Animated.LinearGradient : LinearGradient

@@ -2,7 +2,7 @@ import React from "react"
 import { View } from "react-native"
 import MarqueeText from "./Text"
 import { useViewPort, useMultiLoopingAnimatedValues } from "@app-hooks"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 
 export default function Root({
   active,

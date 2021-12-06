@@ -9,7 +9,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import Screens from "@app-screens"
 import Context from "@app-context"
 import { useViewPortContext, useBreakpoints } from "@app-hooks"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export const navigationRef = createNavigationContainerRef()
 

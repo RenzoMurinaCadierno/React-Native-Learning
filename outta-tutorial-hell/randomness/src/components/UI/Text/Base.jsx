@@ -1,6 +1,6 @@
 import React from "react"
 import { Text, Animated } from "react-native"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export default function Base({
   children,

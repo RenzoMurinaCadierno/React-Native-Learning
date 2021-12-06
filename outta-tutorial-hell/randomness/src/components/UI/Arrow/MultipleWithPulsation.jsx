@@ -2,7 +2,7 @@ import React from "react"
 import { View, Animated } from "react-native"
 import Base from "./Base"
 import { useMultiLinearAnimatedValues } from "@app-hooks"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 import { interpolate012 } from "@app-utils/functions"
 
 function MultipleWithPulsation({

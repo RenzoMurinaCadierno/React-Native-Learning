@@ -1,7 +1,7 @@
 import React from "react"
-import ImageWithTransition from "../Image/ImageWithTransition"
-import colors from "@app-constants/colors"
 import { StyleSheet } from "react-native"
+import ImageWithTransition from "../Image/ImageWithTransition"
+import { colors } from "@app-constants"
 
 export default function Image({
   source,

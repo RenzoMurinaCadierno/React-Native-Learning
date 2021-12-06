@@ -2,7 +2,7 @@ import React from "react"
 import { Pressable, StyleSheet, View } from "react-native"
 import AppText from "../Text/Base"
 import { useViewPortContext } from "@app-hooks"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export function Title({ children, ...rest }) {
   return (

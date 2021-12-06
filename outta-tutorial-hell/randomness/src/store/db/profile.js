@@ -1,13 +1,13 @@
 import { defaultIcons } from "./global"
 import { SectionItem, ProfileIcon, create } from "@app-models/profile"
+import { sections } from "@app-constants"
 import { uid } from "@app-utils/functions"
-import { sectionNames } from "@app-constants/sections/profile"
 
 const profileBullets = {
   html: [
     {
       id: uid(),
-      title: sectionNames.EDUCATION,
+      title: sections.profile.sectionNames.EDUCATION,
       data: [
         create.course({
           text: "HTML5: Web page fundamentals",
@@ -22,7 +22,7 @@ const profileBullets = {
   css: [
     {
       id: uid(),
-      title: sectionNames.EDUCATION,
+      title: sections.profile.sectionNames.EDUCATION,
       data: [
         create.course({
           text: "Intro to web layout with HTML5 and CSS3",
@@ -49,7 +49,7 @@ const profileBullets = {
   js: [
     {
       id: uid(),
-      title: sectionNames.EDUCATION,
+      title: sections.profile.sectionNames.EDUCATION,
       data: [
         create.course({
           text: "Intro to JS programming",
@@ -74,7 +74,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: sectionNames.PROJECTS,
+      title: sections.profile.sectionNames.PROJECTS,
       data: [
         create.project({
           primaryKey: "js-connect-4",
@@ -93,7 +93,7 @@ const profileBullets = {
   react: [
     {
       id: uid(),
-      title: sectionNames.EDUCATION,
+      title: sections.profile.sectionNames.EDUCATION,
       data: [
         create.course({
           text: "Intro to ReactJS",
@@ -142,7 +142,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: sectionNames.PROJECTS,
+      title: sections.profile.sectionNames.PROJECTS,
       data: [
         create.project({
           primaryKey: "react-react-fanmade-hooks",
@@ -166,7 +166,7 @@ const profileBullets = {
   nodejs: [
     {
       id: uid(),
-      title: sectionNames.EDUCATION,
+      title: sections.profile.sectionNames.EDUCATION,
       data: [
         create.course({
           text: "NodeJS and MongoDB",
@@ -191,7 +191,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: sectionNames.PROJECTS,
+      title: sections.profile.sectionNames.PROJECTS,
       data: [
         create.project({
           primaryKey: "nodejs-login-authentication",
@@ -205,7 +205,7 @@ const profileBullets = {
   python: [
     {
       id: uid(),
-      title: sectionNames.EDUCATION,
+      title: sections.profile.sectionNames.EDUCATION,
       data: [
         create.course({
           text: "Python Programming",
@@ -236,7 +236,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: sectionNames.PROJECTS,
+      title: sections.profile.sectionNames.PROJECTS,
       data: [
         create.project({
           primaryKey: "python-abstract-data-structures",
@@ -325,7 +325,7 @@ const profileBullets = {
   github: [
     {
       id: uid(),
-      title: sectionNames.EDUCATION,
+      title: sections.profile.sectionNames.EDUCATION,
       data: [
         create.course({
           text: "GIT: collaborative development",
@@ -340,7 +340,7 @@ const profileBullets = {
   "react-native": [
     {
       id: uid(),
-      title: sectionNames.EDUCATION,
+      title: sections.profile.sectionNames.EDUCATION,
       data: [
         create.course({
           text: "React Native 2021 - The practical guide",
@@ -353,7 +353,7 @@ const profileBullets = {
     },
     {
       id: uid(),
-      title: sectionNames.PROJECTS,
+      title: sections.profile.sectionNames.PROJECTS,
       data: [
         create.project({
           primaryKey: "react-native-react-native-portfolio",

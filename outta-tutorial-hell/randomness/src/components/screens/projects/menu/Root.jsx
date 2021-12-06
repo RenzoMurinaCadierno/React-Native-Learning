@@ -1,18 +1,17 @@
 import React, { useCallback } from "react"
-import { LinearGradient } from "expo-linear-gradient"
 import { StyleSheet } from "react-native"
 import { useDispatch } from "react-redux"
+import { LinearGradient } from "expo-linear-gradient"
 import CategoryTitle from "./CategoryTitle"
 import IconList from "./IconList"
-import * as projectsActions from "@app-store/actions/projects"
-import colors from "@app-constants/colors"
-import sharedStyles from "@app-constants/styles"
+import store from "@app-store"
+import { colors, styles as sharedStyles } from "@app-constants"
 
 export default function Root({ flexValue, style }) {
   const dispatch = useDispatch()
 
   const changeActiveSection = useCallback(
-    (id) => dispatch(projectsActions.changeActiveSection(id)),
+    (id) => dispatch(store.actions.projects.changeActiveSection(id)),
     []
   )
 

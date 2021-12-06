@@ -2,7 +2,7 @@ import React from "react"
 import { Animated } from "react-native"
 import AppText from "../Text/Base"
 import { useViewPortContext, useScaleTransition } from "@app-hooks"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export default function Chip({
   length,

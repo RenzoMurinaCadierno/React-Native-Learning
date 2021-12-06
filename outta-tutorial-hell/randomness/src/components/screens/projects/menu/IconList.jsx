@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { FlatList, StyleSheet } from "react-native"
 import { useSelector } from "react-redux"
 import UI from "@app-components/UI"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 import Context from "@app-context"
 
 const colorProps = {

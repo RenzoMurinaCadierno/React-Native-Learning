@@ -7,7 +7,7 @@ import { status, messages, screens } from "../states/global"
 import * as profileActions from "../actions/profile"
 import * as projectsActions from "../actions/projects"
 import * as contactActions from "../actions/contact"
-import initDb from "../db/initialize"
+import initializeDb from "../db/initialize"
 
 export const initializeDatabase = (mockDbDelay) => async (dispatch) => {
   dispatch({
@@ -19,7 +19,7 @@ export const initializeDatabase = (mockDbDelay) => async (dispatch) => {
   })
 
   try {
-    const db = await initDb({ timeout: mockDbDelay })
+    const db = await initializeDb({ timeout: mockDbDelay })
 
     if (!db.ok) throw new Error()
 

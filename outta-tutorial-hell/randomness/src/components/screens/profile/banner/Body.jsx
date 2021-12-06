@@ -5,8 +5,7 @@ import { useDispatch } from "react-redux"
 import BodyContent from "./BodyContent"
 import UI from "@app-components/UI"
 import screenNames from "@app-screens/utils/names"
-import * as profileActions from "@app-store/actions/profile"
-import * as projectsActions from "@app-store/actions/projects"
+import store from "@app-store"
 
 function Body({
   fontScale,
@@ -28,9 +27,11 @@ function Body({
   const triggerToastOrMoveToProjectsSectionAndTargetItem = useCallback(
     ({ isEducationBullet, iconId, itemPrimaryKey, courseUrl }) => {
       if (isEducationBullet) {
-        dispatch(profileActions.triggerToast(courseUrl))
+        dispatch(store.actions.profile.triggerToast(courseUrl))
       } else {
-        dispatch(projectsActions.setActivePointer(iconId, itemPrimaryKey))
+        dispatch(
+          store.actions.projects.setActivePointer(iconId, itemPrimaryKey)
+        )
         navigation.navigate(screenNames.PROJECTS)
       }
     },

@@ -1,8 +1,8 @@
 import React from "react"
 import { Animated } from "react-native"
 import AppText from "../Text/Base"
+import { colors } from "@app-constants"
 import { interpolate } from "@app-utils/functions"
-import colors from "@app-constants/colors"
 
 export default function MarqueeText({
   translateValue,

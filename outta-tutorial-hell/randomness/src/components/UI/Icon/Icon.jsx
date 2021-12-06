@@ -1,9 +1,9 @@
 import React from "react"
 import { StyleSheet, Pressable } from "react-native"
-import colors from "@app-constants/colors"
 import Shadow from "./Shadow"
 import IconWithHover from "./IconWithHover"
 import Base from "./Base"
+import { colors } from "@app-constants"
 
 export default function Icon({
   containerStyle,

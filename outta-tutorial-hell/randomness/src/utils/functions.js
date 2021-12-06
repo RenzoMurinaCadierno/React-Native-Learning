@@ -1,5 +1,5 @@
 import { Easing, Linking, Share, Alert } from "react-native"
-import appColors from "@app-constants/colors"
+import colors from "@app-constants/colors"
 
 export class Obj {
   static isPlain = (value) =>
@@ -44,22 +44,22 @@ export class Color {
     variantGroup = "main",
     fallbackVariantType = "PRIMARY"
   ) =>
-    appColors[variantGroup][type?.toUpperCase()] ??
+    colors[variantGroup][type?.toUpperCase()] ??
     colorProp ??
-    appColors[variantGroup][fallbackVariantType]
+    colors[variantGroup][fallbackVariantType]
 
   static getRgbaByType = (
     type = "PRIMARY",
     { variantGroup = "main", alphaValue = 1 } = {}
   ) =>
-    appColors[variantGroup][type?.toUpperCase() + "_ALPHA"]?.(
+    colors[variantGroup][type?.toUpperCase() + "_ALPHA"]?.(
       Number.isNaN(alphaValue) ? 1 : alphaValue
     )
 
   static getShadowForType = (type = "PRIMARY", { dark = false } = {}) =>
     Boolean(dark)
-      ? appColors.background.DARK
-      : appColors.accent[type.toUpperCase()] ?? appColors.accent.PRIMARY
+      ? colors.background.DARK
+      : colors.accent[type.toUpperCase()] ?? colors.accent.PRIMARY
 
   static castRgbToRgba = (rgbString, alphaValue = 1, warnInConsole) => {
     const isMatch = /rgb\((\d{1,3},\s){2}\d{1,3}\)/g.test(rgbString)

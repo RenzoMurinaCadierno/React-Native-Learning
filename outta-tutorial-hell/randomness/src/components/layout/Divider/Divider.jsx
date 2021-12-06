@@ -1,6 +1,6 @@
 import React from "react"
 import { View, StyleSheet } from "react-native"
-import sharedStyles from "@app-constants/styles"
+import { styles as sharedStyles } from "@app-constants"
 
 export default function Divider({ style, ...rest }) {
   return <View style={[_styles.container, style]} {...rest} />

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
 
 const errorImageSource = require("@app-assets/images/imgNotFound.jpg")

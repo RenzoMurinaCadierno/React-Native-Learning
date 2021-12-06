@@ -3,7 +3,7 @@ import { Animated } from "react-native"
 import AppText from "./Base"
 import Enhanced from "../../enhanced"
 import { useLinearAnimatedValue, useViewPortContext } from "@app-hooks"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 import { interpolate } from "@app-utils/functions"
 
 export default function TextWithTranslateTransition({

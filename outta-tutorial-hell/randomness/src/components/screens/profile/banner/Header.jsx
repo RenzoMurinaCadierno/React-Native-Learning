@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet, View } from "react-native"
 import UI from "@app-components/UI"
 import Layout from "@app-components/layout"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 import { Color } from "@app-utils/functions"
 
 export default function Content({

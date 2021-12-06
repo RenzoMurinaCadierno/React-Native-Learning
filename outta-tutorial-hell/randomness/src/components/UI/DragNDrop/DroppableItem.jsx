@@ -4,7 +4,7 @@ import Opacity from "../Animation/Opacity"
 import OverlayBase from "../../layout/Overlay/Base"
 import OverlayPressable from "../../layout/Overlay/Pressable"
 import TextWithScaleTransition from "../Text/TextWithScaleTransition"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 function DroppableItem({
   active,

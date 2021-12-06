@@ -2,9 +2,7 @@ import React, { useRef, useEffect } from "react"
 import { View, StyleSheet, SectionList } from "react-native"
 import BodyBullet from "./BodyBullet"
 import UI from "@app-components/UI"
-import colors from "@app-constants/colors"
-import sharedStyles from "@app-constants/styles"
-import { sectionNames } from "@app-constants/sections/profile"
+import { colors, styles as sharedStyles, sections } from "@app-constants"
 
 function BodyContent({
   bullets,
@@ -40,7 +38,7 @@ function BodyContent({
       fontScale={fontScale}
       onPress={() => {
         onBulletPress({
-          isEducationBullet: title === sectionNames.EDUCATION,
+          isEducationBullet: title === sections.profile.sectionNames.EDUCATION,
           iconId: activeIconId,
           itemPrimaryKey: primaryKey,
           courseUrl: url

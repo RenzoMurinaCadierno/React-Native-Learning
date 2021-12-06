@@ -43,7 +43,8 @@ const colors = {
       "248, 248, 255"
     ),
     ..._getColorDistribution(types.background.DARK, "#121212", "18, 18, 18")
-  }
+  },
+  getOppositeType: _getOppositeType
 }
 
 function _getColorDistribution(name, hex, rgb) {
@@ -55,7 +56,7 @@ function _getColorDistribution(name, hex, rgb) {
   }
 }
 
-export function reverseType(type) {
+function _getOppositeType(type) {
   const _type = type.toUpperCase()
 
   switch (_type) {

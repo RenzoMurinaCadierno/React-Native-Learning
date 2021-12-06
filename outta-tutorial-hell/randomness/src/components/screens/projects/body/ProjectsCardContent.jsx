@@ -4,7 +4,7 @@ import ProjectsCardActions from "./ProjectsCardActions"
 import UI from "@app-components/UI"
 import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
 import { interpolate } from "@app-utils/functions"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 import Context from "@app-context"
 
 // keep context in top component to prevent being called each time state changes

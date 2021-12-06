@@ -2,7 +2,7 @@ import React from "react"
 import { Animated } from "react-native"
 import { useLinearAnimatedValue } from "@app-hooks"
 import { interpolate } from "@app-utils/functions"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 
 export default function Opacity({
   active,

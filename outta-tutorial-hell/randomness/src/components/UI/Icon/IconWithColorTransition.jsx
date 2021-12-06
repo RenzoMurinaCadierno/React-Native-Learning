@@ -1,7 +1,7 @@
 import React from "react"
-import colors from "@app-constants/colors"
 import Base from "./Base"
 import Color from "../Animation/Color"
+import { colors } from "@app-constants"
 
 export default function IconWithColorTransition({
   active,

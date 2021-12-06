@@ -1,5 +1,5 @@
 import { TechIcon } from "./shared"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export class ProjectsIcon extends TechIcon {
   constructor({ id, name, shortName, activeColor }) {

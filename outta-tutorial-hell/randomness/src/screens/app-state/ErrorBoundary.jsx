@@ -4,7 +4,7 @@ import { reloadAsync } from "expo-updates"
 import Layout from "@app-components/layout"
 import UI from "@app-components/UI"
 import withViewPort from "@app-hoc/withViewPort"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 class ErrorBoundary extends React.Component {
   constructor() {

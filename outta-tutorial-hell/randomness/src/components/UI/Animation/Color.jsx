@@ -1,6 +1,6 @@
 import { interpolate } from "@app-utils/functions"
 import { useLinearAnimatedValue } from "@app-hooks"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 
 export default function Color({
   active,

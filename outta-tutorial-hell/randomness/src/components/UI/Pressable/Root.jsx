@@ -1,6 +1,6 @@
 import React from "react"
 import { Pressable } from "react-native"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export default function AppPressable({ color, radius, children, ...rest }) {
   return (

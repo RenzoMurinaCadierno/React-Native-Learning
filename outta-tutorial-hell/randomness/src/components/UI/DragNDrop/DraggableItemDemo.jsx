@@ -4,8 +4,7 @@ import IconWithCircle from "../Icon/IconWithCircle"
 import IconBase from "../Icon/Base"
 import Logic from "../../logic"
 import { useLoopingAnimatedValue } from "@app-hooks"
-import colors from "@app-constants/colors"
-import animations from "@app-constants/animations"
+import { colors, animations } from "@app-constants"
 import { interpolate } from "@app-utils/functions"
 
 export default function DraggableItemDemoGate({

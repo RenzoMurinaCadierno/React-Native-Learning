@@ -1,7 +1,6 @@
 import React from "react"
 import Enhanced from "@app-components/enhanced"
-import sharedStyles from "@app-constants/styles"
-import colors from "@app-constants/colors"
+import { colors, styles as sharedStyles } from "@app-constants"
 import { useScaleTransition } from "@app-hooks"
 
 export default function ScreenWithMountAnimation({ children, style }) {

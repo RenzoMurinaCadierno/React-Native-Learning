@@ -2,7 +2,7 @@ import React from "react"
 import { View, StyleSheet } from "react-native"
 import UI from "@app-components/UI"
 import Layout from "@app-components/layout"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export default function BodyBullet({
   type,

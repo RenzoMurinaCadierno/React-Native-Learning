@@ -1,6 +1,5 @@
 import { TechIcon } from "./shared"
-import { defaultIcons } from "@app-store/db/global"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export class SectionItem {
   constructor(title, subtitle, color, bullets) {
@@ -42,37 +41,6 @@ export const create = (function () {
     return newCourse
   }
 
-  // function _createCourse(
-  //   primaryKey,
-  //   text,
-  //   descriptionText,
-  //   sideText,
-  //   url,
-  //   doResetType
-  // ) {
-  //   return _createNewCourseOrProject({
-  //     primaryKey,
-  //     text,
-  //     descriptionText,
-  //     sideText,
-  //     url,
-  //     doResetType
-  //   })
-  // }
-
-  // function _createProject(primaryKey, text, descriptionText, doResetType) {
-  //   return _createNewCourseOrProject({
-  //     primaryKey,
-  //     text,
-  //     descriptionText,
-  //     doResetType
-  //   })
-  // }
-
-  // return {
-  //   course: (...args) => _createCourse(...args),
-  //   project: (...args) => _createProject(...args)
-  // }
   return {
     course: (...args) => _createNewCourseOrProject("bookmark", ...args),
     project: (...args) => _createNewCourseOrProject("briefcase", ...args)

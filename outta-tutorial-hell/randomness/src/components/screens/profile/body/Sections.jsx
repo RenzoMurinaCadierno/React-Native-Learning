@@ -1,9 +1,10 @@
 import React, { useCallback } from "react"
 import { StyleSheet, View, FlatList } from "react-native"
 import { useSelector, useDispatch } from "react-redux"
-import * as profileActions from "@app-store/actions/profile"
 import SectionListHeader from "./SectionListHeader"
 import SectionListItem from "./SectionListItem"
+import SectionListFooter from "./SectionListFooter"
+import store from "@app-store"
 
 function Sections({
   fontScale,
@@ -17,7 +18,7 @@ function Sections({
   const dispatch = useDispatch()
 
   const changeCategory = useCallback(
-    (newId) => dispatch(profileActions.changeActiveSubSection(newId)),
+    (newId) => dispatch(store.actions.profile.changeActiveSubSection(newId)),
     []
   )
 
@@ -48,6 +49,7 @@ function Sections({
       data={iconCategories}
       keyExtractor={_keyExtractor}
       renderItem={renderItem}
+      ListFooterComponent={SectionListFooter}
       onScroll={onScrollSectionList}
     />
   )

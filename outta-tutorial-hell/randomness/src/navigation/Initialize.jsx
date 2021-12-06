@@ -4,8 +4,7 @@ import { Alert } from "react-native"
 import Screens from "@app-screens"
 import Layout from "@app-components/layout"
 import RootNavigation from "./Root"
-import * as globalActions from "@app-store/actions/global"
-import { status as globalStoreStatus } from "@app-store/states/global"
+import store from "@app-store"
 
 export default function Initialize({ mockDbIntervalLength }) {
   const globalStoreStatus = useSelector((state) => state.global.status)
@@ -13,7 +12,9 @@ export default function Initialize({ mockDbIntervalLength }) {
   const dispatch = useDispatch()
 
   const initializeDatabase = async (mockDbIntervalLength) => {
-    await dispatch(globalActions.initializeDatabase(mockDbIntervalLength))
+    await dispatch(
+      store.actions.global.initializeDatabase(mockDbIntervalLength)
+    )
   }
 
   useEffect(() => {
@@ -37,13 +38,13 @@ export default function Initialize({ mockDbIntervalLength }) {
   return <RootNavigation />
 }
 
-function _storeIsLoading(currentGlobalStoreStatus) {
+function _storeIsLoading(globalStoreStatus) {
   return (
-    currentGlobalStoreStatus === globalStoreStatus.CICLE_START ||
-    currentGlobalStoreStatus === globalStoreStatus.FETCH_DATABASE_INIT
+    globalStoreStatus === store.states.global.status.CICLE_START ||
+    globalStoreStatus === store.states.global.status.FETCH_DATABASE_INIT
   )
 }
 
-function _databaseFetchFailed(currentGlobalStoreStatus) {
-  return currentGlobalStoreStatus === globalStoreStatus.FETCH_DATABASE_ERROR
+function _databaseFetchFailed(globalStoreStatus) {
+  return globalStoreStatus === store.states.global.status.FETCH_DATABASE_ERROR
 }

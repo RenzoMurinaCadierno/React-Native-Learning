@@ -1,9 +1,9 @@
 import { ProjectsIcon, ProjectsImage } from "@app-models/projects"
 import { defaultIcons } from "./global"
-import * as projectsConstants from "@app-constants/sections/projects"
+import { sections } from "@app-constants"
 import { uid } from "@app-utils/functions"
 
-const { WEB_APP, SHARE_LINK, REPOSITORY } = projectsConstants.card.actions
+const { WEB_APP, SHARE_LINK, REPOSITORY } = sections.projects.card.actions
 const BASE_REPO_URL_PATH = "https://github.com/RenzoMurinaCadierno/"
 const BASE_IMAGES_URL_PATH =
   "https://raw.githubusercontent.com/RenzoMurinaCadierno/assets/master/rn-portfolio/images/"

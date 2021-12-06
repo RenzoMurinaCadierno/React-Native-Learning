@@ -1,8 +1,7 @@
 import React from "react"
 import { View, StyleSheet } from "react-native"
 import UI from "@app-components/UI"
-import colors from "@app-constants/colors"
-import sharedStyles from "@app-constants/styles"
+import { colors, styles as sharedStyles } from "@app-constants"
 
 export default function Placeholder({
   show,

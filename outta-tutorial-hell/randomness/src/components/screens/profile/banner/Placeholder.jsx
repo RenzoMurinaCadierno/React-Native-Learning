@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import UI from "@app-components/UI"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export default function Placeholder({ fontScale, isSmallDevice }) {
   return (

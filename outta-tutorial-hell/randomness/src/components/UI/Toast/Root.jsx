@@ -4,7 +4,7 @@ import {
   useViewPort,
   useTimeoutToggle
 } from "@app-hooks"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 import Body from "./Body"
 
 export default function Root({

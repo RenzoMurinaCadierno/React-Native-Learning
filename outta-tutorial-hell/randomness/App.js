@@ -7,26 +7,19 @@ import AppLoading from "expo-app-loading"
 import * as Font from "@expo-google-fonts/livvic"
 import ErrorBoundary from "@app-screens/app-state/ErrorBoundary"
 import AppNavigation from "@app-navigation"
-import globalReducer from "@app-store/reducers/global"
-import profileReducer from "@app-store/reducers/profile"
-import projectsReducer from "@app-store/reducers/projects"
-import contactReducer from "@app-store/reducers/contact"
-import colors from "@app-constants/colors"
+import store from "@app-store"
+import { colors } from "@app-constants"
 
-const rootReducer = combineReducers({
-  global: globalReducer,
-  profile: profileReducer,
-  projects: projectsReducer,
-  contact: contactReducer
-})
-
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
-check styles in Loading for all devices. Build expo bundle
+const reduxStore = createStore(
+  combineReducers(store.reducers),
+  applyMiddleware(ReduxThunk)
+)
+card styles for large devices, then upload to expo
 export default function App() {
   return (
     <ErrorBoundary>
       <StatusBar backgroundColor={colors.background.CONTRAST} />
-      <Provider store={store}>
+      <Provider store={reduxStore}>
         <LoadAssetsBeforeChildren>
           <AppNavigation.Initialize mockDbIntervalLength={5000} />
         </LoadAssetsBeforeChildren>

@@ -1,7 +1,7 @@
 import React from "react"
 import * as VectorIcons from "@expo/vector-icons"
 import Enhanced from "../../enhanced"
-import colors from "@app-constants/colors"
+import { colors } from "@app-constants"
 
 export default function Base({ size, color, animated, vector, ...rest }) {
   const Component = Boolean(animated)

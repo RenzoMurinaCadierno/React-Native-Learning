@@ -2,7 +2,7 @@ import React from "react"
 import { Animated } from "react-native"
 import { interpolate } from "@app-utils/functions"
 import { useLoopingAnimatedValue } from "@app-hooks"
-import animations from "@app-constants/animations"
+import { animations } from "@app-constants"
 
 export default function Hover({
   active,
