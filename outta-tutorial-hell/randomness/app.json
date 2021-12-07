@@ -1,8 +1,11 @@
 {
   "expo": {
-    "name": "randomness",
-    "slug": "randomness",
+    "name": "Portfolio MAX",
+    "slug": "portfolio-max",
+    "description": "A simple portfolio app, ft. React Native.",
+    "privacy": "public",
     "version": "1.0.0",
+    "platforms": ["android"],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

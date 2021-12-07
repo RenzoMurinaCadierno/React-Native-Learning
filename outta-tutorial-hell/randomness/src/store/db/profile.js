@@ -182,7 +182,7 @@ const profileBullets = {
           url: "https://www.educacionit.com/curso-de-mongodb-fundamentos"
         }),
         create.course({
-          text: "MongoDB fundamentals",
+          text: "MongoDB Advanced",
           descriptionText: "Certified (12 hours)",
           sideText: "EducacionIT",
           url: "https://www.educacionit.com/curso-de-mongodb"

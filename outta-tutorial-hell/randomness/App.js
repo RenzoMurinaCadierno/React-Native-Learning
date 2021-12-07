@@ -21,7 +21,7 @@ export default function App() {
       <StatusBar backgroundColor={colors.background.CONTRAST} />
       <Provider store={reduxStore}>
         <LoadAssetsBeforeChildren>
-          <AppNavigation.Initialize mockDbIntervalLength={0} />
+          <AppNavigation.Initialize mockDbIntervalLength={5000} />
         </LoadAssetsBeforeChildren>
       </Provider>
     </ErrorBoundary>
