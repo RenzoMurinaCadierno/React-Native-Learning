@@ -1,4 +1,4 @@
-import useLinearAnimatedValue from "@app-hooks/useLinearAnimatedValue"
+import useLinearAnimatedValue from "./useLinearAnimatedValue"
 import { interpolate } from "@app-utils/functions"
 
 export default function useScaleTransition({

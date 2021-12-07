@@ -16,28 +16,6 @@ import useTimeoutToggle from "./useTimeoutToggle"
 import useViewPort from "./useViewPort"
 import useViewPortContext from "./useViewPortContext"
 
-// const hooks = {
-//   useBreakpoints,
-//   useControlledUpdate,
-//   useFlag,
-//   useImageTransition,
-//   useLayout,
-//   useLinearAnimatedValue,
-//   useLoopingAnimatedValue,
-//   useMultiLinearAnimatedValues,
-//   useMultiLoopingAnimatedValues,
-//   useRenderControlledAnimatedValue,
-//   useScaleTransition,
-//   useSelectProfile,
-//   useSetAnimatedValue,
-//   useTimeoutGate,
-//   useTimeoutToggle,
-//   useViewPort,
-//   useViewPortContext
-// }
-
-// export default hooks
-
 module.exports = {
   useBreakpoints,
   useControlledUpdate,

@@ -1,6 +1,5 @@
 import React, { createContext } from "react"
-import useViewPortContext from "@app-hooks/useViewPortContext"
-import useBreakpoints from "@app-hooks/useBreakpoints"
+import { useBreakpoints, useViewPortContext } from "@app-hooks"
 
 const MenuContext = createContext({ fontScale: 23 })
 const BodyContext = createContext({ fontScale: 17, cardMaxHeight: 250 })
@@ -19,8 +18,12 @@ function BodyContextProvider({ children }) {
   const { vw, vh } = useViewPortContext()
   const breakpoints = useBreakpoints()
   const context = {
-    fontScale: breakpoints.select({ sm: vw(5.25), any: vw(4.5) }),
-    cardMaxHeight: breakpoints.select({ sm: vh(47.5), any: vh(44.5) })
+    fontScale: breakpoints.select({ sm: vw(5.25), md: vw(4.25), any: vw(4.5) }),
+    cardMaxHeight: breakpoints.select({
+      sm: vh(45.5),
+      md: vh(44.5),
+      any: vh(39)
+    })
   }
 
   return <BodyContext.Provider value={context}>{children}</BodyContext.Provider>

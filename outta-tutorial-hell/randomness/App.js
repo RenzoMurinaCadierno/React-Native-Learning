@@ -14,14 +14,14 @@ const reduxStore = createStore(
   combineReducers(store.reducers),
   applyMiddleware(ReduxThunk)
 )
-card styles for large devices, then upload to expo
+
 export default function App() {
   return (
     <ErrorBoundary>
       <StatusBar backgroundColor={colors.background.CONTRAST} />
       <Provider store={reduxStore}>
         <LoadAssetsBeforeChildren>
-          <AppNavigation.Initialize mockDbIntervalLength={5000} />
+          <AppNavigation.Initialize mockDbIntervalLength={0} />
         </LoadAssetsBeforeChildren>
       </Provider>
     </ErrorBoundary>

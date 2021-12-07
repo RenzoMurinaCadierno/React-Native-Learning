@@ -1,7 +1,5 @@
 import Animated from "./withAnimated"
 
-const Enhanced = {
-  Animated
-}
+const Enhanced = { Animated }
 
 export default Enhanced

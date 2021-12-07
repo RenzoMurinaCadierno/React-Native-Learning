@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import { Animated, PanResponder } from "react-native"
-import useLayout from "@app-hooks/useLayout"
+import { useLayout } from "@app-hooks"
 import { Obj } from "@app-utils/functions"
 
 export default function Translate2D({

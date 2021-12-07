@@ -1,6 +1,5 @@
 import React, { createContext } from "react"
-import useViewPortContext from "@app-hooks/useViewPortContext"
-import useBreakpoints from "@app-hooks/useBreakpoints"
+import { useBreakpoints, useViewPortContext } from "@app-hooks"
 
 const BannerContext = createContext({
   fontScale: 17,
@@ -12,7 +11,7 @@ function BannerContextProvider({ children }) {
   const { vw, vh } = useViewPortContext()
   const breakpoints = useBreakpoints()
   const context = {
-    fontScale: breakpoints.select({ sm: vw(5.5), any: vw(5) }),
+    fontScale: breakpoints.select({ sm: vw(5.5), md: vw(4.85), any: vw(5) }),
     headerShrinkThereshold: vh(50),
     isSmallDevice: breakpoints.get("sm")
   }
@@ -26,7 +25,7 @@ function BodyContextProvider({ children }) {
   const { vw } = useViewPortContext()
   const breakpoints = useBreakpoints()
   const context = {
-    fontScale: breakpoints.select({ sm: vw(3.5), any: vw(3) })
+    fontScale: breakpoints.select({ sm: vw(3.5), md: vw(2.85), any: vw(3) })
   }
 
   return <BodyContext.Provider value={context}>{children}</BodyContext.Provider>

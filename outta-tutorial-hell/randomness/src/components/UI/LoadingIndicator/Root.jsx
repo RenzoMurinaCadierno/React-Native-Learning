@@ -49,18 +49,14 @@ function _getColorsByType(type) {
 
 function _getAnchorStyle(anchor) {
   const _anchor = anchor?.toLowerCase().split("-")
-  let finalStyles = _anchor.reduce(
+
+  return _anchor.reduce(
     (acc, positionKey) => ({
       ...acc,
       [positionKey]: 0,
-      ["margin" + capitalize(positionKey)]: 15
+      ["margin" + capitalize(positionKey)]:
+        positionKey === "top" ? StatusBar.currentHeight + 15 : 15
     }),
     { position: "absolute", flexDirection: "row" }
   )
-
-  finalStyles.marginTop = finalStyles.marginTop
-    ? StatusBar.currentHeight + finalStyles.marginTop
-    : StatusBar.currentHeight + 15
-
-  return finalStyles
 }

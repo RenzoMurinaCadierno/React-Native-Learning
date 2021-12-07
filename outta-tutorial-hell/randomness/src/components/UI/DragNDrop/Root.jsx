@@ -42,6 +42,7 @@ export default function Root({
     itemsYLimits.updateObject({
       [itemName]: breakpoints.select({
         sm: [itemTop - itemDims.height, itemTop + itemDims.height / 2],
+        md: [itemTop - itemDims.height / 1.5, itemTop + itemDims.height / 1.5],
         any: [itemTop - itemDims.height / 2, itemTop + itemDims.height]
       })
     })

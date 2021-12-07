@@ -1,6 +1,5 @@
 import React, { createContext } from "react"
-import useViewPortContext from "@app-hooks/useViewPortContext"
-import useBreakpoints from "@app-hooks/useBreakpoints"
+import { useBreakpoints, useViewPortContext } from "@app-hooks"
 
 const ToastContext = createContext({ fontScale: 17 })
 
